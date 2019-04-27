@@ -112,31 +112,31 @@ export default class Level_Selection extends React.Component {
         const transform = [{ translateY: this.translateY }, {translateX: this.translateX}]
         const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
         return (
-            <ImageBackground source={require('../assets/Level_Selection.png')} style={styles.background}>
+            <ImageBackground source={require('../assets/fonts/Level_Selection.png')} style={styles.background}>
 
 
-                <Animated.Image source={require('../assets/gifs/Butterfly_1.gif')} style={[styles.Butterflys,{
+                <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
                     marginTop:height/1.8,marginLeft:width/1.2, transform:transform2 }]}>
                 </Animated.Image>
-                <Animated.Image source={require('../assets/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
+                <Animated.Image source={require('../assets/fonts/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
                     marginTop:height*0.25}]} >
                 </Animated.Image>
-                <Animated.Image source={require('../assets/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
+                <Animated.Image source={require('../assets/fonts/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
                     marginTop:height*0.4,marginRight: width*0.2}]} >
                 </Animated.Image>
-                <Animated.Image source={require('../assets/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_3,
+                <Animated.Image source={require('../assets/fonts/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_3,
                     marginTop:height*0.1,marginRight: width*0.2}]} >
                 </Animated.Image>
-                <Image source={require('../assets/Level_Selection_front.png')}
+                <Image source={require('../assets/fonts/Level_Selection_front.png')}
                        style={{width: '100%', height: '100%'}}  />
-                <Animated.Image source={require('../assets/gifs/Butterfly_9.gif')} style={[styles.Butterflys,{
+                <Animated.Image source={require('../assets/animations/Butterfly_9.gif')} style={[styles.Butterflys,{
                     marginTop:height/1.5,marginLeft:width/15, transform }]}>
                 </Animated.Image>
                 <View style={styles.container}>
                     <TouchableOpacity onPress={() =>this.props.navigation.navigate('Level_1')}>
                         <View>
                             <Image
-                                source={require('../assets/gifs/Egg_1.gif')}
+                                source={require('../assets/animations/Egg_1.gif')}
                                 style={[styles.Eggs,{marginTop:height*0.56}]}
                             />
                         </View>
@@ -144,7 +144,7 @@ export default class Level_Selection extends React.Component {
                     <TouchableOpacity onPress={() =>this.props.navigation.navigate('SignatureScreen')}>
                         <View>
                             <Image
-                                source={require('../assets/gifs/Egg_2.gif')}
+                                source={require('../assets/animations/Egg_2.gif')}
                                 style={[styles.Eggs,{marginTop:height*0.58}]}
                             />
                         </View>
@@ -152,7 +152,7 @@ export default class Level_Selection extends React.Component {
                     <TouchableOpacity onPress={() =>this.props.navigation.navigate('SignatureScreen')}>
                         <View>
                             <Image
-                                source={require('../assets/gifs/Egg_3.gif')}
+                                source={require('../assets/animations/Egg_3.gif')}
                                 style={[styles.Eggs,{marginTop:height*0.6}]}
                             />
                         </View>
@@ -160,14 +160,14 @@ export default class Level_Selection extends React.Component {
                     <TouchableOpacity onPress={() =>this.props.navigation.navigate('SignatureScreen')}>
                         <View>
                             <Image
-                                source={require('../assets/gifs/Egg_4.gif')}
+                                source={require('../assets/animations/Egg_4.gif')}
                                 style={[styles.Eggs,{marginTop:height*0.54}]}
                             />
                         </View>
                     </TouchableOpacity>
 
                 </View>
-                <Image source={require('../assets/Level_Selection_front2.png')}
+                <Image source={require('../assets/fonts/Level_Selection_front2.png')}
                        style={styles.font2_gras}  />
             </ImageBackground>
         );
