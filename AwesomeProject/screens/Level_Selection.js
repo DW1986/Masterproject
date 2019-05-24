@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, ImageBackground, Image,Button, Animated, TouchableOpacity,Easing,Dimensions} from 'react-native';
-
+import {PermissionsAndroid} from 'react-native';
 
 var {width, height} = Dimensions.get('window')
 export default class Level_Selection extends React.Component {
@@ -68,7 +68,6 @@ export default class Level_Selection extends React.Component {
 
     componentDidMount(){
 
-
         this.Butterfly_1.setValue(0)
         Animated.loop(
             Animated.timing(this.Butterfly_1, {
@@ -76,6 +75,7 @@ export default class Level_Selection extends React.Component {
                 duration: 16000,
             })
         ).start()
+
         this.Butterfly_2.setValue(0)
         Animated.loop(
             Animated.timing(this.Butterfly_2, {
@@ -141,7 +141,7 @@ export default class Level_Selection extends React.Component {
                             />
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() =>this.props.navigation.navigate('SignatureScreen')}>
+                    <TouchableOpacity onPress={() =>this.props.navigation.navigate('Level_2')}>
                         <View>
                             <Image
                                 source={require('../assets/animations/Egg_2.gif')}
@@ -149,7 +149,7 @@ export default class Level_Selection extends React.Component {
                             />
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() =>this.props.navigation.navigate('SignatureScreen')}>
+                    <TouchableOpacity onPress={() =>this.props.navigation.navigate('Level_3')}>
                         <View>
                             <Image
                                 source={require('../assets/animations/Egg_3.gif')}

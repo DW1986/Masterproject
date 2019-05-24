@@ -18,7 +18,7 @@ export default class Level_1 extends Component {
             backpanel : new Animated.Value(-90),
             colorselected:0,
             order:0,
-            drawcolor:'#FD0000'
+            drawcolor:'#FF0000'
         }
     }
     componentDidMount(){
