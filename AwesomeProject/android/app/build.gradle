@@ -107,6 +107,16 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+            release {
+                if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
+                    storeFile file(MYAPP_RELEASE_STORE_FILE)
+                    storePassword MYAPP_RELEASE_STORE_PASSWORD
+                    keyAlias MYAPP_RELEASE_KEY_ALIAS
+                    keyPassword MYAPP_RELEASE_KEY_PASSWORD
+                }
+            }
+        }
     splits {
         abi {
             reset()
@@ -119,6 +129,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -137,9 +148,9 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-fetch-blob')
-    implementation project(':react-native-view-shot')
+    implementation project(':react-native-fs')
     implementation project(':react-native-dominant-color')
+    implementation project(':react-native-view-shot')
     implementation project(':react-native-gesture-handler')
     implementation project(':@terrylinla_react-native-sketch-canvas')
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -156,7 +167,7 @@ dependencies {
 
       // For WebP support, without animations
       compile 'com.facebook.fresco:webpsupport:1.10.0'
-      compile project(':react-native-dominant-color')
+
 
 }
 

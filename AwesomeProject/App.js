@@ -16,15 +16,7 @@ export async function request_WRITE_STORAGE_runtime_permission() {
                 'message': 'ReactNativeCode App needs access to WRITE_STORAGE '
             }
         )
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
 
-            Alert.alert("WRITE_STORAGE Granted.");
-        }
-        else {
-
-            Alert.alert("WRITE_STORAGE Not Granted");
-
-        }
     } catch (err) {
         console.warn(err)
     }

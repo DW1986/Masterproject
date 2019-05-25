@@ -3,9 +3,12 @@ package com.awesomeproject;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.RNFetchBlob.RNFetchBlobPackage;
-import fr.greweb.reactnativeviewshot.RNViewShotPackage;
+import com.rnfs.RNFSPackage;
+
+
+
 import cl.hasaezs.rndominantcolor.RNDominantColorPackage;
+import fr.greweb.reactnativeviewshot.RNViewShotPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.terrylinla.rnsketchcanvas.SketchCanvasPackage;
 import com.facebook.react.ReactNativeHost;
@@ -28,9 +31,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
-            new RNFetchBlobPackage(),
-            new RNViewShotPackage(),
+            new RNFSPackage(),
             new RNDominantColorPackage(),
+            new RNViewShotPackage(),
             new RNGestureHandlerPackage(),
             new SketchCanvasPackage()
       );
