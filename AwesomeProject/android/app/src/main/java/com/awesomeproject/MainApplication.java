@@ -3,6 +3,7 @@ package com.awesomeproject;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.palette.RNPalettePackage;
 import com.rnfs.RNFSPackage;
 
 
@@ -31,6 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new RNPalettePackage(),
             new RNFSPackage(),
             new RNDominantColorPackage(),
             new RNViewShotPackage(),

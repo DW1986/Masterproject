@@ -45,6 +45,7 @@
 		AF7D7496CF9F42EAAB6089C1 /* libRNViewShot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CBD47222EA497692D1F962 /* libRNViewShot.a */; };
 		A33D115075D64C1085858D60 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2000C0D071B3441595270788 /* libRNFetchBlob.a */; };
 		F81F150BB1ED4F2BB6568057 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FC81B9D7E8C4A129E287197 /* libRNFS.a */; };
+		C709CDA380DA4B08AFEE8984 /* libRNPalette.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E5422B56984BE49350BFEF /* libRNPalette.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -363,6 +364,8 @@
 		2000C0D071B3441595270788 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		B230311DBEAE437CBDBCD73F /* RNFS.xcodeproj */ = {isa = PBXFileReference; name = "RNFS.xcodeproj"; path = "../node_modules/react-native-fs/RNFS.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		0FC81B9D7E8C4A129E287197 /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6419D7442EA046AC919A3E8B /* RNPalette.xcodeproj */ = {isa = PBXFileReference; name = "RNPalette.xcodeproj"; path = "../node_modules/react-native-palette/ios/RNPalette.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		87E5422B56984BE49350BFEF /* libRNPalette.a */ = {isa = PBXFileReference; name = "libRNPalette.a"; path = "libRNPalette.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +399,7 @@
 				AF7D7496CF9F42EAAB6089C1 /* libRNViewShot.a in Frameworks */,
 				A33D115075D64C1085858D60 /* libRNFetchBlob.a in Frameworks */,
 				F81F150BB1ED4F2BB6568057 /* libRNFS.a in Frameworks */,
+				C709CDA380DA4B08AFEE8984 /* libRNPalette.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +595,7 @@
 				13F9DACA74264902A63D6C25 /* RNViewShot.xcodeproj */,
 				17B2E3F857E442A0B534B5C9 /* RNFetchBlob.xcodeproj */,
 				B230311DBEAE437CBDBCD73F /* RNFS.xcodeproj */,
+				6419D7442EA046AC919A3E8B /* RNPalette.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1219,6 +1224,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1227,6 +1233,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-view-shot\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Debug;
@@ -1249,6 +1256,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1257,6 +1265,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-view-shot\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Release;
@@ -1284,6 +1293,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-view-shot\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Debug;
@@ -1310,6 +1320,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-view-shot\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Release;
@@ -1340,6 +1351,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1348,6 +1360,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-view-shot\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Debug;
@@ -1378,6 +1391,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1386,6 +1400,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-view-shot\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Release;
@@ -1415,6 +1430,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1423,6 +1439,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-view-shot\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Debug;
@@ -1452,6 +1469,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1460,6 +1478,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-view-shot\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Release;

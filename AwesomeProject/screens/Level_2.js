@@ -1,10 +1,15 @@
+<script src="http://localhost:8097"></script>
+
 import React, { Component } from 'react';
 import {
-    StyleSheet, View, Text, Image, Alert, TouchableOpacity, PermissionsAndroid
+    StyleSheet, View, Text, Image, Alert, TouchableOpacity, PermissionsAndroid, Animated
 } from 'react-native';
 import ViewShot from "react-native-view-shot";
 import RNSketchCanvas from '@terrylinla/react-native-sketch-canvas';
 import { colorsFromUrl } from 'react-native-dominant-color';
+var RNFS = require('react-native-fs');
+import { getAllSwatches } from 'react-native-palette';
+
 
 export default class Level_2 extends Component {
 
@@ -12,39 +17,59 @@ export default class Level_2 extends Component {
         super();
         this.state = {
             drawcolor: [{color: '#ff0000'}, {color: '#00ff00'}],
-            dominant_color: '#ffffff',
-            imageUrl: 'https://source.unsplash.com/random/800x600',
+            dominant_color: 'null',
+            path: RNFS.ExternalCachesDirectoryPath + '/test.jpg'
+
+
         }
     }
+
 
     componentDidMount () {
 
-// Random pictures updates dominant color after 2 seconds
-        sleep(2000).then(() => {
-            colorsFromUrl(this.state.imageUrl, (err, colors) => {
-                if (!err) {
-                    this.setState({dominant_color: colors.dominantColor})
-                }
-            })
-        })
-
-// Screenshot picture should update dominant color after 4 seconds (not working)
-        sleep(4000).then(() => {
-           Alert.alert("Color should update now again")
+        setInterval(() => {
+            // Your code
             this.refs.viewShot.capture().then(uri => {
-                colorsFromUrl(uri, (err, colors) => {
-                    if (!err) {
-                        this.setState({dominant_color: colors.dominantColor})
-                    }
-                })
-            });
-        })
+                RNFS.writeFile(this.state.path, uri, 'base64')
+                    .then((success) => {
 
-        function sleep (time) {
-            return new Promise((resolve) => setTimeout(resolve, time));
-        }
+                    })
+            })
+// Weiß wird in den swatches nicht wiedergegeben
+            // Fehler,wenn es die Dateil test... das erste mal noch nicht gibt
+        getAllSwatches({}, this.state.path, (error, swatches) => {
+            if (error) {
+               Alert.alert(error);
+            }  else {
+                swatches.sort((a, b) => {
+                    return b.population - a.population;
+                });
+
+            }
+            this.setState({dominant_color: swatches[0].color});
+            this.colortest()
+        })
+        }, 3000);
     }
 
+
+
+colortest(){
+    switch(this.state.dominant_color) {
+
+        case 'rgba(248,0,0,1,000)':
+           this.setState({test:"red"})
+            break;
+
+        case 'rgba(0,128,0,1,000)':
+            this.setState({test:"green"})
+            break;
+
+        default:
+            this.setState({test:"none"})
+
+    }
+}
 
 
 
@@ -53,18 +78,24 @@ export default class Level_2 extends Component {
             <View style={styles.container}>
 
                 <Text>dominant Color: {this.state.dominant_color} </Text>
-                <ViewShot ref="viewShot" options={{ format: "jpg", quality: 0.9 }}>
-                <View style={styles.paint}>
+                <Text>Color: {this.state.test} </Text>
+
+                <ViewShot ref="viewShot" options={{ format: "jpg", quality: 0.1,result:"base64"  }}>
+
+                    <View style={styles.paint}>
+
                         <RNSketchCanvas
                             containerStyle={{ flex: 1 }}
-                            canvasStyle={{ flex: 1 }}
-                            defaultStrokeWidth={15}
+                            canvasStyle={{ backgroundColor:'white',flex: 1 }}
+                            defaultStrokeWidth={40}
                             defaultStrokeIndex={0}
                             strokeColors={this.state.drawcolor}
+
                         />
 
-                </View>
+                    </View>
                 </ViewShot>
+
             </View>
         );
     }
@@ -80,11 +111,11 @@ const styles = StyleSheet.create({
     paint: {
         width: 410,
         height: 254,
-        backgroundColor: 'black',
         borderColor: 'grey',
         borderWidth: 3,
         marginBottom: 35,
         marginLeft: 7,
+
     }
 
 });
