@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {
-    StyleSheet, View, Text, Image, Alert, TouchableOpacity, PermissionsAndroid, Animated, PanResponder
+    StyleSheet, View, Text, Image, Alert, TouchableOpacity, PermissionsAndroid, Animated, PanResponder, ImageBackground, img
 } from 'react-native';
 import ViewShot from "react-native-view-shot";
 import RNSketchCanvas from '@terrylinla/react-native-sketch-canvas';
-import { colorsFromUrl } from 'react-native-dominant-color';
 var RNFS = require('react-native-fs');
 import { getAllSwatches } from 'react-native-palette';
+import { ColorExtractor } from 'react-color-extractor'
 
 
 
@@ -17,82 +17,34 @@ export default class Level_2 extends Component {
         super(props)
 
         this.state = {
-
+            colors: [],
             dominantcolor:null,
-            path: RNFS.ExternalCachesDirectoryPath + '/test.jpg',
 
 
-        }
-
-    }
-
-
-makeScreenshot() {
-    this.refs.viewShot.capture().then(uri => {
-        RNFS.writeFile(this.state.path, uri, 'base64')
-            .then((success) => {
-                getAllSwatches({}, this.state.path, (error, swatches) => {
-                    if (error) {
-                        Alert.alert(error);
-                    }  else {
-                        swatches.sort((a, b) => {
-                            return b.population - a.population;
-                        })
-                    }
-                    this.setState({dominantcolor_rgba: swatches[0].color});
-                    this.getColor()
-                })
-            })
-    })
-}
-    getColor(){
-        switch(this.state.dominantcolor_rgba) {
-
-            case 'rgba(248,0,0,1,000)':
-                this.setState({dominantcolor:"red"})
-                break;
-
-            case 'rgba(0,0,248,1,000)':
-                this.setState({dominantcolor:"blue"})
-                break;
-            case 'rgba(0,248,0,1,000)':
-                this.setState({dominantcolor:"green"})
-                break;
-            case 'rgba(248,248,0,1,000)':
-                this.setState({dominantcolor:"yellow"})
-                break;
-            case 'rgba(248,104,176,1,000)':
-                this.setState({dominantcolor:"pink"})
-                break;
-            case 'rgba(152,120,64,1,000)':
-                this.setState({dominantcolor:"brown"})
-                break;
-            case 'rgba(152,0,248,1,000)':
-                this.setState({dominantcolor:"purple"})
-                break;
-            case 'rgba(248,168,8,1,000)':
-                this.setState({dominantcolor:"orange"})
-                break;
-            case 'rgba(0,248,248,1,000)':
-                this.setState({dominantcolor:"cyan"})
-                break;
-
-            default:
-                this.setState({dominantcolor:"white"})
 
         }
+
     }
 
+    renderSwatches = () => {
+        const { colors } = this.state
 
-    componentDidMount () {
-        this.makeScreenshot()
+        return colors.map((color, id) => {
+            return (
+                <div
+                    key={id}
+                    style={{
+                        backgroundColor: color,
+                        width: 100,
+                        height: 100
+                    }}
+                />
+            )
+        })
     }
 
-componentWillUnmount() {
-        clearTimeout(this.timeout)
-}
-
-
+    getColors = colors =>
+        this.setState(state => ({ colors: [...state.colors, ...colors] }))
 
 
 
@@ -102,31 +54,29 @@ componentWillUnmount() {
 
             <View style={styles.container}>
 
-    <Text>dominant Color: {this.state.dominantcolor_rgba} </Text>
-    <Text>Color: {this.state.dominantcolor} </Text>
+                <Text>rgba:{this.state.dominantcolor_rgba}</Text>
+                <Text>dominantcolor:{this.state.dominantcolor}</Text>
+                <Text>drawcolor:{this.state.drawcolor}</Text>
+                <Text>oder:{this.state.order}</Text>
+                <Text>colorselected:{String(this.state.colorselected)}</Text>
 
 
 
-                <ViewShot ref="viewShot" options={{ format: "jpg", quality: 0.1,result:"base64"  }}>
 
-                    <View style={styles.paint}>
 
-                        <RNSketchCanvas
-                            containerStyle={{ flex: 1 }}
-                            canvasStyle={{ backgroundColor:'#F1F1F1',flex: 1 }}
-                            defaultStrokeWidth={40}
-                            defaultStrokeIndex={8}
-                            strokeColors={this.state.drawcolor}
-                            onStrokeEnd={() => {this.makeScreenshot()}
-                        }
+                <View style={styles.paint} >
 
+                    <ColorExtractor getColors={this.getColors}>
+                        <img
+                            src="https://i.imgur.com/OCyjHNF.jpg"
+                            style={{ width: 700, height: 500 }}
                         />
-                        <View pointerEvents="none"  style={{position:'absolute'}}  >
-                            <Image  style={styles.pictures}
-                                    source={require('../assets/pictures/ballons_alpha.png')}/>
-                        </View>
-                    </View>
-                </ViewShot>
+                    </ColorExtractor>
+                </View>
+            <View>
+                {this.renderSwatches()}
+
+            </View>
 
             </View>
         );
