@@ -1,5 +1,5 @@
-import {Image} from "react-native";
 import React from "react";
+import FastImage from 'react-native-fast-image'
 
 // render the starfall depending on order
     export function starfall(order) {
@@ -22,7 +22,7 @@ import React from "react";
             case 31:
             case 33:
             case 35:
-                return <Image style={[{position: 'absolute'}, {width: 402}, {height: 246}, {opacity: 0.5}]}
+                return <FastImage style={[{position: 'absolute'}, {width: 402}, {height: 246}, {opacity: 0.5}]}
                               source={require('../assets/fonts/starfall.gif')}/>
                 break;
             default:

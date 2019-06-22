@@ -1,6 +1,6 @@
 import * as Animatable from "react-native-animatable";
-import {Image} from "react-native";
 import React from "react";
+import FastImage from 'react-native-fast-image'
 
 // render and animate the woodShild depending on order
     export function woodShild(order) {
@@ -12,7 +12,7 @@ import React from "react";
                 break;
             case 1:
             case 2:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             case 3:
@@ -27,7 +27,7 @@ import React from "react";
                 break;
             case 5:
             case 6:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             case 7:
@@ -42,7 +42,7 @@ import React from "react";
                 break;
             case 9:
             case 10:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             case 11:
@@ -57,7 +57,7 @@ import React from "react";
                 break;
             case 13:
             case 14:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             case 15:
@@ -72,7 +72,7 @@ import React from "react";
                 break;
             case 17:
             case 18:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             case 19:
@@ -87,7 +87,7 @@ import React from "react";
                 break;
             case 21:
             case 22:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             case 23:
@@ -102,7 +102,7 @@ import React from "react";
                 break;
             case 25:
             case 26:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             case 27:
@@ -117,7 +117,7 @@ import React from "react";
                 break;
             case 29:
             case 30:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             case 31:
@@ -131,7 +131,7 @@ import React from "react";
                     animation="flipInY" duration={3000}/>
             case 33:
             case 34:
-                return <Image
+                return <FastImage
                     source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 break;
             default:

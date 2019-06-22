@@ -4,6 +4,7 @@ import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
 import * as Animatable from 'react-native-animatable';
+import FastImage from 'react-native-fast-image'
 import {colorselector} from "../components/colorselector1";
 import {woodShild} from "../components/woodShild1";
 import {text} from "../components/text1";
@@ -33,13 +34,21 @@ export default class Level_1 extends Component {
             ScaleValue1 : new Animated.Value(0),
             ScaleValue2 : new Animated.Value(1),
             text:"ROT",
-            textcolor:'#FF0000'
+            textcolor:'#FF0000',
+            timer:0
+
         }
     }
 
     componentDidMount() {
         //make initial Screenshot
         this.makeScreenshot()
+setTimeout(() => {
+    this.setState({timer:1})
+    }, 1500)
+
+
+
     }
 
 //Change drawcolor when selected
@@ -371,6 +380,33 @@ export default class Level_1 extends Component {
 
         }
     }
+bunny(){
+        switch(this.state.order){
+            case 0:
+                if(this.state.timer===0) {
+                    return <Animatable.View  style={styles.bunny} animation={{
+                        from: {translateY: -400},
+                        to: {translateY: 0}
+                    }} duration={1100} easing={"linear"}>
+                        <Image
+                            source={require('../assets/bunny/jump-in.gif')}
+                            style={{width: 300, height: 300}}/>
+                    </Animatable.View>
+                }
+                    else{ return  <View style={styles.bunny}>
+                    <Image
+                        source={require('../assets/bunny/idle.gif')}
+                        style={{width:300,height:300}}/>
+                </View>
+                }
+            case 1:
+                return <FastImage
+                    source={require('../assets/bunny/jump-in.gif')}
+                    style={{width:300,height:300}}/>
+        }
+}
+
+
     // Test Code for displaying state:
 //<Text>rgba:{this.state.dominantcolor_rgba}</Text>
 //                     <Text>dominantcolor:{this.state.dominantcolor}</Text>
@@ -383,6 +419,7 @@ export default class Level_1 extends Component {
     render() {
         return (
             <ImageBackground source={require('../assets/fonts/Level1.png')} style={styles.background}>
+                {this.bunny()}
                 <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
                     <SketchCanvas
                             ref="sketchRef"
@@ -431,6 +468,7 @@ export default class Level_1 extends Component {
 
                     </Animatable.View>
                 </View>
+
             </ImageBackground>
         );
     }
@@ -501,5 +539,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         height: '100%',
+    },
+    bunny: {
+        bottom:20,
+        left:520,
+        position: 'absolute',
+
+
+
     },
 });
