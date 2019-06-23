@@ -13,7 +13,9 @@ import {pictureselector} from "../components/pictureselector1";
 
 var RNFS = require('react-native-fs');
 
+
 var {width, height} = Dimensions.get('window')
+
 export default class Level_1 extends Component {
 
     constructor(props) {
@@ -43,13 +45,18 @@ export default class Level_1 extends Component {
     componentDidMount() {
         //make initial Screenshot
         this.makeScreenshot()
-setTimeout(() => {
-    this.setState({timer:1})
-    }, 1500)
 
 
 
+
+
+
+    setTimeout(() => {
+        this.setState({timer:1})
+        }, 1500)
     }
+
+
 
 //Change drawcolor when selected
     changedrawcolor() {
@@ -387,16 +394,18 @@ bunny(){
                     return <Animatable.View  style={styles.bunny} animation={{
                         from: {translateY: -400},
                         to: {translateY: 0}
-                    }} duration={1100} easing={"linear"}>
-                        <Image
+                    }} duration={900} easing={"linear"}>
+                        <FastImage
                             source={require('../assets/bunny/jump-in.gif')}
                             style={{width: 300, height: 300}}/>
+
                     </Animatable.View>
                 }
                     else{ return  <View style={styles.bunny}>
-                    <Image
+                    <FastImage
                         source={require('../assets/bunny/idle.gif')}
                         style={{width:300,height:300}}/>
+
                 </View>
                 }
             case 1:
@@ -419,6 +428,7 @@ bunny(){
     render() {
         return (
             <ImageBackground source={require('../assets/fonts/Level1.png')} style={styles.background}>
+
                 {this.bunny()}
                 <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
                     <SketchCanvas
