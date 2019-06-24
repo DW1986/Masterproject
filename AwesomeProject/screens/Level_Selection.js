@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, ImageBackground, Image,Button, Animated, TouchableOpacity,Easing,Dimensions} from 'react-native';
 import {PermissionsAndroid} from 'react-native';
 
+
 var {width, height} = Dimensions.get('window')
 export default class Level_Selection extends React.Component {
 
@@ -67,7 +68,7 @@ export default class Level_Selection extends React.Component {
 
 
     componentDidMount(){
-
+        this.mounted = true;
         this.Butterfly_1.setValue(0)
         Animated.loop(
             Animated.timing(this.Butterfly_1, {
@@ -105,7 +106,9 @@ export default class Level_Selection extends React.Component {
             })
         ).start()
     }
-
+    componentWillUnmount() {
+        this.mounted = false;
+    }
 
 
     render() {

@@ -1,4 +1,4 @@
-import { Image } from 'react-native';
+import { Image,Alert } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 export function preloadImages() {
@@ -21,7 +21,7 @@ export function preloadImages() {
         require('../assets/colors/pink_selected.png'),
         require('../assets/colors/brown.png'),
         require('../assets/colors/brown_selected.png'),
-        require('../assets/colors/purple'),
+        require('../assets/colors/purple.png'),
         require('../assets/colors/purple_selected.png'),
         require('../assets/colors/orange.png'),
         require('../assets/colors/orange_selected.png'),
@@ -34,4 +34,5 @@ export function preloadImages() {
     }));
 
     FastImage.preload(uris);
+
 }
