@@ -45,6 +45,23 @@
 		AF7D7496CF9F42EAAB6089C1 /* libRNViewShot.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00CBD47222EA497692D1F962 /* libRNViewShot.a */; };
 		F81F150BB1ED4F2BB6568057 /* libRNFS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0FC81B9D7E8C4A129E287197 /* libRNFS.a */; };
 		3FB0EF216F9C4E699351106F /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95B4866DC73349018D47DA47 /* libFastImage.a */; };
+		EA26C1491A0145A5881D4185 /* Abeganshi-Shadow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C2D0BB6367B94535BA02CB3E /* Abeganshi-Shadow.ttf */; };
+		A3FDB094546E407BAB50773B /* Abeganshi.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BEC8A5E02EF5490D812E3750 /* Abeganshi.ttf */; };
+		5E38CDA2F7FA4316813D6C7F /* Diverplate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EE36DAB632A94B5481DB206B /* Diverplate.ttf */; };
+		66C3CA33DC104AFEBF686819 /* Dudeludel.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D8A16661D42427A92969A7D /* Dudeludel.ttf */; };
+		602588402A44420B86390ED2 /* Extradition-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4EBE1E1F00014EEA9B1CE25C /* Extradition-Italic.ttf */; };
+		5055A7C701F141D4ABEB4E08 /* Extradition.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DF85D230A2E4419927375E8 /* Extradition.ttf */; };
+		23A0B6AD82B6496FB1DB75B8 /* ExtraditionFilled-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D01F000B90914FCDAB0BB4EC /* ExtraditionFilled-Italic.ttf */; };
+		247FD0159262476BAA8EA1E9 /* ExtraditionFilled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7C1B75C851254252BB8A098C /* ExtraditionFilled.ttf */; };
+		94E32FDD2A684B3792AC22CB /* FatWandals_PERSONAL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C92DC05187FA403FAE2F4B66 /* FatWandals_PERSONAL.ttf */; };
+		F7963DF5F3334A36826E99F0 /* Groowing.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2770D21409AA44D8BBA9B366 /* Groowing.ttf */; };
+		A3C46C8E402D477EAA4FE6A4 /* HereWeGoRodeo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0201DB5C035C4D6D851E08BB /* HereWeGoRodeo-Regular.ttf */; };
+		E49206E8553F402DB275C50C /* JotSpInverted-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE4ACB8EEE514ECB99974474 /* JotSpInverted-Regular.ttf */; };
+		D69C0F91183F478F9A44ACE1 /* Spoken_PERSONAL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 036DB25B7CAF4C39BEB68972 /* Spoken_PERSONAL.ttf */; };
+		5EAFAA80C9134FBE8909C2C1 /* SpokenBG_PERSONAL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 86052571519443FDA0CD6CB4 /* SpokenBG_PERSONAL.ttf */; };
+		038EA85DE0C44C36B5C0E9C2 /* SpokenPlain_PERSONAL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DF275D738C314717A503779A /* SpokenPlain_PERSONAL.ttf */; };
+		2FA77C72C8A5407E8927D822 /* Unicorn Pop.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D20F678C783426B8ECCDB25 /* Unicorn Pop.ttf */; };
+		C770EABB180446908D4AA5FD /* libRNPalette.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF52067852A4170B669CE2F /* libRNPalette.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -363,6 +380,24 @@
 		0FC81B9D7E8C4A129E287197 /* libRNFS.a */ = {isa = PBXFileReference; name = "libRNFS.a"; path = "libRNFS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		4DA6063463404A1C8322BCEC /* FastImage.xcodeproj */ = {isa = PBXFileReference; name = "FastImage.xcodeproj"; path = "../node_modules/react-native-fast-image/ios/FastImage.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		95B4866DC73349018D47DA47 /* libFastImage.a */ = {isa = PBXFileReference; name = "libFastImage.a"; path = "libFastImage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		C2D0BB6367B94535BA02CB3E /* Abeganshi-Shadow.ttf */ = {isa = PBXFileReference; name = "Abeganshi-Shadow.ttf"; path = "../assets/fonts/Abeganshi-Shadow.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BEC8A5E02EF5490D812E3750 /* Abeganshi.ttf */ = {isa = PBXFileReference; name = "Abeganshi.ttf"; path = "../assets/fonts/Abeganshi.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		EE36DAB632A94B5481DB206B /* Diverplate.ttf */ = {isa = PBXFileReference; name = "Diverplate.ttf"; path = "../assets/fonts/Diverplate.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2D8A16661D42427A92969A7D /* Dudeludel.ttf */ = {isa = PBXFileReference; name = "Dudeludel.ttf"; path = "../assets/fonts/Dudeludel.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		4EBE1E1F00014EEA9B1CE25C /* Extradition-Italic.ttf */ = {isa = PBXFileReference; name = "Extradition-Italic.ttf"; path = "../assets/fonts/Extradition-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		3DF85D230A2E4419927375E8 /* Extradition.ttf */ = {isa = PBXFileReference; name = "Extradition.ttf"; path = "../assets/fonts/Extradition.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D01F000B90914FCDAB0BB4EC /* ExtraditionFilled-Italic.ttf */ = {isa = PBXFileReference; name = "ExtraditionFilled-Italic.ttf"; path = "../assets/fonts/ExtraditionFilled-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7C1B75C851254252BB8A098C /* ExtraditionFilled.ttf */ = {isa = PBXFileReference; name = "ExtraditionFilled.ttf"; path = "../assets/fonts/ExtraditionFilled.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		C92DC05187FA403FAE2F4B66 /* FatWandals_PERSONAL.ttf */ = {isa = PBXFileReference; name = "FatWandals_PERSONAL.ttf"; path = "../assets/fonts/FatWandals_PERSONAL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		2770D21409AA44D8BBA9B366 /* Groowing.ttf */ = {isa = PBXFileReference; name = "Groowing.ttf"; path = "../assets/fonts/Groowing.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0201DB5C035C4D6D851E08BB /* HereWeGoRodeo-Regular.ttf */ = {isa = PBXFileReference; name = "HereWeGoRodeo-Regular.ttf"; path = "../assets/fonts/HereWeGoRodeo-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DE4ACB8EEE514ECB99974474 /* JotSpInverted-Regular.ttf */ = {isa = PBXFileReference; name = "JotSpInverted-Regular.ttf"; path = "../assets/fonts/JotSpInverted-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		036DB25B7CAF4C39BEB68972 /* Spoken_PERSONAL.ttf */ = {isa = PBXFileReference; name = "Spoken_PERSONAL.ttf"; path = "../assets/fonts/Spoken_PERSONAL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		86052571519443FDA0CD6CB4 /* SpokenBG_PERSONAL.ttf */ = {isa = PBXFileReference; name = "SpokenBG_PERSONAL.ttf"; path = "../assets/fonts/SpokenBG_PERSONAL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DF275D738C314717A503779A /* SpokenPlain_PERSONAL.ttf */ = {isa = PBXFileReference; name = "SpokenPlain_PERSONAL.ttf"; path = "../assets/fonts/SpokenPlain_PERSONAL.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6D20F678C783426B8ECCDB25 /* Unicorn Pop.ttf */ = {isa = PBXFileReference; name = "Unicorn Pop.ttf"; path = "../assets/fonts/Unicorn Pop.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		36C959A744B1438E821D365A /* RNPalette.xcodeproj */ = {isa = PBXFileReference; name = "RNPalette.xcodeproj"; path = "../node_modules/react-native-palette/ios/RNPalette.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		EFF52067852A4170B669CE2F /* libRNPalette.a */ = {isa = PBXFileReference; name = "libRNPalette.a"; path = "libRNPalette.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -396,6 +431,7 @@
 				AF7D7496CF9F42EAAB6089C1 /* libRNViewShot.a in Frameworks */,
 				F81F150BB1ED4F2BB6568057 /* libRNFS.a in Frameworks */,
 				3FB0EF216F9C4E699351106F /* libFastImage.a in Frameworks */,
+				C770EABB180446908D4AA5FD /* libRNPalette.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,6 +627,7 @@
 				13F9DACA74264902A63D6C25 /* RNViewShot.xcodeproj */,
 				B230311DBEAE437CBDBCD73F /* RNFS.xcodeproj */,
 				4DA6063463404A1C8322BCEC /* FastImage.xcodeproj */,
+				36C959A744B1438E821D365A /* RNPalette.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -612,6 +649,7 @@
 				00E356EF1AD99517003FC87E /* AwesomeProjectTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				8CE099A71A624C28BAF225A2 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -637,6 +675,30 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		8CE099A71A624C28BAF225A2 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				C2D0BB6367B94535BA02CB3E /* Abeganshi-Shadow.ttf */,
+				BEC8A5E02EF5490D812E3750 /* Abeganshi.ttf */,
+				EE36DAB632A94B5481DB206B /* Diverplate.ttf */,
+				2D8A16661D42427A92969A7D /* Dudeludel.ttf */,
+				4EBE1E1F00014EEA9B1CE25C /* Extradition-Italic.ttf */,
+				3DF85D230A2E4419927375E8 /* Extradition.ttf */,
+				D01F000B90914FCDAB0BB4EC /* ExtraditionFilled-Italic.ttf */,
+				7C1B75C851254252BB8A098C /* ExtraditionFilled.ttf */,
+				C92DC05187FA403FAE2F4B66 /* FatWandals_PERSONAL.ttf */,
+				2770D21409AA44D8BBA9B366 /* Groowing.ttf */,
+				0201DB5C035C4D6D851E08BB /* HereWeGoRodeo-Regular.ttf */,
+				DE4ACB8EEE514ECB99974474 /* JotSpInverted-Regular.ttf */,
+				036DB25B7CAF4C39BEB68972 /* Spoken_PERSONAL.ttf */,
+				86052571519443FDA0CD6CB4 /* SpokenBG_PERSONAL.ttf */,
+				DF275D738C314717A503779A /* SpokenPlain_PERSONAL.ttf */,
+				6D20F678C783426B8ECCDB25 /* Unicorn Pop.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -1084,6 +1146,22 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				EA26C1491A0145A5881D4185 /* Abeganshi-Shadow.ttf in Resources */,
+				A3FDB094546E407BAB50773B /* Abeganshi.ttf in Resources */,
+				5E38CDA2F7FA4316813D6C7F /* Diverplate.ttf in Resources */,
+				66C3CA33DC104AFEBF686819 /* Dudeludel.ttf in Resources */,
+				602588402A44420B86390ED2 /* Extradition-Italic.ttf in Resources */,
+				5055A7C701F141D4ABEB4E08 /* Extradition.ttf in Resources */,
+				23A0B6AD82B6496FB1DB75B8 /* ExtraditionFilled-Italic.ttf in Resources */,
+				247FD0159262476BAA8EA1E9 /* ExtraditionFilled.ttf in Resources */,
+				94E32FDD2A684B3792AC22CB /* FatWandals_PERSONAL.ttf in Resources */,
+				F7963DF5F3334A36826E99F0 /* Groowing.ttf in Resources */,
+				A3C46C8E402D477EAA4FE6A4 /* HereWeGoRodeo-Regular.ttf in Resources */,
+				E49206E8553F402DB275C50C /* JotSpInverted-Regular.ttf in Resources */,
+				D69C0F91183F478F9A44ACE1 /* Spoken_PERSONAL.ttf in Resources */,
+				5EAFAA80C9134FBE8909C2C1 /* SpokenBG_PERSONAL.ttf in Resources */,
+				038EA85DE0C44C36B5C0E9C2 /* SpokenPlain_PERSONAL.ttf in Resources */,
+				2FA77C72C8A5407E8927D822 /* Unicorn Pop.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1218,6 +1296,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AwesomeProject.app/AwesomeProject";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1227,6 +1306,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Debug;
@@ -1248,6 +1328,7 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AwesomeProject.app/AwesomeProject";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1257,6 +1338,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Release;
@@ -1285,6 +1367,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Debug;
@@ -1312,6 +1395,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Release;
@@ -1341,6 +1425,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1350,6 +1435,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Debug;
@@ -1379,6 +1465,7 @@
 				TVOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1388,6 +1475,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Release;
@@ -1416,6 +1504,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1425,6 +1514,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Debug;
@@ -1453,6 +1543,7 @@
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1462,6 +1553,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-fs/**",
 					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
+					"$(SRCROOT)\..\node_modules\react-native-palette\ios",
 				);
 			};
 			name = Release;

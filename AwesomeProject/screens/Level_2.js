@@ -240,12 +240,12 @@ export default class Level_2 extends Component {
                     duration={4000}
                     staticType='zoom'
                 >
-                    <Image source={require('../assets/fonts/Wood-Shild.png')}style={[{width:250},{height:80}]}/>
+                    <Image source={require('../assets/other/Wood-Shild.png')} style={[{width:250},{height:80}]}/>
                 </SimpleAnimation>
             break;
             case 1:case 2:
                 return <Image
-                    source={require('../assets/fonts/Wood-Shild.png')}
+                    source={require('../assets/other/Wood-Shild.png')}
                     style={[{width: 250}, {height: 80},]}
                 />
                 break;
@@ -255,7 +255,7 @@ export default class Level_2 extends Component {
                     aim={'out'}
                     staticType='zoom'
                 >
-                    <Image source={require('../assets/fonts/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
+                    <Image source={require('../assets/other/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
                 </SimpleAnimation>
                 break;
             case 4:
@@ -264,7 +264,7 @@ export default class Level_2 extends Component {
                     aim={'in'}
                     staticType='zoom'
                 >
-                    <Image source={require('../assets/fonts/Wood-Shild.png')}style={[{width:250},{height:80}]}/>
+                    <Image source={require('../assets/other/Wood-Shild.png')} style={[{width:250},{height:80}]}/>
                 </SimpleAnimation>
                 break;
             default:
@@ -825,7 +825,7 @@ export default class Level_2 extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../assets/fonts/Level1.png')} style={styles.background}>
+            <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
                 <Text>Text:{String(this.state.text)}</Text>
                 <Text>oder:{this.state.order}</Text>
                 <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
@@ -879,7 +879,7 @@ export default class Level_2 extends Component {
                             this.props.navigation.navigate('Level_Selection')}>
                             <View>
                                 <Image
-                                    source={require('../assets/fonts/BackArrow.png')}
+                                    source={require('../assets/other/BackArrow.png')}
                                     style={{width:40,height:60}}
                                 />
                             </View>

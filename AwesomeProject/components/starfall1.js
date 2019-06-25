@@ -23,7 +23,7 @@ import FastImage from 'react-native-fast-image'
             case 33:
             case 35:
                 return <FastImage style={[{position: 'absolute'}, {width: 402}, {height: 246}, {opacity: 0.5}]}
-                              source={require('../assets/fonts/starfall.gif')}/>
+                              source={require('../assets/other/starfall.gif')}/>
                 break;
             default:
         }

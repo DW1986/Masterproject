@@ -115,22 +115,22 @@ export default class Level_Selection extends React.Component {
         const transform = [{ translateY: this.translateY }, {translateX: this.translateX}]
         const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
         return (
-            <ImageBackground source={require('../assets/fonts/Level_Selection.png')} style={styles.background}>
+            <ImageBackground source={require('../assets/other/Level_Selection.png')} style={styles.background}>
 
 
                 <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
                     marginTop:height/1.8,marginLeft:width/1.2, transform:transform2 }]}>
                 </Animated.Image>
-                <Animated.Image source={require('../assets/fonts/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
+                <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
                     marginTop:height*0.25}]} >
                 </Animated.Image>
-                <Animated.Image source={require('../assets/fonts/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
+                <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
                     marginTop:height*0.4,marginRight: width*0.2}]} >
                 </Animated.Image>
-                <Animated.Image source={require('../assets/fonts/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_3,
+                <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_3,
                     marginTop:height*0.1,marginRight: width*0.2}]} >
                 </Animated.Image>
-                <Image source={require('../assets/fonts/Level_Selection_front.png')}
+                <Image source={require('../assets/other/Level_Selection_front.png')}
                        style={{width: '100%', height: '100%'}}  />
                 <Animated.Image source={require('../assets/animations/Butterfly_9.gif')} style={[styles.Butterflys,{
                     marginTop:height/1.5,marginLeft:width/15, transform }]}>
@@ -170,7 +170,7 @@ export default class Level_Selection extends React.Component {
                     </TouchableOpacity>
 
                 </View>
-                <Image source={require('../assets/fonts/Level_Selection_front2.png')}
+                <Image source={require('../assets/other/Level_Selection_front2.png')}
                        style={styles.font2_gras}  />
             </ImageBackground>
         );

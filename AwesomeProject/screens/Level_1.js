@@ -85,24 +85,24 @@ this.setState({rdmnumber:this.rdm(3)})
                             this.state.order === 9 || this.state.order === 11 || this.state.order === 13 || this.state.order === 15 ||
                             this.state.order === 17 || this.state.order === 19 || this.state.order === 21 || this.state.order === 23 ||
                             this.state.order === 25 || this.state.order === 27 || this.state.order === 29 || this.state.order === 31 ||
-                            this.state.order === 33 && this.state.played === 0) {
+                            this.state.order === 33 || this.state.order === 35 && this.state.played === 0 && this.state.anim !== 5)  {
                             this.setState({anim: 2+this.state.rdmnumber})
                         }
                     }, 1800)
                     break
                 case 2:
                     setTimeout(() => {
-                        this.setState({anim: 1})
+                        this.setState({anim: 1,played:1})
                     }, 2900)
                     break
                 case 3:
                     setTimeout(() => {
-                        this.setState({anim: 1})
+                        this.setState({anim: 1,played:1})
                     }, 2400)
                     break
                 case 4:
                     setTimeout(() => {
-                        this.setState({anim: 1})
+                        this.setState({anim: 1,played:1})
                     }, 3400)
                     break
             }
@@ -309,16 +309,16 @@ this.setState({rdmnumber:this.rdm(3)})
                         this.setState({order: 34,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 35,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({order: 35,colorselected: false, played:0,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 36,played:0,rdmnumber:this.rdm(3)})
+                        this.setState({played:1,anim:5})
                         this.makeScreenshot()
-                        setTimeout(() => {
-                            this.setState({anim:5})
+                        setTimeout(() =>{
                             this.props.navigation.navigate('Level_Selection')
-                        },2000)
-                    }, 4000)
+                        },5000)
+                    }, 5700)
+
                 }
                 break;
 
@@ -369,7 +369,7 @@ this.setState({rdmnumber:this.rdm(3)})
                 this.refs.sketchRef.clear()
                 this.updateorder()
                 break;
-            case 'rgba(240,200,208,1,000)':
+            case 'rgba(248,192,200,1,000)':
                 this.setState({dominantcolor:"pink"})
                 this.refs.sketchRef.clear()
                 this.updateorder()
@@ -400,7 +400,7 @@ this.setState({rdmnumber:this.rdm(3)})
 
         }
     }
-bunny(){
+    bunny(){
         switch(this.state.anim){
             case 0:
                 return <Animatable.View
@@ -435,13 +435,13 @@ bunny(){
                     from: {translateY: 0},
                     to: {translateY: -600}}
                 }
-                    duration={900} easing={"linear"}>
+                    duration={1500} delay={1000} easing={"linear"}>
                     <FastImage
-                        source={require('../assets/bunny/jump-in.gif')}
+                        source={require('../assets/bunny/jump-out.gif')}
                         style={{width: 300, height: 300}}/>
                 </Animatable.View>
         }
-}
+    }
 
 
     // Test Code for displaying state:
@@ -453,14 +453,13 @@ bunny(){
     //<Text>Text:{String(this.state.text)}</Text>
 //<Text>Text:{String(this.state.text)}</Text>
 //<Text>oder:{this.state.order}</Text>
+//<Text>anim:{this.state.anim}</Text>
+//<Text>order:{this.state.order}</Text>
+// <Text>rdm:{this.state.rdmnumber}</Text>
     render() {
         return (
-            <ImageBackground source={require('../assets/fonts/Level1.png')} style={styles.background}>
-                <Text>anim:{this.state.anim}</Text>
-                <Text>order:{this.state.order}</Text>
-                <Text>rdm:{this.state.rdmnumber}</Text>
+            <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
                 {this.bunny()}
-
                 <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
                     <SketchCanvas
                             ref="sketchRef"
@@ -488,9 +487,11 @@ bunny(){
                          </TouchableOpacity>
                      </Animatable.View>
                  </View>
+
                 <View style={styles.shildview}>
                     {woodShild(this.state.order)}
-                    <View style={{position: 'absolute', justifyContent: 'flex-end', alignItems: 'center'}}>
+                    <View style={styles.textview}>
+
                         {text(this.state.order,this.state.textcolor,this.state.text)}
                     </View>
                 </View>
@@ -501,7 +502,7 @@ bunny(){
                             this.props.navigation.navigate('Level_Selection')}>
                             <View>
                                 <Image
-                                    source={require('../assets/fonts/BackArrow.png')}
+                                    source={require('../assets/other/BackArrow.png')}
                                     style={{width:40,height:60}}
                                 />
                             </View>
@@ -533,10 +534,10 @@ const styles = StyleSheet.create({
         width: 90,
         height: 90,
         backgroundColor: 'white',
-        borderRightColor: 'grey',
+        borderRightColor: '#808080',
         borderRightWidth: 3,
         borderTopRightRadius: 4,
-        borderTopColor: 'grey',
+        borderTopColor: '#808080',
         borderTopWidth: 3,
         justifyContent: 'center',
         alignItems: 'center',
@@ -545,7 +546,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F1F1F1',
         width: 410,
         height: 254,
-        borderColor: 'grey',
+        borderColor: 'black',
         borderWidth: 4,
         marginBottom: 35,
         marginLeft: 7,
@@ -566,10 +567,10 @@ const styles = StyleSheet.create({
         width: 90,
         height: 90,
         backgroundColor: 'white',
-        borderLeftColor: 'grey',
+        borderLeftColor: '#808080',
         borderLeftWidth: 3,
         borderBottomLeftRadius: 4,
-        borderBottomColor: 'grey',
+        borderBottomColor: '#808080',
         borderBottomWidth: 3,
         justifyContent: 'center',
         alignItems: 'center',
@@ -580,6 +581,16 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: '100%',
         height: '100%',
+    },
+    textview: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        position:'absolute'
+
+
+
+
+
     },
     bunny: {
         bottom:20,
