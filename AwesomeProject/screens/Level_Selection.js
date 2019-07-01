@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, ImageBackground, Image,Button, Animated, TouchableOpacity,Easing,Dimensions} from 'react-native';
 import {PermissionsAndroid} from 'react-native';
+import {preloadImages} from "../components/preloadimages";
 
 
 var {width, height} = Dimensions.get('window')
@@ -68,6 +69,7 @@ export default class Level_Selection extends React.Component {
 
 
     componentDidMount(){
+        preloadImages()
         this.mounted = true;
         this.Butterfly_1.setValue(0)
         Animated.loop(

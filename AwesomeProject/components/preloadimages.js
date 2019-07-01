@@ -1,6 +1,7 @@
 import { Image,Alert } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
+
 export function preloadImages() {
     const images = [
         require('../assets/bunny/jump-in.gif'),
@@ -34,5 +35,7 @@ export function preloadImages() {
     }));
 
     FastImage.preload(uris);
+   // Image.prefetch(uris)
+    console.log("test",JSON.stringify(uris))
 
 }

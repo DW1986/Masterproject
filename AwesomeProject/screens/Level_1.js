@@ -40,13 +40,25 @@ export default class Level_1 extends Component {
             textcolor:'#FF0000',
             played:0,
             anim:0,
-            rdmnumber:0
+            rdmnumber:0,
+            images:
+
+                require('../assets/colors/red_selected.png'),
+
+
         }
     }
+componentWillMount() {
+    preloadImages()
+
+}
 
     componentDidMount() {
         this.mounted = true;
-       // preloadImages()
+     //   this.bunnyanim()
+
+
+
 
         //make initial Screenshot
         this.makeScreenshot()
@@ -58,7 +70,7 @@ this.setState({rdmnumber:this.rdm(3)})
     }
 
     componentDidUpdate() {
-        this.bunnyanim()
+
     }
 
 
@@ -71,13 +83,11 @@ this.setState({rdmnumber:this.rdm(3)})
 // change anim for bunny
     bunnyanim() {
 
-
-
             switch (this.state.anim) {
                 case 0:
                     setTimeout(() => {
                         this.setState({anim: 1})
-                    }, 2500)
+                    }, 2600)
                     break
                 case 1:
                     setTimeout(() => {
@@ -85,25 +95,25 @@ this.setState({rdmnumber:this.rdm(3)})
                             this.state.order === 9 || this.state.order === 11 || this.state.order === 13 || this.state.order === 15 ||
                             this.state.order === 17 || this.state.order === 19 || this.state.order === 21 || this.state.order === 23 ||
                             this.state.order === 25 || this.state.order === 27 || this.state.order === 29 || this.state.order === 31 ||
-                            this.state.order === 33 || this.state.order === 35 && this.state.played === 0 && this.state.anim !== 5)  {
-                            this.setState({anim: 2+this.state.rdmnumber})
+                            this.state.order === 33 || this.state.order === 35 && this.state.played === 0 && this.state.anim !== 5) {
+                            this.setState({anim: 2 + this.state.rdmnumber})
                         }
-                    }, 1800)
+                    }, 2100)
                     break
                 case 2:
                     setTimeout(() => {
-                        this.setState({anim: 1,played:1})
-                    }, 2900)
+                        this.setState({anim: 1, played: 1})
+                    }, 3100)
                     break
                 case 3:
                     setTimeout(() => {
-                        this.setState({anim: 1,played:1})
-                    }, 2400)
+                        this.setState({anim: 1, played: 1})
+                    }, 2600)
                     break
                 case 4:
                     setTimeout(() => {
-                        this.setState({anim: 1,played:1})
-                    }, 3400)
+                        this.setState({anim: 1, played: 1})
+                    }, 3600)
                     break
             }
 
@@ -415,7 +425,7 @@ this.setState({rdmnumber:this.rdm(3)})
                         </Animatable.View>
             case 1:
                 return <FastImage
-                    source={require('../assets/bunny/idle.gif')}
+                    source={require('../assets/bunny/idle_speak.gif')}
                     style={[styles.bunny,{width:300,height:300}]}/>
             case 2:
                 return <FastImage
@@ -460,6 +470,7 @@ this.setState({rdmnumber:this.rdm(3)})
         return (
             <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
                 {this.bunny()}
+                {this.bunnyanim()}
                 <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
                     <SketchCanvas
                             ref="sketchRef"
@@ -587,13 +598,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         position:'absolute'
 
-
-
-
-
     },
     bunny: {
-        bottom:20,
+        top:105,
         left:520,
         position: 'absolute',
 
