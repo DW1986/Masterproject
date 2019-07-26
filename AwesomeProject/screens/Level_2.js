@@ -1,22 +1,27 @@
-import React, { Component } from 'react';
-import {
-    Animated,
-    AppRegistry, Easing, ImageBackground,
-    StyleSheet,
-    View, Dimensions, Image, Text, TouchableOpacity, Alert
-} from 'react-native';
-import RNSketchCanvas, { SketchCanvas } from '@terrylinla/react-native-sketch-canvas';
+import React, {Component} from 'react';
+import {Alert, Animated, Dimensions, Image,Text, ImageBackground, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
+import {getAllSwatches} from 'react-native-palette';
+import * as Animatable from 'react-native-animatable';
+import FastImage from 'react-native-fast-image'
+import {preloadImages} from "../components/preloadimages";
+import {colorselector} from "../components/colorselector1";
+import {woodShild} from "../components/woodShild1";
+import {text} from "../components/text1";
+import {starfall} from "../components/starfall1";
+import {pictureselector} from "../components/pictureselector1";
+
 var RNFS = require('react-native-fs');
-import { getAllSwatches } from 'react-native-palette';
-import { SimpleAnimation } from 'react-native-simple-animations';
 
 
 var {width, height} = Dimensions.get('window')
+
 export default class Level_2 extends Component {
 
     constructor(props) {
         super(props)
+
         this.state = {
             dominantcolor_rgba: null,
             drawcolor: '#F1F1F1',
@@ -32,105 +37,85 @@ export default class Level_2 extends Component {
             ScaleValue1 : new Animated.Value(0),
             ScaleValue2 : new Animated.Value(1),
             text:"ROT",
-            textcolor:'#FF0000'
-
+            textcolor:'#FF0000',
+            played:0,
+            anim:0,
+            rdmnumber:0,
 
         }
     }
+    componentWillMount() {
 
-    scaleanimation() {
-        Animated.sequence([
-            Animated.timing(this.state.ScaleValue2, {
-                toValue: 0,
-                duration: 1500,
-                easing: Easing.linear,
-                useNativeDriver: true
 
-            }),
-            Animated.timing(this.state.ScaleValue2, {
-                toValue: 1,
-                duration: 1500,
-                easing: Easing.linear,
-                useNativeDriver: true,
-
-            })
-        ]).start()
-        Animated.timing(this.state.opacity, {
-            toValue: 0,
-            duration: 1500,
-            easing: Easing.linear,
-            useNativeDriver: true
-
-        })
     }
-
-
-    fadein() {
-        Animated.timing(this.state.fadeanimationin, {
-                toValue: 1,
-                duration: 2000,
-                useNativeDriver: true,
-
-            }
-        ).start()
-    }
-
-    fadeout() {
-        Animated.timing(this.state.fadeanimationout, {
-                toValue: 0,
-                duration: 2000,
-                useNativeDriver: true,
-
-            }
-        ).start()
-    }
-
 
     componentDidMount() {
-
-        Animated.timing(this.state.fadeanimationin, {
-                toValue: 1,
-                duration: 2000,
-                useNativeDriver: true,
-                delay: 4000
-            }
-        ).start()
-        Animated.timing(this.state.opacity, {
-                toValue: 1,
-                duration: 0,
-                delay:4050,
-            }
-        ).start()
-        Animated.timing(this.state.ScaleValue1, {
-                toValue: 1,
-                duration: 1500,
-                easing: Easing.linear,
-                delay:4000
+        this.mounted = true;
+        //   this.bunnyanim()
 
 
-            }
-        ).start()
+
 
         //make initial Screenshot
         this.makeScreenshot()
-        // animated Colorpanel
-        Animated.timing(this.state.colorpanel, {
-                toValue: 0,
-                duration: 2000,
-                easing: Easing.bounce,
-            }
-        ).start()
-        // animated Backpanel
-        Animated.timing(this.state.backpanel, {
-                delay: 2000,
-                toValue: 0,
-                duration: 2000,
-                easing: Easing.bounce,
-            }
-        ).start()
+        this.setState({rdmnumber:this.rdm(3)})
+
+    }
+    componentWillUnmount() {
+        this.mounted = false;
     }
 
-    //Change drawcolor when selected
+    componentDidUpdate() {
+
+    }
+
+
+// get random nummber
+
+    rdm(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+
+// change anim for bunny
+    bunnyanim() {
+
+        switch (this.state.anim) {
+            case 0:
+                setTimeout(() => {
+                    this.setState({anim: 1})
+                }, 2600)
+                break
+            case 1:
+                setTimeout(() => {
+                    if (this.state.order === 1 || this.state.order === 3 || this.state.order === 5 || this.state.order === 7 ||
+                        this.state.order === 9 || this.state.order === 11 || this.state.order === 13 || this.state.order === 15 ||
+                        this.state.order === 17 || this.state.order === 19 || this.state.order === 21 || this.state.order === 23 ||
+                        this.state.order === 25 || this.state.order === 27 || this.state.order === 29 || this.state.order === 31 ||
+                        this.state.order === 33 || this.state.order === 35 && this.state.played === 0 && this.state.anim !== 5) {
+                        this.setState({anim: 2 + this.state.rdmnumber})
+                    }
+                }, 2100)
+                break
+            case 2:
+                setTimeout(() => {
+                    this.setState({anim: 1, played: 1})
+                }, 3100)
+                break
+            case 3:
+                setTimeout(() => {
+                    this.setState({anim: 1, played: 1})
+                }, 2600)
+                break
+            case 4:
+                setTimeout(() => {
+                    this.setState({anim: 1, played: 1})
+                }, 3600)
+                break
+        }
+
+    }
+
+//Change drawcolor when selected
     changedrawcolor() {
         if (this.state.order <= 3 && this.state.colorselected === false)
             this.setState({drawcolor: '#FF0000'})
@@ -141,7 +126,7 @@ export default class Level_2 extends Component {
         else if (this.state.order >= 12 && this.state.order <= 15 && this.state.colorselected === false)
             this.setState({drawcolor: '#FFFF00'})
         else if (this.state.order >= 16 && this.state.order <= 19 && this.state.colorselected === false)
-            this.setState({drawcolor: '#FFC0CB'})
+            this.setState({drawcolor: '#FF1694'})
         else if (this.state.order >= 20 && this.state.order <= 23 && this.state.colorselected === false)
             this.setState({drawcolor: '#A52A2A'})
         else if (this.state.order >= 24 && this.state.order <= 27 && this.state.colorselected === false)
@@ -154,594 +139,199 @@ export default class Level_2 extends Component {
             this.setState({drawcolor: '#F1F1F1'})
 
     }
-
-    // upadte Text
+// update Text on woodShild
     updatetext(){
-        if(this.state.order===4) {
-            setTimeout(() =>
-                    this.setState({text:"BLAU",textcolor:'#0000FF'})
-                , 3000);
-        }
-        else if(this.state.order === 9) {
-            setTimeout(() =>
-                    this.setState({text:"GRÜN",textcolor:'#00FF00'})
-
-                , 1500);
-        }
-        else if(this.state.order === 7) {
-            setTimeout(() =>
-                    this.setState({text:"GELB"})
-                , 1500);
-        }
-        else if(this.state.order === 7) {
-            setTimeout(() =>
-                    this.setState({text:"ROSA"})
-                , 1500);
-        }
-        else if(this.state.order === 7) {
-            setTimeout(() =>
-                    this.setState({text:"BRAUN"})
-                , 1500);
-        }
-        else if(this.state.order === 7) {
-            setTimeout(() =>
-                    this.setState({text:"LILA"})
-                , 1500);
-        }
-        else if(this.state.order === 7) {
-            setTimeout(() =>
-                    this.setState({text:"ORANGE"})
-                , 1500);
-        }
-        else if(this.state.order === 7) {
-            setTimeout(() =>
-                    this.setState({text:"TYRKIS"})
-                , 1500);
-        }
-    }
-    //render Text
-    text(){
-        if(this.state.order===0) {
-            return  <Animated.Text style={[{height:70},{position:'absolute'},{opacity: this.state.opacity},{fontSize:45},{color:this.state.textcolor},{fontStyle:'italic'},{fontWeight: 'bold'},
-                {transform: [{scaleX: this.state.ScaleValue1.interpolate({
-                            inputRange: [0, 1],
-                            outputRange: [0, 1]
-                        })
-                    }]}]}>{this.state.text}</Animated.Text>
-        }
-        else if(this.state.order>=1 && this.state.order <= 3) {
-            return  <Text style={[{height:70},{position:'absolute'},{fontSize:45},{color:this.state.textcolor},{fontStyle:'italic'},{fontWeight: 'bold'},
-            ]}>{this.state.text}</Text>
-        }
-        else if(this.state.order===4 ) {
-            return <Animated.Text
-                onLoad={this.scaleanimation()}
-                style={[{height: 70}, {position: 'absolute'}, {opacity: this.state.opacity}, {fontSize: 45}, {color:this.state.textcolor}, {fontStyle: 'italic'},{fontWeight: 'bold'},
-                    {
-                        transform: [{
-                            scaleX: this.state.ScaleValue2.interpolate({
-                                inputRange: [0, 1],
-                                outputRange: [0, 1]
-                            })
-                        }]
-                    }]}>{this.state.text}</Animated.Text>
-        } else if(this.state.order>=1 && this.state.order <= 3) {
-            return  <Text style={[{height:70},{position:'absolute'},{fontSize:45},{color:this.state.textcolor},{fontStyle:'italic'},{fontWeight: 'bold'},
-            ]}>{this.state.text}</Text>
-        }
-    }
-// change woodshild
-    shild(){
-
-        switch(this.state.order){
-            case 0:
-                return <SimpleAnimation
-                    delay={4000}
-                    duration={4000}
-                    staticType='zoom'
-                >
-                    <Image source={require('../assets/other/Wood-Shild.png')} style={[{width:250},{height:80}]}/>
-                </SimpleAnimation>
-            break;
-            case 1:case 2:
-                return <Image
-                    source={require('../assets/other/Wood-Shild.png')}
-                    style={[{width: 250}, {height: 80},]}
-                />
-                break;
-            case 3:
-                return <SimpleAnimation
-                    duration={4000}
-                    aim={'out'}
-                    staticType='zoom'
-                >
-                    <Image source={require('../assets/other/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}/>
-                </SimpleAnimation>
-                break;
-            case 4:
-                return <SimpleAnimation
-                    duration={4000}
-                    aim={'in'}
-                    staticType='zoom'
-                >
-                    <Image source={require('../assets/other/Wood-Shild.png')} style={[{width:250},{height:80}]}/>
-                </SimpleAnimation>
-                break;
-            default:
-        }
-    }
-
-    // Change picture to draw
-    pictureselector(){
-        if(this.state.order===0) {
-            return <Animated.Image
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/red_fire_engine_alpha.png')}/>
-        }
-        else if(this.state.order===1) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/red_fire_engine.png')}/>
-        }
-        else if(this.state.order===2) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/strawberry_alpha.png')}/>
-        }
-        else if(this.state.order===3) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/strawberry.png')}/>
-        }
-        else if(this.state.order===4) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/police-car_alpha.png')}/>
-        }
-        else if(this.state.order===5) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/police-car.png')}/>
-        }
-        else if(this.state.order===6) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/whale_alpha.png')}/>
-        }
-        else if(this.state.order===7) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/whale.png')}/>
-        }
-        else if(this.state.order===8) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/leaf_alpha.png')}/>
-        }
-        else if(this.state.order===9) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/leaf.png')}/>
-        }
-        else if(this.state.order===10) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/frog_alpha.png')}/>
-        }
-        else if(this.state.order===11) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/frog.png')}/>
-        }
-        else if(this.state.order===12) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/sun_alpha.png')}/>
-        }
-        else if(this.state.order===13) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/sun.png')}/>
-        }
-        else if(this.state.order===14) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/bannana_alpha.png')}/>
-        }
-        else if(this.state.order===15) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/bannana.png')}/>
-        }
-        else if(this.state.order===16) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/flamengo_alpha.png')}/>
-        }
-        else if(this.state.order===17) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/flamengo.png')}/>
-        }
-        else if(this.state.order===18) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/pig_alpha.png')}/>
-        }
-        else if(this.state.order===19) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/pig.png')}/>
-        }
-        else if(this.state.order===20) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/horse_alpha.png')}/>
-        }
-        else if(this.state.order===21) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/horse.png')}/>
-        }
-        else if(this.state.order===22) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/Teddy_alpha.png')}/>
-        }
-        else if(this.state.order===23) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/Teddy.png')}/>
-        }
-        else if(this.state.order===24) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/flower_alpha.png')}/>
-        }
-        else if(this.state.order===25) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/flower.png')}/>
-        }
-        else if(this.state.order===26) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/butterfly_alpha.png')}/>
-        }
-        else if(this.state.order===27) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/butterfly.png')}/>
-        }
-        else if(this.state.order===28) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/orange_alpha.png')}/>
-        }
-        else if(this.state.order===29) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/orange.png')}/>
-        }
-        else if(this.state.order===30) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/fish_alpha.png')}/>
-        }
-        else if(this.state.order===31) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/fish.png')}/>
-        }
-        else if(this.state.order===32) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/ballons_alpha.png')}/>
-        }
-        else if(this.state.order===33) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/ballons.png')}/>
-        }
-        else if(this.state.order===34) {
-            return <Animated.Image
-                onLoad={this.fadein()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationin}]}
-                source={require('../assets/pictures/ice-cream_alpha.png')}/>
-        }
-        else if(this.state.order===33) {
-            return <Animated.Image
-                onLoad={this.fadeout()}
-                style={[styles.pictures,{opacity:this.state.fadeanimationout}]}
-                source={require('../assets/pictures/ice-cream.png')}/>
-        }
-    }
-    //Change Color selected picture
-    colorselector(){
         switch(this.state.order) {
-
-            case 0:case 1:case 2:case 3:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors} source={require('../assets/colors/red_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/red.png')}/>
-            case 4:case 5:case 6:case 7:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors}
-                                  source={require('../assets/colors/blue_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/blue.png')}/>
-            case 8:case 9:case 10:case 11:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors}
-                                  source={require('../assets/colors/green_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/green.png')}/>
-            case 12:case 13:case 14:case 15:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors}
-                                  source={require('../assets/colors/yellow_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/yellow.png')}/>
-            case 16:case 17:case 18:case 19:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors}
-                                  source={require('../assets/colors/pink_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/pink.png')}/>
-            case 20:case 21:case 22:case 23:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors}
-                                  source={require('../assets/colors/brown_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/brown.png')}/>
-            case 24:case 25:case 26:case 27:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors}
-                                  source={require('../assets/colors/purple_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/purple.png')}/>
-            case 28:case 29:case 30:case 31:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors}
-                                  source={require('../assets/colors/orange_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/orange.png')}/>
-            case 32:case 33:case 34:case 35:
-                if (this.state.colorselected === true)
-                    return <Image style={styles.colors}
-                                  source={require('../assets/colors/cyan_selected.png')}/>
-                return <Image style={styles.colors}
-                              source={require('../assets/colors/cyan.png')}/>
-
-            default:
-
-
+            case 3:
+                setTimeout(() =>
+                        this.setState({text: "BLAU", textcolor: '#0000FF'})
+                    , 3000);
+                break;
+            case 7:
+                setTimeout(() =>
+                        this.setState({text: "GRÜN", textcolor: '#00FF00'})
+                    , 3000);
+                break;
+            case 11:
+                setTimeout(() =>
+                        this.setState({text: "GELB", textcolor: '#FFFF00'})
+                    , 3000);
+                break;
+            case 15:
+                setTimeout(() =>
+                        this.setState({text: "PINK", textcolor: '#FF1694'})
+                    , 3000);
+                break;
+            case 19:
+                setTimeout(() =>
+                        this.setState({text: "BRAUN", textcolor: '#A52A2A'})
+                    , 3000);
+                break;
+            case 23:
+                setTimeout(() =>
+                        this.setState({text: "LILA", textcolor: '#9D00FF'})
+                    , 3000);
+                break;
+            case 27:
+                setTimeout(() =>
+                        this.setState({text: "ORANGE", textcolor: '#FFA500'})
+                    , 3000);
+                break;
+            case 31:
+                setTimeout(() =>
+                        this.setState({text: "TÜRKIS", textcolor: '#00FFFF'})
+                    , 3000);
+                break;
         }
     }
+// update order depending on dominant color and set the different states
     updateorder() {
-
         switch (this.state.dominantcolor) {
             case 'red':
                 if(this.state.order === 0) {
-                    this.setState({order: 1})
-                    this.setState({colorselected: false})
-                    this.setState({dominantcolor:'white'})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 1,drawcolor: '#F1F1F1',dominantcolor:'white',colorselected: false,played:1})
                     setTimeout(() => {
-                        this.setState({order: 2})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 2,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 3})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 3,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 4})
+                        this.setState({order: 4,rdmnumber:this.rdm(3)})
                         this.makeScreenshot()
-                        //   this.updatetext()
+
                     }, 4000)
                 }
                 break;
             case 'blue':
                 if(this.state.order === 4) {
-                    this.setState({order: 5})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 5,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 6})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 6,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 7})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 7,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 8})
+                        this.setState({order: 8,played:0,rdmnumber:this.rdm(3)})
                         this.makeScreenshot()
-                        this.updatetext()
                     }, 4000)
                 }
                 break;
             case 'green':
                 if(this.state.order === 8) {
-                    this.setState({order: 9})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 9,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 10})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 10,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 11})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 11,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 12})
+                        this.setState({order: 12,played:0,rdmnumber:this.rdm(3)})
                         this.makeScreenshot()
-                        this.updatetext()
                     }, 4000)
                 }
                 break;
             case 'yellow':
                 if(this.state.order === 12) {
-                    this.setState({order: 13})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 13,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 14})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 14,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 15})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 15,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 16})
+                        this.setState({order: 16,played:0,rdmnumber:this.rdm(3)})
                         this.makeScreenshot()
-                        this.updatetext()
                     }, 4000)
                 }
                 break;
             case 'pink':
                 if(this.state.order === 16) {
-                    this.setState({order: 17})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 17,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 18})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 18,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 19})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 19,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 20})
+                        this.setState({order: 20,played:0,rdmnumber:this.rdm(3)})
                         this.makeScreenshot()
-                        this.updatetext()
                     }, 4000)
                 }
                 break;
             case 'brown':
                 if(this.state.order === 20) {
-                    this.setState({order: 21})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 21,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 22})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 22,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 23})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 23,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 24})
+                        this.setState({order: 24,played:0,rdmnumber:this.rdm(3)})
                         this.makeScreenshot()
-                        this.updatetext()
                     }, 4000)
                 }
                 break;
             case 'purple':
                 if(this.state.order === 24) {
-                    this.setState({order: 25})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 25,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 26})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 26,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 27})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 27,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 28})
+                        this.setState({order: 28,played:0,rdmnumber:this.rdm(3)})
                         this.makeScreenshot()
-                        this.updatetext()
                     }, 4000)
                 }
                 break;
             case 'orange':
                 if(this.state.order === 28) {
-                    this.setState({order: 29})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 29,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 30})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 30,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 31})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 31,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 32})
+                        this.setState({order: 32,played:0,rdmnumber:this.rdm(3)})
                         this.makeScreenshot()
-                        this.updatetext()
                     }, 4000)
                 }
                 break;
             case 'cyan':
                 if(this.state.order === 32) {
-                    this.setState({order: 33})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 33,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 34})
-                        this.setState({dominantcolor:'white'})
+                        this.setState({order: 34,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 35})
-                    this.setState({colorselected: false})
-                    this.setState({drawcolor: '#F1F1F1'})
+                    this.setState({order: 35,colorselected: false, played:0,drawcolor: '#F1F1F1'})
+                    this.updatetext()
                     setTimeout(() => {
-                        this.props.navigation.navigate('Level_Selection')
-                    }, 4000)
+                        this.setState({played:1,anim:5})
+                        this.makeScreenshot()
+                        setTimeout(() =>{
+                            this.props.navigation.navigate('Level_Selection')
+                        },5000)
+                    }, 5700)
+
                 }
                 break;
 
+
         }
     }
-
-
-
-
-    // make a Screenshot, save it and get the dominant color rgba
+// make a Screenshot, save it and get the dominant color rgba
     makeScreenshot() {
         this.refs.viewShot.capture().then(uri => {
             RNFS.writeFile(this.state.path, uri, 'base64')
@@ -760,7 +350,7 @@ export default class Level_2 extends Component {
                 })
         })
     }
-    // get the dominant color from the picture (rgba -> text)
+// get the dominant color from the picture (rgba -> text)
     getColor(){
         switch(this.state.dominantcolor_rgba) {
 
@@ -785,7 +375,7 @@ export default class Level_2 extends Component {
                 this.refs.sketchRef.clear()
                 this.updateorder()
                 break;
-            case 'rgba(240,200,208,1,000)':
+            case 'rgba(248,16,144,1,000)':
                 this.setState({dominantcolor:"pink"})
                 this.refs.sketchRef.clear()
                 this.updateorder()
@@ -816,18 +406,69 @@ export default class Level_2 extends Component {
 
         }
     }
+    bunny(){
+        switch(this.state.anim){
+            case 0:
+                return <Animatable.View
+                    style={styles.bunny} animation={{
+                    from: {translateY: -600},
+                    to: {translateY: 0}}
+                }
+                    duration={1200} easing={"linear"}>
+                    <FastImage
+                        source={require('../assets/bunny/jump-in.gif')}
+                        style={{width: 300, height: 300}}/>
+                </Animatable.View>
+            case 1:
+                return <FastImage
+                    source={require('../assets/bunny/idle_speak.gif')}
+                    style={[styles.bunny,{width:300,height:300}]}/>
+            case 2:
+                return <FastImage
+                    source={require('../assets/bunny/success1.gif')}
+                    style={[styles.bunny,{width:300,height:300}]}/>
+            case 3:
+                return <FastImage
+                    source={require('../assets/bunny/success2.gif')}
+                    style={[styles.bunny,{width:300,height:300}]}/>
+            case 4:
+                return <FastImage
+                    source={require('../assets/bunny/success3.gif')}
+                    style={[styles.bunny,{width:300,height:300}]}/>
+            case 5:
+                return <Animatable.View
+                    style={styles.bunny} animation={{
+                    from: {translateY: 0},
+                    to: {translateY: -600}}
+                }
+                    duration={1500} delay={1000} easing={"linear"}>
+                    <FastImage
+                        source={require('../assets/bunny/jump-out.gif')}
+                        style={{width: 300, height: 300}}/>
+                </Animatable.View>
+        }
+    }
+
+
+    // Test Code for displaying state:
 //<Text>rgba:{this.state.dominantcolor_rgba}</Text>
 //                     <Text>dominantcolor:{this.state.dominantcolor}</Text>
 //                     <Text>drawcolor:{this.state.drawcolor}</Text>
 //                     <Text>oder:{this.state.order}</Text>
 //                     <Text>colorselected:{String(this.state.colorselected)}</Text>
     //<Text>Text:{String(this.state.text)}</Text>
-
+//<Text>Text:{String(this.state.text)}</Text>
+//<Text>oder:{this.state.order}</Text>
+//<Text>anim:{this.state.anim}</Text>
+//<Text>order:{this.state.order}</Text>
+// <Text>rdm:{this.state.rdmnumber}</Text>
     render() {
         return (
             <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
-                <Text>Text:{String(this.state.text)}</Text>
-                <Text>oder:{this.state.order}</Text>
+                <View pointerEvents="none"  >
+                    <Image  source={require('../assets/other/Level_Selection_front2.png')}
+                            style={styles.font2_gras} />
+                </View>
                 <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
                     <SketchCanvas
                         ref="sketchRef"
@@ -839,54 +480,47 @@ export default class Level_2 extends Component {
                         }}
                     />
                 </ViewShot>
-                <View pointerEvents="none"  style={{position:'absolute'}}  >
-                    {this.pictureselector()}
+                <View pointerEvents="none"  style={[styles.pictures,{position:'absolute'},{left:width/2-197}, {top:height/2-152}]}  >
+                    {pictureselector(this.state.order)}
+                    {starfall(this.state.order)}
                 </View>
-
-
-
                 <View style={styles.colortabview}>
-
-                    <Animated.View
-
-                        style ={[styles.colortab,{left:this.state.colorpanel}]} >
+                    <Animatable.View
+                        style={styles.colortab} animation="slideInLeft" duration={1000} easing={"linear"}>
                         <TouchableOpacity onPress={() => {
                             this.refs.sketchRef.clear()
                             this.setState({colorselected:!this.state.colorselected})
                             this.changedrawcolor()
-
-
                         }}>
-                            {this.colorselector()}
-
+                            {colorselector(this.state.order,this.state.colorselected)}
                         </TouchableOpacity>
-
-                    </Animated.View>
+                    </Animatable.View>
                 </View>
+
                 <View style={styles.shildview}>
+                    {woodShild(this.state.order)}
+                    <View style={styles.textview}>
 
-                    {this.shild()}
-
-                    {this.text()}
-
-
+                        {text(this.state.order,this.state.textcolor,this.state.text)}
+                    </View>
                 </View>
                 <View style={styles.backtabview}>
-                    <Animated.View
-
-                        style ={[styles.backtab,{top:this.state.backpanel}]} >
+                    <Animatable.View
+                        style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"}>
                         <TouchableOpacity onPress={() =>
                             this.props.navigation.navigate('Level_Selection')}>
                             <View>
                                 <Image
                                     source={require('../assets/other/BackArrow.png')}
-                                    style={{width:40,height:60}}
+                                    style={{width:50,height:40}}
                                 />
                             </View>
                         </TouchableOpacity>
 
-                    </Animated.View>
+                    </Animatable.View>
                 </View>
+
+
             </ImageBackground>
         );
     }
@@ -898,7 +532,6 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-
     },
     colortabview: {
         justifyContent: 'flex-end',
@@ -911,74 +544,68 @@ const styles = StyleSheet.create({
         width: 90,
         height: 90,
         backgroundColor: 'white',
-        borderRightColor: 'grey',
+        borderRightColor: '#808080',
         borderRightWidth: 3,
         borderTopRightRadius: 4,
-        borderTopColor: 'grey',
+        borderTopColor: '#808080',
         borderTopWidth: 3,
         justifyContent: 'center',
         alignItems: 'center',
-
-
-    }, colors: {
-        width: 40,
-        height: 80,
-
     },
-
     paint: {
         backgroundColor: '#F1F1F1',
-        width: 410,
-        height: 254,
-        borderColor: 'grey',
-        borderWidth: 3,
-        marginBottom: 35,
-        marginLeft: 7,
-
-
-    },
-    pictures: {
-        width: 349,
-        height: 220,
-        marginBottom: 35
-
-
+        width: 400,
+        height: 244,
+        borderColor: 'black',
+        borderWidth: 4,
+        marginBottom: 65,
+        marginLeft: 0,
     },
     backtabview: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
         position: 'absolute',
         width: '100%',
-        height: '100%'
+        height: '100%',
     },
-    backtab:{
-        width: 90,
-        height: 90,
-        backgroundColor:'white',
-        borderLeftColor: 'grey',
-        borderLeftWidth: 3,
-        borderBottomLeftRadius:4,
-        borderBottomColor: 'grey',
-        borderBottomWidth: 3,
-        justifyContent:'center',
-        alignItems:'center',
+    backtab: {
+        width: 70,
+        height: 70,
+        backgroundColor: 'black',
+        borderColor: 'white',
+        borderWidth:6,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 70/2,
+
     },
-    shildview:{
+    shildview: {
         justifyContent: 'flex-end',
         alignItems: 'center',
         position: 'absolute',
         width: '100%',
         height: '100%',
+    },
+    textview: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        position:'absolute'
+
+    },
+    bunny: {
+        top:105,
+        left:520,
+        position: 'absolute',
+
 
 
     },
-    text:{
+    font2_gras: {
+        right:-width/2,
+        bottom:-height/1.18,
+        position: 'absolute',
+        width:width,
+        height:height,
 
-        position:'absolute',
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'blue'
-
-    },
-
+    }
 });

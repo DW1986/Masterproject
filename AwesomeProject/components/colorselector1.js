@@ -93,7 +93,7 @@ export function colorselector(order,colorselected){
 
 const styles = StyleSheet.create({
  colors: {
-        width: 40,
-        height: 80,
+        width: 60,
+        height: 85,
     }
 });

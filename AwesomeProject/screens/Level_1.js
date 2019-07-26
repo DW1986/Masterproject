@@ -41,15 +41,11 @@ export default class Level_1 extends Component {
             played:0,
             anim:0,
             rdmnumber:0,
-            images:
-
-                require('../assets/colors/red_selected.png'),
-
 
         }
     }
 componentWillMount() {
-    preloadImages()
+
 
 }
 
@@ -130,7 +126,7 @@ this.setState({rdmnumber:this.rdm(3)})
         else if (this.state.order >= 12 && this.state.order <= 15 && this.state.colorselected === false)
             this.setState({drawcolor: '#FFFF00'})
         else if (this.state.order >= 16 && this.state.order <= 19 && this.state.colorselected === false)
-            this.setState({drawcolor: '#FFC0CB'})
+            this.setState({drawcolor: '#FF1694'})
         else if (this.state.order >= 20 && this.state.order <= 23 && this.state.colorselected === false)
             this.setState({drawcolor: '#A52A2A'})
         else if (this.state.order >= 24 && this.state.order <= 27 && this.state.colorselected === false)
@@ -163,7 +159,7 @@ this.setState({rdmnumber:this.rdm(3)})
                 break;
             case 15:
                 setTimeout(() =>
-                        this.setState({text: "ROSA", textcolor: '#FFC0CB'})
+                        this.setState({text: "PINK", textcolor: '#FF1694'})
                     , 3000);
                 break;
             case 19:
@@ -379,7 +375,7 @@ this.setState({rdmnumber:this.rdm(3)})
                 this.refs.sketchRef.clear()
                 this.updateorder()
                 break;
-            case 'rgba(248,192,200,1,000)':
+            case 'rgba(248,16,144,1,000)':
                 this.setState({dominantcolor:"pink"})
                 this.refs.sketchRef.clear()
                 this.updateorder()
@@ -419,7 +415,7 @@ this.setState({rdmnumber:this.rdm(3)})
                             to: {translateY: 0}}
                     }
                     duration={1200} easing={"linear"}>
-                            <Image
+                            <FastImage
                                 source={require('../assets/bunny/jump-in.gif')}
                                 style={{width: 300, height: 300}}/>
                         </Animatable.View>
@@ -469,8 +465,10 @@ this.setState({rdmnumber:this.rdm(3)})
     render() {
         return (
             <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
-                {this.bunny()}
-                {this.bunnyanim()}
+                <View pointerEvents="none"  >
+                    <Image  source={require('../assets/other/Level_Selection_front2.png')}
+                            style={styles.font2_gras} />
+                </View>
                 <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
                     <SketchCanvas
                             ref="sketchRef"
@@ -514,13 +512,14 @@ this.setState({rdmnumber:this.rdm(3)})
                             <View>
                                 <Image
                                     source={require('../assets/other/BackArrow.png')}
-                                    style={{width:40,height:60}}
+                                    style={{width:50,height:40}}
                                 />
                             </View>
                         </TouchableOpacity>
 
                     </Animatable.View>
                 </View>
+
 
             </ImageBackground>
         );
@@ -555,36 +554,30 @@ const styles = StyleSheet.create({
     },
     paint: {
         backgroundColor: '#F1F1F1',
-        width: 410,
-        height: 254,
+        width: 400,
+        height: 244,
         borderColor: 'black',
         borderWidth: 4,
-        marginBottom: 35,
-        marginLeft: 7,
-    },
-    pictures: {
-        marginTop: 4,
-        width: 392,
-        height: 240,
+        marginBottom: 65,
+        marginLeft: 0,
     },
     backtabview: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
         position: 'absolute',
         width: '100%',
-        height: '100%'
+        height: '100%',
     },
     backtab: {
-        width: 90,
-        height: 90,
-        backgroundColor: 'white',
-        borderLeftColor: '#808080',
-        borderLeftWidth: 3,
-        borderBottomLeftRadius: 4,
-        borderBottomColor: '#808080',
-        borderBottomWidth: 3,
+        width: 70,
+        height: 70,
+        backgroundColor: 'black',
+        borderColor: 'white',
+        borderWidth:6,
         justifyContent: 'center',
         alignItems: 'center',
+        borderRadius: 70/2,
+
     },
     shildview: {
         justifyContent: 'flex-end',
@@ -607,4 +600,12 @@ const styles = StyleSheet.create({
 
 
     },
+    font2_gras: {
+        right:-width/2,
+        bottom:-height/1.18,
+        position: 'absolute',
+        width:width,
+        height:height,
+
+    }
 });

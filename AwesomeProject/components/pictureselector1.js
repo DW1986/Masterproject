@@ -121,11 +121,11 @@ import {StyleSheet} from "react-native";
             case 28:
             return <Animatable.Image
                 style={styles.pictures} animation="fadeIn" duration={3000} easing={"ease-in-cubic"}
-                source={require('../assets/pictures/orange_alpha.png')}/>
+                source={require('../assets/pictures/carrots_alpha.png')}/>
             case 29:
             return <Animatable.Image
                 style={styles.pictures} animation="fadeOut" duration={7000} easing={"ease-out-expo"}
-                source={require('../assets/pictures/orange.png')}/>
+                source={require('../assets/pictures/carrots.png')}/>
             case 30:
             return <Animatable.Image
                 style={styles.pictures} animation="fadeIn" duration={3000} easing={"ease-in-cubic"}
@@ -154,9 +154,10 @@ import {StyleSheet} from "react-native";
     }
 const styles = StyleSheet.create({
     pictures: {
-        marginTop: 4,
+marginLeft:0.8,
+        marginTop:-11,
         width: 392,
-        height: 240,
+        height: 237,
 
     }
 
