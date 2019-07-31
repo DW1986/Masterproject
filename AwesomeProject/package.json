@@ -26,7 +26,8 @@
     "react-native-view-shot": "^2.6.0",
     "react-navigation": "^3.9.1",
     "rnpm": "^1.9.0",
-    "shorthash": "0.0.2"
+    "shorthash": "0.0.2",
+    "shuffle-array": "^1.0.1"
   },
   "devDependencies": {
     "@babel/core": "7.4.3",

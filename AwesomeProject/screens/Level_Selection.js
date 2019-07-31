@@ -6,9 +6,10 @@ import FastImage from "react-native-fast-image";
 import * as Animatable from "react-native-animatable";
 
 
+
 var {width, height} = Dimensions.get('window')
 export default class Level_Selection extends React.Component {
-
+    _isMounted = false;
     constructor(props) {
         super(props)
         this.state = {
@@ -23,9 +24,6 @@ export default class Level_Selection extends React.Component {
         }
         this.Butterfly_1 = new Animated.Value(0)
         this.Butterfly_2 = new Animated.Value(0)
-
-
-
 
         var range = 1, snapshot = 50, radius = 20, radius2 =50
 
@@ -71,10 +69,14 @@ export default class Level_Selection extends React.Component {
 
     }
 
-
-    componentDidMount(){
+    preloadImages(){
         preloadImages()
-        this.mounted = true;
+
+    }
+    componentDidMount(){
+
+        this.preloadImages()
+        this._isMounted = true;
         this.Butterfly_1.setValue(0)
         Animated.loop(
             Animated.timing(this.Butterfly_1, {
@@ -113,7 +115,8 @@ export default class Level_Selection extends React.Component {
         ).start()
     }
     componentWillUnmount() {
-        this.mounted = false;
+
+        this._isMounted = false;
     }
 
     arrow() {
@@ -132,28 +135,32 @@ export default class Level_Selection extends React.Component {
                                                animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate" />
     }
     LvL1(){
+        if (this.state.counterLvL1 === 1)
+            setTimeout(() => this.props.navigation.navigate('Level_1') ,2000)
+            this.setState({counterLvL1:0})
         this.setState(prevState => ({ counterLvL1: prevState.counterLvL1 + 1 }))
         this.setState({counterLvL2:0,counterLvL3:0,counterLvL4:0})
-        if (this.state.counterLvL1 === 1)
-            this.props.navigation.navigate('Level_1')
     }
     LvL2(){
+        if (this.state.counterLvL2 === 1)
+            setTimeout(() => this.props.navigation.navigate('Level_2') ,2000)
+        this.setState({counterLvL2:0})
         this.setState(prevState => ({ counterLvL2: prevState.counterLvL2 + 1 }))
         this.setState({counterLvL1:0,counterLvL3:0,counterLvL4:0})
-        if (this.state.counterLvL2 === 1)
-            this.props.navigation.navigate('Level_2')
     }
     LvL3(){
+        if (this.state.counterLvL3 === 1)
+            setTimeout(() => this.props.navigation.navigate('Level_3') ,2000)
+        this.setState({counterLvL3:0})
         this.setState(prevState => ({ counterLvL3: prevState.counterLvL3 + 1 }))
         this.setState({counterLvL1:0,counterLvL2:0,counterLvL4:0})
-        if (this.state.counterLvL3 === 1)
-            this.props.navigation.navigate('Level_1')
     }
     LvL4(){
+        if (this.state.counterLvL4 === 1)
+            setTimeout(() => this.props.navigation.navigate('Level_2') ,2000)
+        this.setState({counterLvL4:0})
         this.setState(prevState => ({ counterLvL4: prevState.counterLvL4 + 1 }))
         this.setState({counterLvL1:0,counterLvL2:0,counterLvL3:0})
-        if (this.state.counterLvL4 === 1)
-            this.props.navigation.navigate('Level_1')
     }
 
     render() {
@@ -161,58 +168,52 @@ export default class Level_Selection extends React.Component {
         const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
         return (
             <ImageBackground source={require('../assets/other/Level_Selection.png')} style={styles.background}>
-                <Animated.Image source={require('../assets/animations/Butterfly_2.gif')} style={[styles.Butterflys,{
-                    marginTop:height/1.8,marginLeft:width/1.2, transform:transform2 }]}/>
-                <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
-                    marginTop:height*0.15}]} />
-                <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
-                    marginTop:height*0.3,marginRight: width*0.2}]} />
-                <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_3,
-                    marginTop:height*0.03,marginRight: width*0.2}]} />
+
+
+                    <Animated.Image source={require('../assets/animations/Butterfly_2.gif')} style={[styles.Butterflys,{
+                        bottom:150,marginLeft:width/1.2, transform:transform2 }]}/>
+                    <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
+                       top:50}]} />
+                    <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
+                       top:85}]} />
+                    <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_3,
+                        top:15}]} />
                 <Image source={require('../assets/other/Level_Selection_front.png')}
-                       style={{width: '100%', height: '100%'}}  />
-                <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
-                    marginTop:height/1.5,marginLeft:width/50, transform }]}/>
-                <View style={styles.container}>
-                    <TouchableOpacity onPress={() =>this.LvL1()}>
-                        <View>
-                            <Image
-                                source={require('../assets/animations/Egg_1.gif')}
-                                style={[styles.Eggs,{marginTop:height*0.56}]}
-                            />
-                        </View>
+                       style={{position:'absolute',width: '100%', height: '100%'}}  />
+                    <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
+                        bottom:90,marginLeft:width/50, transform }]}/>
+                {this.arrow()}
+                <View style={[styles.container]}>
+                    <TouchableOpacity   onPress={() => this.LvL1()}>
+                        <Image
+                            source={require('../assets/animations/Egg_1.gif')}
+                            style={[styles.Eggs,{bottom:12}]}
+                        />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() =>this.LvL2()}>
-                        <View>
-                            <Image
-                                source={require('../assets/animations/Egg_2.gif')}
-                                style={[styles.Eggs,{marginTop:height*0.58}]}
-                            />
-                        </View>
+                    <TouchableOpacity   onPress={() => this.LvL2()}>
+                        <Image
+                            source={require('../assets/animations/Egg_2.gif')}
+                            style={[styles.Eggs,{bottom:5}]}
+                        />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() =>this.LvL3()}>
-                        <View>
-                            <Image
-                                source={require('../assets/animations/Egg_3.gif')}
-                                style={[styles.Eggs,{marginTop:height*0.6}]}
-                            />
-                        </View>
+                    <TouchableOpacity   onPress={() => this.LvL3()}>
+                        <Image
+                            source={require('../assets/animations/Egg_3.gif')}
+                            style={[styles.Eggs,{bottom:15}]}
+                        />
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() =>this.LvL4()}>
-                        <View>
-                            <Image
-                                source={require('../assets/animations/Egg_4.gif')}
-                                style={[styles.Eggs,{marginTop:height*0.54}]}
-                            />
-                        </View>
+                    <TouchableOpacity   onPress={() => this.LvL4()}>
+                        <Image
+                            source={require('../assets/animations/Egg_4.gif')}
+                            style={[styles.Eggs,{bottom:9}]}
+                        />
                     </TouchableOpacity>
 
                 </View>
-                <View pointerEvents="none">
+                <View pointerEvents="none"  >
                     <Image  source={require('../assets/other/Level_Selection_front2.png')}
-                            style={styles.font2_gras}  />
+                            style={styles.font2_gras} />
                 </View>
-                {this.arrow()}
             </ImageBackground>
         );
     }
@@ -222,33 +223,23 @@ export default class Level_Selection extends React.Component {
 const styles = StyleSheet.create({
     background: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+        justifyContent:'center',
+        alignContent: 'center'
     },
     Eggs:{
         width:130,
         height:140,
-
     },
     Butterflys:{
         width:35,
         height:35,
         position:'absolute'
-
     },
     cloud:{
         width:80,
         height:50,
         position:'absolute',
-        resizeMode:"contain"
-    },
-    container: {
-        flex: 1,
-        justifyContent:'center',
-        alignItems: "center",
-        flexDirection:'row',
-        position:'absolute',
-        marginLeft:width*0.1
-
     },
     font2_gras: {
         flex: 1,
@@ -256,13 +247,20 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width:width,
         height:height,
-
     },
     selectArrow: {
-
         position: 'absolute',
         width:50,
         height:70,
-
-        },
+    },
+    container: {
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center',
+        width:'100%',
+        height:'100%',
+        flexDirection: 'row',
+        top:120,
+        right:30
+    },
 });

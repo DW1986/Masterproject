@@ -18,7 +18,7 @@ var RNFS = require('react-native-fs');
 var {width, height} = Dimensions.get('window')
 
 export default class Level_1 extends Component {
-
+    _isMounted = false;
     constructor(props) {
         super(props)
 
@@ -38,10 +38,6 @@ export default class Level_1 extends Component {
             ScaleValue2 : new Animated.Value(1),
             text:"ROT",
             textcolor:'#FF0000',
-            played:0,
-            anim:0,
-            rdmnumber:0,
-
         }
     }
 componentWillMount() {
@@ -50,19 +46,14 @@ componentWillMount() {
 }
 
     componentDidMount() {
-        this.mounted = true;
-     //   this.bunnyanim()
-
-
-
+        this._isMounted = true;
 
         //make initial Screenshot
         this.makeScreenshot()
-this.setState({rdmnumber:this.rdm(3)})
 
     }
     componentWillUnmount() {
-        this.mounted = false;
+        this._isMounted = false;
     }
 
     componentDidUpdate() {
@@ -70,50 +61,6 @@ this.setState({rdmnumber:this.rdm(3)})
     }
 
 
-// get random nummber
-
-    rdm(max) {
-        return Math.floor(Math.random() * Math.floor(max));
-    }
-
-// change anim for bunny
-    bunnyanim() {
-
-            switch (this.state.anim) {
-                case 0:
-                    setTimeout(() => {
-                        this.setState({anim: 1})
-                    }, 2600)
-                    break
-                case 1:
-                    setTimeout(() => {
-                        if (this.state.order === 1 || this.state.order === 3 || this.state.order === 5 || this.state.order === 7 ||
-                            this.state.order === 9 || this.state.order === 11 || this.state.order === 13 || this.state.order === 15 ||
-                            this.state.order === 17 || this.state.order === 19 || this.state.order === 21 || this.state.order === 23 ||
-                            this.state.order === 25 || this.state.order === 27 || this.state.order === 29 || this.state.order === 31 ||
-                            this.state.order === 33 || this.state.order === 35 && this.state.played === 0 && this.state.anim !== 5) {
-                            this.setState({anim: 2 + this.state.rdmnumber})
-                        }
-                    }, 2100)
-                    break
-                case 2:
-                    setTimeout(() => {
-                        this.setState({anim: 1, played: 1})
-                    }, 3100)
-                    break
-                case 3:
-                    setTimeout(() => {
-                        this.setState({anim: 1, played: 1})
-                    }, 2600)
-                    break
-                case 4:
-                    setTimeout(() => {
-                        this.setState({anim: 1, played: 1})
-                    }, 3600)
-                    break
-            }
-
-    }
 
 //Change drawcolor when selected
     changedrawcolor() {
@@ -189,15 +136,15 @@ this.setState({rdmnumber:this.rdm(3)})
         switch (this.state.dominantcolor) {
             case 'red':
                 if(this.state.order === 0) {
-                    this.setState({order: 1,drawcolor: '#F1F1F1',dominantcolor:'white',colorselected: false,played:1})
+                    this.setState({order: 1,drawcolor: '#F1F1F1',colorselected: false})
                     setTimeout(() => {
-                        this.setState({order: 2,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 2,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 3,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 4,rdmnumber:this.rdm(3)})
+                        this.setState({order: 4})
                         this.makeScreenshot()
 
                     }, 4000)
@@ -207,13 +154,13 @@ this.setState({rdmnumber:this.rdm(3)})
                 if(this.state.order === 4) {
                     this.setState({order: 5,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 6,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 6,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 7,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 8,played:0,rdmnumber:this.rdm(3)})
+                        this.setState({order: 8,played:0})
                         this.makeScreenshot()
                     }, 4000)
                 }
@@ -222,13 +169,13 @@ this.setState({rdmnumber:this.rdm(3)})
                 if(this.state.order === 8) {
                     this.setState({order: 9,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 10,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 10,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 11,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 12,played:0,rdmnumber:this.rdm(3)})
+                        this.setState({order: 12,played:0})
                         this.makeScreenshot()
                     }, 4000)
                 }
@@ -237,13 +184,13 @@ this.setState({rdmnumber:this.rdm(3)})
                 if(this.state.order === 12) {
                     this.setState({order: 13,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 14,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 14,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 15,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 16,played:0,rdmnumber:this.rdm(3)})
+                        this.setState({order: 16,played:0,})
                         this.makeScreenshot()
                     }, 4000)
                 }
@@ -252,13 +199,13 @@ this.setState({rdmnumber:this.rdm(3)})
                 if(this.state.order === 16) {
                     this.setState({order: 17,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 18,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 18,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 19,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 20,played:0,rdmnumber:this.rdm(3)})
+                        this.setState({order: 20,played:0})
                         this.makeScreenshot()
                     }, 4000)
                 }
@@ -267,13 +214,13 @@ this.setState({rdmnumber:this.rdm(3)})
                 if(this.state.order === 20) {
                     this.setState({order: 21,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 22,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 22,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 23,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 24,played:0,rdmnumber:this.rdm(3)})
+                        this.setState({order: 24,played:0})
                         this.makeScreenshot()
                     }, 4000)
                 }
@@ -282,13 +229,13 @@ this.setState({rdmnumber:this.rdm(3)})
                 if(this.state.order === 24) {
                     this.setState({order: 25,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 26,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 26,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 27,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 28,played:0,rdmnumber:this.rdm(3)})
+                        this.setState({order: 28,played:0})
                         this.makeScreenshot()
                     }, 4000)
                 }
@@ -297,13 +244,13 @@ this.setState({rdmnumber:this.rdm(3)})
                 if(this.state.order === 28) {
                     this.setState({order: 29,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 30,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 30,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 31,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
-                        this.setState({order: 32,played:0,rdmnumber:this.rdm(3)})
+                        this.setState({order: 32,played:0})
                         this.makeScreenshot()
                     }, 4000)
                 }
@@ -312,7 +259,7 @@ this.setState({rdmnumber:this.rdm(3)})
                 if(this.state.order === 32) {
                     this.setState({order: 33,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
-                        this.setState({order: 34,played:0,rdmnumber:this.rdm(3),dominantcolor:'white'})
+                        this.setState({order: 34,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.setState({order: 35,colorselected: false, played:0,drawcolor: '#F1F1F1'})
@@ -406,49 +353,6 @@ this.setState({rdmnumber:this.rdm(3)})
 
         }
     }
-    bunny(){
-        switch(this.state.anim){
-            case 0:
-                return <Animatable.View
-                    style={styles.bunny} animation={{
-                            from: {translateY: -600},
-                            to: {translateY: 0}}
-                    }
-                    duration={1200} easing={"linear"}>
-                            <FastImage
-                                source={require('../assets/bunny/jump-in.gif')}
-                                style={{width: 300, height: 300}}/>
-                        </Animatable.View>
-            case 1:
-                return <FastImage
-                    source={require('../assets/bunny/idle_speak.gif')}
-                    style={[styles.bunny,{width:300,height:300}]}/>
-            case 2:
-                return <FastImage
-                    source={require('../assets/bunny/success1.gif')}
-                    style={[styles.bunny,{width:300,height:300}]}/>
-            case 3:
-                return <FastImage
-                    source={require('../assets/bunny/success2.gif')}
-                    style={[styles.bunny,{width:300,height:300}]}/>
-            case 4:
-                return <FastImage
-                    source={require('../assets/bunny/success3.gif')}
-                    style={[styles.bunny,{width:300,height:300}]}/>
-            case 5:
-                return <Animatable.View
-                    style={styles.bunny} animation={{
-                    from: {translateY: 0},
-                    to: {translateY: -600}}
-                }
-                    duration={1500} delay={1000} easing={"linear"}>
-                    <FastImage
-                        source={require('../assets/bunny/jump-out.gif')}
-                        style={{width: 300, height: 300}}/>
-                </Animatable.View>
-        }
-    }
-
 
     // Test Code for displaying state:
 //<Text>rgba:{this.state.dominantcolor_rgba}</Text>
@@ -461,7 +365,6 @@ this.setState({rdmnumber:this.rdm(3)})
 //<Text>oder:{this.state.order}</Text>
 //<Text>anim:{this.state.anim}</Text>
 //<Text>order:{this.state.order}</Text>
-// <Text>rdm:{this.state.rdmnumber}</Text>
     render() {
         return (
             <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>

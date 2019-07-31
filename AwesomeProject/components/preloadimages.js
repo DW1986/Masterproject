@@ -1,4 +1,4 @@
-import { Image } from 'react-native';
+import { Image, Alert } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 
@@ -38,6 +38,7 @@ export function preloadImages() {
     }));
 
     FastImage.preload(uris);
+
 }
 
 
