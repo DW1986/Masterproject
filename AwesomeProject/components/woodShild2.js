@@ -1,6 +1,5 @@
 import * as Animatable from "react-native-animatable";
 import React from "react";
-import FastImage from 'react-native-fast-image'
 
 // render and animate the woodShild depending on order
     export function woodShild(order,errorcount) {
@@ -9,7 +8,7 @@ import FastImage from 'react-native-fast-image'
             case 0: case 2:
                 return <Animatable.Image
                     source={require('../assets/other/Wood-Shild.png')} style={[{width: 250}, {height: 80}]}
-                    animation="flipInY" delay={2000} duration={3000}/>
+                    animation="flipInY"  duration={3000}/>
                 break;
             case 1: case 3:
                 return <Animatable.Image

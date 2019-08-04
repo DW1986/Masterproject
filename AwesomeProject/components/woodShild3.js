@@ -1,6 +1,5 @@
 import * as Animatable from "react-native-animatable";
 import React from "react";
-import FastImage from 'react-native-fast-image'
 
 // render and animate the woodShild depending on order
     export function woodShild(order) {

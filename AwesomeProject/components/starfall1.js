@@ -1,7 +1,6 @@
 import React from "react";
 import FastImage from 'react-native-fast-image'
 import {StyleSheet} from "react-native";
-import * as Animatable from "react-native-animatable";
 
 // render the starfall depending on order
     export function starfall(order) {

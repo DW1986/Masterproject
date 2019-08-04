@@ -1,33 +1,36 @@
 import React from 'react';
-import {StyleSheet, Text, View, ImageBackground, Image,Button, Animated, TouchableOpacity,Easing,Dimensions} from 'react-native';
-import {PermissionsAndroid} from 'react-native';
+import {BackHandler, StyleSheet, View, ImageBackground, Animated, TouchableOpacity, Easing, Dimensions} from 'react-native';
 import {preloadImages} from "../components/preloadimages";
+import {selectArrow} from "../components/selectArrow";
 import FastImage from "react-native-fast-image";
 import * as Animatable from "react-native-animatable";
-
-
+import SplashScreen from "./SplashScreen";
 
 var {width, height} = Dimensions.get('window')
+
 export default class Level_Selection extends React.Component {
+
     _isMounted = false;
+
     constructor(props) {
         super(props)
         this.state = {
+            isLoading:true,
             cloud_1 : new Animated.Value(-80),
             cloud_2 : new Animated.Value(-240),
             cloud_3 : new Animated.Value(-400),
             counterLvL1:0,
             counterLvL2:0,
             counterLvL3:0,
-            counterLvL4:0
-
+            counterLvL4:0,
+            language:false,
+            disableBotton:false
         }
         this.Butterfly_1 = new Animated.Value(0)
         this.Butterfly_2 = new Animated.Value(0)
-
         var range = 1, snapshot = 50, radius = 20, radius2 =50
 
-        /// translateX Butterfly_1
+        /// translateX butterfly_1
         var inputRange = [], outputRange = []
         for (var i=0; i<=snapshot; ++i) {
             var value = i/snapshot
@@ -37,7 +40,7 @@ export default class Level_Selection extends React.Component {
         }
         this.translateX = this.Butterfly_1.interpolate({ inputRange, outputRange })
 
-        /// translateY Butterfly_1
+        /// translateY butterfly_1
         var inputRange = [], outputRange = []
         for (var i=0; i<=snapshot; ++i) {
             var value = i/snapshot
@@ -47,7 +50,7 @@ export default class Level_Selection extends React.Component {
         }
         this.translateY = this.Butterfly_1.interpolate({ inputRange, outputRange })
 
-        /// translateX2 Butterfly_2
+        /// translateX2 butterfly_2
         var inputRange = [], outputRange = []
         for (var i=0; i<=snapshot; ++i) {
             var value = i/snapshot
@@ -57,7 +60,7 @@ export default class Level_Selection extends React.Component {
         }
         this.translateX2 = this.Butterfly_2.interpolate({ inputRange, outputRange })
 
-        /// translateY2 Butterfly_2
+        /// translateY2 butterfly_2
         var inputRange = [], outputRange = []
         for (var i=0; i<=snapshot; ++i) {
             var value = i/snapshot
@@ -66,17 +69,21 @@ export default class Level_Selection extends React.Component {
             outputRange.push(move)
         }
         this.translateY2 = this.Butterfly_2.interpolate({ inputRange, outputRange })
-
     }
 
-    preloadImages(){
-        preloadImages()
-
-    }
-    componentDidMount(){
-
-        this.preloadImages()
+    async componentDidMount(){
+        // mount component
         this._isMounted = true;
+        //preload images
+        preloadImages()
+        const data = await preloadImages();
+        if (data !== null) {
+            setTimeout(
+                () => {  this.setState({ isLoading: false });
+                },2000
+            )
+        }
+        //animate butterfly_1
         this.Butterfly_1.setValue(0)
         Animated.loop(
             Animated.timing(this.Butterfly_1, {
@@ -84,7 +91,7 @@ export default class Level_Selection extends React.Component {
                 duration: 16000,
             })
         ).start()
-
+        // animate butterfly_2
         this.Butterfly_2.setValue(0)
         Animated.loop(
             Animated.timing(this.Butterfly_2, {
@@ -92,6 +99,7 @@ export default class Level_Selection extends React.Component {
                 duration: 16000,
             })
         ).start()
+        //animate cloud_1
         Animated.loop(
             Animated.timing(this.state.cloud_1,{
                 toValue: width+400,
@@ -99,6 +107,7 @@ export default class Level_Selection extends React.Component {
                 asing:Easing.linear
             })
         ).start()
+        //animate cloud_2
         Animated.loop(
             Animated.timing(this.state.cloud_2,{
                 toValue: width+240,
@@ -106,6 +115,7 @@ export default class Level_Selection extends React.Component {
                 asing:Easing.linear
             })
         ).start()
+        //animate cloud_3
         Animated.loop(
             Animated.timing(this.state.cloud_3,{
                 toValue: width+80,
@@ -114,112 +124,154 @@ export default class Level_Selection extends React.Component {
             })
         ).start()
     }
-    componentWillUnmount() {
 
+    componentWillUnmount() {
+        //unmount component
         this._isMounted = false;
     }
-
-    arrow() {
-        if      (this.state.counterLvL1 === 1)
-                    return <Animatable.Image   source={require('../assets/other/SelectArrow.png')} style={[styles.selectArrow,{left:115,top:143}]}
-                                               animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate" />
-
-        else if (this.state.counterLvL2 === 1)
-                     return <Animatable.Image   source={require('../assets/other/SelectArrow.png')} style={[styles.selectArrow,{left:245,top:146}]}
-                                              animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate" />
-        else if (this.state.counterLvL3 === 1)
-                    return <Animatable.Image   source={require('../assets/other/SelectArrow.png')} style={[styles.selectArrow,{left:375,top:149}]}
-                                               animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate" />
-        else if (this.state.counterLvL4 === 1)
-                    return <Animatable.Image   source={require('../assets/other/SelectArrow.png')} style={[styles.selectArrow,{left:505,top:140}]}
-                                               animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate" />
-    }
+    // Selection LvL1
     LvL1(){
         if (this.state.counterLvL1 === 1)
-            setTimeout(() => this.props.navigation.navigate('Level_1') ,2000)
+            setTimeout(() => this.props.navigation.navigate('Level_1', { language: this.state.language }) ,2000)
             this.setState({counterLvL1:0})
         this.setState(prevState => ({ counterLvL1: prevState.counterLvL1 + 1 }))
         this.setState({counterLvL2:0,counterLvL3:0,counterLvL4:0})
     }
+    // Selection LvL2
     LvL2(){
         if (this.state.counterLvL2 === 1)
-            setTimeout(() => this.props.navigation.navigate('Level_2') ,2000)
+            setTimeout(() => this.props.navigation.navigate('Level_2', { language: this.state.language }) ,2000)
         this.setState({counterLvL2:0})
         this.setState(prevState => ({ counterLvL2: prevState.counterLvL2 + 1 }))
         this.setState({counterLvL1:0,counterLvL3:0,counterLvL4:0})
     }
+    // Selection LvL3
     LvL3(){
         if (this.state.counterLvL3 === 1)
-            setTimeout(() => this.props.navigation.navigate('Level_3') ,2000)
+            setTimeout(() => this.props.navigation.navigate('Level_3', { language: this.state.language }) ,2000)
         this.setState({counterLvL3:0})
         this.setState(prevState => ({ counterLvL3: prevState.counterLvL3 + 1 }))
         this.setState({counterLvL1:0,counterLvL2:0,counterLvL4:0})
     }
+    // Selection LvL4
     LvL4(){
         if (this.state.counterLvL4 === 1)
-            setTimeout(() => this.props.navigation.navigate('Level_2') ,2000)
+            setTimeout(() => this.props.navigation.navigate('Level_4', { language: this.state.language }) ,2000)
         this.setState({counterLvL4:0})
         this.setState(prevState => ({ counterLvL4: prevState.counterLvL4 + 1 }))
         this.setState({counterLvL1:0,counterLvL2:0,counterLvL3:0})
     }
-
+    // render language
+    language(){
+        if(this.state.language===false) {
+            return <TouchableOpacity disabled={this.state.disableBotton} onPress={() =>
+                this.setState({language:!this.state.language,disableBotton:true},this.disablelanguagetimer())}>
+                <View>
+                    <FastImage
+                        source={require('../assets/other/flag_ger.png')}
+                        style={{width: 40, height: 30}}
+                    />
+                </View>
+            </TouchableOpacity>
+        } else {
+            return <TouchableOpacity disabled={this.state.disableBotton} onPress={() =>
+                this.setState({language:!this.state.language,disableBotton:true},this.disablelanguagetimer())}>
+                <View>
+                    <FastImage
+                        source={require('../assets/other/flag_eng.png')}
+                        style={{width:40,height:30}}
+                    />
+                </View>
+            </TouchableOpacity>
+        }
+    }
+    //disable language button for some time after pressed
+    disablelanguagetimer(){
+        setTimeout(() => this.setState({disableBotton:false}),5000)
+    }
     render() {
-        const transform = [{ translateY: this.translateY }, {translateX: this.translateX}]
-        const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
-        return (
-            <ImageBackground source={require('../assets/other/Level_Selection.png')} style={styles.background}>
-
-
+        if(this._isMounted = true){
+            if (this.state.isLoading) {
+                return <SplashScreen />;
+            }
+            const transform = [{ translateY: this.translateY }, {translateX: this.translateX}]
+            const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
+            return (
+                <ImageBackground source={require('../assets/other/Level_Selection.png')} style={styles.background}>
                     <Animated.Image source={require('../assets/animations/Butterfly_2.gif')} style={[styles.Butterflys,{
                         bottom:150,marginLeft:width/1.2, transform:transform2 }]}/>
                     <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
-                       top:50}]} />
+                        top:50}]} />
                     <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
-                       top:85}]} />
+                        top:85}]} />
                     <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_3,
                         top:15}]} />
-                <Image source={require('../assets/other/Level_Selection_front.png')}
-                       style={{position:'absolute',width: '100%', height: '100%'}}  />
+                    <FastImage source={require('../assets/other/Level_Selection_front.png')}
+                               style={{position:'absolute',width: '100%', height: '100%'}}  />
                     <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
                         bottom:90,marginLeft:width/50, transform }]}/>
-                {this.arrow()}
-                <View style={[styles.container]}>
-                    <TouchableOpacity   onPress={() => this.LvL1()}>
-                        <Image
-                            source={require('../assets/animations/Egg_1.gif')}
-                            style={[styles.Eggs,{bottom:12}]}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity   onPress={() => this.LvL2()}>
-                        <Image
-                            source={require('../assets/animations/Egg_2.gif')}
-                            style={[styles.Eggs,{bottom:5}]}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity   onPress={() => this.LvL3()}>
-                        <Image
-                            source={require('../assets/animations/Egg_3.gif')}
-                            style={[styles.Eggs,{bottom:15}]}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity   onPress={() => this.LvL4()}>
-                        <Image
-                            source={require('../assets/animations/Egg_4.gif')}
-                            style={[styles.Eggs,{bottom:9}]}
-                        />
-                    </TouchableOpacity>
+                    {selectArrow(this.state.counterLvL1,this.state.counterLvL2,this.state.counterLvL3,this.state.counterLvL4,)}
+                    <View style={[styles.container]}>
+                        <TouchableOpacity   onPress={() => this.LvL1()}>
+                            <FastImage
+                                source={require('../assets/animations/Egg_1.gif')}
+                                style={[styles.Eggs,{bottom:12}]}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity   onPress={() => this.LvL2()}>
+                            <FastImage
+                                source={require('../assets/animations/Egg_2.gif')}
+                                style={[styles.Eggs,{bottom:5}]}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity   onPress={() => this.LvL3()}>
+                            <FastImage
+                                source={require('../assets/animations/Egg_3.gif')}
+                                style={[styles.Eggs,{bottom:15}]}
+                            />
+                        </TouchableOpacity>
+                        <TouchableOpacity   onPress={() => this.LvL4()}>
+                            <FastImage
+                                source={require('../assets/animations/Egg_4.gif')}
+                                style={[styles.Eggs,{bottom:9}]}
+                            />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={styles.backtabview}>
+                        <Animatable.View
+                            style={styles.backtab2} animation={{
+                            from: {left: -120},
+                            to: {left: 0}
+                        }}duration={1000} delay={1000} easing={"linear"}>
+                            <TouchableOpacity onPress={() =>
+                                BackHandler.exitApp()}>
+                                <View>
+                                    <FastImage
+                                        source={require('../assets/other/cross.png')}
+                                        style={{width:35,height:25}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+                        </Animatable.View>
+                        <Animatable.View
+                            style={styles.backtab1} animation={{
+                            from: {left: -120},
+                            to: {left: 0}
+                        }}duration={1000} delay={1000} easing={"linear"}>
+                            {this.language()}
+                        </Animatable.View>
+                    </View>
+                    <View pointerEvents="none"  >
+                        <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
+                                    style={styles.font2_gras} />
+                    </View>
+                </ImageBackground>
+            );
+        }
 
-                </View>
-                <View pointerEvents="none"  >
-                    <Image  source={require('../assets/other/Level_Selection_front2.png')}
-                            style={styles.font2_gras} />
-                </View>
-            </ImageBackground>
-        );
     }
 }
-
-// define your styles
+//styles
 const styles = StyleSheet.create({
     background: {
         width: '100%',
@@ -248,11 +300,6 @@ const styles = StyleSheet.create({
         width:width,
         height:height,
     },
-    selectArrow: {
-        position: 'absolute',
-        width:50,
-        height:70,
-    },
     container: {
         flex:1,
         justifyContent:'center',
@@ -262,5 +309,32 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         top:120,
         right:30
+    },
+    backtabview: {
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+    },
+    backtab1: {
+        width: 60,
+        height: 60,
+        backgroundColor: 'white',
+        top:5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 70/2,
+    },
+    backtab2: {
+        width: 60,
+        height: 60,
+        backgroundColor: 'black',
+        borderColor: 'white',
+        borderWidth:6,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 70/2,
+
     },
 });

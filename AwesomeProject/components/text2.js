@@ -9,7 +9,7 @@ import React from "react";
             case 0: case 2:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" delay={2000} duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY"  duration={3000}>{text}</Animatable.Text>
                 break;
             case 1: case 3:
                 return <Animatable.Text

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Animated, Dimensions, Image,Text, ImageBackground, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Alert, Animated, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
@@ -11,6 +11,8 @@ import {woodShild} from "../components/woodShild1";
 import {text} from "../components/text1";
 import {starfall} from "../components/starfall1";
 import {pictureselector} from "../components/pictureselector1";
+import SplashScreen from "../screens/SplashScreen"
+
 
 var RNFS = require('react-native-fs');
 
@@ -23,6 +25,7 @@ export default class Level_1 extends Component {
         super(props)
 
         this.state = {
+            isLoading: true,
             dominantcolor_rgba: null,
             drawcolor: '#F1F1F1',
             path: RNFS.ExternalCachesDirectoryPath + '/test.jpg',
@@ -36,51 +39,48 @@ export default class Level_1 extends Component {
             opacity : new Animated.Value(0),
             ScaleValue1 : new Animated.Value(0),
             ScaleValue2 : new Animated.Value(1),
-            text:"ROT",
+            text:"XX",
             textcolor:'#FF0000',
         }
     }
-componentWillMount() {
 
-
-}
-
-    componentDidMount() {
+    async componentDidMount() {
         this._isMounted = true;
-
-        //make initial Screenshot
-        this.makeScreenshot()
-
+        preloadImages()
+        const data = await preloadImages();
+        if (data !== null) {
+            setTimeout(
+                () => {  this.setState({ isLoading: false },this.updatetext());
+                    setTimeout(() => {
+                        this.makeScreenshot()
+                    },1000)},
+                2000
+            )
+        }
     }
+
     componentWillUnmount() {
         this._isMounted = false;
     }
-
-    componentDidUpdate() {
-
-    }
-
-
-
-//Change drawcolor when selected
+    //Change drawcolor when selected
     changedrawcolor() {
-        if (this.state.order <= 3 && this.state.colorselected === false)
+        if (this.state.order <= 3 && this.state.colorselected === true)
             this.setState({drawcolor: '#FF0000'})
-        else if (this.state.order >= 4 && this.state.order <= 7 && this.state.colorselected === false)
+        else if (this.state.order >= 4 && this.state.order <= 7 && this.state.colorselected === true)
             this.setState({drawcolor: '#0000FF'})
-        else if (this.state.order >= 8 && this.state.order <= 11 && this.state.colorselected === false)
+        else if (this.state.order >= 8 && this.state.order <= 11 && this.state.colorselected === true)
             this.setState({drawcolor: '#00FF00'})
-        else if (this.state.order >= 12 && this.state.order <= 15 && this.state.colorselected === false)
+        else if (this.state.order >= 12 && this.state.order <= 15 && this.state.colorselected === true)
             this.setState({drawcolor: '#FFFF00'})
-        else if (this.state.order >= 16 && this.state.order <= 19 && this.state.colorselected === false)
+        else if (this.state.order >= 16 && this.state.order <= 19 && this.state.colorselected === true)
             this.setState({drawcolor: '#FF1694'})
-        else if (this.state.order >= 20 && this.state.order <= 23 && this.state.colorselected === false)
+        else if (this.state.order >= 20 && this.state.order <= 23 && this.state.colorselected === true)
             this.setState({drawcolor: '#A52A2A'})
-        else if (this.state.order >= 24 && this.state.order <= 27 && this.state.colorselected === false)
+        else if (this.state.order >= 24 && this.state.order <= 27 && this.state.colorselected === true)
             this.setState({drawcolor: '#9d00ff'})
-        else if (this.state.order >= 28 && this.state.order <= 31 && this.state.colorselected === false)
+        else if (this.state.order >= 28 && this.state.order <= 31 && this.state.colorselected === true)
             this.setState({drawcolor: '#FFA500'})
-        else if (this.state.order >= 32 && this.state.order <= 35 && this.state.colorselected === false)
+        else if (this.state.order >= 32 && this.state.order <= 35 && this.state.colorselected === true)
             this.setState({drawcolor: '#00FFFF'})
         else if (this.state.colorselected === true)
             this.setState({drawcolor: '#F1F1F1'})
@@ -88,48 +88,100 @@ componentWillMount() {
     }
 // update Text on woodShild
     updatetext(){
-        switch(this.state.order) {
-            case 3:
-                setTimeout(() =>
-                        this.setState({text: "BLAU", textcolor: '#0000FF'})
-                    , 3000);
-                break;
-            case 7:
-                setTimeout(() =>
-                        this.setState({text: "GRÜN", textcolor: '#00FF00'})
-                    , 3000);
-                break;
-            case 11:
-                setTimeout(() =>
-                        this.setState({text: "GELB", textcolor: '#FFFF00'})
-                    , 3000);
-                break;
-            case 15:
-                setTimeout(() =>
-                        this.setState({text: "PINK", textcolor: '#FF1694'})
-                    , 3000);
-                break;
-            case 19:
-                setTimeout(() =>
-                        this.setState({text: "BRAUN", textcolor: '#A52A2A'})
-                    , 3000);
-                break;
-            case 23:
-                setTimeout(() =>
-                        this.setState({text: "LILA", textcolor: '#9D00FF'})
-                    , 3000);
-                break;
-            case 27:
-                setTimeout(() =>
-                        this.setState({text: "ORANGE", textcolor: '#FFA500'})
-                    , 3000);
-                break;
-            case 31:
-                setTimeout(() =>
-                        this.setState({text: "TÜRKIS", textcolor: '#00FFFF'})
-                    , 3000);
-                break;
+        if (this.props.navigation.state.params.language===false){
+            switch(this.state.order) {
+                case 0:
+                    this.setState({text: "Rot", textcolor: '#FF0000'})
+                    break;
+                case 3:
+                    setTimeout(() =>
+                            this.setState({text: "Blau", textcolor: '#0000FF'})
+                        , 3000);
+                    break;
+                case 7:
+                    setTimeout(() =>
+                            this.setState({text: "Grün", textcolor: '#00FF00'})
+                        , 3000);
+                    break;
+                case 11:
+                    setTimeout(() =>
+                            this.setState({text: "Gelb", textcolor: '#FFFF00'})
+                        , 3000);
+                    break;
+                case 15:
+                    setTimeout(() =>
+                            this.setState({text: "Pink", textcolor: '#FF1694'})
+                        , 3000);
+                    break;
+                case 19:
+                    setTimeout(() =>
+                            this.setState({text: "Braun", textcolor: '#A52A2A'})
+                        , 3000);
+                    break;
+                case 23:
+                    setTimeout(() =>
+                            this.setState({text: "Lila", textcolor: '#9D00FF'})
+                        , 3000);
+                    break;
+                case 27:
+                    setTimeout(() =>
+                            this.setState({text: "Orange", textcolor: '#FFA500'})
+                        , 3000);
+                    break;
+                case 31:
+                    setTimeout(() =>
+                            this.setState({text: "Türkis", textcolor: '#00FFFF'})
+                        , 3000);
+                    break;
+            }
+        }else {
+            switch(this.state.order) {
+                case 0:
+                            this.setState({text: "red", textcolor: '#FF0000'})
+                    break;
+                case 3:
+                    setTimeout(() =>
+                            this.setState({text: "blue", textcolor: '#0000FF'})
+                        , 3000);
+                    break;
+                case 7:
+                    setTimeout(() =>
+                            this.setState({text: "green", textcolor: '#00FF00'})
+                        , 3000);
+                    break;
+                case 11:
+                    setTimeout(() =>
+                            this.setState({text: "yellow", textcolor: '#FFFF00'})
+                        , 3000);
+                    break;
+                case 15:
+                    setTimeout(() =>
+                            this.setState({text: "pink", textcolor: '#FF1694'})
+                        , 3000);
+                    break;
+                case 19:
+                    setTimeout(() =>
+                            this.setState({text: "brown", textcolor: '#A52A2A'})
+                        , 3000);
+                    break;
+                case 23:
+                    setTimeout(() =>
+                            this.setState({text: "purple", textcolor: '#9D00FF'})
+                        , 3000);
+                    break;
+                case 27:
+                    setTimeout(() =>
+                            this.setState({text: "orange", textcolor: '#FFA500'})
+                        , 3000);
+                    break;
+                case 31:
+                    setTimeout(() =>
+                            this.setState({text: "cyan", textcolor: '#00FFFF'})
+                        , 3000);
+                    break;
+            }
         }
+
     }
 // update order depending on dominant color and set the different states
     updateorder() {
@@ -278,6 +330,7 @@ componentWillMount() {
 
         }
     }
+
 // make a Screenshot, save it and get the dominant color rgba
     makeScreenshot() {
         this.refs.viewShot.capture().then(uri => {
@@ -353,27 +406,72 @@ componentWillMount() {
 
         }
     }
+    colortabview(){
+        switch(this.state.order){
+            case 0: case 4: case 8: case 12: case 16: case 20: case 24: case 28: case 32:
+                return <Animatable.View
+                    style={styles.colortab} animation={{
+                        from:{left:-120},
+                        to:{left:0}
+                    }} duration={1000} easing={"linear"}>
+                        <TouchableOpacity onPress={() => {
+                            this.setState({colorselected:!this.state.colorselected},this.changedrawcolor)
+                            this.refs.sketchRef.clear()
+                        }}>
+                            {colorselector(this.state.order,this.state.colorselected)}
+                        </TouchableOpacity>
+                    </Animatable.View>
+            case 3: case 7: case 11: case 15: case 19: case 23: case 27: case 31: case 35:
+                return <Animatable.View
+                    style={styles.colortab} animation={{
+                    from:{left:0},
+                    to:{left:-120}
+                }} duration={1000} easing={"linear"}>
+                    <TouchableOpacity onPress={() => {
+                        this.setState({colorselected:!this.state.colorselected},this.changedrawcolor)
+                        this.refs.sketchRef.clear()
+
+                    }}>
+                        {colorselector(this.state.order,this.state.colorselected)}
+                    </TouchableOpacity>
+                </Animatable.View>
+            case 1: case 2: case 5: case 6: case 9: case 10: case 13: case 14: case 17: case 18: case 21: case 22: case 25: case 26: case 29: case 30: case 33: case 34:
+                return <View style={styles.colortab} >
+                    <TouchableOpacity onPress={() => {
+                        this.setState({colorselected:!this.state.colorselected},this.changedrawcolor)
+                        this.refs.sketchRef.clear()
+                    }}>
+                        {colorselector(this.state.order,this.state.colorselected)}
+                    </TouchableOpacity>
+                </View>
+        }
+
+    }
 
     // Test Code for displaying state:
 //<Text>rgba:{this.state.dominantcolor_rgba}</Text>
 //                     <Text>dominantcolor:{this.state.dominantcolor}</Text>
 //                     <Text>drawcolor:{this.state.drawcolor}</Text>
 //                     <Text>oder:{this.state.order}</Text>
-//                     <Text>colorselected:{String(this.state.colorselected)}</Text>
+//                     <Text>mixselected:{String(this.state.mixselected)}</Text>
     //<Text>Text:{String(this.state.text)}</Text>
 //<Text>Text:{String(this.state.text)}</Text>
 //<Text>oder:{this.state.order}</Text>
 //<Text>anim:{this.state.anim}</Text>
 //<Text>order:{this.state.order}</Text>
     render() {
-        return (
-            <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
-                <View pointerEvents="none"  >
-                    <Image  source={require('../assets/other/Level_Selection_front2.png')}
-                            style={styles.font2_gras} />
-                </View>
-                <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
-                    <SketchCanvas
+        if(this._isMounted = true){
+            if (this.state.isLoading) {
+                return <SplashScreen />;
+            }
+            return (
+                <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
+                    <View pointerEvents="none"  >
+                        <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
+                                    style={styles.font2_gras} />
+                    </View>
+                    <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
+                        <SketchCanvas
                             ref="sketchRef"
                             style={{ flex: 1 }}
                             strokeWidth={40}
@@ -382,50 +480,43 @@ componentWillMount() {
                                 this.makeScreenshot()
                             }}
                         />
-                </ViewShot>
-                <View pointerEvents="none"  style={[styles.pictures,{position:'absolute'},{left:width/2-197}, {top:height/2-152}]}  >
-                    {pictureselector(this.state.order)}
-                    {starfall(this.state.order)}
-                </View>
-                <View style={styles.colortabview}>
-                     <Animatable.View
-                         style={styles.colortab} animation="slideInLeft" duration={1000} easing={"linear"}>
-                        <TouchableOpacity onPress={() => {
-                            this.refs.sketchRef.clear()
-                            this.setState({colorselected:!this.state.colorselected})
-                            this.changedrawcolor()
-                        }}>
-                            {colorselector(this.state.order,this.state.colorselected)}
-                         </TouchableOpacity>
-                     </Animatable.View>
-                 </View>
-
-                <View style={styles.shildview}>
-                    {woodShild(this.state.order)}
-                    <View style={styles.textview}>
-
-                        {text(this.state.order,this.state.textcolor,this.state.text)}
+                    </ViewShot>
+                    <View pointerEvents="none"  style={[styles.pictures,{position:'absolute'},{left:width/2-197}, {top:height/2-152}]}  >
+                        {pictureselector(this.state.order)}
+                        {starfall(this.state.order)}
                     </View>
-                </View>
-                <View style={styles.backtabview}>
-                    <Animatable.View
-                        style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"}>
-                        <TouchableOpacity onPress={() =>
-                            this.props.navigation.navigate('Level_Selection')}>
-                            <View>
-                                <Image
-                                    source={require('../assets/other/BackArrow.png')}
-                                    style={{width:50,height:40}}
-                                />
-                            </View>
-                        </TouchableOpacity>
+                    <View style={styles.colortabview}>
+                        {this.colortabview()}
+                    </View>
 
-                    </Animatable.View>
-                </View>
+                    <View style={styles.shildview}>
+                        {woodShild(this.state.order)}
+                        <View style={styles.textview}>
+
+                            {text(this.state.order,this.state.textcolor,this.state.text)}
+                        </View>
+                    </View>
+                    <View style={styles.backtabview}>
+                        <Animatable.View
+                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"}>
+                            <TouchableOpacity onPress={() =>
+                                this.props.navigation.navigate('Level_Selection')}>
+                                <View>
+                                    <FastImage
+                                        source={require('../assets/other/BackArrow.png')}
+                                        style={{width:50,height:40}}
+                                    />
+                                </View>
+                            </TouchableOpacity>
+
+                        </Animatable.View>
+                    </View>
 
 
-            </ImageBackground>
-        );
+                </ImageBackground>
+            );
+        }
+
     }
 }
 
