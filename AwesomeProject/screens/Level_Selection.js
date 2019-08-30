@@ -1,5 +1,5 @@
 import React from 'react';
-import {BackHandler, StyleSheet, View, ImageBackground, Animated, TouchableOpacity, Easing, Dimensions} from 'react-native';
+import {BackHandler, StyleSheet, View, ImageBackground, Animated, TouchableOpacity, Easing, Dimensions,Text, Alert, Image} from 'react-native';
 import {preloadImages} from "../components/preloadimages";
 import {selectArrow} from "../components/selectArrow";
 import FastImage from "react-native-fast-image";
@@ -10,7 +10,7 @@ var {width, height} = Dimensions.get('window')
 
 export default class Level_Selection extends React.Component {
 
-    _isMounted = false;
+
 
     constructor(props) {
         super(props)
@@ -24,7 +24,20 @@ export default class Level_Selection extends React.Component {
             counterLvL3:0,
             counterLvL4:0,
             language:false,
-            disableBotton:false
+            disableButton_language:false,
+            anim:0,
+            rdm:0,
+            opacity0:1,
+            opacity1:0,
+            opacity2:0,
+            opacity3:0,
+            opacity4:0,
+            opacity5:0,
+            opacity6:0,
+            opacity7:0,
+            disableButton_bunny:true,
+            played:false
+
         }
         this.Butterfly_1 = new Animated.Value(0)
         this.Butterfly_2 = new Animated.Value(0)
@@ -76,11 +89,16 @@ export default class Level_Selection extends React.Component {
         this._isMounted = true;
         //preload images
         preloadImages()
+
         const data = await preloadImages();
         if (data !== null) {
             setTimeout(
                 () => {  this.setState({ isLoading: false });
-                },2000
+                    setInterval(
+                        () => {
+                            this.animbunny()
+                        },6000)
+                },3000
             )
         }
         //animate butterfly_1
@@ -128,7 +146,9 @@ export default class Level_Selection extends React.Component {
     componentWillUnmount() {
         //unmount component
         this._isMounted = false;
+
     }
+
     // Selection LvL1
     LvL1(){
         if (this.state.counterLvL1 === 1)
@@ -164,8 +184,8 @@ export default class Level_Selection extends React.Component {
     // render language
     language(){
         if(this.state.language===false) {
-            return <TouchableOpacity disabled={this.state.disableBotton} onPress={() =>
-                this.setState({language:!this.state.language,disableBotton:true},this.disablelanguagetimer())}>
+            return <TouchableOpacity disabled={this.state.disableButton_language} onPress={() =>
+                this.setState({language:!this.state.language,disableButton_language:true},this.disablelanguagetimer())}>
                 <View>
                     <FastImage
                         source={require('../assets/other/flag_ger.png')}
@@ -174,8 +194,8 @@ export default class Level_Selection extends React.Component {
                 </View>
             </TouchableOpacity>
         } else {
-            return <TouchableOpacity disabled={this.state.disableBotton} onPress={() =>
-                this.setState({language:!this.state.language,disableBotton:true},this.disablelanguagetimer())}>
+            return <TouchableOpacity disabled={this.state.disableButton_language} onPress={() =>
+                this.setState({language:!this.state.language,disableButton_language:true},this.disablelanguagetimer())}>
                 <View>
                     <FastImage
                         source={require('../assets/other/flag_eng.png')}
@@ -187,10 +207,85 @@ export default class Level_Selection extends React.Component {
     }
     //disable language button for some time after pressed
     disablelanguagetimer(){
-        setTimeout(() => this.setState({disableBotton:false}),5000)
+        setTimeout(() => this.setState({disableButton_language:false}),5000)
+    }
+    componentDidUpdate() {
+
+    }
+
+    rdm(max) {
+        this.setState({rdm:Math.floor(Math.random() * Math.floor(max))})
+    }
+    animbunny(){
+        switch (this.state.anim) {
+            case 0:
+                this.setState({opacity0:0,opacity1:1,anim:2,disableButton_bunny:false});
+                break;
+            case 1:
+                    this.rdm(2)
+                        if(this.state.rdm===0){
+                            this.setState({opacity5:0,opacity1:0,opacity2:1,anim:2,disableButton_bunny:false});
+                        }
+                        else {
+                            this.setState({opacity5:0,opacity1:0,opacity3:1,anim:3,disableButton_bunny:false});
+                        }
+                break;
+            case 2:
+                    this.setState({opacity2:0,opacity1:1,anim:1,disableButton_bunny:false});
+                    break;
+            case 3:
+                    this.setState({opacity3:0,opacity1:1,anim:1,disableButton_bunny:false});
+                break;
+            case 4:
+                    this.setState({opacity4:0,opacity8:1});
+                    this.setState({opacity8:0,opacity2:1,anim:2});
+                break;
+            case 5:
+                this.setState({opacity1:0,opacity2:0,opacity3:0,opacity5:1,anim:1,disableButton_bunny:true});
+                break;
+            case 6:
+                setTimeout(() => {
+                    this.setState({anim:0})
+                    this.animbunny()
+
+                },6000)
+                break;
+            case 7:
+                setTimeout(() => {
+                    this.setState({opacity7:0,opacity2:1,anim:2});
+                    this.animbunny()
+                },8000)
+                break;
+        }
+
+    }
+    renderbunny(){
+        return <View>
+                    <Image source={require('../assets/bunny/wink.gif')} style={[styles.bunny,{opacity:this.state.opacity0}]}/>
+
+                    <Image
+                        source={require('../assets/bunny/idle_02.gif')} style={[styles.bunny,{opacity:this.state.opacity1}]}/>
+                     <Image
+                        source={require('../assets/bunny/idle_01.gif')} style={[styles.bunny,{opacity:this.state.opacity2}]}/>
+                    <Image
+                        source={require('../assets/bunny/idle_03.gif')} style={[styles.bunny,{opacity:this.state.opacity3}]}/>
+                    <Image
+                        source={require('../assets/bunny/speak.gif')} style={[styles.bunny,{opacity:this.state.opacity4}]}/>
+                    <Image
+                        source={require('../assets/bunny/onTouch.gif')} style={[styles.bunny,{opacity:this.state.opacity5}]}/>
+                    <Animatable.Image animation={{
+                            from: { translateY: 0 },
+                            to: { translateY: -200 },
+                    }}
+                        source={require('../assets/bunny/jump_out.gif')} style={[styles.bunny,{opacity:this.state.opacity6}]}/>
+                    <Image
+                        source={require('../assets/bunny/initial.png')} style={[styles.bunny,{opacity:this.state.opacity7}]}/>
+            <TouchableOpacity disabled={this.state.disableButton_bunny}style={[styles.bunny]} onPress={() =>
+                this.setState({anim:5})}>
+            </TouchableOpacity>
+        </View>
     }
     render() {
-        if(this._isMounted = true){
             if (this.state.isLoading) {
                 return <SplashScreen />;
             }
@@ -198,8 +293,10 @@ export default class Level_Selection extends React.Component {
             const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
             return (
                 <ImageBackground source={require('../assets/other/Level_Selection.png')} style={styles.background}>
+
+
                     <Animated.Image source={require('../assets/animations/Butterfly_2.gif')} style={[styles.Butterflys,{
-                        bottom:150,marginLeft:width/1.2, transform:transform2 }]}/>
+                        bottom:150,left:550, transform:transform2 }]}/>
                     <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
                         top:50}]} />
                     <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
@@ -215,25 +312,25 @@ export default class Level_Selection extends React.Component {
                         <TouchableOpacity   onPress={() => this.LvL1()}>
                             <FastImage
                                 source={require('../assets/animations/Egg_1.gif')}
-                                style={[styles.Eggs,{bottom:12}]}
+                                style={[styles.Eggs,{bottom:17}]}
                             />
                         </TouchableOpacity>
                         <TouchableOpacity   onPress={() => this.LvL2()}>
                             <FastImage
                                 source={require('../assets/animations/Egg_2.gif')}
-                                style={[styles.Eggs,{bottom:5}]}
+                                style={[styles.Eggs,{bottom:10}]}
                             />
                         </TouchableOpacity>
                         <TouchableOpacity   onPress={() => this.LvL3()}>
                             <FastImage
                                 source={require('../assets/animations/Egg_3.gif')}
-                                style={[styles.Eggs,{bottom:15}]}
+                                style={[styles.Eggs,{bottom:20}]}
                             />
                         </TouchableOpacity>
                         <TouchableOpacity   onPress={() => this.LvL4()}>
                             <FastImage
                                 source={require('../assets/animations/Egg_4.gif')}
-                                style={[styles.Eggs,{bottom:9}]}
+                                style={[styles.Eggs,{bottom:14}]}
                             />
                         </TouchableOpacity>
                     </View>
@@ -261,15 +358,20 @@ export default class Level_Selection extends React.Component {
                             {this.language()}
                         </Animatable.View>
                     </View>
+                    {this.renderbunny()}
                     <View pointerEvents="none"  >
                         <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
                                     style={styles.font2_gras} />
+                    </View>
+                    <View style={[{position:'absolute'},{alignSelf:'center'}]}>
+                        <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
+                        <Text>anim:{this.state.anim}</Text>
                     </View>
                 </ImageBackground>
             );
         }
 
-    }
+
 }
 //styles
 const styles = StyleSheet.create({
@@ -335,6 +437,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 70/2,
+    },
+    bunny: {
+        width: 200,
+        height: 250,
+        position:'absolute',
+        right:-30,
+        bottom:-20,
 
     },
 });

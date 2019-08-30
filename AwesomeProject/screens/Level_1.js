@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Animated, Dimensions, ImageBackground, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Alert, Animated, Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
@@ -20,7 +20,7 @@ var RNFS = require('react-native-fs');
 var {width, height} = Dimensions.get('window')
 
 export default class Level_1 extends Component {
-    _isMounted = false;
+
     constructor(props) {
         super(props)
 
@@ -41,22 +41,19 @@ export default class Level_1 extends Component {
             ScaleValue2 : new Animated.Value(1),
             text:"XX",
             textcolor:'#FF0000',
+            anim:0,
+            rdm:0
         }
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this._isMounted = true;
-        preloadImages()
-        const data = await preloadImages();
-        if (data !== null) {
-            setTimeout(
-                () => {  this.setState({ isLoading: false },this.updatetext());
-                    setTimeout(() => {
-                        this.makeScreenshot()
-                    },1000)},
-                2000
-            )
-        }
+        this.updatetext()
+        this.animbunny()
+
+    }
+    componentWillMount() {
+
     }
 
     componentWillUnmount() {
@@ -447,6 +444,51 @@ export default class Level_1 extends Component {
         }
 
     }
+    rdm(max) {
+        this.setState({rdm1:Math.floor(Math.random() * max)})
+    }
+    animbunny(){
+        switch (this.state.anim) {
+            case 0:
+                setTimeout(() =>{
+                    this.rdm(2);
+                    this.setState({anim1:this.state.rdm+1});
+                    this.animbunny()
+                },5000)
+                break;
+            case 1:
+                setTimeout(() => {
+                    this.setState({anim1:0})
+                    this.animbunny()
+
+                },7400)
+                break;
+            case 2:
+                setTimeout(() => {
+                    this.setState({anim1:0})
+                    this.animbunny()
+
+                },6000)
+                break;
+        }
+
+    }
+    renderbunny(){
+        switch(this.state.anim){
+            case 0:
+                return <Animatable.Image animation={{
+                    from: { translateY: 0 },
+                    to: { translateY: 200 },
+                }}
+                    source={require('../assets/bunny/jump_in.gif')} style={[styles.bunny]}/>
+            case 1:
+                return <FastImage
+                    source={require('../assets/bunny/idle_03.gif')} style={[styles.bunny]}/>
+            case 2:
+                return <FastImage
+                    source={require('../assets/bunny/idle_01.gif')} style={[styles.bunny]}/>
+        }
+    }
 
     // Test Code for displaying state:
 //<Text>rgba:{this.state.dominantcolor_rgba}</Text>
@@ -460,15 +502,11 @@ export default class Level_1 extends Component {
 //<Text>anim:{this.state.anim}</Text>
 //<Text>order:{this.state.order}</Text>
     render() {
-        if(this._isMounted = true){
-            if (this.state.isLoading) {
-                return <SplashScreen />;
-            }
             return (
                 <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
                     <View pointerEvents="none"  >
-                        <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
-                                    style={styles.font2_gras} />
+
+
                     </View>
                     <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
                         <SketchCanvas
@@ -485,6 +523,9 @@ export default class Level_1 extends Component {
                         {pictureselector(this.state.order)}
                         {starfall(this.state.order)}
                     </View>
+                    {this.renderbunny()}
+                    <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
+                                style={styles.font2_gras} />
                     <View style={styles.colortabview}>
                         {this.colortabview()}
                     </View>
@@ -510,6 +551,7 @@ export default class Level_1 extends Component {
                             </TouchableOpacity>
 
                         </Animatable.View>
+
                     </View>
 
 
@@ -517,7 +559,7 @@ export default class Level_1 extends Component {
             );
         }
 
-    }
+
 }
 
 const styles = StyleSheet.create({
@@ -587,16 +629,15 @@ const styles = StyleSheet.create({
 
     },
     bunny: {
-        top:105,
-        left:520,
-        position: 'absolute',
-
-
-
+        width: 200,
+        height: 250,
+        position:'absolute',
+        right:-30,
+        bottom:-20
     },
     font2_gras: {
-        right:-width/2,
-        bottom:-height/1.18,
+        flex: 1,
+        bottom:0,
         position: 'absolute',
         width:width,
         height:height,

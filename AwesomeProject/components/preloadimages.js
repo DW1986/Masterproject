@@ -6,6 +6,9 @@ export function preloadImages() {
 
 
     const images = [
+        require('../assets/bunny/idle_01.gif'),
+        require('../assets/bunny/idle_02.gif'),
+        require('../assets/bunny/idle_03.gif'),
         require('../assets/colors/red.png'),
         require('../assets/colors/red_selected.png'),
         require('../assets/colors/blue.png'),

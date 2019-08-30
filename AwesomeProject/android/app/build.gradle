@@ -148,7 +148,6 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-fetch-blob')
     implementation project(':react-native-fast-image')
     implementation project(':react-native-palette')
     implementation project(':react-native-fs')
