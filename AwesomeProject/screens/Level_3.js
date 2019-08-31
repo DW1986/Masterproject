@@ -9,7 +9,6 @@ import {woodShild} from "../components/woodShild3";
 import {text} from "../components/text3";
 import {starfall} from "../components/starfall1";
 import {pictureselector} from "../components/pictureselector3";
-import SplashScreen from "./SplashScreen";
 import {preloadImages} from "../components/preloadimages";
 
 var RNFS = require('react-native-fs');
@@ -17,12 +16,10 @@ var RNFS = require('react-native-fs');
 var {width, height} = Dimensions.get('window')
 
 export default class Level_3 extends Component {
-    _isMounted = false;
     constructor(props) {
         super(props)
 
         this.state = {
-            isLoading: true,
             dominantcolor_rgba: null,
             drawcolor: '#F1F1F1',
             path: RNFS.ExternalCachesDirectoryPath + '/test.jpg',
@@ -55,25 +52,15 @@ export default class Level_3 extends Component {
 
     async componentDidMount() {
 
-        this._isMounted = true;
-        this._isMounted = true;
-        preloadImages()
-        const data = await preloadImages();
+        this.makeScreenshot()
+        this.updatetext()
 
-        if (data !== null) {
-            setTimeout(
-                () => {  this.setState({ isLoading: false },this.updatetext());
-                    setTimeout(() => {
-                        this.makeScreenshot()
-                    },1000)},
-                2000
-            )
-        }
+
 
 
     }
     componentWillUnmount() {
-        this._isMounted = false;
+
     }
 
 // update Text on woodShild
@@ -195,7 +182,6 @@ export default class Level_3 extends Component {
                     setTimeout(() => {
                         this.setState(prevState => ({order: prevState.order + 1}))
                         this.updatetext()
-                        if (this.state.order === 50)
                             setTimeout(() => {
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
@@ -308,7 +294,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#0000FF'})
+                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#0000FF',mixselected:false})
                             this.refs.sketchRef.clear()}}>
                             <FastImage style={styles.colors}
                                        source={require('../assets/colors/blue.png')}/>
@@ -334,7 +320,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#FF0000'})
+                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#FF0000',mixselected:false})
                         this.refs.sketchRef.clear()}}>
                         <FastImage style={styles.colors}
                                    source={require('../assets/colors/red.png')}/>
@@ -360,7 +346,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#FF0000'})
+                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#FF0000',mixselected:false})
                         this.refs.sketchRef.clear()}}>
                         <FastImage style={styles.colors}
                                    source={require('../assets/colors/red.png')}/>
@@ -386,7 +372,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#FF0000'})
+                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#FF0000',mixselected:false})
                         this.refs.sketchRef.clear()}}>
                         <FastImage style={styles.colors}
                                    source={require('../assets/colors/red.png')}/>
@@ -412,7 +398,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#00FF00'})
+                    return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#00FF00',mixselected:false})
                         this.refs.sketchRef.clear()}}>
                         <FastImage style={styles.colors}
                                    source={require('../assets/colors/green.png')}/>
@@ -444,7 +430,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                        return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#FFFF00'})
+                        return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#FFFF00',mixselected:false})
                             this.refs.sketchRef.clear()}}>
                             <FastImage style={styles.colors}
                                        source={require('../assets/colors/yellow.png')}/>
@@ -470,7 +456,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#0000FF'})
+                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#0000FF',mixselected:false})
                         this.refs.sketchRef.clear()}}>
                         <FastImage style={styles.colors}
                                    source={require('../assets/colors/blue.png')}/>
@@ -496,7 +482,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#00FF00'})
+                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#00FF00',mixselected:false})
                         this.refs.sketchRef.clear()}}>
                         <FastImage style={styles.colors}
                                    source={require('../assets/colors/green.png')}/>
@@ -522,7 +508,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#FFFF00'})
+                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#FFFF00',mixselected:false})
                         this.refs.sketchRef.clear()}}>
                         <FastImage style={styles.colors}
                                    source={require('../assets/colors/yellow.png')}/>
@@ -548,7 +534,7 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#9D00FF'})
+                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#9D00FF',mixselected:false})
                         this.refs.sketchRef.clear()}}>
                         <FastImage style={styles.colors}
                                    source={require('../assets/colors/purple.png')}/>
@@ -691,10 +677,6 @@ export default class Level_3 extends Component {
     }
 //<Text>order:{this.state.order}</Text>
     render() {
-        if(this._isMounted = true){
-            if (this.state.isLoading) {
-                return <SplashScreen />;
-            }
             return (
                 <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
                     <View pointerEvents="none"  >
@@ -750,7 +732,7 @@ export default class Level_3 extends Component {
             );
         }
 
-    }
+
 }
 
 const styles = StyleSheet.create({

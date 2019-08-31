@@ -5,13 +5,12 @@ import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
 import * as Animatable from 'react-native-animatable';
 import FastImage from 'react-native-fast-image'
-import {preloadImages} from "../components/preloadimages";
 import {colorselector} from "../components/colorselector1";
 import {woodShild} from "../components/woodShild1";
 import {text} from "../components/text1";
 import {starfall} from "../components/starfall1";
 import {pictureselector} from "../components/pictureselector1";
-import SplashScreen from "../screens/SplashScreen"
+
 
 
 var RNFS = require('react-native-fs');
@@ -25,7 +24,6 @@ export default class Level_1 extends Component {
         super(props)
 
         this.state = {
-            isLoading: true,
             dominantcolor_rgba: null,
             drawcolor: '#F1F1F1',
             path: RNFS.ExternalCachesDirectoryPath + '/test.jpg',
@@ -47,9 +45,9 @@ export default class Level_1 extends Component {
     }
 
     componentDidMount() {
-        this._isMounted = true;
+        this.makeScreenshot()
         this.updatetext()
-        this.animbunny()
+
 
     }
     componentWillMount() {
@@ -57,7 +55,7 @@ export default class Level_1 extends Component {
     }
 
     componentWillUnmount() {
-        this._isMounted = false;
+
     }
     //Change drawcolor when selected
     changedrawcolor() {
@@ -79,9 +77,8 @@ export default class Level_1 extends Component {
             this.setState({drawcolor: '#FFA500'})
         else if (this.state.order >= 32 && this.state.order <= 35 && this.state.colorselected === true)
             this.setState({drawcolor: '#00FFFF'})
-        else if (this.state.colorselected === true)
+        else if (this.state.colorselected === false)
             this.setState({drawcolor: '#F1F1F1'})
-
     }
 // update Text on woodShild
     updatetext(){
@@ -447,48 +444,6 @@ export default class Level_1 extends Component {
     rdm(max) {
         this.setState({rdm1:Math.floor(Math.random() * max)})
     }
-    animbunny(){
-        switch (this.state.anim) {
-            case 0:
-                setTimeout(() =>{
-                    this.rdm(2);
-                    this.setState({anim1:this.state.rdm+1});
-                    this.animbunny()
-                },5000)
-                break;
-            case 1:
-                setTimeout(() => {
-                    this.setState({anim1:0})
-                    this.animbunny()
-
-                },7400)
-                break;
-            case 2:
-                setTimeout(() => {
-                    this.setState({anim1:0})
-                    this.animbunny()
-
-                },6000)
-                break;
-        }
-
-    }
-    renderbunny(){
-        switch(this.state.anim){
-            case 0:
-                return <Animatable.Image animation={{
-                    from: { translateY: 0 },
-                    to: { translateY: 200 },
-                }}
-                    source={require('../assets/bunny/jump_in.gif')} style={[styles.bunny]}/>
-            case 1:
-                return <FastImage
-                    source={require('../assets/bunny/idle_03.gif')} style={[styles.bunny]}/>
-            case 2:
-                return <FastImage
-                    source={require('../assets/bunny/idle_01.gif')} style={[styles.bunny]}/>
-        }
-    }
 
     // Test Code for displaying state:
 //<Text>rgba:{this.state.dominantcolor_rgba}</Text>
@@ -505,7 +460,8 @@ export default class Level_1 extends Component {
             return (
                 <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
                     <View pointerEvents="none"  >
-
+                        <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
+                                    style={styles.font2_gras} />
 
                     </View>
                     <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
@@ -523,9 +479,8 @@ export default class Level_1 extends Component {
                         {pictureselector(this.state.order)}
                         {starfall(this.state.order)}
                     </View>
-                    {this.renderbunny()}
-                    <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
-                                style={styles.font2_gras} />
+
+
                     <View style={styles.colortabview}>
                         {this.colortabview()}
                     </View>
@@ -628,16 +583,9 @@ const styles = StyleSheet.create({
         position:'absolute'
 
     },
-    bunny: {
-        width: 200,
-        height: 250,
-        position:'absolute',
-        right:-30,
-        bottom:-20
-    },
     font2_gras: {
-        flex: 1,
-        bottom:0,
+        right:-width/2,
+        bottom:-height/1.18,
         position: 'absolute',
         width:width,
         height:height,

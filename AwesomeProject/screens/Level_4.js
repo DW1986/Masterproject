@@ -9,20 +9,19 @@ import {woodShild} from "../components/woodShild4";
 import {text} from "../components/text4";
 import {starfall} from "../components/starfall1";
 import {pictureselector} from "../components/pictureselector3";
-import {preloadImages} from "../components/preloadimages";
-import SplashScreen from "./SplashScreen";
+
+
 
 var RNFS = require('react-native-fs');
 var shuffle = require('shuffle-array');
 var {width, height} = Dimensions.get('window')
 
 export default class Level_4 extends Component {
-    _isMounted = false;
+
     constructor(props) {
         super(props)
 
         this.state = {
-            isLoading:true,
             dominantcolor_rgba: null,
             drawcolor: '#F1F1F1',
             path: RNFS.ExternalCachesDirectoryPath + '/test.jpg',
@@ -58,7 +57,7 @@ export default class Level_4 extends Component {
 
     }
     async componentDidMount() {
-        this._isMounted = true;
+
         shuffle(this.state.orderRDM[0]);
         shuffle(this.state.orderRDM[1]);
         shuffle(this.state.orderRDM[2]);
@@ -68,23 +67,15 @@ export default class Level_4 extends Component {
         this.state.orderRDM.push(...this.state.orderRDM2)
         //  console.log("New:",this.state.orderRDM)
         this.setState({order:this.state.orderRDM[this.state.ordercount][0]})
-        preloadImages()
-        const data = await preloadImages();
+        this.makeScreenshot()
+        this.updatetext()
 
-        if (data !== null) {
-            setTimeout(
-                () => {  this.setState({ isLoading: false },this.updatetext());
-                    setTimeout(() => {
-                        this.makeScreenshot()
-                    },1000)},
-                2000
-            )
-        }
+
     }
 
 
     componentWillUnmount() {
-        this._isMounted = false;
+
     }
 
     componentWillUpdate() {
@@ -744,10 +735,6 @@ export default class Level_4 extends Component {
     }
 //<Text>order:{this.state.order}</Text>
     render() {
-        if(this._isMounted = true){
-            if (this.state.isLoading) {
-                return <SplashScreen />;
-            }
             return (
                 <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
                     <View pointerEvents="none"  >
@@ -803,7 +790,7 @@ export default class Level_4 extends Component {
             );
         }
 
-    }
+
 }
 
 const styles = StyleSheet.create({

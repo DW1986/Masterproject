@@ -23,6 +23,7 @@
     "react-native-palette": "^0.3.2",
     "react-native-preload-images": "^1.0.2",
     "react-native-simple-animations": "^0.2.0",
+    "react-native-sound": "^0.11.0",
     "react-native-view-shot": "^2.6.0",
     "react-navigation": "^3.9.1",
     "rnpm": "^1.9.0",

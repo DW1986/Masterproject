@@ -7,9 +7,18 @@ import * as Animatable from "react-native-animatable";
 import SplashScreen from "./SplashScreen";
 
 var {width, height} = Dimensions.get('window')
+var Sound = require('react-native-sound');
+
+var intro = new Sound('intro.m4a', Sound.MAIN_BUNDLE)
+var level_1 = new Sound('level_1.m4a', Sound.MAIN_BUNDLE)
+var level_2 = new Sound('level_2.m4a', Sound.MAIN_BUNDLE)
+var level_3 = new Sound('level_3.m4a', Sound.MAIN_BUNDLE)
+var level_4 = new Sound('level_4.m4a', Sound.MAIN_BUNDLE)
+var speach_eng = new Sound('speach_eng.m4a', Sound.MAIN_BUNDLE)
+var speach_ger = new Sound('speach_ger.m4a', Sound.MAIN_BUNDLE)
+var exit = new Sound('exit.m4a', Sound.MAIN_BUNDLE)
 
 export default class Level_Selection extends React.Component {
-
 
 
     constructor(props) {
@@ -94,6 +103,8 @@ export default class Level_Selection extends React.Component {
         if (data !== null) {
             setTimeout(
                 () => {  this.setState({ isLoading: false });
+                    intro.setCurrentTime(0.5);
+                    intro.play()
                     setInterval(
                         () => {
                             this.animbunny()
@@ -147,45 +158,50 @@ export default class Level_Selection extends React.Component {
         //unmount component
         this._isMounted = false;
 
+
     }
 
     // Selection LvL1
     LvL1(){
-        if (this.state.counterLvL1 === 1)
-            setTimeout(() => this.props.navigation.navigate('Level_1', { language: this.state.language }) ,2000)
-            this.setState({counterLvL1:0})
-        this.setState(prevState => ({ counterLvL1: prevState.counterLvL1 + 1 }))
-        this.setState({counterLvL2:0,counterLvL3:0,counterLvL4:0})
+        if (this.state.counterLvL1 === 1){
+            this.setState({anim:6})
+        } else {
+            this.setState(prevState => ({ counterLvL1: prevState.counterLvL1 + 1 }))
+            this.setState({counterLvL2:0,counterLvL3:0,counterLvL4:0,anim:4})
+        }
     }
     // Selection LvL2
     LvL2(){
-        if (this.state.counterLvL2 === 1)
-            setTimeout(() => this.props.navigation.navigate('Level_2', { language: this.state.language }) ,2000)
-        this.setState({counterLvL2:0})
-        this.setState(prevState => ({ counterLvL2: prevState.counterLvL2 + 1 }))
-        this.setState({counterLvL1:0,counterLvL3:0,counterLvL4:0})
+        if (this.state.counterLvL2 === 1){
+            this.setState({anim:6})
+        }else{
+            this.setState(prevState => ({ counterLvL2: prevState.counterLvL2 + 1 }))
+            this.setState({counterLvL1:0,counterLvL3:0,counterLvL4:0,anim:4})
+        }
     }
     // Selection LvL3
     LvL3(){
-        if (this.state.counterLvL3 === 1)
-            setTimeout(() => this.props.navigation.navigate('Level_3', { language: this.state.language }) ,2000)
-        this.setState({counterLvL3:0})
-        this.setState(prevState => ({ counterLvL3: prevState.counterLvL3 + 1 }))
-        this.setState({counterLvL1:0,counterLvL2:0,counterLvL4:0})
+        if (this.state.counterLvL3 === 1) {
+            this.setState({anim:6})
+        } else {
+            this.setState(prevState => ({ counterLvL3: prevState.counterLvL3 + 1 }))
+            this.setState({counterLvL1:0,counterLvL2:0,counterLvL4:0,anim:4})
+        }
     }
     // Selection LvL4
     LvL4(){
-        if (this.state.counterLvL4 === 1)
-            setTimeout(() => this.props.navigation.navigate('Level_4', { language: this.state.language }) ,2000)
-        this.setState({counterLvL4:0})
-        this.setState(prevState => ({ counterLvL4: prevState.counterLvL4 + 1 }))
-        this.setState({counterLvL1:0,counterLvL2:0,counterLvL3:0})
+        if (this.state.counterLvL4 === 1) {
+            this.setState({anim:6})
+        } else {
+            this.setState(prevState => ({ counterLvL4: prevState.counterLvL4 + 1 }))
+            this.setState({counterLvL1:0,counterLvL2:0,counterLvL3:0,anim:4})
+        }
     }
     // render language
     language(){
         if(this.state.language===false) {
             return <TouchableOpacity disabled={this.state.disableButton_language} onPress={() =>
-                this.setState({language:!this.state.language,disableButton_language:true},this.disablelanguagetimer())}>
+                this.setState({language:!this.state.language,disableButton_language:true,anim:7},this.disablelanguagetimer())}>
                 <View>
                     <FastImage
                         source={require('../assets/other/flag_ger.png')}
@@ -195,7 +211,7 @@ export default class Level_Selection extends React.Component {
             </TouchableOpacity>
         } else {
             return <TouchableOpacity disabled={this.state.disableButton_language} onPress={() =>
-                this.setState({language:!this.state.language,disableButton_language:true},this.disablelanguagetimer())}>
+                this.setState({language:!this.state.language,disableButton_language:true,anim:7},this.disablelanguagetimer())}>
                 <View>
                     <FastImage
                         source={require('../assets/other/flag_eng.png')}
@@ -224,37 +240,97 @@ export default class Level_Selection extends React.Component {
             case 1:
                     this.rdm(2)
                         if(this.state.rdm===0){
-                            this.setState({opacity5:0,opacity1:0,opacity2:1,anim:2,disableButton_bunny:false});
+                            this.setState({opacity7:0,opacity5:0,opacity1:0,opacity2:1,anim:2,disableButton_bunny:false});
                         }
                         else {
-                            this.setState({opacity5:0,opacity1:0,opacity3:1,anim:3,disableButton_bunny:false});
+                            this.setState({opacity7:0,opacity5:0,opacity1:0,opacity3:1,anim:3,disableButton_bunny:false});
                         }
                 break;
             case 2:
-                    this.setState({opacity2:0,opacity1:1,anim:1,disableButton_bunny:false});
+                    this.setState({opacity7:0,opacity2:0,opacity1:1,anim:1,disableButton_bunny:false});
                     break;
             case 3:
-                    this.setState({opacity3:0,opacity1:1,anim:1,disableButton_bunny:false});
+                    this.setState({opacity7:0,opacity3:0,opacity1:1,anim:1,disableButton_bunny:false});
                 break;
             case 4:
-                    this.setState({opacity4:0,opacity8:1});
-                    this.setState({opacity8:0,opacity2:1,anim:2});
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,anim:1,disableButton_bunny:false});
+                   if(this.state.counterLvL1===1)
+                       level_1.setCurrentTime(0.5),
+                       level_1.play(),
+                       setTimeout(() => {
+                           this.setState({opacity4:0,opacity7:1})
+                       },4000)
+                   else if(this.state.counterLvL2===1)
+                       level_2.setCurrentTime(0.5),
+                       level_2.play(),
+                        setTimeout(() => {
+                            this.setState({opacity4:0,opacity7:1})
+                        },5000)
+                   else if(this.state.counterLvL3===1)
+                       level_3.setCurrentTime(0.5),
+                       level_3.play(),
+                        setTimeout(() => {
+                            this.setState({opacity4:0,opacity7:1})
+                        },5000)
+                   else if(this.state.counterLvL4===1)
+                       level_4.setCurrentTime(0.5),
+                       level_4.play(),
+                        setTimeout(() => {
+                            this.setState({opacity4:0,opacity7:1})
+                        },5000)
                 break;
             case 5:
-                this.setState({opacity1:0,opacity2:0,opacity3:0,opacity5:1,anim:1,disableButton_bunny:true});
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,opacity6:0,anim:1,disableButton_bunny:true});
                 break;
             case 6:
-                setTimeout(() => {
-                    this.setState({anim:0})
-                    this.animbunny()
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:1,opacity7:0,disableButton_bunny:true});
 
-                },6000)
+                    if(this.state.counterLvL1===1){
+                        setTimeout(() => {
+                        this.props.navigation.navigate('Level_1', { language: this.state.language })
+                        this.setState({anim:0,opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0})
+                        },2500)
+                    }
+                    else if(this.state.counterLvL2===1){
+                            setTimeout(() => {
+                        this.props.navigation.navigate('Level_2', { language: this.state.language })
+                        this.setState({anim:0,opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0})
+                            },2500)
+                    }
+                    else if(this.state.counterLvL3===1){
+                                setTimeout(() => {
+                        this.props.navigation.navigate('Level_3', { language: this.state.language })
+                        this.setState({anim:0,opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0})
+                                },2500)
+                    }
+                    else if(this.state.counterLvL4===1){
+                                    setTimeout(() => {
+                        this.props.navigation.navigate('Level_4', { language: this.state.language })
+                        this.setState({anim:0,opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0})
+                                    },2500)
+                    }
+
                 break;
             case 7:
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,anim:1,disableButton_bunny:false});
+                if(this.state.language===false){
+                    speach_ger.setCurrentTime(0.5),
+                    speach_ger.play()
+                } else {
+                    speach_eng.setCurrentTime(0.5),
+                    speach_eng.play()
+                }
                 setTimeout(() => {
-                    this.setState({opacity7:0,opacity2:1,anim:2});
-                    this.animbunny()
-                },8000)
+                    this.setState({opacity4:0,opacity7:1})
+                },3000)
+                break;
+            case 8:
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,anim:1,disableButton_bunny:false});
+                exit.setCurrentTime(0.5)
+                exit.play()
+                setTimeout(() => {
+                    BackHandler.exitApp()
+                },2500)
                 break;
         }
 
@@ -275,8 +351,8 @@ export default class Level_Selection extends React.Component {
                         source={require('../assets/bunny/onTouch.gif')} style={[styles.bunny,{opacity:this.state.opacity5}]}/>
                     <Animatable.Image animation={{
                             from: { translateY: 0 },
-                            to: { translateY: -200 },
-                    }}
+                            to: { translateY: -1000 },
+                    }} duration={1600}iterationDelay={1400} easing={"linear"} iterationCount={"infinite"}
                         source={require('../assets/bunny/jump_out.gif')} style={[styles.bunny,{opacity:this.state.opacity6}]}/>
                     <Image
                         source={require('../assets/bunny/initial.png')} style={[styles.bunny,{opacity:this.state.opacity7}]}/>
@@ -285,6 +361,9 @@ export default class Level_Selection extends React.Component {
             </TouchableOpacity>
         </View>
     }
+
+
+
     render() {
             if (this.state.isLoading) {
                 return <SplashScreen />;
@@ -308,6 +387,7 @@ export default class Level_Selection extends React.Component {
                     <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
                         bottom:90,marginLeft:width/50, transform }]}/>
                     {selectArrow(this.state.counterLvL1,this.state.counterLvL2,this.state.counterLvL3,this.state.counterLvL4,)}
+                    {this.renderbunny()}
                     <View style={[styles.container]}>
                         <TouchableOpacity   onPress={() => this.LvL1()}>
                             <FastImage
@@ -341,7 +421,8 @@ export default class Level_Selection extends React.Component {
                             to: {left: 0}
                         }}duration={1000} delay={1000} easing={"linear"}>
                             <TouchableOpacity onPress={() =>
-                                BackHandler.exitApp()}>
+                            this.setState({anim:8})
+                               }>
                                 <View>
                                     <FastImage
                                         source={require('../assets/other/cross.png')}
@@ -358,7 +439,7 @@ export default class Level_Selection extends React.Component {
                             {this.language()}
                         </Animatable.View>
                     </View>
-                    {this.renderbunny()}
+
                     <View pointerEvents="none"  >
                         <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
                                     style={styles.font2_gras} />
@@ -366,6 +447,10 @@ export default class Level_Selection extends React.Component {
                     <View style={[{position:'absolute'},{alignSelf:'center'}]}>
                         <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
                         <Text>anim:{this.state.anim}</Text>
+                        <Text>lvl1:{this.state.counterLvL1}</Text>
+                        <Text>lvl2:{this.state.counterLvL2}</Text>
+                        <Text>lvl3:{this.state.counterLvL3}</Text>
+                        <Text>lvl4:{this.state.counterLvL4}</Text>
                     </View>
                 </ImageBackground>
             );
@@ -442,8 +527,7 @@ const styles = StyleSheet.create({
         width: 200,
         height: 250,
         position:'absolute',
-        right:-30,
-        bottom:-20,
-
+        marginLeft:560,
+        marginTop:150
     },
 });

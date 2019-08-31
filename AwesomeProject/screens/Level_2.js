@@ -5,13 +5,11 @@ import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
 import * as Animatable from 'react-native-animatable';
 import FastImage from 'react-native-fast-image'
-import {preloadImages} from "../components/preloadimages";
 import {colorselector} from "../components/colorselector1";
 import {woodShild} from "../components/woodShild2";
 import {text} from "../components/text2";
 import {starfall} from "../components/starfall1";
 import {pictureselector} from "../components/pictureselector1";
-import SplashScreen from "./SplashScreen";
 
 var RNFS = require('react-native-fs');
 var shuffle = require('shuffle-array');
@@ -19,12 +17,11 @@ var shuffle = require('shuffle-array');
 var {width, height} = Dimensions.get('window')
 
 export default class Level_2 extends Component {
-    _isMounted = false;
+
     constructor(props) {
         super(props)
 
         this.state = {
-            isLoading:true,
             dominantcolor_rgba: null,
             drawcolor: '#F1F1F1',
             path: RNFS.ExternalCachesDirectoryPath + '/test.jpg',
@@ -53,7 +50,6 @@ export default class Level_2 extends Component {
 
     async componentDidMount() {
 
-        this._isMounted = true;
         shuffle(this.state.orderRDM[0]);
         shuffle(this.state.orderRDM[1]);
         shuffle(this.state.orderRDM[2]);
@@ -67,22 +63,14 @@ export default class Level_2 extends Component {
         this.state.orderRDM.push(...this.state.orderRDM2)
 
         this.setState({order:this.state.orderRDM[this.state.ordercount][0]})
-        preloadImages()
-        const data = await preloadImages();
+        this.makeScreenshot()
+        this.updatetext()
 
-        if (data !== null) {
-            setTimeout(
-                () => {  this.setState({ isLoading: false },this.updatetext());
-                    setTimeout(() => {
-                        this.makeScreenshot()
-                    },1000)},
-                2000
-            )
-        }
+
 
     }
     componentWillUnmount() {
-        this._isMounted = false;
+
     }
 
     componentDidUpdate() {
@@ -139,46 +127,46 @@ export default class Level_2 extends Component {
                         break;
                 }
             }else {
-                switch(this.state.order) {
-                    case 0:
+                switch(this.state.orderRDM[this.state.ordercount][0]) {
+                    case 0: case 2:
                         this.setState({text: "red", textcolor: '#FF0000'})
                         break;
-                    case 3:
+                    case 4: case 6:
                         setTimeout(() =>
                                 this.setState({text: "blue", textcolor: '#0000FF'})
                             , 3000);
                         break;
-                    case 7:
+                    case 8: case 10:
                         setTimeout(() =>
                                 this.setState({text: "green", textcolor: '#00FF00'})
                             , 3000);
                         break;
-                    case 11:
+                    case 12: case 14:
                         setTimeout(() =>
                                 this.setState({text: "yellow", textcolor: '#FFFF00'})
                             , 3000);
                         break;
-                    case 15:
+                    case 16: case 18:
                         setTimeout(() =>
                                 this.setState({text: "pink", textcolor: '#FF1694'})
                             , 3000);
                         break;
-                    case 19:
+                    case 20: case 22:
                         setTimeout(() =>
                                 this.setState({text: "brown", textcolor: '#A52A2A'})
                             , 3000);
                         break;
-                    case 23:
+                    case 24: case 26:
                         setTimeout(() =>
                                 this.setState({text: "purple", textcolor: '#9D00FF'})
                             , 3000);
                         break;
-                    case 27:
+                    case 28: case 30:
                         setTimeout(() =>
                                 this.setState({text: "orange", textcolor: '#FFA500'})
                             , 3000);
                         break;
-                    case 31:
+                    case 32: case 34:
                         setTimeout(() =>
                                 this.setState({text: "cyan", textcolor: '#00FFFF'})
                             , 3000);
@@ -553,10 +541,6 @@ export default class Level_2 extends Component {
     }
 //<Text>order:{this.state.order}</Text>
     render() {
-        if(this._isMounted = true){
-            if (this.state.isLoading) {
-                return <SplashScreen />;
-            }
             return (
                 <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
                     <View pointerEvents="none"  >
@@ -612,7 +596,7 @@ export default class Level_2 extends Component {
             );
         }
 
-    }
+
 }
 
 const styles = StyleSheet.create({
