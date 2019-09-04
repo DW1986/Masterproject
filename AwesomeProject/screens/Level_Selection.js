@@ -43,9 +43,11 @@ export default class Level_Selection extends React.Component {
             opacity4:0,
             opacity5:0,
             opacity6:0,
-            opacity7:0,
             disableButton_bunny:true,
-            played:false
+            played1:0,
+            played2:0,
+            played3:0,
+            played4:0,
 
         }
         this.Butterfly_1 = new Animated.Value(0)
@@ -163,58 +165,58 @@ export default class Level_Selection extends React.Component {
 
     // Selection LvL1
     LvL1(){
-        if (this.state.counterLvL1 === 1){
-            this.setState({anim:6})
+        if (this.state.counterLvL1 === 1 && this.state.anim!==4){
+            this.props.navigation.navigate('Level_1', { language: this.state.language })
         } else {
             this.setState(prevState => ({ counterLvL1: prevState.counterLvL1 + 1 }))
-            this.setState({counterLvL2:0,counterLvL3:0,counterLvL4:0,anim:4})
+            this.setState({played2:0,played3:0,played4:0,counterLvL2:0,counterLvL3:0,counterLvL4:0,anim:4})
         }
     }
     // Selection LvL2
     LvL2(){
-        if (this.state.counterLvL2 === 1){
-            this.setState({anim:6})
+        if (this.state.counterLvL2 === 1 && this.state.anim!==4){
+            this.props.navigation.navigate('Level_2', { language: this.state.language })
         }else{
             this.setState(prevState => ({ counterLvL2: prevState.counterLvL2 + 1 }))
-            this.setState({counterLvL1:0,counterLvL3:0,counterLvL4:0,anim:4})
+            this.setState({played1:0,played3:0,played4:0,counterLvL1:0,counterLvL3:0,counterLvL4:0,anim:4})
         }
     }
     // Selection LvL3
     LvL3(){
-        if (this.state.counterLvL3 === 1) {
-            this.setState({anim:6})
+        if (this.state.counterLvL3 === 1 && this.state.anim!==4){
+            this.props.navigation.navigate('Level_3', { language: this.state.language })
         } else {
             this.setState(prevState => ({ counterLvL3: prevState.counterLvL3 + 1 }))
-            this.setState({counterLvL1:0,counterLvL2:0,counterLvL4:0,anim:4})
+            this.setState({played1:0,played2:0,played4:0,counterLvL1:0,counterLvL2:0,counterLvL4:0,anim:4})
         }
     }
     // Selection LvL4
     LvL4(){
-        if (this.state.counterLvL4 === 1) {
-            this.setState({anim:6})
+        if (this.state.counterLvL4 === 1 && this.state.anim!==4){
+            this.props.navigation.navigate('Level_4', { language: this.state.language })
         } else {
             this.setState(prevState => ({ counterLvL4: prevState.counterLvL4 + 1 }))
-            this.setState({counterLvL1:0,counterLvL2:0,counterLvL3:0,anim:4})
+            this.setState({played1:0,played2:0,played3:0,counterLvL1:0,counterLvL2:0,counterLvL3:0,anim:4})
         }
     }
     // render language
     language(){
         if(this.state.language===false) {
             return <TouchableOpacity disabled={this.state.disableButton_language} onPress={() =>
-                this.setState({language:!this.state.language,disableButton_language:true,anim:7},this.disablelanguagetimer())}>
+                this.setState({language:!this.state.language,disableButton_language:true,anim:6},this.disablelanguagetimer())}>
                 <View>
                     <FastImage
-                        source={require('../assets/other/flag_ger.png')}
+                        source={require('../assets/other/flag_ger.webp')}
                         style={{width: 40, height: 30}}
                     />
                 </View>
             </TouchableOpacity>
         } else {
             return <TouchableOpacity disabled={this.state.disableButton_language} onPress={() =>
-                this.setState({language:!this.state.language,disableButton_language:true,anim:7},this.disablelanguagetimer())}>
+                this.setState({language:!this.state.language,disableButton_language:true,anim:6},this.disablelanguagetimer())}>
                 <View>
                     <FastImage
-                        source={require('../assets/other/flag_eng.png')}
+                        source={require('../assets/other/flag_eng.webp')}
                         style={{width:40,height:30}}
                     />
                 </View>
@@ -240,79 +242,66 @@ export default class Level_Selection extends React.Component {
             case 1:
                     this.rdm(2)
                         if(this.state.rdm===0){
-                            this.setState({opacity7:0,opacity5:0,opacity1:0,opacity2:1,anim:2,disableButton_bunny:false});
+                            this.setState({opacity6:0,opacity5:0,opacity1:0,opacity2:1,anim:2,disableButton_bunny:false});
                         }
                         else {
-                            this.setState({opacity7:0,opacity5:0,opacity1:0,opacity3:1,anim:3,disableButton_bunny:false});
+                            this.setState({opacity6:0,opacity5:0,opacity1:0,opacity3:1,anim:3,disableButton_bunny:false});
                         }
                 break;
             case 2:
-                    this.setState({opacity7:0,opacity2:0,opacity1:1,anim:1,disableButton_bunny:false});
+                    this.setState({opacity6:0,opacity2:0,opacity1:1,anim:1,disableButton_bunny:false});
                     break;
             case 3:
-                    this.setState({opacity7:0,opacity3:0,opacity1:1,anim:1,disableButton_bunny:false});
+                    this.setState({opacity6:0,opacity3:0,opacity1:1,anim:1,disableButton_bunny:false});
                 break;
             case 4:
-                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,anim:1,disableButton_bunny:false});
-                   if(this.state.counterLvL1===1)
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
+                   if(this.state.counterLvL1>=1 && this.state.played1===0)
+                       this.setState({played1:1}),
                        level_1.setCurrentTime(0.5),
                        level_1.play(),
                        setTimeout(() => {
-                           this.setState({opacity4:0,opacity7:1})
+                           this.setState({opacity4:0,opacity6:1})
+                           if(this.state.counterLvL1>=2){
+                               this.props.navigation.navigate('Level_1', { language: this.state.language })
+                           }
                        },4000)
-                   else if(this.state.counterLvL2===1)
+                   else if(this.state.counterLvL2>=1 && this.state.played2===0)
+                       this.setState({played2:1}),
                        level_2.setCurrentTime(0.5),
                        level_2.play(),
                         setTimeout(() => {
-                            this.setState({opacity4:0,opacity7:1})
+                            this.setState({opacity4:0,opacity6:1})
+                            if(this.state.counterLvL2>=2){
+                                this.props.navigation.navigate('Level_2', { language: this.state.language })
+                            }
                         },5000)
-                   else if(this.state.counterLvL3===1)
+                   else if(this.state.counterLvL3>=1 && this.state.played3===0)
+                       this.setState({played3:1}),
                        level_3.setCurrentTime(0.5),
                        level_3.play(),
                         setTimeout(() => {
-                            this.setState({opacity4:0,opacity7:1})
+                            this.setState({opacity4:0,opacity6:1})
+                            if(this.state.counterLvL3>=2){
+                                this.props.navigation.navigate('Level_3', { language: this.state.language })
+                            }
                         },5000)
-                   else if(this.state.counterLvL4===1)
+                   else if(this.state.counterLvL4>=1 && this.state.played4===0)
+                       this.setState({played4:1}),
                        level_4.setCurrentTime(0.5),
                        level_4.play(),
                         setTimeout(() => {
-                            this.setState({opacity4:0,opacity7:1})
+                            if(this.state.counterLvL4>=2){
+                                this.props.navigation.navigate('Level_4', { language: this.state.language })
+                            }
+                            this.setState({opacity4:0,opacity6:1})
                         },5000)
                 break;
             case 5:
-                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,opacity6:0,anim:1,disableButton_bunny:true});
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,anim:1,disableButton_bunny:true});
                 break;
             case 6:
-                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:1,opacity7:0,disableButton_bunny:true});
-
-                    if(this.state.counterLvL1===1){
-                        setTimeout(() => {
-                        this.props.navigation.navigate('Level_1', { language: this.state.language })
-                        this.setState({anim:0,opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0})
-                        },2500)
-                    }
-                    else if(this.state.counterLvL2===1){
-                            setTimeout(() => {
-                        this.props.navigation.navigate('Level_2', { language: this.state.language })
-                        this.setState({anim:0,opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0})
-                            },2500)
-                    }
-                    else if(this.state.counterLvL3===1){
-                                setTimeout(() => {
-                        this.props.navigation.navigate('Level_3', { language: this.state.language })
-                        this.setState({anim:0,opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0})
-                                },2500)
-                    }
-                    else if(this.state.counterLvL4===1){
-                                    setTimeout(() => {
-                        this.props.navigation.navigate('Level_4', { language: this.state.language })
-                        this.setState({anim:0,opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0})
-                                    },2500)
-                    }
-
-                break;
-            case 7:
-                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,anim:1,disableButton_bunny:false});
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
                 if(this.state.language===false){
                     speach_ger.setCurrentTime(0.5),
                     speach_ger.play()
@@ -321,11 +310,11 @@ export default class Level_Selection extends React.Component {
                     speach_eng.play()
                 }
                 setTimeout(() => {
-                    this.setState({opacity4:0,opacity7:1})
+                    this.setState({opacity4:0,opacity6:1})
                 },3000)
                 break;
-            case 8:
-                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,anim:1,disableButton_bunny:false});
+            case 7:
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
                 exit.setCurrentTime(0.5)
                 exit.play()
                 setTimeout(() => {
@@ -349,21 +338,77 @@ export default class Level_Selection extends React.Component {
                         source={require('../assets/bunny/speak.gif')} style={[styles.bunny,{opacity:this.state.opacity4}]}/>
                     <Image
                         source={require('../assets/bunny/onTouch.gif')} style={[styles.bunny,{opacity:this.state.opacity5}]}/>
-                    <Animatable.Image animation={{
-                            from: { translateY: 0 },
-                            to: { translateY: -1000 },
-                    }} duration={1600}iterationDelay={1400} easing={"linear"} iterationCount={"infinite"}
-                        source={require('../assets/bunny/jump_out.gif')} style={[styles.bunny,{opacity:this.state.opacity6}]}/>
                     <Image
-                        source={require('../assets/bunny/initial.png')} style={[styles.bunny,{opacity:this.state.opacity7}]}/>
+                        source={require('../assets/bunny/initial_bunny.webp')} style={[styles.bunny,{opacity:this.state.opacity6}]}/>
             <TouchableOpacity disabled={this.state.disableButton_bunny}style={[styles.bunny]} onPress={() =>
                 this.setState({anim:5})}>
             </TouchableOpacity>
         </View>
     }
+//<View style={[{position:'absolute'},{alignSelf:'center'}]}>
+//<Text>disabled:{String(this.state.disableButton_bunny)}</Text>
+//<Text>anim:{this.state.anim}</Text>
+//<Text>lvl1:{this.state.counterLvL1}</Text>
+//<Text>lvl2:{this.state.counterLvL2}</Text>
+//<Text>lvl3:{this.state.counterLvL3}</Text>
+//<Text>lvl4:{this.state.counterLvL4}</Text>
+//</View>
 
-
-
+eggsview(){
+        return <View style={[styles.container]}>
+                    <TouchableOpacity   onPress={() => this.LvL1()}>
+                        <FastImage
+                            source={require('../assets/animations/Egg_1.gif')}
+                            style={[styles.Eggs,{bottom:17}]}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity   onPress={() => this.LvL2()}>
+                        <FastImage
+                            source={require('../assets/animations/Egg_2.gif')}
+                            style={[styles.Eggs,{bottom:10}]}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity   onPress={() => this.LvL3()}>
+                        <FastImage
+                            source={require('../assets/animations/Egg_3.gif')}
+                            style={[styles.Eggs,{bottom:20}]}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity   onPress={() => this.LvL4()}>
+                        <FastImage
+                            source={require('../assets/animations/Egg_4.gif')}
+                            style={[styles.Eggs,{bottom:14}]}
+                        />
+                    </TouchableOpacity>
+                </View>
+}
+backtabview(){
+    return <View style={styles.backtabview}>
+                <Animatable.View
+                    style={styles.backtab2} animation={{
+                    from: {left: -120},
+                    to: {left: 0}
+                }}duration={1000} delay={1000} easing={"linear"}>
+                    <TouchableOpacity onPress={() =>
+                        this.setState({anim:7})
+                    }>
+                        <View>
+                            <FastImage
+                                source={require('../assets/other/cross.webp')}
+                                style={{width:35,height:25}}
+                            />
+                        </View>
+                    </TouchableOpacity>
+                </Animatable.View>
+                <Animatable.View
+                    style={styles.backtab1} animation={{
+                    from: {left: -120},
+                    to: {left: 0}
+                }}duration={1000} delay={1000} easing={"linear"}>
+                    {this.language()}
+                </Animatable.View>
+            </View>
+}
     render() {
             if (this.state.isLoading) {
                 return <SplashScreen />;
@@ -371,86 +416,35 @@ export default class Level_Selection extends React.Component {
             const transform = [{ translateY: this.translateY }, {translateX: this.translateX}]
             const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
             return (
-                <ImageBackground source={require('../assets/other/Level_Selection.png')} style={styles.background}>
-
-
+                <ImageBackground source={require('../assets/other/Level_Selection.webp')} style={styles.background}>
                     <Animated.Image source={require('../assets/animations/Butterfly_2.gif')} style={[styles.Butterflys,{
                         bottom:150,left:550, transform:transform2 }]}/>
-                    <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_1,
+                    <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_1,
                         top:50}]} />
-                    <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_2,
+                    <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_2,
                         top:85}]} />
-                    <Animated.Image source={require('../assets/other/cloud.png')} style ={[styles.cloud,{left:this.state.cloud_3,
+                    <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_3,
                         top:15}]} />
-                    <FastImage source={require('../assets/other/Level_Selection_front.png')}
+                    <FastImage source={require('../assets/other/Level_Selection_front.webp')}
                                style={{position:'absolute',width: '100%', height: '100%'}}  />
                     <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
                         bottom:90,marginLeft:width/50, transform }]}/>
                     {selectArrow(this.state.counterLvL1,this.state.counterLvL2,this.state.counterLvL3,this.state.counterLvL4,)}
                     {this.renderbunny()}
-                    <View style={[styles.container]}>
-                        <TouchableOpacity   onPress={() => this.LvL1()}>
-                            <FastImage
-                                source={require('../assets/animations/Egg_1.gif')}
-                                style={[styles.Eggs,{bottom:17}]}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity   onPress={() => this.LvL2()}>
-                            <FastImage
-                                source={require('../assets/animations/Egg_2.gif')}
-                                style={[styles.Eggs,{bottom:10}]}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity   onPress={() => this.LvL3()}>
-                            <FastImage
-                                source={require('../assets/animations/Egg_3.gif')}
-                                style={[styles.Eggs,{bottom:20}]}
-                            />
-                        </TouchableOpacity>
-                        <TouchableOpacity   onPress={() => this.LvL4()}>
-                            <FastImage
-                                source={require('../assets/animations/Egg_4.gif')}
-                                style={[styles.Eggs,{bottom:14}]}
-                            />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.backtabview}>
-                        <Animatable.View
-                            style={styles.backtab2} animation={{
-                            from: {left: -120},
-                            to: {left: 0}
-                        }}duration={1000} delay={1000} easing={"linear"}>
-                            <TouchableOpacity onPress={() =>
-                            this.setState({anim:8})
-                               }>
-                                <View>
-                                    <FastImage
-                                        source={require('../assets/other/cross.png')}
-                                        style={{width:35,height:25}}
-                                    />
-                                </View>
-                            </TouchableOpacity>
-                        </Animatable.View>
-                        <Animatable.View
-                            style={styles.backtab1} animation={{
-                            from: {left: -120},
-                            to: {left: 0}
-                        }}duration={1000} delay={1000} easing={"linear"}>
-                            {this.language()}
-                        </Animatable.View>
-                    </View>
+                    {this.eggsview()}
+                    {this.backtabview()}
 
                     <View pointerEvents="none"  >
-                        <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
+                        <FastImage  source={require('../assets/other/Level_Selection_front2.webp')}
                                     style={styles.font2_gras} />
                     </View>
                     <View style={[{position:'absolute'},{alignSelf:'center'}]}>
-                        <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
-                        <Text>anim:{this.state.anim}</Text>
-                        <Text>lvl1:{this.state.counterLvL1}</Text>
-                        <Text>lvl2:{this.state.counterLvL2}</Text>
-                        <Text>lvl3:{this.state.counterLvL3}</Text>
-                        <Text>lvl4:{this.state.counterLvL4}</Text>
+                    <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
+                    <Text>anim:{this.state.anim}</Text>
+                    <Text>lvl1:{this.state.counterLvL1}</Text>
+                    <Text>lvl2:{this.state.counterLvL2}</Text>
+                    <Text>lvl3:{this.state.counterLvL3}</Text>
+                    <Text>lvl4:{this.state.counterLvL4}</Text>
                     </View>
                 </ImageBackground>
             );

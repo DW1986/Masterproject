@@ -7,7 +7,7 @@ import React from "react";
         switch (order) {
             case 0:
                 return <Animatable.View
-                    animation="flipInY" delay={2000} duration={3000}>
+                    animation="flipInY" delay={2000} duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -37,7 +37,7 @@ import React from "react";
                 break;
             case 3:
                 return <Animatable.View
-                    animation="flipOutY" duration={3000}>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -53,7 +53,7 @@ import React from "react";
                 break;
             case 4:
                 return <Animatable.View
-                    animation="flipInY" delay={2000} duration={3000}>
+                    animation="flipInY" delay={2000} duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -83,7 +83,7 @@ import React from "react";
                 break;
             case 7:
                 return <Animatable.View
-                    animation="flipOutY" duration={3000}>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -99,7 +99,7 @@ import React from "react";
                 break;
             case 8:
                 return <Animatable.View
-                    animation="flipInY" delay={2000} duration={3000}>
+                    animation="flipInY" delay={2000} duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -129,7 +129,7 @@ import React from "react";
                 break;
             case 11:
                 return <Animatable.View
-                    animation="flipOutY" duration={3000}>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -145,7 +145,7 @@ import React from "react";
                 break;
             case 12:
                 return <Animatable.View
-                    animation="flipInY" delay={2000} duration={3000}>
+                    animation="flipInY" delay={2000} duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -175,7 +175,7 @@ import React from "react";
                 break;
             case 15:
                 return <Animatable.View
-                    animation="flipOutY" duration={3000}>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -191,7 +191,7 @@ import React from "react";
                 break;
             case 16:
                 return <Animatable.View
-                    animation="flipInY" delay={2000} duration={3000}>
+                    animation="flipInY" delay={2000} duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}
@@ -221,7 +221,7 @@ import React from "react";
                 break;
             case 19:
                 return <Animatable.View
-                    animation="flipOutY" duration={3000}>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>
                     <Text style={[styles.text,{color:textcolor1}]}>{text1}
                         <Text style={{color:'black'}}> +
                             <Text style={{color:textcolor2}}> {text2}

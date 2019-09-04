@@ -44,10 +44,6 @@ export default class Level_2 extends Component {
         }
     }
 
-    componentWillMount() {
-
-    }
-
     async componentDidMount() {
 
         shuffle(this.state.orderRDM[0]);
@@ -63,7 +59,6 @@ export default class Level_2 extends Component {
         this.state.orderRDM.push(...this.state.orderRDM2)
 
         this.setState({order:this.state.orderRDM[this.state.ordercount][0]})
-        this.makeScreenshot()
         this.updatetext()
 
 
@@ -427,73 +422,73 @@ export default class Level_2 extends Component {
 
         if(this.state.mixselected === "red")
              return  <FastImage style={styles.colors}
-                                source={require('../assets/colors/red_selected.png')}/>
+                                source={require('../assets/colors/red_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/red.png')}/>
+                          source={require('../assets/colors/red.webp')}/>
     }
     blue(){
 
         if(this.state.mixselected === "blue")
             return  <FastImage style={styles.colors}
-                               source={require('../assets/colors/blue_selected.png')}/>
+                               source={require('../assets/colors/blue_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/blue.png')}/>
+                          source={require('../assets/colors/blue.webp')}/>
     }
     green(){
 
         if(this.state.mixselected === "green")
             return  <FastImage style={styles.colors}
-                               source={require('../assets/colors/green_selected.png')}/>
+                               source={require('../assets/colors/green_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/green.png')}/>
+                          source={require('../assets/colors/green.webp')}/>
     }
     yellow(){
 
         if(this.state.mixselected === "yellow")
             return  <FastImage style={styles.colors}
-                               source={require('../assets/colors/yellow_selected.png')}/>
+                               source={require('../assets/colors/yellow_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/yellow.png')}/>
+                          source={require('../assets/colors/yellow.webp')}/>
     }
     pink(){
 
         if(this.state.mixselected === "pink")
             return  <FastImage style={styles.colors}
-                               source={require('../assets/colors/pink_selected.png')}/>
+                               source={require('../assets/colors/pink_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/pink.png')}/>
+                          source={require('../assets/colors/pink.webp')}/>
     }
     brown(){
 
         if(this.state.mixselected === "brown")
             return  <FastImage style={styles.colors}
-                               source={require('../assets/colors/brown_selected.png')}/>
+                               source={require('../assets/colors/brown_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/brown.png')}/>
+                          source={require('../assets/colors/brown.webp')}/>
     }
     purple(){
 
         if(this.state.mixselected === "purple")
             return  <FastImage style={styles.colors}
-                               source={require('../assets/colors/purple_selected.png')}/>
+                               source={require('../assets/colors/purple_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/purple.png')}/>
+                          source={require('../assets/colors/purple.webp')}/>
     }
     orange(){
 
         if(this.state.mixselected === "orange")
             return  <FastImage style={styles.colors}
-                               source={require('../assets/colors/orange_selected.png')}/>
+                               source={require('../assets/colors/orange_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/orange.png')}/>
+                          source={require('../assets/colors/orange.webp')}/>
     }
     cyan(){
 
         if(this.state.mixselected === "cyan")
             return  <FastImage style={styles.colors}
-                               source={require('../assets/colors/cyan_selected.png')}/>
+                               source={require('../assets/colors/cyan_selected.webp')}/>
         return <FastImage style={styles.colors}
-                          source={require('../assets/colors/cyan.png')}/>
+                          source={require('../assets/colors/cyan.webp')}/>
     }
 
     colortabView(){
@@ -542,9 +537,9 @@ export default class Level_2 extends Component {
 //<Text>order:{this.state.order}</Text>
     render() {
             return (
-                <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
+                <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
                     <View pointerEvents="none"  >
-                        <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
+                        <FastImage  source={require('../assets/other/Level_Selection_front2.webp')}
                                     style={styles.font2_gras} />
                     </View>
                     <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
@@ -577,12 +572,12 @@ export default class Level_2 extends Component {
                     </View>
                     <View style={styles.backtabview}>
                         <Animatable.View
-                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"}>
+                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"} useNativeDriver={true}>
                             <TouchableOpacity onPress={() =>
                                 this.props.navigation.navigate('Level_Selection')}>
                                 <View>
                                     <FastImage
-                                        source={require('../assets/other/BackArrow.png')}
+                                        source={require('../assets/other/BackArrow.webp')}
                                         style={{width:50,height:40}}
                                     />
                                 </View>

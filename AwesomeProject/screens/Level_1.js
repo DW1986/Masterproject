@@ -1,5 +1,15 @@
 import React, {Component} from 'react';
-import {Alert, Animated, Dimensions, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {
+    Alert,
+    Animated, BackHandler,
+    Dimensions,
+    Image,
+    ImageBackground,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native';
 import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
@@ -40,23 +50,30 @@ export default class Level_1 extends Component {
             text:"XX",
             textcolor:'#FF0000',
             anim:0,
-            rdm:0
+            rdm:0,
+            opacity0:1,
+            opacity1:0,
+            opacity2:0,
+            opacity3:0,
+            opacity4:0,
+            opacity5:0,
+            opacity6:0,
+            opacity7:0,
+            opacity8:0,
+            disableButton_bunny:true,
         }
     }
 
     componentDidMount() {
-        this.makeScreenshot()
         this.updatetext()
-
-
-    }
-    componentWillMount() {
-
-    }
-
-    componentWillUnmount() {
+        setInterval(
+            () => {
+                this.animbunny()
+            },6000)
 
     }
+
+
     //Change drawcolor when selected
     changedrawcolor() {
         if (this.state.order <= 3 && this.state.colorselected === true)
@@ -182,137 +199,146 @@ export default class Level_1 extends Component {
         switch (this.state.dominantcolor) {
             case 'red':
                 if(this.state.order === 0) {
-                    this.setState({order: 1,drawcolor: '#F1F1F1',colorselected: false})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 1,drawcolor: '#F1F1F1',colorselected: false})
                     setTimeout(() => {
                         this.setState({order: 2,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 3,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 3,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 4})
-                        this.makeScreenshot()
 
                     }, 4000)
                 }
             break;
             case 'blue':
                 if(this.state.order === 4) {
-                    this.setState({order: 5,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 5,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 6,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 7,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 7,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 8,played:0})
-                        this.makeScreenshot()
                     }, 4000)
                 }
                 break;
             case 'green':
                 if(this.state.order === 8) {
-                    this.setState({order: 9,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 9,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 10,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 11,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 11,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 12,played:0})
-                        this.makeScreenshot()
                     }, 4000)
                 }
                 break;
             case 'yellow':
                 if(this.state.order === 12) {
-                    this.setState({order: 13,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 13,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 14,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 15,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 15,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 16,played:0,})
-                        this.makeScreenshot()
                     }, 4000)
                 }
                 break;
             case 'pink':
                 if(this.state.order === 16) {
-                    this.setState({order: 17,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 17,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 18,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 19,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 19,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 20,played:0})
-                        this.makeScreenshot()
                     }, 4000)
                 }
                 break;
             case 'brown':
                 if(this.state.order === 20) {
-                    this.setState({order: 21,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 21,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 22,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 23,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 23,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 24,played:0})
-                        this.makeScreenshot()
                     }, 4000)
                 }
                 break;
             case 'purple':
                 if(this.state.order === 24) {
-                    this.setState({order: 25,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 25,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 26,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 27,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 27,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 28,played:0})
-                        this.makeScreenshot()
                     }, 4000)
                 }
                 break;
             case 'orange':
                 if(this.state.order === 28) {
-                    this.setState({order: 29,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 29,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 30,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 31,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 31,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 32,played:0})
-                        this.makeScreenshot()
                     }, 4000)
                 }
                 break;
             case 'cyan':
                 if(this.state.order === 32) {
-                    this.setState({order: 33,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 33,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 34,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
-                    this.setState({order: 35,colorselected: false, played:0,drawcolor: '#F1F1F1'})
+                    this.rdm(3)
+                    this.setState({anim:this.state.rdm+4,order: 35,colorselected: false, played:0,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({played:1,anim:5})
-                        this.makeScreenshot()
                         setTimeout(() =>{
                             this.props.navigation.navigate('Level_Selection')
                         },5000)
@@ -442,7 +468,67 @@ export default class Level_1 extends Component {
 
     }
     rdm(max) {
-        this.setState({rdm1:Math.floor(Math.random() * max)})
+        this.setState({rdm:Math.floor(Math.random() * Math.floor(max))})
+    }
+    animbunny(){
+        switch (this.state.anim) {
+            case 0:
+                this.rdm(2)
+                if(this.state.rdm===0){
+                    this.setState({opacity6:0,opacity5:0,opacity0:0,opacity1:1,opacity2:0,opacity3:0,opacity4:0,anim:1,disableButton_bunny:false});
+                }
+                else {
+                    this.setState({opacity6:0,opacity5:0,opacity0:0,opacity1:0,opacity2:1,opacity3:0,opacity4:0,anim:2,disableButton_bunny:false});
+                }
+                break;
+            case 1:
+                this.setState({opacity6:0,opacity1:0,opacity0:1,anim:0,disableButton_bunny:false});
+                break;
+            case 2:
+                this.setState({opacity6:0,opacity2:0,opacity0:1,anim:0,disableButton_bunny:false});
+                break;
+            case 3:
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,anim:0,disableButton_bunny:true});
+                break;
+            case 4:
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,opacity8:0,anim:0,disableButton_bunny:true});
+                break;
+            case 5:
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,opacity6:0,anim:0,disableButton_bunny:true});
+                break;
+            case 6:
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:1,anim:0,disableButton_bunny:true});
+                break;
+            case 7:
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,opacity6:0,anim:0,disableButton_bunny:true});
+                break;
+        }
+
+    }
+    renderbunny(){
+        return <View>
+            <Image
+                source={require('../assets/bunny/idle_02.gif')} style={[styles.bunny,{opacity:this.state.opacity0}]}/>
+            <Image
+                source={require('../assets/bunny/idle_01.gif')} style={[styles.bunny,{opacity:this.state.opacity1}]}/>
+            <Image
+                source={require('../assets/bunny/idle_03.gif')} style={[styles.bunny,{opacity:this.state.opacity2}]}/>
+            <Image
+                source={require('../assets/bunny/speak.gif')} style={[styles.bunny,{opacity:this.state.opacity3}]}/>
+            <Image
+                source={require('../assets/bunny/onTouch.gif')} style={[styles.bunny,{opacity:this.state.opacity4}]}/>
+            <Image
+                source={require('../assets/bunny/success_01.gif')} style={[styles.bunny,{opacity:this.state.opacity5}]}/>
+            <Image
+                source={require('../assets/bunny/success_02.gif')} style={[styles.bunny,{opacity:this.state.opacity6}]}/>
+            <Image
+                source={require('../assets/bunny/success_03.gif')} style={[styles.bunny,{opacity:this.state.opacity7}]}/>
+            <Image
+                source={require('../assets/bunny/initial_bunny.webp')} style={[styles.bunny,{opacity:this.state.opacity8}]}/>
+            <TouchableOpacity disabled={this.state.disableButton_bunny}style={[styles.bunny]} onPress={() =>
+                this.setState({anim:4})}>
+            </TouchableOpacity>
+        </View>
     }
 
     // Test Code for displaying state:
@@ -458,9 +544,10 @@ export default class Level_1 extends Component {
 //<Text>order:{this.state.order}</Text>
     render() {
             return (
-                <ImageBackground source={require('../assets/other/Level1.png')} style={styles.background}>
+                <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
+                    {this.renderbunny()}
                     <View pointerEvents="none"  >
-                        <FastImage  source={require('../assets/other/Level_Selection_front2.png')}
+                        <FastImage  source={require('../assets/other/Level_Selection_front2.webp')}
                                     style={styles.font2_gras} />
 
                     </View>
@@ -494,12 +581,12 @@ export default class Level_1 extends Component {
                     </View>
                     <View style={styles.backtabview}>
                         <Animatable.View
-                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"}>
+                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"} useNativeDriver={true}>
                             <TouchableOpacity onPress={() =>
                                 this.props.navigation.navigate('Level_Selection')}>
                                 <View>
                                     <FastImage
-                                        source={require('../assets/other/BackArrow.png')}
+                                        source={require('../assets/other/BackArrow.webp')}
                                         style={{width:50,height:40}}
                                     />
                                 </View>
@@ -509,7 +596,10 @@ export default class Level_1 extends Component {
 
                     </View>
 
-
+                    <View style={[{position:'absolute'},{alignSelf:'center'}]}>
+                    <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
+                    <Text>anim:{this.state.anim}</Text>
+                    </View>
                 </ImageBackground>
             );
         }
@@ -590,5 +680,12 @@ const styles = StyleSheet.create({
         width:width,
         height:height,
 
+    },
+    bunny: {
+        width: 200,
+        height: 250,
+        position:'absolute',
+        marginLeft:200,
+        marginTop:120
     }
 });

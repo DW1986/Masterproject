@@ -8,7 +8,7 @@ import React from "react";
             case 0:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" delay={2000} duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" delay={2000} duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 1:
             case 2:
@@ -18,12 +18,12 @@ import React from "react";
             case 3:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipOutY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 4:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 5:
             case 6:
@@ -33,12 +33,12 @@ import React from "react";
             case 7:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipOutY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 8:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 9:
             case 10:
@@ -48,12 +48,12 @@ import React from "react";
             case 11:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipOutY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 12:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 13:
             case 14:
@@ -63,12 +63,12 @@ import React from "react";
             case 15:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipOutY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 16:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 17:
             case 18:
@@ -78,12 +78,12 @@ import React from "react";
             case 19:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipOutY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 20:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 21:
             case 22:
@@ -93,12 +93,12 @@ import React from "react";
             case 23:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipOutY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 24:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 25:
             case 26:
@@ -108,12 +108,12 @@ import React from "react";
             case 27:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipOutY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 28:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 29:
             case 30:
@@ -123,17 +123,17 @@ import React from "react";
             case 31:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipOutY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipOutY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 32:
                 return <Animatable.Text
                     style={[styles.text,{color: textcolor}]}
-                    animation="flipInY" duration={3000}>{text}</Animatable.Text>
+                    animation="flipInY" duration={3000} useNativeDriver={true}>{text}</Animatable.Text>
                 break;
             case 33:
             case 34:
                 return <Text
-                    style={[styles.text,{color: textcolor}]}>{text}</Text>
+                    style={[styles.text,{color: textcolor}]} useNativeDriver={true}>{text}</Text>
                 break;
             default:
         }

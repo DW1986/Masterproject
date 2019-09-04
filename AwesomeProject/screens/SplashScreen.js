@@ -6,10 +6,10 @@ export default class SplashScreen extends React.Component {
 
     render() {
         return (
-            <ImageBackground source={require('../assets/other/Loading.png')} style={styles.background}>
+            <ImageBackground style={styles.background}>
                 <Animatable.Image
                     style={styles.pictures} animation="rotate" iterationCount="infinite" easing="linear"
-                    source={require('../assets/other/color_wheel.png')}/>
+                    source={require('../assets/other/color_wheel.webp')}/>
             </ImageBackground>
         );
     }
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: 'orange'
     },
     pictures:{
         height:100,
