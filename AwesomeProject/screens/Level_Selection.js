@@ -19,9 +19,10 @@ var speach_ger = new Sound('speach_ger.m4a', Sound.MAIN_BUNDLE)
 var exit = new Sound('exit.m4a', Sound.MAIN_BUNDLE)
 
 export default class Level_Selection extends React.Component {
-
+    ismounted_Level_Selection = false
 
     constructor(props) {
+
         super(props)
         this.state = {
             isLoading:true,
@@ -94,10 +95,13 @@ export default class Level_Selection extends React.Component {
         }
         this.translateY2 = this.Butterfly_2.interpolate({ inputRange, outputRange })
     }
+componentWillMount() {
+    // mount component
+    this.ismounted_Level_Selection = true;
+}
 
     async componentDidMount(){
-        // mount component
-        this._isMounted = true;
+
         //preload images
         preloadImages()
 
@@ -158,7 +162,7 @@ export default class Level_Selection extends React.Component {
 
     componentWillUnmount() {
         //unmount component
-        this._isMounted = false;
+        this.ismounted_Level_Selection = false;
 
 
     }
@@ -354,8 +358,30 @@ export default class Level_Selection extends React.Component {
 //<Text>lvl4:{this.state.counterLvL4}</Text>
 //</View>
 
-eggsview(){
-        return <View style={[styles.container]}>
+    render() {if (this.ismounted_Level_Selection === true){
+
+        if (this.state.isLoading) {
+            return <SplashScreen />;
+        }
+        const transform = [{ translateY: this.translateY }, {translateX: this.translateX}]
+        const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
+        return (
+            <ImageBackground source={require('../assets/other/Level_Selection.webp')} style={styles.background}>
+                <Animated.Image source={require('../assets/animations/Butterfly_2.gif')} style={[styles.Butterflys,{
+                    bottom:150,left:550, transform:transform2 }]}/>
+                <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_1,
+                    top:50}]} />
+                <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_2,
+                    top:85}]} />
+                <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_3,
+                    top:15}]} />
+                <FastImage source={require('../assets/other/Level_Selection_front.webp')}
+                           style={{position:'absolute',width: '100%', height: '100%'}}  />
+                <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
+                    bottom:90,marginLeft:width/50, transform }]}/>
+                {selectArrow(this.state.counterLvL1,this.state.counterLvL2,this.state.counterLvL3,this.state.counterLvL4,)}
+                {this.renderbunny()}
+                <View style={[styles.container]}>
                     <TouchableOpacity   onPress={() => this.LvL1()}>
                         <FastImage
                             source={require('../assets/animations/Egg_1.gif')}
@@ -381,74 +407,49 @@ eggsview(){
                         />
                     </TouchableOpacity>
                 </View>
-}
-backtabview(){
-    return <View style={styles.backtabview}>
-                <Animatable.View
-                    style={styles.backtab2} animation={{
-                    from: {left: -120},
-                    to: {left: 0}
-                }}duration={1000} delay={1000} easing={"linear"}>
-                    <TouchableOpacity onPress={() =>
-                        this.setState({anim:7})
-                    }>
-                        <View>
-                            <FastImage
-                                source={require('../assets/other/cross.webp')}
-                                style={{width:35,height:25}}
-                            />
-                        </View>
-                    </TouchableOpacity>
-                </Animatable.View>
-                <Animatable.View
-                    style={styles.backtab1} animation={{
-                    from: {left: -120},
-                    to: {left: 0}
-                }}duration={1000} delay={1000} easing={"linear"}>
-                    {this.language()}
-                </Animatable.View>
-            </View>
-}
-    render() {
-            if (this.state.isLoading) {
-                return <SplashScreen />;
-            }
-            const transform = [{ translateY: this.translateY }, {translateX: this.translateX}]
-            const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}]
-            return (
-                <ImageBackground source={require('../assets/other/Level_Selection.webp')} style={styles.background}>
-                    <Animated.Image source={require('../assets/animations/Butterfly_2.gif')} style={[styles.Butterflys,{
-                        bottom:150,left:550, transform:transform2 }]}/>
-                    <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_1,
-                        top:50}]} />
-                    <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_2,
-                        top:85}]} />
-                    <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_3,
-                        top:15}]} />
-                    <FastImage source={require('../assets/other/Level_Selection_front.webp')}
-                               style={{position:'absolute',width: '100%', height: '100%'}}  />
-                    <Animated.Image source={require('../assets/animations/Butterfly_1.gif')} style={[styles.Butterflys,{
-                        bottom:90,marginLeft:width/50, transform }]}/>
-                    {selectArrow(this.state.counterLvL1,this.state.counterLvL2,this.state.counterLvL3,this.state.counterLvL4,)}
-                    {this.renderbunny()}
-                    {this.eggsview()}
-                    {this.backtabview()}
+                <View style={styles.backtabview}>
+                    <Animatable.View
+                        style={styles.backtab2} animation={{
+                        from: {left: -120},
+                        to: {left: 0}
+                    }}duration={1000} delay={1000} easing={"linear"}>
+                        <TouchableOpacity onPress={() =>
+                            this.setState({anim:7})
+                        }>
+                            <View>
+                                <FastImage
+                                    source={require('../assets/other/cross.webp')}
+                                    style={{width:35,height:25}}
+                                />
+                            </View>
+                        </TouchableOpacity>
+                    </Animatable.View>
+                    <Animatable.View
+                        style={styles.backtab1} animation={{
+                        from: {left: -120},
+                        to: {left: 0}
+                    }}duration={1000} delay={1000} easing={"linear"}>
+                        {this.language()}
+                    </Animatable.View>
+                </View>
 
-                    <View pointerEvents="none"  >
-                        <FastImage  source={require('../assets/other/Level_Selection_front2.webp')}
-                                    style={styles.font2_gras} />
-                    </View>
-                    <View style={[{position:'absolute'},{alignSelf:'center'}]}>
+                <View pointerEvents="none"  >
+                    <FastImage  source={require('../assets/other/Level_Selection_front2.webp')}
+                                style={styles.font2_gras} />
+                </View>
+                <View style={[{position:'absolute'},{alignSelf:'center'}]}>
                     <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
                     <Text>anim:{this.state.anim}</Text>
                     <Text>lvl1:{this.state.counterLvL1}</Text>
                     <Text>lvl2:{this.state.counterLvL2}</Text>
                     <Text>lvl3:{this.state.counterLvL3}</Text>
                     <Text>lvl4:{this.state.counterLvL4}</Text>
-                    </View>
-                </ImageBackground>
-            );
-        }
+                </View>
+            </ImageBackground>
+        );
+    }
+    }
+
 
 
 }

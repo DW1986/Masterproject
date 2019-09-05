@@ -530,6 +530,19 @@ export default class Level_1 extends Component {
             </TouchableOpacity>
         </View>
     }
+paint(){
+        return <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
+                    <SketchCanvas
+                        ref="sketchRef"
+                        style={{ flex: 1 }}
+                        strokeWidth={40}
+                        strokeColor={this.state.drawcolor}
+                        onStrokeEnd={() => {
+                            this.makeScreenshot()
+                        }}
+                    />
+                </ViewShot>
+}
 
     // Test Code for displaying state:
 //<Text>rgba:{this.state.dominantcolor_rgba}</Text>
@@ -547,21 +560,10 @@ export default class Level_1 extends Component {
                 <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
                     {this.renderbunny()}
                     <View pointerEvents="none"  >
-                        <FastImage  source={require('../assets/other/Level_Selection_front2.webp')}
+                        <Image  source={require('../assets/other/Level_Selection_front2.webp')}
                                     style={styles.font2_gras} />
-
                     </View>
-                    <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
-                        <SketchCanvas
-                            ref="sketchRef"
-                            style={{ flex: 1 }}
-                            strokeWidth={40}
-                            strokeColor={this.state.drawcolor}
-                            onStrokeEnd={() => {
-                                this.makeScreenshot()
-                            }}
-                        />
-                    </ViewShot>
+                    {this.paint()}
                     <View pointerEvents="none"  style={[styles.pictures,{position:'absolute'},{left:width/2-197}, {top:height/2-152}]}  >
                         {pictureselector(this.state.order)}
                         {starfall(this.state.order)}
