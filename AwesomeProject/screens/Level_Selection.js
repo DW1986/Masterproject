@@ -17,6 +17,7 @@ var level_4 = new Sound('level_4.m4a', Sound.MAIN_BUNDLE)
 var speach_eng = new Sound('speach_eng.m4a', Sound.MAIN_BUNDLE)
 var speach_ger = new Sound('speach_ger.m4a', Sound.MAIN_BUNDLE)
 var exit = new Sound('exit.m4a', Sound.MAIN_BUNDLE)
+var onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE)
 
 export default class Level_Selection extends React.Component {
     ismounted_Level_Selection = false
@@ -111,10 +112,10 @@ componentWillMount() {
                 () => {  this.setState({ isLoading: false });
                     intro.setCurrentTime(0.5);
                     intro.play()
-                    setInterval(
-                        () => {
-                            this.animbunny()
-                        },6000)
+                        setInterval(
+                            () => {
+                                this.animbunny()
+                            },6000)
                 },3000
             )
         }
@@ -163,6 +164,8 @@ componentWillMount() {
     componentWillUnmount() {
         //unmount component
         this.ismounted_Level_Selection = false;
+        clearTimeout()
+        clearInterval()
 
 
     }
@@ -269,7 +272,7 @@ componentWillMount() {
                            if(this.state.counterLvL1>=2){
                                this.props.navigation.navigate('Level_1', { language: this.state.language })
                            }
-                       },4000)
+                       },3000)
                    else if(this.state.counterLvL2>=1 && this.state.played2===0)
                        this.setState({played2:1}),
                        level_2.setCurrentTime(0.5),
@@ -302,7 +305,11 @@ componentWillMount() {
                         },5000)
                 break;
             case 5:
+                onTouch.play(),
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,anim:1,disableButton_bunny:true});
+                setTimeout(() => {
+                    this.setState({opacity5:0,opacity6:1})
+                },3000)
                 break;
             case 6:
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});

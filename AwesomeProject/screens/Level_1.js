@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {
     Alert,
-    Animated, BackHandler,
+    Animated,
     Dimensions,
     Image,
     ImageBackground,
@@ -24,12 +24,31 @@ import {pictureselector} from "../components/pictureselector1";
 
 
 var RNFS = require('react-native-fs');
+var Sound = require('react-native-sound');
 
+var red_ger = new Sound('red_ger.m4a', Sound.MAIN_BUNDLE);
+var red_eng = new Sound('red_eng.m4a', Sound.MAIN_BUNDLE);
+var blue_ger = new Sound('blue_ger.m4a', Sound.MAIN_BUNDLE);
+var blue_eng = new Sound('blue_eng.m4a', Sound.MAIN_BUNDLE);
+var green_ger = new Sound('green_ger.m4a', Sound.MAIN_BUNDLE);
+var green_eng = new Sound('green_eng.m4a', Sound.MAIN_BUNDLE);
+var yellow_ger = new Sound('yellow_ger.m4a', Sound.MAIN_BUNDLE);
+var yellow_eng = new Sound('yellow_eng.m4a', Sound.MAIN_BUNDLE);
+var cyan_ger = new Sound('cyan_ger.m4a', Sound.MAIN_BUNDLE);
+var cyan_eng = new Sound('cyan_eng.m4a', Sound.MAIN_BUNDLE);
+var level_1_intro = new Sound('level_1_intro.m4a', Sound.MAIN_BUNDLE);
+var exit_lvl = new Sound('exit_lvl.m4a', Sound.MAIN_BUNDLE);
+var error_time_select = new Sound('error_time_select.m4a', Sound.MAIN_BUNDLE);
+var error_time_color = new Sound('error_time_color.m4a', Sound.MAIN_BUNDLE);
+var success_1 = new Sound('success_1.m4a', Sound.MAIN_BUNDLE);
+var success_2 = new Sound('success_2.m4a', Sound.MAIN_BUNDLE);
+var success_3 = new Sound('success_3.m4a', Sound.MAIN_BUNDLE);
+var onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE);
 
 var {width, height} = Dimensions.get('window')
 
 export default class Level_1 extends Component {
-
+    ismounted_Level1 = false
     constructor(props) {
         super(props)
 
@@ -41,7 +60,7 @@ export default class Level_1 extends Component {
             backpanel: new Animated.Value(-90),
             order:0,
             colorselected: false,
-            dominantcolor: '',
+            dominantcolor: 'white',
             fadeanimationout: new Animated.Value(1),
             fadeanimationin: new Animated.Value(0),
             opacity : new Animated.Value(0),
@@ -61,9 +80,15 @@ export default class Level_1 extends Component {
             opacity7:0,
             opacity8:0,
             disableButton_bunny:true,
+            exit:0,
+            err_time_select:0,
+            err_time_color:0
         }
     }
-
+    componentWillMount() {
+        // mount component
+        this.ismounted_Level1 = true;
+    }
     componentDidMount() {
         this.updatetext()
         setInterval(
@@ -71,8 +96,25 @@ export default class Level_1 extends Component {
                 this.animbunny()
             },6000)
 
-    }
+        setInterval(
+            () => {
+                if(this.state.colorselected===false){
+                    this.setState({anim:3,err_time_select:1,err_time_color:0})
+                }
+                else if(this.state.dominantcolor==="white" && this.state.colorselected===true){
+                    this.setState({anim:3,err_time_select:0,err_time_color:1})
+                }
+            },40000)
 
+    }
+    componentWillUnmount() {
+        //unmount component
+        this.ismounted_Level1 = false;
+        clearTimeout();
+        clearInterval();
+
+
+    }
 
     //Change drawcolor when selected
     changedrawcolor() {
@@ -200,13 +242,13 @@ export default class Level_1 extends Component {
             case 'red':
                 if(this.state.order === 0) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 1,drawcolor: '#F1F1F1',colorselected: false})
+                    this.setState({anim:this.state.rdm+5,order: 1,drawcolor: '#F1F1F1',colorselected: false})
                     setTimeout(() => {
                         this.setState({order: 2,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 3,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 3,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 4})
@@ -217,13 +259,13 @@ export default class Level_1 extends Component {
             case 'blue':
                 if(this.state.order === 4) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 5,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 5,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 6,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 7,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 7,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 8,played:0})
@@ -233,13 +275,13 @@ export default class Level_1 extends Component {
             case 'green':
                 if(this.state.order === 8) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 9,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 9,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 10,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 11,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 11,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 12,played:0})
@@ -249,13 +291,13 @@ export default class Level_1 extends Component {
             case 'yellow':
                 if(this.state.order === 12) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 13,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 13,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 14,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 15,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 15,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 16,played:0,})
@@ -265,13 +307,13 @@ export default class Level_1 extends Component {
             case 'pink':
                 if(this.state.order === 16) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 17,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 17,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 18,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 19,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 19,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 20,played:0})
@@ -281,13 +323,13 @@ export default class Level_1 extends Component {
             case 'brown':
                 if(this.state.order === 20) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 21,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 21,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 22,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 23,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 23,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 24,played:0})
@@ -297,13 +339,13 @@ export default class Level_1 extends Component {
             case 'purple':
                 if(this.state.order === 24) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 25,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 25,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 26,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 27,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 27,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 28,played:0})
@@ -313,13 +355,13 @@ export default class Level_1 extends Component {
             case 'orange':
                 if(this.state.order === 28) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 29,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 29,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 30,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 31,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 31,colorselected: false,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({order: 32,played:0})
@@ -329,13 +371,13 @@ export default class Level_1 extends Component {
             case 'cyan':
                 if(this.state.order === 32) {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 33,colorselected: false,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 33,colorselected: false,drawcolor: '#F1F1F1'})
                     setTimeout(() => {
                         this.setState({order: 34,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3)
-                    this.setState({anim:this.state.rdm+4,order: 35,colorselected: false, played:0,drawcolor: '#F1F1F1'})
+                    this.setState({anim:this.state.rdm+5,order: 35,colorselected: false, played:0,drawcolor: '#F1F1F1'})
                     this.updatetext()
                     setTimeout(() => {
                         this.setState({played:1,anim:5})
@@ -355,7 +397,7 @@ export default class Level_1 extends Component {
     makeScreenshot() {
         this.refs.viewShot.capture().then(uri => {
             RNFS.writeFile(this.state.path, uri, 'base64')
-                .then((success) => {
+                .then(() => {
                     getAllSwatches('high', this.state.path, (error, swatches) => {
                         if (error) {
                             Alert.alert(error);
@@ -475,10 +517,10 @@ export default class Level_1 extends Component {
             case 0:
                 this.rdm(2)
                 if(this.state.rdm===0){
-                    this.setState({opacity6:0,opacity5:0,opacity0:0,opacity1:1,opacity2:0,opacity3:0,opacity4:0,anim:1,disableButton_bunny:false});
+                    this.setState({opacity0:0,opacity1:1,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0,opacity8:0,anim:1,disableButton_bunny:false});
                 }
                 else {
-                    this.setState({opacity6:0,opacity5:0,opacity0:0,opacity1:0,opacity2:1,opacity3:0,opacity4:0,anim:2,disableButton_bunny:false});
+                    this.setState({opacity0:0,opacity1:0,opacity2:1,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0,opacity8:0,anim:2,disableButton_bunny:false});
                 }
                 break;
             case 1:
@@ -488,19 +530,53 @@ export default class Level_1 extends Component {
                 this.setState({opacity6:0,opacity2:0,opacity0:1,anim:0,disableButton_bunny:false});
                 break;
             case 3:
-                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,anim:0,disableButton_bunny:true});
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:1,opacity4:0,opacity5:0,anim:0,disableButton_bunny:true});
+                if(this.state.err_time_color===1){
+                    this.setState({err_time_color:0}),
+                    error_time_color.setCurrentTime(0.5),
+                    error_time_color.play(),
+                    setTimeout(() => {
+                             this.setState({opacity3:0,opacity8:1});
+                    },2000)
+                }
+                else if(this.state.err_time_select===1){
+                    this.setState({err_time_select:0}),
+                        error_time_select.setCurrentTime(0.5),
+                        error_time_select.play(),
+                        setTimeout(() => {
+                            this.setState({opacity3:0,opacity8:1});
+                        },3000)
+                }
+                else if(this.state.exit===1){
+                    this.setState({err_time_color:0}),
+                        exit_lvl.play(),
+                        setTimeout(() => {
+                            this.props.navigation.navigate('Level_Selection')
+                        },2000)
+                }
                 break;
             case 4:
-                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,opacity8:0,anim:0,disableButton_bunny:true});
+                onTouch.play(),
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,anim:0,disableButton_bunny:true});
+                setTimeout(() => {
+                    this.setState({opacity4:0,opacity8:1})
+                },3000)
                 break;
             case 5:
+                setTimeout(() => {
+                    success_1.play()
+                },1500)
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,opacity6:0,anim:0,disableButton_bunny:true});
                 break;
             case 6:
+                success_2.play(),
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:1,anim:0,disableButton_bunny:true});
                 break;
             case 7:
-                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,opacity6:0,anim:0,disableButton_bunny:true});
+                setTimeout(() => {
+                    success_3.play()
+                },1500)
+                this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:1,anim:0,disableButton_bunny:true});
                 break;
         }
 
@@ -530,19 +606,7 @@ export default class Level_1 extends Component {
             </TouchableOpacity>
         </View>
     }
-paint(){
-        return <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
-                    <SketchCanvas
-                        ref="sketchRef"
-                        style={{ flex: 1 }}
-                        strokeWidth={40}
-                        strokeColor={this.state.drawcolor}
-                        onStrokeEnd={() => {
-                            this.makeScreenshot()
-                        }}
-                    />
-                </ViewShot>
-}
+
 
     // Test Code for displaying state:
 //<Text>rgba:{this.state.dominantcolor_rgba}</Text>
@@ -556,15 +620,28 @@ paint(){
 //<Text>anim:{this.state.anim}</Text>
 //<Text>order:{this.state.order}</Text>
     render() {
+        if (this.ismounted_Level1 === true) {
             return (
                 <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
                     {this.renderbunny()}
-                    <View pointerEvents="none"  >
-                        <Image  source={require('../assets/other/Level_Selection_front2.webp')}
-                                    style={styles.font2_gras} />
+                    <View pointerEvents="none">
+                        <Image source={require('../assets/other/Level_Selection_front2.webp')}
+                               style={styles.font2_gras}/>
                     </View>
-                    {this.paint()}
-                    <View pointerEvents="none"  style={[styles.pictures,{position:'absolute'},{left:width/2-197}, {top:height/2-152}]}  >
+                    <ViewShot style={styles.paint} ref="viewShot"
+                              options={{format: "jpg", quality: 1.0, result: "base64"}}>
+                        <SketchCanvas
+                            ref="sketchRef"
+                            style={{flex: 1}}
+                            strokeWidth={40}
+                            strokeColor={this.state.drawcolor}
+                            onStrokeEnd={() => {
+                                this.makeScreenshot()
+                            }}
+                        />
+                    </ViewShot>
+                    <View pointerEvents="none"
+                          style={[styles.pictures, {position: 'absolute'}, {left: width / 2 - 197}, {top: height / 2 - 152}]}>
                         {pictureselector(this.state.order)}
                         {starfall(this.state.order)}
                     </View>
@@ -578,18 +655,19 @@ paint(){
                         {woodShild(this.state.order)}
                         <View style={styles.textview}>
 
-                            {text(this.state.order,this.state.textcolor,this.state.text)}
+                            {text(this.state.order, this.state.textcolor, this.state.text)}
                         </View>
                     </View>
                     <View style={styles.backtabview}>
                         <Animatable.View
-                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"} useNativeDriver={true}>
+                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000}
+                            easing={"linear"} useNativeDriver={true}>
                             <TouchableOpacity onPress={() =>
-                                this.props.navigation.navigate('Level_Selection')}>
+                                this.setState({anim: 3, err_time_select: 0, err_time_color: 0, exit: 1})}>
                                 <View>
                                     <FastImage
                                         source={require('../assets/other/BackArrow.webp')}
-                                        style={{width:50,height:40}}
+                                        style={{width: 50, height: 40}}
                                     />
                                 </View>
                             </TouchableOpacity>
@@ -598,15 +676,17 @@ paint(){
 
                     </View>
 
-                    <View style={[{position:'absolute'},{alignSelf:'center'}]}>
-                    <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
-                    <Text>anim:{this.state.anim}</Text>
+                    <View style={[{position: 'absolute'}, {alignSelf: 'center'}]}>
+                        <Text>dominant color:{String(this.state.dominantcolor)}</Text>
+                        <Text>error_time_color:{String(this.state.err_time_color)}</Text>
+                        <Text>colorselected:{String(this.state.colorselected)}</Text>
+                        <Text>anim:{this.state.anim}</Text>
                     </View>
                 </ImageBackground>
             );
         }
 
-
+    }
 }
 
 const styles = StyleSheet.create({
@@ -688,6 +768,6 @@ const styles = StyleSheet.create({
         height: 250,
         position:'absolute',
         marginLeft:200,
-        marginTop:120
+        marginTop:110
     }
 });
