@@ -3,12 +3,17 @@ import FastImage from 'react-native-fast-image';
 
 
 export function preloadImages() {
-
-
     const images = [
-        require('../assets/bunny/idle_01.gif'),
-        require('../assets/bunny/idle_02.gif'),
-        require('../assets/bunny/idle_03.gif'),
+        require('../assets/bunny/idle_01.webp'),
+        require('../assets/bunny/idle_02.webp'),
+        require('../assets/bunny/idle_03.webp'),
+        require('../assets/bunny/initial_bunny.webp'),
+        require('../assets/bunny/onTouch.webp'),
+        require('../assets/bunny/speak.webp'),
+        require('../assets/bunny/success_01.webp'),
+        require('../assets/bunny/success_02.webp'),
+        require('../assets/bunny/success_03.webp'),
+        require('../assets/bunny/wink.webp'),
         require('../assets/colors/red.webp'),
         require('../assets/colors/red_selected.webp'),
         require('../assets/colors/blue.webp'),
@@ -27,6 +32,14 @@ export function preloadImages() {
         require('../assets/colors/orange_selected.webp'),
         require('../assets/colors/cyan.webp'),
         require('../assets/colors/cyan_selected.webp'),
+        require('../assets/animations/butterfly_1.webp'),
+        require('../assets/animations/butterfly_2.webp'),
+        require('../assets/animations/egg_1.webp'),
+        require('../assets/animations/egg_2.webp'),
+        require('../assets/animations/egg_3.webp'),
+        require('../assets/animations/egg_4.webp'),
+        require('../assets/animations/starfall.webp'),
+
 
 
     ];

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Animated, Dimensions, Image,Text, ImageBackground, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {ImageBackground, StyleSheet} from 'react-native';
 import * as Animatable from "react-native-animatable";
 
 export default class SplashScreen extends React.Component {
@@ -27,4 +27,4 @@ const styles = StyleSheet.create({
         height:100,
         width:100
     }
-})
+});

@@ -7,11 +7,16 @@ import Level_4 from "./screens/Level_4"
 
 
 const AppNavigator = createStackNavigator({
+
+
         Level_Selection: Level_Selection,
         Level_1:Level_1,
         Level_2:Level_2,
         Level_3:Level_3,
         Level_4:Level_4,
+
+
+
 
 
 },
@@ -21,6 +26,6 @@ const AppNavigator = createStackNavigator({
     headerVisible: false,
 
     }
-})
+});
 
 export default createAppContainer(AppNavigator)

@@ -1,6 +1,8 @@
 import * as Animatable from "react-native-animatable";
-import {StyleSheet, Text} from "react-native";
+import {Dimensions, StyleSheet, Text} from "react-native";
 import React from "react";
+
+var {width, height} = Dimensions.get('window')
 
 // render and animate the text on the woodShild depending on order
     export function text(order,errorcount,textcolor1,textcolor2,textcolor3,text1,text2,text3) {
@@ -173,12 +175,11 @@ const styles = StyleSheet.create({
     text:{
 
 
-        fontSize: 40,
+        fontSize: 33,
         fontStyle: 'normal',
         fontWeight: 'bold',
         textShadowColor:'black',
-        textShadowRadius: 20,
-        height:65,
+        bottom:height/18,
         overflow:'visible',
         flexDirection: 'row',
         justifyContent: "flex-start"

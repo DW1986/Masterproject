@@ -12,10 +12,12 @@ import {pictureselector} from "../components/pictureselector3";
 import {preloadImages} from "../components/preloadimages";
 
 var RNFS = require('react-native-fs');
+const timer = require('react-native-timer');
 
 var {width, height} = Dimensions.get('window')
 
 export default class Level_3 extends Component {
+    ismounted_Level3 = false
     constructor(props) {
         super(props)
 
@@ -45,7 +47,10 @@ export default class Level_3 extends Component {
             errorcount:0
         }
     }
-
+    componentWillMount() {
+        // mount component
+        this.ismounted_Level3 = true;
+    }
     async componentDidMount() {
 
         this.updatetext()
@@ -55,6 +60,11 @@ export default class Level_3 extends Component {
 
     }
     componentWillUnmount() {
+        //unmount component
+        this.ismounted_Level3 = false;
+        timer.clearTimeout(this);
+        timer.clearInterval(this);
+
 
     }
 
@@ -72,13 +82,13 @@ export default class Level_3 extends Component {
                     this.setState({text1: "Rot",text2: "Grün", text3: "Braun", textcolor1: '#FF0000', textcolor2: '#00FF00', textcolor3: '#A52A2A'})
                     break;
                 case 12: case 14:
-                            this.setState({text1: "Rot",text2: "Gelb", text3: "Orange", textcolor1: '#FF0000', textcolor2: '#FFFF00', textcolor3: '#FFA500'})
+                    this.setState({text1: "Rot",text2: "Gelb", text3: "Orange", textcolor1: '#FF0000', textcolor2: '#FFFF00', textcolor3: '#FFA500'})
                     break;
                 case 16: case 18:
                     this.setState({text1: "Grün",text2: "Lila", text3: "Türkis", textcolor1: '#00FF00', textcolor2: '#9D00FF', textcolor3: '#00FFFF'})
                     break;
             }
-    } else {
+        } else {
             switch(this.state.order) {
                 case 0: case 2:
                     this.setState({text1: "blue",text2: "yellow", text3: "green", textcolor1: '#0000FF', textcolor2: '#FFFF00', textcolor3: '#00FF00'})
@@ -106,11 +116,11 @@ export default class Level_3 extends Component {
                 if (this.state.dominantcolor === 'green') {
                     this.setState({mixselected: false, errorcount: 0, drawcolor: '#F1F1F1',firstselected:false,secondselected:false})
                     this.setState(prevState => ({order: prevState.order + 1}))
-                    setTimeout(() => {
+                    timer.setTimeout(this,'2',() => {
                         this.setState(prevState => ({order: prevState.order + 1}))
                         this.updatetext()
                         if (this.state.order === 50)
-                            setTimeout(() => {
+                            timer.setTimeout(this,'21',() => {
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
                     }, 4000)
@@ -123,11 +133,11 @@ export default class Level_3 extends Component {
                 if (this.state.dominantcolor === 'purple') {
                     this.setState({mixselected: false, errorcount: 0, drawcolor: '#F1F1F1',firstselected:false,secondselected:false})
                     this.setState(prevState => ({order: prevState.order + 1}))
-                    setTimeout(() => {
+                    timer.setTimeout(this,'6',() => {
                         this.setState(prevState => ({order: prevState.order + 1}))
                         this.updatetext()
                         if (this.state.order === 50)
-                            setTimeout(() => {
+                            timer.setTimeout(this,'61',() => {
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
                     }, 4000)
@@ -140,11 +150,11 @@ export default class Level_3 extends Component {
                 if (this.state.dominantcolor === 'brown') {
                     this.setState({mixselected: false, errorcount: 0, drawcolor: '#F1F1F1',firstselected:false,secondselected:false})
                     this.setState(prevState => ({order: prevState.order + 1}))
-                    setTimeout(() => {
+                    timer.setTimeout(this,'10',() => {
                         this.setState(prevState => ({order: prevState.order + 1}))
                         this.updatetext()
                         if (this.state.order === 50)
-                            setTimeout(() => {
+                            timer.setTimeout(this,'101',() => {
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
                     }, 4000)
@@ -157,11 +167,11 @@ export default class Level_3 extends Component {
                 if (this.state.dominantcolor === 'orange') {
                     this.setState({mixselected: false, errorcount: 0, drawcolor: '#F1F1F1',firstselected:false,secondselected:false})
                     this.setState(prevState => ({order: prevState.order + 1}))
-                    setTimeout(() => {
+                    timer.setTimeout(this,'14',() => {
                         this.setState(prevState => ({order: prevState.order + 1}))
                         this.updatetext()
                         if (this.state.order === 50)
-                            setTimeout(() => {
+                            timer.setTimeout(this,'141',() => {
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
                     }, 4000)
@@ -174,12 +184,12 @@ export default class Level_3 extends Component {
                 if (this.state.dominantcolor === 'cyan') {
                     this.setState({mixselected: false, errorcount: 0, drawcolor: '#F1F1F1',firstselected:false,secondselected:false})
                     this.setState(prevState => ({order: prevState.order + 1}))
-                    setTimeout(() => {
+                    timer.setTimeout(this,'18',() => {
                         this.setState(prevState => ({order: prevState.order + 1}))
                         this.updatetext()
-                            setTimeout(() => {
-                                this.props.navigation.navigate('Level_Selection')
-                            }, 5000)
+                        timer.setTimeout(this,'181',() => {
+                            this.props.navigation.navigate('Level_Selection')
+                        }, 5000)
                     }, 4000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
@@ -290,11 +300,11 @@ export default class Level_3 extends Component {
                     }
                 } else {
                     return <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected,drawcolor:'#0000FF',mixselected:false})
-                            this.refs.sketchRef.clear()}}>
-                            <FastImage style={styles.colors}
-                                       source={require('../assets/colors/blue.webp')}/>
-                        </TouchableOpacity>
-                    }
+                        this.refs.sketchRef.clear()}}>
+                        <FastImage style={styles.colors}
+                                   source={require('../assets/colors/blue.webp')}/>
+                    </TouchableOpacity>
+                }
                 break;
             case 4:
             case 5:
@@ -413,10 +423,10 @@ export default class Level_3 extends Component {
                 if (this.state.secondselected === true){
                     if(this.state.firstselected === true){
                         return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#0000FF'})
-                        this.refs.sketchRef.clear()}}>
-                        <FastImage style={styles.colors}
-                                   source={require('../assets/colors/yellow_selected.webp')}/>
-                    </TouchableOpacity>
+                            this.refs.sketchRef.clear()}}>
+                            <FastImage style={styles.colors}
+                                       source={require('../assets/colors/yellow_selected.webp')}/>
+                        </TouchableOpacity>
                     }else {
                         return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#F1F1F1'})
                             this.refs.sketchRef.clear()}}>
@@ -425,11 +435,11 @@ export default class Level_3 extends Component {
                         </TouchableOpacity>
                     }
                 } else {
-                        return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#FFFF00',mixselected:false})
-                            this.refs.sketchRef.clear()}}>
-                            <FastImage style={styles.colors}
-                                       source={require('../assets/colors/yellow.webp')}/>
-                        </TouchableOpacity>
+                    return <TouchableOpacity onPress={() => { this.setState({secondselected:!this.state.secondselected,drawcolor:'#FFFF00',mixselected:false})
+                        this.refs.sketchRef.clear()}}>
+                        <FastImage style={styles.colors}
+                                   source={require('../assets/colors/yellow.webp')}/>
+                    </TouchableOpacity>
                 }
                 break;
             case 4:
@@ -539,91 +549,91 @@ export default class Level_3 extends Component {
         }
     }
     mix(){
-            if(this.state.firstselected === true && this.state.secondselected === true){
-                    switch (this.state.order) {
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                            if (this.state.mixselected === true)
-                                return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
-                                    this.refs.sketchRef.clear()}}>
-                                    <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
-                                               source={require('../assets/mixed_colors/green_selected.webp')}/>
-                                </TouchableOpacity>
-                            return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#00FF00'})
-                                this.refs.sketchRef.clear()}}>
-                                <FastImage style={styles.colors}
-                                           source={require('../assets/mixed_colors/green.webp')}/>
-                            </TouchableOpacity>
-                        case 4:
-                        case 5:
-                        case 6:
-                        case 7:
-                            if (this.state.mixselected === true)
-                                return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
-                                    this.refs.sketchRef.clear()}}>
-                                    <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
-                                               source={require('../assets/mixed_colors/purple_selected.webp')}/>
-                                </TouchableOpacity>
-                            return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#9D00FF'})
-                                this.refs.sketchRef.clear()}}>
-                                <FastImage style={styles.colors}
-                                           source={require('../assets/mixed_colors/purple.webp')}/>
-                            </TouchableOpacity>
-                        case 8:
-                        case 9:
-                        case 10:
-                        case 11:
-                            if (this.state.mixselected === true)
-                                return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
-                                    this.refs.sketchRef.clear()}}>
-                                    <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
-                                               source={require('../assets/mixed_colors/brown_selected.webp')}/>
-                                </TouchableOpacity>
-                            return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#A52A2A'})
-                                this.refs.sketchRef.clear()}}>
-                                <FastImage style={styles.colors}
-                                           source={require('../assets/mixed_colors/brown.webp')}/>
-                            </TouchableOpacity>
-                        case 12:
-                        case 13:
-                        case 14:
-                        case 15:
-                            if (this.state.mixselected === true)
-                                return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
-                                    this.refs.sketchRef.clear()}}>
-                                    <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
-                                               source={require('../assets/mixed_colors/orange_selected.webp')}/>
-                                </TouchableOpacity>
-                            return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#FFA500'})
-                                this.refs.sketchRef.clear()}}>
-                                <FastImage style={styles.colors}
-                                           source={require('../assets/mixed_colors/orange.webp')}/>
-                            </TouchableOpacity>
-                        case 16:
-                        case 17:
-                        case 18:
-                        case 19:
-                            if (this.state.mixselected === true)
-                                return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
-                                    this.refs.sketchRef.clear()}}>
-                                    <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
-                                               source={require('../assets/mixed_colors/cyan_selected.webp')}/>
-                                </TouchableOpacity>
-                            return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#00FFFF'})
-                                this.refs.sketchRef.clear()}}>
-                                <FastImage style={styles.colors}
-                                           source={require('../assets/mixed_colors/cyan.webp')}/>
-                            </TouchableOpacity>
-                    }
-            } else {
-                return <FastImage style={styles.colors}
-                                  source={require('../assets/mixed_colors/empty.webp')}/>
+        if(this.state.firstselected === true && this.state.secondselected === true){
+            switch (this.state.order) {
+                case 0:
+                case 1:
+                case 2:
+                case 3:
+                    if (this.state.mixselected === true)
+                        return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
+                            this.refs.sketchRef.clear()}}>
+                            <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
+                                       source={require('../assets/mixed_colors/green_selected.webp')}/>
+                        </TouchableOpacity>
+                    return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#00FF00'})
+                        this.refs.sketchRef.clear()}}>
+                        <FastImage style={styles.colors}
+                                   source={require('../assets/mixed_colors/green.webp')}/>
+                    </TouchableOpacity>
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                    if (this.state.mixselected === true)
+                        return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
+                            this.refs.sketchRef.clear()}}>
+                            <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
+                                       source={require('../assets/mixed_colors/purple_selected.webp')}/>
+                        </TouchableOpacity>
+                    return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#9D00FF'})
+                        this.refs.sketchRef.clear()}}>
+                        <FastImage style={styles.colors}
+                                   source={require('../assets/mixed_colors/purple.webp')}/>
+                    </TouchableOpacity>
+                case 8:
+                case 9:
+                case 10:
+                case 11:
+                    if (this.state.mixselected === true)
+                        return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
+                            this.refs.sketchRef.clear()}}>
+                            <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
+                                       source={require('../assets/mixed_colors/brown_selected.webp')}/>
+                        </TouchableOpacity>
+                    return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#A52A2A'})
+                        this.refs.sketchRef.clear()}}>
+                        <FastImage style={styles.colors}
+                                   source={require('../assets/mixed_colors/brown.webp')}/>
+                    </TouchableOpacity>
+                case 12:
+                case 13:
+                case 14:
+                case 15:
+                    if (this.state.mixselected === true)
+                        return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
+                            this.refs.sketchRef.clear()}}>
+                            <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
+                                       source={require('../assets/mixed_colors/orange_selected.webp')}/>
+                        </TouchableOpacity>
+                    return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#FFA500'})
+                        this.refs.sketchRef.clear()}}>
+                        <FastImage style={styles.colors}
+                                   source={require('../assets/mixed_colors/orange.webp')}/>
+                    </TouchableOpacity>
+                case 16:
+                case 17:
+                case 18:
+                case 19:
+                    if (this.state.mixselected === true)
+                        return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#F1F1F1'})
+                            this.refs.sketchRef.clear()}}>
+                            <FastImage style={[styles.colors, {alignSelf: 'flex-end'}]}
+                                       source={require('../assets/mixed_colors/cyan_selected.webp')}/>
+                        </TouchableOpacity>
+                    return <TouchableOpacity onPress={() => { this.setState({mixselected:!this.state.mixselected, drawcolor:'#00FFFF'})
+                        this.refs.sketchRef.clear()}}>
+                        <FastImage style={styles.colors}
+                                   source={require('../assets/mixed_colors/cyan.webp')}/>
+                    </TouchableOpacity>
             }
-
-
+        } else {
+            return <FastImage style={styles.colors}
+                              source={require('../assets/mixed_colors/empty.webp')}/>
         }
+
+
+    }
 
     colortabView(){
         switch(this.state.order){
@@ -636,11 +646,11 @@ export default class Level_3 extends Component {
                     {this.first()}
 
 
-                        {this.second()}
+                    {this.second()}
 
                     {this.mix()}
                 </Animatable.View>
-                case 3: case 7: case 11: case 15: case 19:
+            case 3: case 7: case 11: case 15: case 19:
                 return  <Animatable.View style={styles.colortab} animation={{
                     from:{left:0},
                     to:{left:-120}
@@ -672,16 +682,18 @@ export default class Level_3 extends Component {
     }
 //<Text>order:{this.state.order}</Text>
     render() {
+        if (this.ismounted_Level3 === true) {
             return (
                 <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
-                    <View pointerEvents="none"  >
-                        <FastImage  source={require('../assets/other/Level_Selection_front2.webp')}
-                                    style={styles.font2_gras} />
+                    <View pointerEvents="none">
+                        <FastImage source={require('../assets/other/Level_Selection_front2.webp')}
+                                   style={styles.font2_gras}/>
                     </View>
-                    <ViewShot style={styles.paint} ref="viewShot" options={{ format: "jpg", quality: 1.0,result:"base64"  }}>
+                    <ViewShot style={styles.paint} ref="viewShot"
+                              options={{format: "jpg", quality: 1.0, result: "base64"}}>
                         <SketchCanvas
                             ref="sketchRef"
-                            style={{ flex: 1 }}
+                            style={{flex: 1}}
                             strokeWidth={40}
                             strokeColor={this.state.drawcolor}
                             onStrokeEnd={() => {
@@ -689,7 +701,8 @@ export default class Level_3 extends Component {
                             }}
                         />
                     </ViewShot>
-                    <View pointerEvents="none"  style={[styles.pictures,{position:'absolute'},{left:width/2-197}, {top:height/2-152}]}  >
+                    <View pointerEvents="none"
+                          style={[styles.pictures, {position: 'absolute'}, {left: width / 2 - 197}, {top: height / 2 - 152}]}>
                         {pictureselector(this.state.order)}
                         {starfall(this.state.order)}
                     </View>
@@ -700,21 +713,22 @@ export default class Level_3 extends Component {
                     </View>
 
                     <View style={styles.shildview}>
-                        {woodShild(this.state.order,this.state.errorcount)}
+                        {woodShild(this.state.order, this.state.errorcount)}
                         <View style={styles.textview}>
 
-                            {text(this.state.order,this.state.textcolor1,this.state.textcolor2,this.state.textcolor3,this.state.text1,this.state.text2,this.state.text3)}
+                            {text(this.state.order, this.state.textcolor1, this.state.textcolor2, this.state.textcolor3, this.state.text1, this.state.text2, this.state.text3)}
                         </View>
                     </View>
                     <View style={styles.backtabview}>
                         <Animatable.View
-                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000} easing={"linear"} useNativeDriver={true}>
+                            style={styles.backtab} animation="slideInDown" duration={1000} delay={1000}
+                            easing={"linear"} useNativeDriver={true}>
                             <TouchableOpacity onPress={() =>
                                 this.props.navigation.navigate('Level_Selection')}>
                                 <View>
                                     <FastImage
                                         source={require('../assets/other/BackArrow.webp')}
-                                        style={{width:50,height:40}}
+                                        style={{width: 50, height: 40}}
                                     />
                                 </View>
                             </TouchableOpacity>
@@ -727,7 +741,7 @@ export default class Level_3 extends Component {
             );
         }
 
-
+    }
 }
 
 const styles = StyleSheet.create({

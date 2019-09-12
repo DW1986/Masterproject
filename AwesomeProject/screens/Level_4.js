@@ -15,9 +15,10 @@ import {pictureselector} from "../components/pictureselector3";
 var RNFS = require('react-native-fs');
 var shuffle = require('shuffle-array');
 var {width, height} = Dimensions.get('window')
+const timer = require('react-native-timer');
 
 export default class Level_4 extends Component {
-
+    ismounted_Level4 = false
     constructor(props) {
         super(props)
 
@@ -52,7 +53,10 @@ export default class Level_4 extends Component {
             errorcount:0
         }
     }
-
+    componentWillMount() {
+        // mount component
+        this.ismounted_Level4 = true;
+    }
 
     async componentDidMount() {
 
@@ -72,12 +76,15 @@ export default class Level_4 extends Component {
 
 
     componentWillUnmount() {
+        //unmount component
+        this.ismounted_Level4 = false;
+        timer.clearTimeout(this);
+        timer.clearInterval(this);
+
 
     }
 
-    componentWillUpdate() {
 
-    }
 
 // update Text on woodShild
     updatetext(){
@@ -200,98 +207,98 @@ export default class Level_4 extends Component {
         }
     }
 // update order depending on dominant color and set the different states
-        updateorder(){
-            switch (this.state.orderRDM[this.state.ordercount][0]) {
-                case 0:
-                case 2:
-                    if (this.state.dominantcolor === 'green') {
-                        this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
-                        this.setState(prevState => ({order: prevState.order + 1}))
-                        setTimeout(() => {
-                            this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
-                            this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
-                            this.updatetext()
-                            if(this.state.order===50)
-                                setTimeout(() =>{
-                                    this.props.navigation.navigate('Level_Selection')
-                                },5000)
-                        }, 4000)
-                    } else {
-                        this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
-                    }
-                    break
-                case 4:
-                case 6:
-                    if (this.state.dominantcolor === 'purple') {
-                        this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
-                        this.setState(prevState => ({order: prevState.order + 1}))
-                        setTimeout(() => {
-                            this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
-                            this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
-                            this.updatetext()
-                            if(this.state.order===50)
-                                setTimeout(() =>{
-                                    this.props.navigation.navigate('Level_Selection')
-                                },5000)
-                        }, 4000)
-                    } else {
-                        this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
-                    }
-                    break
-                case 8:
-                case 10:
-                    if (this.state.dominantcolor === 'brown') {
-                        this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
-                        this.setState(prevState => ({order: prevState.order + 1}))
-                        setTimeout(() => {
-                            this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
-                            this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
-                            this.updatetext()
-                            if(this.state.order===50)
-                                setTimeout(() =>{
-                                    this.props.navigation.navigate('Level_Selection')
-                                },5000)
-                        }, 4000)
-                    } else {
-                        this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
-                    }
-                    break
-                case 12:
-                case 14:
-                    if (this.state.dominantcolor === 'orange') {
-                        this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
-                        this.setState(prevState => ({order: prevState.order + 1}))
-                        setTimeout(() => {
-                            this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
-                            this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
-                            this.updatetext()
-                            if(this.state.order===50)
-                                setTimeout(() =>{
-                                    this.props.navigation.navigate('Level_Selection')
-                                },5000)
-                        }, 4000)
-                    } else {
-                        this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
-                    }
-                    break
-                case 16:
-                case 18:
-                    if (this.state.dominantcolor === 'cyan') {
-                        this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
-                        this.setState(prevState => ({order: prevState.order + 1}))
-                        setTimeout(() => {
-                            this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
-                            this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
-                            this.updatetext()
-                            if(this.state.order===50)
-                                setTimeout(() =>{
-                                    this.props.navigation.navigate('Level_Selection')
-                                },5000)
-                        }, 4000)
-                    } else {
-                        this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
-                    }
-                    break
+    updateorder(){
+        switch (this.state.orderRDM[this.state.ordercount][0]) {
+            case 0:
+            case 2:
+                if (this.state.dominantcolor === 'green') {
+                    this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
+                    this.setState(prevState => ({order: prevState.order + 1}))
+                    timer.setTimeout(this,'2',() => {
+                        this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
+                        this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
+                        this.updatetext()
+                        if(this.state.order===50)
+                            timer.setTimeout(this,'21',() => {
+                                this.props.navigation.navigate('Level_Selection')
+                            },5000)
+                    }, 4000)
+                } else {
+                    this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
+                }
+                break
+            case 4:
+            case 6:
+                if (this.state.dominantcolor === 'purple') {
+                    this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
+                    this.setState(prevState => ({order: prevState.order + 1}))
+                    timer.setTimeout(this,'6',() => {
+                        this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
+                        this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
+                        this.updatetext()
+                        if(this.state.order===50)
+                            timer.setTimeout(this,'61',() => {
+                                this.props.navigation.navigate('Level_Selection')
+                            },5000)
+                    }, 4000)
+                } else {
+                    this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
+                }
+                break
+            case 8:
+            case 10:
+                if (this.state.dominantcolor === 'brown') {
+                    this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
+                    this.setState(prevState => ({order: prevState.order + 1}))
+                    timer.setTimeout(this,'10',() => {
+                        this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
+                        this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
+                        this.updatetext()
+                        if(this.state.order===50)
+                            timer.setTimeout(this,'101',() => {
+                                this.props.navigation.navigate('Level_Selection')
+                            },5000)
+                    }, 4000)
+                } else {
+                    this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
+                }
+                break
+            case 12:
+            case 14:
+                if (this.state.dominantcolor === 'orange') {
+                    this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
+                    this.setState(prevState => ({order: prevState.order + 1}))
+                    timer.setTimeout(this,'14',() => {
+                        this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
+                        this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
+                        this.updatetext()
+                        if(this.state.order===50)
+                            timer.setTimeout(this,'141',() => {
+                                this.props.navigation.navigate('Level_Selection')
+                            },5000)
+                    }, 4000)
+                } else {
+                    this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
+                }
+                break
+            case 16:
+            case 18:
+                if (this.state.dominantcolor === 'cyan') {
+                    this.setState({mixselected: false,errorcount:0, drawcolor: '#F1F1F1',firstselectedcolor:'',secondselectedcolor:''})
+                    this.setState(prevState => ({order: prevState.order + 1}))
+                    timer.setTimeout(this,'18',() => {
+                        this.setState(prevState => ({ordercount: prevState.ordercount + 1}))
+                        this.setState({order: this.state.orderRDM[this.state.ordercount][0]})
+                        this.updatetext()
+                        if(this.state.order===50)
+                            timer.setTimeout(this,'181',() => {
+                                this.props.navigation.navigate('Level_Selection')
+                            },5000)
+                    }, 4000)
+                } else {
+                    this.setState(prevState => ({errorcount: prevState.errorcount + 1}))
+                }
+                break
         }
     }
 
@@ -541,65 +548,65 @@ export default class Level_4 extends Component {
                               source={require('../assets/mixed_colors/empty.webp')}/>
         }
     }
-       colorselector(){
+    colorselector(){
         this.setState({mixselected:false})
-            switch(this.state.colorselected){
-                case 'red':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'red',firstselected:false,secondselected:true,drawcolor:'#FF0000'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'red',firstselected:true,secondselected:false,drawcolor:'#FF0000'})
-                    break;
-                case 'blue':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'blue',firstselected:false,secondselected:true,drawcolor:'#0000FF'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'blue',firstselected:true,secondselected:false,drawcolor:'#0000FF'})
-                    break;
-                case 'green':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'green',firstselected:false,secondselected:true,drawcolor:'#00FF00'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'green',firstselected:true,secondselected:false,drawcolor:'#00FF00'})
-                    break;
-                case 'yellow':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'yellow',firstselected:false,secondselected:true,drawcolor:'#FFFF00'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'yellow',firstselected:true,secondselected:false,drawcolor:'#FFFF00'})
-                    break;
-                case 'pink':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'pink',firstselected:false,secondselected:true,drawcolor:'#FF1694'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'pink',firstselected:true,secondselected:false,drawcolor:'#FF1694'})
-                    break;
-                case 'brown':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'brown',firstselected:false,secondselected:true,drawcolor:'#A52A2A'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'brown',firstselected:true,secondselected:false,drawcolor:'#A52A2A'})
-                    break;
-                case 'purple':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'purple',firstselected:false,secondselected:true,drawcolor:'#9D00FF'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'purple',firstselected:true,secondselected:false,drawcolor:'#9D00FF'})
-                    break;
-                case 'orange':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'orange',firstselected:false,secondselected:true,drawcolor:'#FFA500'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'orange',firstselected:true,secondselected:false,drawcolor:'#FFA500'})
-                    break;
-                case 'cyan':
-                    if(this.state.firstselected === true && this.state.secondselected === false)
-                        this.setState({firstselectedcolor:'cyan',firstselected:false,secondselected:true,drawcolor:'#00FFFF'})
-                    if(this.state.firstselected === false && this.state.secondselected === true)
-                        this.setState({secondselectedcolor:'cyan',firstselected:true,secondselected:false,drawcolor:'#00FFFF'})
-                    break;
-            }
+        switch(this.state.colorselected){
+            case 'red':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'red',firstselected:false,secondselected:true,drawcolor:'#FF0000'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'red',firstselected:true,secondselected:false,drawcolor:'#FF0000'})
+                break;
+            case 'blue':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'blue',firstselected:false,secondselected:true,drawcolor:'#0000FF'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'blue',firstselected:true,secondselected:false,drawcolor:'#0000FF'})
+                break;
+            case 'green':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'green',firstselected:false,secondselected:true,drawcolor:'#00FF00'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'green',firstselected:true,secondselected:false,drawcolor:'#00FF00'})
+                break;
+            case 'yellow':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'yellow',firstselected:false,secondselected:true,drawcolor:'#FFFF00'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'yellow',firstselected:true,secondselected:false,drawcolor:'#FFFF00'})
+                break;
+            case 'pink':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'pink',firstselected:false,secondselected:true,drawcolor:'#FF1694'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'pink',firstselected:true,secondselected:false,drawcolor:'#FF1694'})
+                break;
+            case 'brown':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'brown',firstselected:false,secondselected:true,drawcolor:'#A52A2A'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'brown',firstselected:true,secondselected:false,drawcolor:'#A52A2A'})
+                break;
+            case 'purple':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'purple',firstselected:false,secondselected:true,drawcolor:'#9D00FF'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'purple',firstselected:true,secondselected:false,drawcolor:'#9D00FF'})
+                break;
+            case 'orange':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'orange',firstselected:false,secondselected:true,drawcolor:'#FFA500'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'orange',firstselected:true,secondselected:false,drawcolor:'#FFA500'})
+                break;
+            case 'cyan':
+                if(this.state.firstselected === true && this.state.secondselected === false)
+                    this.setState({firstselectedcolor:'cyan',firstselected:false,secondselected:true,drawcolor:'#00FFFF'})
+                if(this.state.firstselected === false && this.state.secondselected === true)
+                    this.setState({secondselectedcolor:'cyan',firstselected:true,secondselected:false,drawcolor:'#00FFFF'})
+                break;
         }
+    }
 
     green_purple() {
         if (this.state.order >= 0 && this.state.order <= 2 ){
@@ -669,7 +676,7 @@ export default class Level_4 extends Component {
                     from:{left:-120},
                     to:{left:0}
                 }}
-                 duration={1000} easing={"linear"}>
+                                         duration={1000} easing={"linear"}>
                     <TouchableOpacity onPress={() => { this.setState({colorselected:"red"},this.colorselector)
                         this.refs.sketchRef.clear()
                     }}>
@@ -732,6 +739,7 @@ export default class Level_4 extends Component {
     }
 //<Text>order:{this.state.order}</Text>
     render() {
+        if (this.ismounted_Level4 === true) {
             return (
                 <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
                     <View pointerEvents="none"  >
@@ -786,7 +794,7 @@ export default class Level_4 extends Component {
                 </ImageBackground>
             );
         }
-
+    }
 
 }
 

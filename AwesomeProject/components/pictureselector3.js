@@ -1,6 +1,8 @@
 import * as Animatable from "react-native-animatable";
 import React from "react";
-import {StyleSheet} from "react-native";
+import {Dimensions, StyleSheet} from "react-native";
+
+var {width, height} = Dimensions.get('window')
 
 
 // render and animate the different pictures for coloring depending on order
@@ -90,11 +92,12 @@ import {StyleSheet} from "react-native";
     }
 const styles = StyleSheet.create({
     pictures: {
-marginLeft:0.8,
-        marginTop:-11,
-        width: 392,
-        height: 237,
-
+        resizeMode:'contain',
+        width: width/1.83,
+        height: height/1.7,
+        alignSelf:'center',
+        left:-width/400,
+        top:-height/ 12
     }
 
 });

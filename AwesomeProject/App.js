@@ -3,7 +3,7 @@ import { StyleSheet, View, PermissionsAndroid, Text, Alert } from 'react-native'
 import { createAppContainer} from "react-navigation";
 import AppNavigator from "./AppNavigator";
 
-const AppContainer = createAppContainer(AppNavigator)
+const AppContainer = createAppContainer(AppNavigator);
 
 
 export async function request_WRITE_STORAGE_runtime_permission() {
@@ -44,15 +44,3 @@ export default class App extends React.Component {
         );
     }
 }
-
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});

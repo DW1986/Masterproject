@@ -1,11 +1,19 @@
 import * as Animatable from "react-native-animatable";
 import React from "react";
-import {StyleSheet} from "react-native";
+import {Dimensions, StyleSheet} from "react-native";
+
+var {width, height} = Dimensions.get('window')
 
 
 // render and animate the different pictures for coloring depending on order
     export function pictureselector(order) {
         switch (order) {
+        //    case 0:
+          //  case 2:
+         //   case 4: case 6: case 8: case 10: case 12: case 14: case 16: case 18: case 20: case 22: case 24: case 26: case 28: case 30: case 32: case 34: case 36:
+         //       return <Animatable.Image
+         //           style={styles.pictures} animation="fadeIn" duration={3000} delay={2000} easing={"ease-in-cubic"} useNativeDriver={true}
+         //           source={require('../assets/pictures/test.png')}/>
             case 0:
                 return <Animatable.Image
                     style={styles.pictures} animation="fadeIn" duration={3000} delay={2000} easing={"ease-in-cubic"} useNativeDriver={true}
@@ -154,10 +162,12 @@ import {StyleSheet} from "react-native";
     }
 const styles = StyleSheet.create({
     pictures: {
-marginLeft:0.8,
-        marginTop:-11,
-        width: 392,
-        height: 237,
+        resizeMode:'contain',
+        width: width/1.83,
+        height: height/1.7,
+        alignSelf:'center',
+        left:-width/400,
+        top:-height/ 12
 
     }
 

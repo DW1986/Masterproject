@@ -1,6 +1,7 @@
 import React from "react";
 import FastImage from 'react-native-fast-image'
-import {StyleSheet} from "react-native";
+import {Image, Dimensions, StyleSheet} from "react-native";
+var {width, height} = Dimensions.get('window')
 
 // render the starfall depending on order
     export function starfall(order) {
@@ -23,19 +24,19 @@ import {StyleSheet} from "react-native";
             case 31:
             case 33:
             case 35:
-                return <FastImage  style={styles.starfall}
-                              source={require('../assets/other/starfall.gif')}/>
-                break;
+                return <Image  style={styles.starfall}
+                              source={require('../assets/animations/starfalltest.png')}/>
             default:
         }
     }
 const styles = StyleSheet.create({
     starfall: {
-        marginLeft:0.8,
-        marginTop:-237,
-        width: 392,
-        height: 237,
-        opacity: 0.5
 
+        width: width/1.8,
+        height: height/1.65,
+        alignSelf:'center',
+        position:'absolute',
+        left:-width/125,
+        bottom:-height/1.79
     }
 });
