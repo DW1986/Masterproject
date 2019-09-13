@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {ImageBackground, StyleSheet} from 'react-native';
 import * as Animatable from "react-native-animatable";
 

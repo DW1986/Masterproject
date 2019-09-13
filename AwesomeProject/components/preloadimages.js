@@ -1,8 +1,10 @@
-import { Image, Alert } from 'react-native';
+import { Image } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-
+// Preload all images
+// (makes no differenz at the moment)
 export function preloadImages() {
+
     const images = [
         require('../assets/bunny/idle_01.webp'),
         require('../assets/bunny/idle_02.webp'),
@@ -39,9 +41,6 @@ export function preloadImages() {
         require('../assets/animations/egg_3.webp'),
         require('../assets/animations/egg_4.webp'),
         require('../assets/animations/starfall.webp'),
-
-
-
     ];
 
     const uris = images.map(image => ({

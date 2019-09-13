@@ -1,15 +1,5 @@
 import React, {Component} from 'react';
-import {
-    Alert,
-    Animated,
-    Dimensions,
-    Image,
-    ImageBackground,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View
-} from 'react-native';
+import {Dimensions,Image,ImageBackground,StyleSheet,TouchableOpacity,View} from 'react-native';
 import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
@@ -18,65 +8,52 @@ import FastImage from 'react-native-fast-image'
 import {colorselector} from "../components/colorselector1";
 import {woodShild} from "../components/woodShild1";
 import {text} from "../components/text1";
-import {starfall} from "../components/starfall1";
-import {pictureselector} from "../components/pictureselector1";
+import {starfall} from "../components/starfall1234";
+import {pictureselector} from "../components/pictureselector12";
 
-var {width, height} = Dimensions.get('window')
-var RNFS = require('react-native-fs');
-var Sound = require('react-native-sound');
-
-var red_ger = new Sound('red_ger.m4a', Sound.MAIN_BUNDLE);
-var red_eng = new Sound('red_eng.m4a', Sound.MAIN_BUNDLE);
-var blue_ger = new Sound('blue_ger.m4a', Sound.MAIN_BUNDLE);
-var blue_eng = new Sound('blue_eng.m4a', Sound.MAIN_BUNDLE);
-var green_ger = new Sound('green_ger.m4a', Sound.MAIN_BUNDLE);
-var green_eng = new Sound('green_eng.m4a', Sound.MAIN_BUNDLE);
-var yellow_ger = new Sound('yellow_ger.m4a', Sound.MAIN_BUNDLE);
-var yellow_eng = new Sound('yellow_eng.m4a', Sound.MAIN_BUNDLE);
-var pink_ger_eng = new Sound('pink_ger_eng.m4a', Sound.MAIN_BUNDLE);
-var brown_ger = new Sound('yellow_eng.m4a', Sound.MAIN_BUNDLE);
-var brown_eng = new Sound('brown_eng.m4a', Sound.MAIN_BUNDLE);
-var purple_ger = new Sound('purple_ger.m4a', Sound.MAIN_BUNDLE);
-var purple_eng = new Sound('purple_eng.m4a', Sound.MAIN_BUNDLE);
-var orange_ger = new Sound('orange_ger.m4a', Sound.MAIN_BUNDLE);
-var orange_eng = new Sound('orange_eng.m4a', Sound.MAIN_BUNDLE);
-var cyan_ger = new Sound('cyan_ger.m4a', Sound.MAIN_BUNDLE);
-var cyan_eng = new Sound('cyan_eng.m4a', Sound.MAIN_BUNDLE);
-var level_1_intro = new Sound('level_1_intro.m4a', Sound.MAIN_BUNDLE);
-var exit_lvl = new Sound('exit_lvl.m4a', Sound.MAIN_BUNDLE);
-var error_time_select = new Sound('error_time_select.m4a', Sound.MAIN_BUNDLE);
-var error_time_color = new Sound('error_time_color.m4a', Sound.MAIN_BUNDLE);
-var success_1 = new Sound('success_1.m4a', Sound.MAIN_BUNDLE);
-var success_2 = new Sound('success_2.m4a', Sound.MAIN_BUNDLE);
-var success_3 = new Sound('success_3.m4a', Sound.MAIN_BUNDLE);
-var onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE);
-
-var {width, height} = Dimensions.get('window')
+const {width, height} = Dimensions.get('window');
 const timer = require('react-native-timer');
+const RNFS = require('react-native-fs');
+const Sound = require('react-native-sound');
 
-
-
+const red_ger = new Sound('red_ger.m4a', Sound.MAIN_BUNDLE);
+const red_eng = new Sound('red_eng.m4a', Sound.MAIN_BUNDLE);
+const blue_ger = new Sound('blue_ger.m4a', Sound.MAIN_BUNDLE);
+const blue_eng = new Sound('blue_eng.m4a', Sound.MAIN_BUNDLE);
+const green_ger = new Sound('green_ger.m4a', Sound.MAIN_BUNDLE);
+const green_eng = new Sound('green_eng.m4a', Sound.MAIN_BUNDLE);
+const yellow_ger = new Sound('yellow_ger.m4a', Sound.MAIN_BUNDLE);
+const yellow_eng = new Sound('yellow_eng.m4a', Sound.MAIN_BUNDLE);
+const pink_ger_eng = new Sound('pink_ger_eng.m4a', Sound.MAIN_BUNDLE);
+const brown_ger = new Sound('yellow_eng.m4a', Sound.MAIN_BUNDLE);
+const brown_eng = new Sound('brown_eng.m4a', Sound.MAIN_BUNDLE);
+const purple_ger = new Sound('purple_ger.m4a', Sound.MAIN_BUNDLE);
+const purple_eng = new Sound('purple_eng.m4a', Sound.MAIN_BUNDLE);
+const orange_ger = new Sound('orange_ger.m4a', Sound.MAIN_BUNDLE);
+const orange_eng = new Sound('orange_eng.m4a', Sound.MAIN_BUNDLE);
+const cyan_ger = new Sound('cyan_ger.m4a', Sound.MAIN_BUNDLE);
+const cyan_eng = new Sound('cyan_eng.m4a', Sound.MAIN_BUNDLE);
+const level_1_intro = new Sound('level_1_intro.m4a', Sound.MAIN_BUNDLE);
+const exit_lvl = new Sound('exit_lvl.m4a', Sound.MAIN_BUNDLE);
+const error_time_select = new Sound('error_time_select.m4a', Sound.MAIN_BUNDLE);
+const error_time_color = new Sound('error_time_color.m4a', Sound.MAIN_BUNDLE);
+const success_1 = new Sound('success_1.m4a', Sound.MAIN_BUNDLE);
+const success_2 = new Sound('success_2.m4a', Sound.MAIN_BUNDLE);
+const success_3 = new Sound('success_3.m4a', Sound.MAIN_BUNDLE);
+const onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE);
 
 export default class Level_1 extends Component {
     ismounted_Level1 = false;
 
     constructor(props) {
-        super(props)
-
+        super(props);
         this.state = {
             dominantcolor_rgba: null,
             drawcolor: '#F1F1F1',
             path: RNFS.ExternalCachesDirectoryPath + '/test.jpg',
-            colorpanel: new Animated.Value(-90),
-            backpanel: new Animated.Value(-90),
             order:0,
             colorselected: false,
             dominantcolor: 'white',
-            fadeanimationout: new Animated.Value(1),
-            fadeanimationin: new Animated.Value(0),
-            opacity : new Animated.Value(0),
-            ScaleValue1 : new Animated.Value(0),
-            ScaleValue2 : new Animated.Value(1),
             text:"XX",
             textcolor:'#FF0000',
             anim:3,
@@ -104,14 +81,15 @@ export default class Level_1 extends Component {
     }
 
     componentDidMount() {
-
+        // update text on woodshild
         this.updatetext();
+        // set interval for bunny animation
         timer.setInterval(this,'anim',
             () => {
                 this.animbunny()
             },6000);
-
-        timer.setInterval( this,'error',
+        // set interval for two errors over time
+        timer.setInterval(this,'error',
             () => {
                 if(this.state.colorselected===false){
                     this.setState({anim:3,err_time_select:1,err_time_color:0})
@@ -120,18 +98,15 @@ export default class Level_1 extends Component {
                     this.setState({anim:3,err_time_select:0,err_time_color:1})
                 }
             },40000)
-
     }
+
     componentWillUnmount() {
         //unmount component
         this.ismounted_Level1 = false;
+        // clear all timer and interval
         timer.clearTimeout(this);
         timer.clearInterval(this);
-
-
-
     }
-
     //Change drawcolor when selected
     changedrawcolor() {
         if (this.state.order <= 3 && this.state.colorselected === true)
@@ -155,7 +130,7 @@ export default class Level_1 extends Component {
         else if (this.state.colorselected === false)
             this.setState({drawcolor: '#F1F1F1'});
     }
-// update Text on woodShild
+    // update Text on woodShild depending on order and language
     updatetext(){
         if (this.props.navigation.state.params.language===false){
             switch(this.state.order) {
@@ -165,94 +140,93 @@ export default class Level_1 extends Component {
                 case 3:
                     timer.setTimeout(this,'blau',() =>
                             this.setState({text: "Blau", textcolor: '#0000FF'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 7:
                     timer.setTimeout(this,'grün',() =>
                             this.setState({text: "Grün", textcolor: '#00FF00'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 11:
                     timer.setTimeout(this,'gelb',() =>
                             this.setState({text: "Gelb", textcolor: '#FFFF00'})
-                        , 3000);
+                     ,3000);
                     break;
                 case 15:
                     timer.setTimeout(this,'pink',() =>
                             this.setState({text: "Pink", textcolor: '#FF1694'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 19:
                     timer.setTimeout(this,'braun',() =>
                             this.setState({text: "Braun", textcolor: '#A52A2A'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 23:
                     timer.setTimeout(this,'lila',() =>
                             this.setState({text: "Lila", textcolor: '#9D00FF'})
-                        , 3000);
+                     ,3000);
                     break;
                 case 27:
                     timer.setTimeout(this,'orange',() =>
                             this.setState({text: "Orange", textcolor: '#FFA500'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 31:
                     timer.setTimeout(this,'türkis',() =>
                             this.setState({text: "Türkis", textcolor: '#00FFFF'})
-                        , 3000);
+                    ,3000);
                     break;
             }
-        }else {
+        } else {
             switch(this.state.order) {
                 case 0:
-                            this.setState({text: "red", textcolor: '#FF0000'});
+                    this.setState({text: "red", textcolor: '#FF0000'});
                     break;
                 case 3:
                     timer.setTimeout(this,'blue',() =>
                             this.setState({text: "blue", textcolor: '#0000FF'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 7:
                     timer.setTimeout(this,'green',() =>
                             this.setState({text: "green", textcolor: '#00FF00'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 11:
                     timer.setTimeout(this,'yellow',() =>
                             this.setState({text: "yellow", textcolor: '#FFFF00'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 15:
                     timer.setTimeout(this,'pink',() =>
                             this.setState({text: "pink", textcolor: '#FF1694'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 19:
                     timer.setTimeout(this,'brown',() =>
                             this.setState({text: "brown", textcolor: '#A52A2A'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 23:
                     timer.setTimeout(this,'purple',() =>
                             this.setState({text: "purple", textcolor: '#9D00FF'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 27:
                     timer.setTimeout(this,'orange',() =>
                             this.setState({text: "orange", textcolor: '#FFA500'})
-                        , 3000);
+                    ,3000);
                     break;
                 case 31:
                     timer.setTimeout(this,'cyan',() =>
                             this.setState({text: "cyan", textcolor: '#00FFFF'})
-                        , 3000);
+                    ,3000);
                     break;
             }
         }
-
     }
-// update order depending on dominant color and set the different states
+    // update order depending on dominant color and set the different states
     updateorder() {
         switch (this.state.dominantcolor) {
             case 'red':
@@ -401,20 +375,18 @@ export default class Level_1 extends Component {
                             this.props.navigation.navigate('Level_Selection')
                         },5000)
                     }, 5700)
-
                 }
                 break;
         }
     }
-
-// make a Screenshot, save it and get the dominant color rgba
-    makeScreenshot() {
+    // make a Screenshot, save it and get the dominant color rgba (when release painting)
+    makeScreenshot = () => {
         this.refs.viewShot.capture().then(uri => {
             RNFS.writeFile(this.state.path, uri, 'base64')
                 .then(() => {
                     getAllSwatches('high', this.state.path, (error, swatches) => {
                         if (error) {
-                            Alert.alert(error);
+                            console.log(error);
                         }  else {
                             swatches.sort((a, b) => {
                                 return b.population - a.population;
@@ -425,17 +397,15 @@ export default class Level_1 extends Component {
                     })
                 })
         })
-    }
-// get the dominant color from the picture (rgba -> text)
+    };
+    // get the dominant color from the picture (rgba -> text)
     getColor(){
         switch(this.state.dominantcolor_rgba) {
-
             case "rgba(248,0,0,1,000)":
                 this.setState({dominantcolor:"red"});
                 this.refs.sketchRef.clear();
                 this.updateorder();
                 break;
-
             case 'rgba(0,0,248,1,000)':
                 this.setState({dominantcolor:"blue"});
                 this.refs.sketchRef.clear();
@@ -476,58 +446,55 @@ export default class Level_1 extends Component {
                 this.refs.sketchRef.clear();
                 this.updateorder();
                 break;
-
             default:
                 this.setState({dominantcolor:"white"})
-
         }
     }
+    // animate color tab in and out when new color depending on order
     colortabview(){
         switch(this.state.order){
             case 0: case 4: case 8: case 12: case 16: case 20: case 24: case 28: case 32:
                 return <Animatable.View
-                    style={styles.colortab} animation={{
-                        from:{left:-width/7.0},
-                        to:{left:0}
-                    }} duration={1000} easing={"linear"}>
-                        <TouchableOpacity onPress={() => {
-                            this.setState({colorselected:!this.state.colorselected},this.changedrawcolor);
-                            this.refs.sketchRef.clear()
-                        }}>
-                            {colorselector(this.state.order,this.state.colorselected)}
-                        </TouchableOpacity>
-                    </Animatable.View>
+                            style={styles.colortab} animation={{
+                                from:{left:-width/7.0},
+                                to:{left:0}
+                            }} duration={1000} easing={"linear"}>
+                            <TouchableOpacity onPress={() => {
+                                this.setState({colorselected:!this.state.colorselected},this.changedrawcolor);
+                                this.refs.sketchRef.clear()}}>
+                                {colorselector(this.state.order,this.state.colorselected)}
+                            </TouchableOpacity>
+                        </Animatable.View>;
             case 3: case 7: case 11: case 15: case 19: case 23: case 27: case 31: case 35:
                 return <Animatable.View
-                    style={styles.colortab} animation={{
-                    from:{left:0},
-                    to:{left:-width/7.0}
-                }} duration={1000} easing={"linear"}>
-                    <TouchableOpacity onPress={() => {
-                        this.setState({colorselected:!this.state.colorselected},this.changedrawcolor);
-                        this.refs.sketchRef.clear()
-
-                    }}>
-                        {colorselector(this.state.order,this.state.colorselected)}
-                    </TouchableOpacity>
-                </Animatable.View>
+                            style={styles.colortab} animation={{
+                                from:{left:0},
+                                to:{left:-width/7.0}
+                            }} duration={1000} easing={"linear"}>
+                            <TouchableOpacity onPress={() => {
+                                this.setState({colorselected:!this.state.colorselected},this.changedrawcolor);
+                                this.refs.sketchRef.clear()}}>
+                                {colorselector(this.state.order,this.state.colorselected)}
+                            </TouchableOpacity>
+                        </Animatable.View>;
             case 1: case 2: case 5: case 6: case 9: case 10: case 13: case 14: case 17: case 18: case 21: case 22: case 25: case 26: case 29: case 30: case 33: case 34:
                 return <View style={styles.colortab} >
-                    <TouchableOpacity onPress={() => {
-                        this.setState({colorselected:!this.state.colorselected},this.changedrawcolor);
-                        this.refs.sketchRef.clear()
-                    }}>
-                        {colorselector(this.state.order,this.state.colorselected)}
-                    </TouchableOpacity>
-                </View>
+                            <TouchableOpacity onPress={() => {
+                                this.setState({colorselected:!this.state.colorselected},this.changedrawcolor);
+                                this.refs.sketchRef.clear()}}>
+                                {colorselector(this.state.order,this.state.colorselected)}
+                            </TouchableOpacity>;
+                      </View>
         }
-
     }
+    // get rdm number for idle-anim and success-anim bunny
     rdm(max) {
         this.setState({rdm:Math.floor(Math.random() * Math.floor(max))})
     }
+    // control the different animations of bunny
     animbunny(){
         switch (this.state.anim) {
+            // idle02-anim
             case 0:
                 this.rdm(2);
                 if(this.state.rdm===0){
@@ -537,46 +504,54 @@ export default class Level_1 extends Component {
                     this.setState({opacity0:0,opacity1:0,opacity2:1,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:0,opacity8:0,anim:2,disableButton_bunny:false});
                 }
                 break;
+            // idle01-anim
             case 1:
                 this.setState({opacity6:0,opacity1:0,opacity0:1,anim:0,disableButton_bunny:false});
                 break;
+            // idle03-anim
             case 2:
                 this.setState({opacity6:0,opacity2:0,opacity0:1,anim:0,disableButton_bunny:false});
                 break;
+                // speak-anim
             case 3:
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:1,opacity4:0,opacity5:0,opacity6:0,opacity7:0,disableButton_bunny:true});
+                // error - need more color to draw
                 if(this.state.err_time_color===1){
-                    this.setState({anim:0,err_time_color:0}),
-                    error_time_color.setCurrentTime(0.5),
-                    error_time_color.play(),
+                    this.setState({anim:0,err_time_color:0});
+                    error_time_color.setCurrentTime(0.5);
+                    error_time_color.play();
                         timer.setTimeout(this,'speak_error_time_color',() => {
                              this.setState({opacity3:0,opacity8:1});
                     },2000)
                 }
+                // error - need to select the color
                 else if(this.state.err_time_select===1){
-                    this.setState({anim:0,err_time_select:0}),
-                        error_time_select.setCurrentTime(0.5),
-                        error_time_select.play(),
-                        timer.setTimeout(this,'speak_error_time_selected',() => {
-                            this.setState({opacity3:0,opacity8:1});
-                        },3000)
+                    this.setState({anim:0,err_time_select:0});
+                    error_time_select.setCurrentTime(0.5);
+                    error_time_select.play();
+                    timer.setTimeout(this,'speak_error_time_selected',() => {
+                        this.setState({opacity3:0,opacity8:1});
+                    },3000)
                 }
+                // exit
                 else if(this.state.exit===1){
-                    this.setState({anim:0,err_time_color:0}),
-                        exit_lvl.play(),
-                        timer.setTimeout(this,'exit',() => {
-                            this.props.navigation.navigate('Level_Selection')
-                        },2000)
+                    this.setState({anim:0,err_time_color:0});
+                    exit_lvl.play();
+                    timer.setTimeout(this,'exit',() => {
+                        this.props.navigation.navigate('Level_Selection')
+                    },2000)
                 }
+                // start
                 else if (this.state.start===1){
-                    this.setState({start:0}),
-                        level_1_intro.play(),
-                        timer.setTimeout(this,'start',() => {
-                            this.setState({opacity3:0,opacity8:1});
-                        },5000)
+                    this.setState({start:0});
+                    level_1_intro.play();
+                    timer.setTimeout(this,'start',() => {
+                        this.setState({opacity3:0,opacity8:1});
+                    },5000)
                 }
+                // introduce the color in english or german
                 else if (this.state.order===0 && this.state.start===0){
-                    this.setState({opacity3:1,opacity8:0,anim:0})
+                    this.setState({opacity3:1,opacity8:0,anim:0});
                         if(this.props.navigation.state.params.language===false){
                             switch (this.state.order) {
                                 case 0:
@@ -642,27 +617,30 @@ export default class Level_1 extends Component {
                             this.setState({opacity3:0,opacity8:1});
                         },2000)
                 }
-
                 break;
+            // onTouch-anim
             case 4:
-                onTouch.play(),
+                onTouch.play();
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,opacity7:0,anim:0,disableButton_bunny:true});
                 timer.setTimeout(this,'onTouch',() => {
                     this.setState({opacity4:0,opacity8:1})
                 },3000);
                 break;
+            //success_01-anim
             case 5:
                 timer.setTimeout(this,'success_1',() => {
                     success_1.play()
                 },1500);
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,opacity6:0,opacity7:0,anim:0,disableButton_bunny:true});
                 break;
+            //success_02-anim
             case 6:
-                timer.setTimeout(this,'success_1',() => {
+                timer.setTimeout(this,'success_2',() => {
                 success_2.play();
                 },3000);
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:1,opacity7:0,anim:0,disableButton_bunny:true});
                 break;
+            //success_03-anim
             case 7:
                 timer.setTimeout(this,'success_3',() => {
                     success_3.play()
@@ -670,55 +648,47 @@ export default class Level_1 extends Component {
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,opacity7:1,anim:0,disableButton_bunny:true});
                 break;
         }
-
     }
+    // render bunny depending on anim
     renderbunny() {
-
         return <View>
-            <Image
-                source={require('../assets/bunny/idle_02.webp')}
-                style={[styles.bunny, {opacity: this.state.opacity0}]}/>
-            <Image
-                source={require('../assets/bunny/idle_01.webp')}
-                style={[styles.bunny, {opacity: this.state.opacity1}]}/>
-            <Image
-                source={require('../assets/bunny/idle_03.webp')}
-                style={[styles.bunny, {opacity: this.state.opacity2}]}/>
-            <Image
-                source={require('../assets/bunny/speak.webp')} style={[styles.bunny, {opacity: this.state.opacity3}]}/>
-            <Image
-                source={require('../assets/bunny/onTouch.webp')}
-                style={[styles.bunny, {opacity: this.state.opacity4}]}/>
-            <Image
-                source={require('../assets/bunny/success_01.webp')}
-                style={[styles.bunny, {opacity: this.state.opacity5}]}/>
-            <Image
-                source={require('../assets/bunny/success_02.webp')}
-                style={[styles.bunny, {opacity: this.state.opacity6}]}/>
-            <Image
-                source={require('../assets/bunny/success_03.webp')}
-                style={[styles.bunny, {opacity: this.state.opacity7}]}/>
-            <Image
-                source={require('../assets/bunny/initial_bunny.webp')}
-                style={[styles.bunny, {opacity: this.state.opacity8}]}/>
-            <TouchableOpacity disabled={this.state.disableButton_bunny} style={[styles.bunny]} onPress={() =>
-                this.setState({anim: 4})}>
-            </TouchableOpacity>
-        </View>
+                    <Image
+                        source={require('../assets/bunny/idle_02.webp')}
+                        style={[styles.bunny, {opacity: this.state.opacity0}]}/>
+                    <Image
+                        source={require('../assets/bunny/idle_01.webp')}
+                        style={[styles.bunny, {opacity: this.state.opacity1}]}/>
+                    <Image
+                        source={require('../assets/bunny/idle_03.webp')}
+                        style={[styles.bunny, {opacity: this.state.opacity2}]}/>
+                    <Image
+                        source={require('../assets/bunny/speak.webp')} style={[styles.bunny, {opacity: this.state.opacity3}]}/>
+                    <Image
+                        source={require('../assets/bunny/onTouch.webp')}
+                        style={[styles.bunny, {opacity: this.state.opacity4}]}/>
+                    <Image
+                        source={require('../assets/bunny/success_01.webp')}
+                        style={[styles.bunny, {opacity: this.state.opacity5}]}/>
+                    <Image
+                        source={require('../assets/bunny/success_02.webp')}
+                        style={[styles.bunny, {opacity: this.state.opacity6}]}/>
+                    <Image
+                        source={require('../assets/bunny/success_03.webp')}
+                        style={[styles.bunny, {opacity: this.state.opacity7}]}/>
+                    <Image
+                        source={require('../assets/bunny/initial_bunny.webp')}
+                        style={[styles.bunny, {opacity: this.state.opacity8}]}/>
+                    <TouchableOpacity disabled={this.state.disableButton_bunny} style={[styles.bunny]} onPress={() =>
+                        this.setState({anim: 4})}>
+                    </TouchableOpacity>
+            </View>
 
     }
+    // Press function for exit
+    exitPress = () => {
+        this.setState({anim: 3, err_time_select: 0, err_time_color: 0, exit: 1})
+    };
 
-    // Test Code for displaying state:
-//<Text>rgba:{this.state.dominantcolor_rgba}</Text>
-//                     <Text>dominantcolor:{this.state.dominantcolor}</Text>
-//                     <Text>drawcolor:{this.state.drawcolor}</Text>
-//                     <Text>oder:{this.state.order}</Text>
-//                     <Text>mixselected:{String(this.state.mixselected)}</Text>
-    //<Text>Text:{String(this.state.text)}</Text>
-//<Text>Text:{String(this.state.text)}</Text>
-//<Text>oder:{this.state.order}</Text>
-//<Text>anim:{this.state.anim}</Text>
-//<Text>order:{this.state.order}</Text>
     render() {
         if (this.ismounted_Level1 === true) {
             return (
@@ -735,9 +705,7 @@ export default class Level_1 extends Component {
                             style={{flex: 1}}
                             strokeWidth={40}
                             strokeColor={this.state.drawcolor}
-                            onStrokeEnd={() => {
-                                this.makeScreenshot()
-                            }}
+                            onStrokeEnd={this.makeScreenshot}
                         />
                     </ViewShot>
                     <View pointerEvents="none"
@@ -745,12 +713,9 @@ export default class Level_1 extends Component {
                         {pictureselector(this.state.order)}
                         {starfall(this.state.order)}
                     </View>
-
-
                     <View style={styles.colortabview}>
                         {this.colortabview()}
                     </View>
-
                     <View style={styles.shildview}>
                         {woodShild(this.state.order)}
                         <View style={styles.textview}>
@@ -758,31 +723,22 @@ export default class Level_1 extends Component {
                             {text(this.state.order, this.state.textcolor, this.state.text)}
                         </View>
                     </View>
-                    <View style={styles.backtabview}>
+                    <View style={styles.buttonView}>
                         <Animatable.View
                             style={styles.backtab} animation="slideInDown" duration={1000} delay={1000}
                             easing={"linear"} useNativeDriver={true}>
-                            <TouchableOpacity onPress={() =>
-                                this.setState({anim: 3, err_time_select: 0, err_time_color: 0, exit: 1})}>
+                            <TouchableOpacity onPress={this.exitPress}>
                                 <View>
                                     <FastImage
                                         source={require('../assets/other/BackArrow.webp')}
-                                        style={{width: 50, height: 40}}
-                                    />
+                                        style={{width: 50, height: 40}}/>
                                 </View>
                             </TouchableOpacity>
                         </Animatable.View>
                     </View>
-                    <View style={[{position: 'absolute'}, {alignSelf: 'center'}]}>
-                        <Text>dominant color:{String(this.state.dominantcolor)}</Text>
-                        <Text>error_time_color:{String(this.state.err_time_color)}</Text>
-                        <Text>colorselected:{String(this.state.colorselected)}</Text>
-                        <Text>anim:{this.state.anim}</Text>
-                    </View>
                 </ImageBackground>
             );
         }
-
     }
 }
 
@@ -821,7 +777,7 @@ const styles = StyleSheet.create({
         borderWidth: 4,
         marginBottom: height/6,
     },
-    backtabview: {
+    buttonView: {
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
         position: 'absolute',
@@ -837,7 +793,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 70/2,
-
     },
     shildview: {
         justifyContent: 'flex-end',
@@ -850,7 +805,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         position:'absolute'
-
     },
     font2_gras: {
         right:-width/2,
@@ -858,7 +812,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width:width,
         height:height,
-
     },
     bunny: {
         width: width/2.8,

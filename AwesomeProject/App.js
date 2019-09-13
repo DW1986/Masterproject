@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, PermissionsAndroid, Text, Alert } from 'react-native';
-import { createAppContainer} from "react-navigation";
+import {PermissionsAndroid} from 'react-native';
+import {createAppContainer} from "react-navigation";
 import AppNavigator from "./AppNavigator";
 
 const AppContainer = createAppContainer(AppNavigator);

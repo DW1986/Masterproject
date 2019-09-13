@@ -1,41 +1,28 @@
 import React from 'react';
-import {
-    BackHandler,
-    StyleSheet,
-    View,
-    ImageBackground,
-    Animated,
-    TouchableOpacity,
-    Easing,
-    Dimensions,
-    Image,
-    Text
-} from 'react-native';
+import {BackHandler,StyleSheet,View,ImageBackground,Animated,TouchableOpacity,Easing,Dimensions,Image} from 'react-native';
 import {preloadImages} from "../components/preloadimages";
 import {selectArrow} from "../components/selectArrow";
-import FastImage from "react-native-fast-image";
 import * as Animatable from "react-native-animatable";
 import SplashScreen from "./SplashScreen";
 
-var {width, height} = Dimensions.get('window');
-var Sound = require('react-native-sound');
+const {width, height} = Dimensions.get('window');
+const Sound = require('react-native-sound');
 const timer = require('react-native-timer');
 
-var intro = new Sound('intro.m4a', Sound.MAIN_BUNDLE);
-var level_1 = new Sound('level_1.m4a', Sound.MAIN_BUNDLE);
-var level_2 = new Sound('level_2.m4a', Sound.MAIN_BUNDLE);
-var level_3 = new Sound('level_3.m4a', Sound.MAIN_BUNDLE);
-var level_4 = new Sound('level_4.m4a', Sound.MAIN_BUNDLE);
-var speach_eng = new Sound('speach_eng.m4a', Sound.MAIN_BUNDLE);
-var speach_ger = new Sound('speach_ger.m4a', Sound.MAIN_BUNDLE);
-var exit = new Sound('exit.m4a', Sound.MAIN_BUNDLE);
-var onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE);
+const intro = new Sound('intro.m4a', Sound.MAIN_BUNDLE);
+const level_1 = new Sound('level_1.m4a', Sound.MAIN_BUNDLE);
+const level_2 = new Sound('level_2.m4a', Sound.MAIN_BUNDLE);
+const level_3 = new Sound('level_3.m4a', Sound.MAIN_BUNDLE);
+const level_4 = new Sound('level_4.m4a', Sound.MAIN_BUNDLE);
+const speach_eng = new Sound('speach_eng.m4a', Sound.MAIN_BUNDLE);
+const speach_ger = new Sound('speach_ger.m4a', Sound.MAIN_BUNDLE);
+const exit = new Sound('exit.m4a', Sound.MAIN_BUNDLE);
+const onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE);
 
 export default class Level_Selection extends React.Component {
     ismounted_Level_Selection = false;
 
     constructor(props) {
-
         super(props);
         this.state = {
             isLoading:true,
@@ -68,7 +55,7 @@ export default class Level_Selection extends React.Component {
         this.Butterfly_2 = new Animated.Value(0);
         var range = 1, snapshot = 50, radius = 20, radius2 =50;
 
-        /// translateX butterfly_1
+        // translateX butterfly_1
         var inputRange = [], outputRange = [];
         for (var i=0; i<=snapshot; ++i) {
             var value = i/snapshot;
@@ -78,7 +65,7 @@ export default class Level_Selection extends React.Component {
         }
         this.translateX = this.Butterfly_1.interpolate({ inputRange, outputRange });
 
-        /// translateY butterfly_1
+        // translateY butterfly_1
         var inputRange = [], outputRange = []
         for (var i=0; i<=snapshot; ++i) {
             var value = i/snapshot;
@@ -88,7 +75,7 @@ export default class Level_Selection extends React.Component {
         }
         this.translateY = this.Butterfly_1.interpolate({ inputRange, outputRange });
 
-        /// translateX2 butterfly_2
+        // translateX2 butterfly_2
         var inputRange = [], outputRange = [];
         for (var i=0; i<=snapshot; ++i) {
             var value = i/snapshot;
@@ -98,7 +85,7 @@ export default class Level_Selection extends React.Component {
         }
         this.translateX2 = this.Butterfly_2.interpolate({ inputRange, outputRange });
 
-        /// translateY2 butterfly_2
+        // translateY2 butterfly_2
         var inputRange = [], outputRange = [];
         for (var i=0; i<=snapshot; ++i) {
             var value = i/snapshot;
@@ -108,16 +95,16 @@ export default class Level_Selection extends React.Component {
         }
         this.translateY2 = this.Butterfly_2.interpolate({ inputRange, outputRange })
     }
-componentWillMount() {
-    // mount component
-    this.ismounted_Level_Selection = true;
-}
+
+    componentWillMount() {
+        // mount component
+        this.ismounted_Level_Selection = true;
+    }
 
     async componentDidMount(){
-console.log('test')
-        //preload images
+        // preload images (makes no differenz at the moment)
         preloadImages();
-
+        // start animbunny Intervall, when loading screen is over
         const data = await preloadImages();
         if (data !== null) {
             timer.setTimeout( this,'loading',
@@ -175,58 +162,55 @@ console.log('test')
     }
 
     componentWillUnmount() {
-        //unmount component
+        // unmount component
         this.ismounted_Level_Selection = false;
-
+        // cancle all timer and interal
         timer.clearInterval(this);
         timer.clearTimeout(this);
-
-
     }
-
     // Selection LvL1
-    LvL1(){
+    LvL1Press = () => {
         if (this.state.counterLvL1 === 1 && this.state.anim!==4){
             this.props.navigation.navigate('Level_1', { language: this.state.language })
         } else {
             this.setState(prevState => ({ counterLvL1: prevState.counterLvL1 + 1 }));
             this.setState({played2:0,played3:0,played4:0,counterLvL2:0,counterLvL3:0,counterLvL4:0,anim:4})
         }
-    }
+    };
     // Selection LvL2
-    LvL2(){
+    LvL2Press = () => {
         if (this.state.counterLvL2 === 1 && this.state.anim!==4){
             this.props.navigation.navigate('Level_2', { language: this.state.language })
-        }else{
+        } else {
             this.setState(prevState => ({ counterLvL2: prevState.counterLvL2 + 1 }));
             this.setState({played1:0,played3:0,played4:0,counterLvL1:0,counterLvL3:0,counterLvL4:0,anim:4})
         }
-    }
+    };
     // Selection LvL3
-    LvL3(){
+    LvL3Press = () => {
         if (this.state.counterLvL3 === 1 && this.state.anim!==4){
             this.props.navigation.navigate('Level_3', { language: this.state.language })
         } else {
             this.setState(prevState => ({ counterLvL3: prevState.counterLvL3 + 1 }));
             this.setState({played1:0,played2:0,played4:0,counterLvL1:0,counterLvL2:0,counterLvL4:0,anim:4})
         }
-    }
+    };
     // Selection LvL4
-    LvL4(){
+    LvL4Press = () => {
         if (this.state.counterLvL4 === 1 && this.state.anim!==4){
             this.props.navigation.navigate('Level_4', { language: this.state.language })
         } else {
             this.setState(prevState => ({ counterLvL4: prevState.counterLvL4 + 1 }));
             this.setState({played1:0,played2:0,played3:0,counterLvL1:0,counterLvL2:0,counterLvL3:0,anim:4})
         }
-    }
-    // render language
+    };
+    // render flag for language
     language(){
         if(this.state.language===false) {
             return <TouchableOpacity disabled={this.state.disableButton_language} onPress={() =>
                 this.setState({language:!this.state.language,disableButton_language:true,anim:6},this.disablelanguagetimer())}>
                 <View>
-                    <FastImage
+                    <Image
                         source={require('../assets/other/flag_ger.webp')}
                         style={{width: 40, height: 30}}
                     />
@@ -236,7 +220,7 @@ console.log('test')
             return <TouchableOpacity disabled={this.state.disableButton_language} onPress={() =>
                 this.setState({language:!this.state.language,disableButton_language:true,anim:6},this.disablelanguagetimer())}>
                 <View>
-                    <FastImage
+                    <Image
                         source={require('../assets/other/flag_eng.webp')}
                         style={{width:40,height:30}}
                     />
@@ -248,35 +232,38 @@ console.log('test')
     disablelanguagetimer(){
         timer.setTimeout(this,'language',() => this.setState({disableButton_language:false}),5000)
     }
-    componentDidUpdate() {
-
-    }
-
+    // get rdm number for idle animation bunny
     rdm(max) {
         this.setState({rdm:Math.floor(Math.random() * Math.floor(max))})
     }
+    // control the different animations of bunny
     animbunny(){
         switch (this.state.anim) {
+            // wink-anim at the start
             case 0:
                 this.setState({opacity0:0,opacity1:1,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,anim:2,disableButton_bunny:false});
                 break;
+            // idle02-anim
             case 1:
-                    this.rdm(2);
-                    if(this.state.rdm===0){
-                            this.setState({opacity0:0,opacity1:0,opacity2:1,opacity3:0,opacity4:0,opacity5:0,opacity6:0,anim:2,disableButton_bunny:false});
-                        }
-                        else {
-                            this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:1,opacity4:0,opacity5:0,opacity6:0,anim:3,disableButton_bunny:false});
-                    }
+                this.rdm(2);
+                if(this.state.rdm===0){
+                    this.setState({opacity0:0,opacity1:0,opacity2:1,opacity3:0,opacity4:0,opacity5:0,opacity6:0,anim:2,disableButton_bunny:false});
+                } else {
+                    this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:1,opacity4:0,opacity5:0,opacity6:0,anim:3,disableButton_bunny:false});
+                }
                 break;
+            // idle01-anim
             case 2:
-                    this.setState({opacity0:0,opacity1:1,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
-                    break;
-            case 3:
-                    this.setState({opacity0:0,opacity1:1,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
+                this.setState({opacity0:0,opacity1:1,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
                 break;
+            // idle03-anim
+            case 3:
+                this.setState({opacity0:0,opacity1:1,opacity2:0,opacity3:0,opacity4:0,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
+                break;
+            // speak-anim lvl-selection
             case 4:
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
+                // lvl 1 selected
                 if(this.state.counterLvL1 >=1 && this.state.played1===0) {
                     this.setState({played1:1});
                     level_1.setCurrentTime(0.5);
@@ -288,6 +275,7 @@ console.log('test')
                         }
                      },3000)
                 }
+                // lvl 2 selected
                 else if(this.state.counterLvL2 >=1 && this.state.played2===0){
                     this.setState({played2:1});
                     level_2.setCurrentTime(0.5);
@@ -299,6 +287,7 @@ console.log('test')
                         }
                     },5000)
                 }
+                // lvl 3 selected
                 else if(this.state.counterLvL3 >=1 && this.state.played3===0){
                     this.setState({played3:1});
                     level_3.setCurrentTime(0.5);
@@ -310,6 +299,7 @@ console.log('test')
                          }
                     },5000)
                 }
+                // lvl 4 selected
                 else if(this.state.counterLvL4 >=1 && this.state.played4===0) {
                     this.setState({played4:1});
                     level_4.setCurrentTime(0.5);
@@ -321,6 +311,7 @@ console.log('test')
                     },5000);
                 }
                 break;
+            // onTouch-anim
             case 5:
                 onTouch.play();
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:0,opacity5:1,opacity6:0,anim:1,disableButton_bunny:true});
@@ -328,23 +319,24 @@ console.log('test')
                     this.setState({opacity5:0,opacity6:1})
                 },3000);
                 break;
+            // speak-anim language-selection
             case 6:
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
                 if(this.state.language===false){
                     speach_ger.setCurrentTime(0.5);
-                    speach_ger.play()
+                    speach_ger.play();
                     timer.setTimeout(this,'ger',() => {
                         this.setState({opacity4:0,opacity6:1})
                     },3000);
                 } else {
                     speach_eng.setCurrentTime(0.5);
-                    speach_eng.play()
+                    speach_eng.play();
                     timer.setTimeout(this,'eng',() => {
                         this.setState({opacity4:0,opacity6:1})
                     },3000);
                 }
-
                 break;
+            // speak-anim exit
             case 7:
                 this.setState({opacity0:0,opacity1:0,opacity2:0,opacity3:0,opacity4:1,opacity5:0,opacity6:0,anim:1,disableButton_bunny:false});
                 exit.setCurrentTime(0.5);
@@ -354,8 +346,8 @@ console.log('test')
                 },2500);
                 break;
         }
-
     }
+    // render bunny depending on anim
     renderbunny(){
         return <View>
                     <Image source={require('../assets/bunny/wink.webp')} style={[styles.bunny,{opacity:this.state.opacity0}]}/>
@@ -372,116 +364,98 @@ console.log('test')
                         source={require('../assets/bunny/onTouch.webp')} style={[styles.bunny,{opacity:this.state.opacity5}]}/>
                     <Image
                         source={require('../assets/bunny/initial_bunny.webp')} style={[styles.bunny,{opacity:this.state.opacity6}]}/>
-            <TouchableOpacity disabled={this.state.disableButton_bunny} style={[styles.bunny]} onPress={() =>
-                this.setState({anim:5})}>
-            </TouchableOpacity>
+                    <TouchableOpacity disabled={this.state.disableButton_bunny} style={[styles.bunny]} onPress={() =>
+                        this.setState({anim:5})}>
+                    </TouchableOpacity>
         </View>
     }
-
-
-//<View style={[{position:'absolute'},{alignSelf:'center'}]}>
-//<Text>disabled:{String(this.state.disableButton_bunny)}</Text>
-//<Text>anim:{this.state.anim}</Text>
-//<Text>lvl1:{this.state.counterLvL1}</Text>
-//<Text>lvl2:{this.state.counterLvL2}</Text>
-//<Text>lvl3:{this.state.counterLvL3}</Text>
-//<Text>lvl4:{this.state.counterLvL4}</Text>
-//</View>
-
-    render() {if (this.ismounted_Level_Selection === true){
-
-        if (this.state.isLoading) {
-            return <SplashScreen />;
+    // Press function for exit
+    exitPress = () => {
+        this.setState({
+            anim:7
+        })
+    };
+    // Testing Code for variables:
+    //<View style={[{position:'absolute'},{alignSelf:'center'}]}>
+    //<Text>disabled:{String(this.state.disableButton_bunny)}</Text>
+    //<Text>anim:{this.state.anim}</Text>
+    //</View>
+    render() {
+        if (this.ismounted_Level_Selection === true){
+            if (this.state.isLoading) {
+                return <SplashScreen />;
+            } else {
+                const transform = [{ translateY: this.translateY }, {translateX: this.translateX}];
+                const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}];
+                return (
+                    <ImageBackground source={require('../assets/other/Level_Selection.webp')} style={styles.background}>
+                        <Animated.Image source={require('../assets/animations/butterfly_2.webp')} style={[styles.butterflys,{
+                            bottom:'40%',left:'78%', transform:transform2 }]}/>
+                        <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_1,
+                            top:height/10}]} />
+                        <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_2,
+                            top:height/30}]} />
+                        <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_3,
+                            top:height/20}]} />
+                        <Image source={require('../assets/other/Level_Selection_front.webp')}
+                               style={{position:'absolute',width: '100%', height: '100%'}}  />
+                        <Animated.Image source={require('../assets/animations/butterfly_1.webp')} style={[styles.butterflys,{
+                            bottom:height/5,marginLeft:width/30, transform }]}/>
+                        {selectArrow(this.state.counterLvL1,this.state.counterLvL2,this.state.counterLvL3,this.state.counterLvL4,)}
+                        {this.renderbunny()}
+                        <View style={[styles.eggsView]}>
+                            <TouchableOpacity   onPress={this.LvL1Press}>
+                                <Image
+                                    source={require('../assets/animations/egg_1.webp')}
+                                    style={[styles.eggs,{bottom:'5%'}]}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity   onPress={this.LvL2Press}>
+                                <Image
+                                    source={require('../assets/animations/egg_2.webp')}
+                                    style={[styles.eggs,{bottom:'6%'}]}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity   onPress={this.LvL3Press}>
+                                <Image
+                                    source={require('../assets/animations/egg_3.webp')}
+                                    style={[styles.eggs,{bottom:'5%'}]}/>
+                            </TouchableOpacity>
+                            <TouchableOpacity   onPress={this.LvL4Press}>
+                                <Image
+                                    source={require('../assets/animations/egg_4.webp')}
+                                    style={[styles.eggs,{bottom:'7%'}]}/>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.buttonView}>
+                            <Animatable.View
+                                style={styles.exitView} animation={{
+                                from: {left: -120},
+                                to: {left: 0}
+                            }} duration={1000} delay={1000} easing={"linear"}>
+                                <TouchableOpacity onPress={this.exitPress}>
+                                    <View>
+                                        <Image
+                                            source={require('../assets/other/cross.webp')}
+                                            style={{width:35,height:25}}/>
+                                    </View>
+                                </TouchableOpacity>
+                            </Animatable.View>
+                            <Animatable.View
+                                style={styles.languageView} animation={{
+                                from: {left: -120},
+                                to: {left: 0}
+                            }} duration={1000} delay={1000} easing={"linear"}>
+                                {this.language()}
+                            </Animatable.View>
+                        </View>
+                        <View pointerEvents="none"  >
+                            <Image  source={require('../assets/other/Level_Selection_front2.webp')}
+                                    style={styles.font2_gras} />
+                        </View>
+                    </ImageBackground>
+                );
+            }
         }
-        const transform = [{ translateY: this.translateY }, {translateX: this.translateX}];
-        const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}];
-        return (
-            <ImageBackground source={require('../assets/other/Level_Selection.webp')} style={styles.background}>
-                <Animated.Image source={require('../assets/animations/butterfly_2.webp')} style={[styles.Butterflys,{
-                    bottom:'40%',left:'78%', transform:transform2 }]}/>
-                <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_1,
-                    top:height/10}]} />
-                <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_2,
-                    top:height/30}]} />
-                <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_3,
-                    top:height/20}]} />
-                <FastImage source={require('../assets/other/Level_Selection_front.webp')}
-                           style={{position:'absolute',width: '100%', height: '100%'}}  />
-                <Animated.Image source={require('../assets/animations/butterfly_1.webp')} style={[styles.Butterflys,{
-                    bottom:height/5,marginLeft:width/30, transform }]}/>
-                {selectArrow(this.state.counterLvL1,this.state.counterLvL2,this.state.counterLvL3,this.state.counterLvL4,)}
-                {this.renderbunny()}
-                <View style={[styles.container]}>
-                    <TouchableOpacity   onPress={() => this.LvL1()}>
-                        <Image
-                            source={require('../assets/animations/egg_1.webp')}
-                            style={[styles.Eggs,{bottom:'5%'}]}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity   onPress={() => this.LvL2()}>
-                        <Image
-                            source={require('../assets/animations/egg_2.webp')}
-                            style={[styles.Eggs,{bottom:'6%'}]}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity   onPress={() => this.LvL3()}>
-                        <Image
-                            source={require('../assets/animations/egg_3.webp')}
-                            style={[styles.Eggs,{bottom:'5%'}]}
-                        />
-                    </TouchableOpacity>
-                    <TouchableOpacity   onPress={() => this.LvL4()}>
-                        <Image
-                            source={require('../assets/animations/egg_4.webp')}
-                            style={[styles.Eggs,{bottom:'7%'}]}
-                        />
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.backtabview}>
-                    <Animatable.View
-                        style={styles.backtab2} animation={{
-                        from: {left: -120},
-                        to: {left: 0}
-                    }}duration={1000} delay={1000} easing={"linear"}>
-                        <TouchableOpacity onPress={() =>
-                            this.setState({anim:7})
-                        }>
-                            <View>
-                                <FastImage
-                                    source={require('../assets/other/cross.webp')}
-                                    style={{width:35,height:25}}
-                                />
-                            </View>
-                        </TouchableOpacity>
-                    </Animatable.View>
-                    <Animatable.View
-                        style={styles.backtab1} animation={{
-                        from: {left: -120},
-                        to: {left: 0}
-                    }}duration={1000} delay={1000} easing={"linear"}>
-                        {this.language()}
-                    </Animatable.View>
-                </View>
-
-                <View pointerEvents="none"  >
-                    <FastImage  source={require('../assets/other/Level_Selection_front2.webp')}
-                                style={styles.font2_gras} />
-                </View>
-                <View style={[{position: 'absolute'}, {alignSelf: 'center'}]}>
-                    <Text>anim:{this.state.anim}</Text>
-                    <Text>1:{this.state.counterLvL1}</Text>
-                    <Text>2:{this.state.counterLvL2}</Text>
-                    <Text>3:{this.state.counterLvL3}</Text>
-                    <Text>4:{this.state.counterLvL4}</Text>
-                </View>
-
-            </ImageBackground>
-        );
     }
-    }
-
-
-
 }
 //styles
 const styles = StyleSheet.create({
@@ -491,11 +465,11 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignContent: 'center'
     },
-    Eggs:{
+    eggs:{
         width:width/5.5,
         height:height/3,
     },
-    Butterflys:{
+    butterflys:{
         width:width/25,
         height:height/17,
         position:'absolute'
@@ -512,7 +486,7 @@ const styles = StyleSheet.create({
         width:width,
         height:height,
     },
-    container: {
+    eggsView: {
         flex:4,
         justifyContent:'center',
         alignItems:'flex-end',
@@ -520,14 +494,14 @@ const styles = StyleSheet.create({
         marginRight:width/15
 
     },
-    backtabview: {
+    buttonView: {
         justifyContent: 'flex-start',
         alignItems: 'flex-start',
         position: 'absolute',
         width: '100%',
         height: '100%',
     },
-    backtab1: {
+    languageView: {
         width: 70,
         height: 70,
         backgroundColor: 'white',
@@ -536,7 +510,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 70/2,
     },
-    backtab2: {
+    exitView: {
         width: 70,
         height: 70,
         backgroundColor: 'black',
