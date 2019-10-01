@@ -6,8 +6,8 @@ import Level_3 from "./screens/Level_3"
 import Level_4 from "./screens/Level_4"
 
 
-const AppNavigator = createStackNavigator({
 
+const AppNavigator = createStackNavigator({
 
         Level_Selection: Level_Selection,
         Level_1:Level_1,

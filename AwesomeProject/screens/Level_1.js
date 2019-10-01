@@ -478,12 +478,12 @@ export default class Level_1 extends Component {
                             </TouchableOpacity>
                         </Animatable.View>;
             case 1: case 2: case 5: case 6: case 9: case 10: case 13: case 14: case 17: case 18: case 21: case 22: case 25: case 26: case 29: case 30: case 33: case 34:
-                return <View style={styles.colortab} >
+                return <View style={styles.colortab}>
                             <TouchableOpacity onPress={() => {
                                 this.setState({colorselected:!this.state.colorselected},this.changedrawcolor);
                                 this.refs.sketchRef.clear()}}>
                                 {colorselector(this.state.order,this.state.colorselected)}
-                            </TouchableOpacity>;
+                            </TouchableOpacity>
                       </View>
         }
     }
@@ -814,10 +814,11 @@ const styles = StyleSheet.create({
         height:height,
     },
     bunny: {
-        width: width/2.8,
-        height: height/1.8,
+        width: width/6,
+        height: height/2.5,
         position:'absolute',
-        left:width/4.5,
-        top:height/3.5
-    }
+        marginLeft:width/3.2,
+        marginTop:height/2.5
+    },
+
 });

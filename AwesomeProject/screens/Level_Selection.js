@@ -521,11 +521,10 @@ const styles = StyleSheet.create({
         borderRadius: 70/2,
     },
     bunny: {
-        resizeMode: 'cover',
-        width: width/3.6,
-        height: height/1.9,
+        width: width/6,
+        height: height/2.5,
         position:'absolute',
-        marginLeft:width/1.3,
-        marginTop:height/2.3
+        marginLeft:width/1.2,
+        marginTop:height/2
     },
 });
