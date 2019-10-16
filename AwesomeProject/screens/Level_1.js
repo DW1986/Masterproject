@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions,Image,ImageBackground,Alert,StyleSheet,TouchableOpacity,View,Text} from 'react-native';
+import {Dimensions,Image,ImageBackground,StyleSheet,TouchableOpacity,View} from 'react-native';
 import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
@@ -42,7 +42,6 @@ const success_02 = new Sound('success_2.m4a', Sound.MAIN_BUNDLE);
 const success_03 = new Sound('success_3.m4a', Sound.MAIN_BUNDLE);
 const onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE);
 
-const error = {};
 
 export default class Level_1 extends Component {
     ismounted_Level1 = false;
@@ -98,7 +97,7 @@ export default class Level_1 extends Component {
         // clear all timer and interval
 
        // timer.intervalExists(this);
-        timer.clearTimeout(this)
+        timer.clearTimeout(this);
         timer.clearInterval(this)
     }
     errorIntervall(){
@@ -237,16 +236,16 @@ export default class Level_1 extends Component {
             case 'red':
                 if(this.state.order === 0) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 1,drawcolor: '#F1F1F1',colorselected: false});
                     timer.setTimeout(this,'order_red',() => {
                         this.setState({order: 2,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 3,colorselected: false,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     timer.setTimeout(this,'order_red2',() => {
@@ -258,16 +257,16 @@ export default class Level_1 extends Component {
             case 'blue':
                 if(this.state.order === 4) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 5,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_blue',() => {
                         this.setState({order: 6,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 7,colorselected: false,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     timer.setTimeout(this,'order_blue2',() => {
@@ -278,16 +277,16 @@ export default class Level_1 extends Component {
             case 'green':
                 if(this.state.order === 8) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 9,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_green',() => {
                         this.setState({order: 10,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 11,colorselected: false,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     timer.setTimeout(this,'order_green2',() => {
@@ -298,16 +297,16 @@ export default class Level_1 extends Component {
             case 'yellow':
                 if(this.state.order === 12) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 13,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_yellow',() => {
                         this.setState({order: 14,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 15,colorselected: false,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     timer.setTimeout(this,'order_yellow2',() => {
@@ -318,16 +317,16 @@ export default class Level_1 extends Component {
             case 'pink':
                 if(this.state.order === 16) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 17,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_pink',() => {
                         this.setState({order: 18,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 19,colorselected: false,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     timer.setTimeout(this,'order_pink2',() => {
@@ -338,16 +337,16 @@ export default class Level_1 extends Component {
             case 'brown':
                 if(this.state.order === 20) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 21,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_brown',() => {
                         this.setState({order: 22,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 23,colorselected: false,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     timer.setTimeout(this,'order_brown2',() => {
@@ -358,16 +357,16 @@ export default class Level_1 extends Component {
             case 'purple':
                 if(this.state.order === 24) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 25,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_purple',() => {
                         this.setState({order: 26,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 27,colorselected: false,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     timer.setTimeout(this,'order_purple2',() => {
@@ -378,16 +377,16 @@ export default class Level_1 extends Component {
             case 'orange':
                 if(this.state.order === 28) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 29,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_orange',() => {
                         this.setState({order: 30,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 31,colorselected: false,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     timer.setTimeout(this,'order_orange2',() => {
@@ -398,16 +397,16 @@ export default class Level_1 extends Component {
             case 'cyan':
                 if(this.state.order === 32) {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 33,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_cyan',() => {
                         this.setState({order: 34,played:0,dominantcolor:'white'})
                     }, 4000)
                 } else {
                     this.rdm(3);
-                    timer.clearInterval(this)
-                    this.errorIntervall()
+                    timer.clearInterval(this);
+                    this.errorIntervall();
                     this.setState({bunny_order:2,order: 35,colorselected: false, played:0,drawcolor: '#F1F1F1'});
                     this.updatetext();
                     setTimeout(() => {
@@ -538,58 +537,42 @@ export default class Level_1 extends Component {
             // idle02-bunny_order
             case 0:
                 this.rdm(2);
-                if (this.state.rdm === 0) {
-                    timer.setTimeout(this, 'idle_02_1a', () => {
-                        this.setState({opacity0: 1})
-                    }, 5500);
-                    timer.setTimeout(this, 'idle_02_1b', () => {
-                        this.setState({opacity0: 0})
-                    }, 6500);
+                timer.setTimeout(this, 'idle_02_2a', () => {
+                    this.setState({opacity0: 1})
+                }, 5500);
+                timer.setTimeout(this, 'idle_02_2b', () => {
+                    this.setState({opacity0: 0})
+                }, 6500);
                     timer.setTimeout(this, 'idle_02_1', () => {
-                        if (this.state.bunny_order === 1) {
-                            this.setState({bunny_anim: 1, disableButton_bunny: false});
-                            this.animbunny()
-                        } else if (this.state.bunny_order === 2) {
-                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
-                            this.animbunny()
-                        } else if (this.state.bunny_order === 3) {
-                            this.setState({bunny_anim: 8, disableButton_bunny: true});
-                            this.animbunny()
-                        } else if (this.state.bunny_order === 4) {
-                            this.setState({bunny_anim: 4, disableButton_bunny: true});
-                            this.animbunny()
-                        } else if (this.state.bunny_order === 5) {
-                            this.setState({bunny_anim: 9, disableButton_bunny: true});
-                            this.animbunny()
+                        switch (this.state.bunny_order) {
+                            case 1:
+                                if (this.state.rdm === 0) {
+                                    this.setState({bunny_anim: 1, disableButton_bunny: false});
+                                    this.animbunny()
+                                } else {
+                                    this.setState({bunny_anim: 2, disableButton_bunny: false});
+                                    this.animbunny()
+                                }
+                                break;
+                            case 2:
+                                this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                                this.animbunny();
+                                break;
+                            case 3:
+                                this.setState({bunny_anim: 8, disableButton_bunny: true});
+                                this.animbunny();
+                                break;
+                            case 4:
+                                this.setState({bunny_anim: 4, disableButton_bunny: true});
+                                this.animbunny();
+                                break;
+                            case 5:
+                                this.setState({bunny_anim: 9, disableButton_bunny: true});
+                                this.animbunny();
+                                break;
                         }
                     }, 6000);
-                } else {
-                    timer.setTimeout(this, 'idle_02_2a', () => {
-                        this.setState({opacity0: 1})
-                    }, 5500);
-                    timer.setTimeout(this, 'idle_02_2b', () => {
-                        this.setState({opacity0: 0})
-                    }, 6500);
-                    timer.setTimeout(this, 'idle_02_2', () => {
-                        if (this.state.bunny_order === 1) {
-                            this.setState({bunny_anim: 2, disableButton_bunny: false});
-                            this.animbunny()
-                        } else if (this.state.bunny_order === 2) {
-                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
-                            this.animbunny()
-                        } else if (this.state.bunny_order === 3) {
-                            this.setState({bunny_anim: 8, disableButton_bunny: true});
-                            this.animbunny()
-                        } else if (this.state.bunny_order === 4) {
-                            this.setState({bunny_anim: 4, disableButton_bunny: true});
-                            this.animbunny()
-                        } else if (this.state.bunny_order === 5) {
-                            this.setState({bunny_anim: 9, disableButton_bunny: true});
-                            this.animbunny()
-                        }
-                    }, 6000);
-                }
-                break;
+            break;
             // idle01-bunny_order
             case 1:
                 timer.setTimeout(this, 'idle_01_a', () => {
@@ -599,25 +582,31 @@ export default class Level_1 extends Component {
                     this.setState({opacity0: 0})
                 }, 4500);
                 timer.setTimeout(this, 'idle_01', () => {
-                    if (this.state.bunny_order === 1) {
-                        this.setState({bunny_anim: 0, disableButton_bunny: false});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 2) {
-                        this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 3) {
-                        this.setState({bunny_anim: 8, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 4) {
-                        this.setState({bunny_anim: 4, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 5) {
-                        this.setState({bunny_anim: 9, disableButton_bunny: true});
-                        this.animbunny()
+                    switch (this.state.bunny_order) {
+                        case 1:
+                            this.setState({bunny_anim: 0, disableButton_bunny: false});
+                            this.animbunny();
+                            break;
+                        case 2:
+                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 3:
+                            this.setState({bunny_anim: 8, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 4:
+                            this.setState({bunny_anim: 4, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 5:
+                            this.setState({bunny_anim: 9, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
                     }
                 }, 4000);
 
-                break;
+            break;
             // idle03-bunny_order
             case 2:
                 timer.setTimeout(this, 'idle_03_a', () => {
@@ -627,44 +616,72 @@ export default class Level_1 extends Component {
                     this.setState({opacity0: 0})
                 }, 5000);
                 timer.setTimeout(this, 'idle_03', () => {
-                    if (this.state.bunny_order === 1) {
-                        this.setState({bunny_anim: 0, disableButton_bunny: false});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 2) {
-                        this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 3) {
-                        this.setState({bunny_anim: 8, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 4) {
-                        this.setState({bunny_anim: 4, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 5) {
-                        this.setState({bunny_anim: 9, disableButton_bunny: true});
-                        this.animbunny()
+                    switch (this.state.bunny_order) {
+                        case 1:
+                            this.setState({bunny_anim: 0, disableButton_bunny: false});
+                            this.animbunny();
+                            break;
+                        case 2:
+                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 3:
+                            this.setState({bunny_anim: 8, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 4:
+                            this.setState({bunny_anim: 4, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 5:
+                            this.setState({bunny_anim: 9, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
                     }
                 }, 4500);
-                break;
+            break;
             // speak-bunny_order (intro)
             case 3:
-                timer.setTimeout(this, 'sound_intro', () => {
-                    level_1_intro.play()
-                }, 500);
-                timer.setTimeout(this, 'speak_intro_a', () => {
-                    this.setState({opacity0: 1})
-                }, 6500);
-                timer.setTimeout(this, 'speak_intro_b', () => {
-                    this.setState({opacity0: 0})
-                }, 7500);
-                timer.setTimeout(this, 'speak_intro', () => {
-                    this.setState({bunny_anim: 8, disableButton_bunny: true});
-                    this.animbunny()
-                }, 7000);
-                break;
+                this.setState({bunny_order:1});
+                 timer.setTimeout(this, 'sound_intro', () => {
+                     level_1_intro.play()
+                 }, 500);
+                 timer.setTimeout(this, 'speak_intro_a', () => {
+                     this.setState({opacity0: 1})
+                 }, 6500);
+                 timer.setTimeout(this, 'speak_intro_b', () => {
+                     this.setState({opacity0: 0})
+                 }, 7500);
+                 timer.setTimeout(this, 'speak_intro', () => {
+                     switch (this.state.bunny_order) {
+                         case 1:
+                            this.setState({bunny_anim: 0, disableButton_bunny: false});
+                            this.animbunny();
+                            break;
+                         case 2:
+                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                         case 3:
+                            this.setState({bunny_anim: 8, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                         case 4:
+                            this.setState({bunny_anim: 4, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                         case 5:
+                            this.setState({bunny_anim: 9, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                     }
+                 }, 7000);
+            break;
             // onTouch-bunny_order
             case 4:
+                this.setState({bunny_order:1});
                 timer.setTimeout(this, 'sound_onTouch', () => {
-                    onTouch.play()
+                     onTouch.play()
                 }, 1000);
                 timer.setTimeout(this, 'onTouch_a', () => {
                     this.setState({opacity0: 1})
@@ -673,12 +690,33 @@ export default class Level_1 extends Component {
                     this.setState({opacity0: 0})
                 }, 5000);
                 timer.setTimeout(this, 'onTouch', () => {
-                    this.setState({bunny_anim: 0, bunny_order: 1, disableButton_bunny: false});
-                    this.animbunny()
+                    switch (this.state.bunny_order) {
+                        case 1:
+                            this.setState({bunny_anim: 0, disableButton_bunny: false});
+                            this.animbunny();
+                            break;
+                        case 2:
+                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 3:
+                            this.setState({bunny_anim: 8, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 4:
+                            this.setState({bunny_anim: 4, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 5:
+                            this.setState({bunny_anim: 9, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                    }
                 }, 4500);
-                break;
+            break;
             //success_01-bunny_order
             case 5:
+                this.setState({bunny_order:1});
                 timer.setTimeout(this, 'sound_success_01', () => {
                     success_01.play()
                 }, 1000);
@@ -689,18 +727,33 @@ export default class Level_1 extends Component {
                     this.setState({opacity0: 0})
                 }, 5500);
                 timer.setTimeout(this, 'success_01', () => {
-                    if (this.state.bunny_order === 3) {
-                        this.setState({bunny_anim: 8, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 2) {
-                        this.setState({bunny_order: 1, bunny_anim: 0, disableButton_bunny: false});
-                        this.animbunny()
+                    switch (this.state.bunny_order) {
+                        case 1:
+                            this.setState({bunny_anim: 0, disableButton_bunny: false});
+                            this.animbunny();
+                            break;
+                        case 2:
+                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 3:
+                            this.setState({bunny_anim: 8, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 4:
+                            this.setState({bunny_anim: 4, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 5:
+                            this.setState({bunny_anim: 9, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
                     }
-
                 }, 5000);
-                break;
+            break;
             //success_02-bunny_order
             case 6:
+                this.setState({bunny_order:1});
                 timer.setTimeout(this, 'sound_success_02', () => {
                     success_02.play()
                 }, 500);
@@ -711,17 +764,33 @@ export default class Level_1 extends Component {
                     this.setState({opacity0: 0})
                 }, 4000);
                 timer.setTimeout(this, 'success_02', () => {
-                    if (this.state.bunny_order === 3) {
-                        this.setState({bunny_anim: 8, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 2) {
-                        this.setState({bunny_order: 1, bunny_anim: 0, disableButton_bunny: false});
-                        this.animbunny()
+                    switch (this.state.bunny_order) {
+                        case 1:
+                            this.setState({bunny_anim: 0, disableButton_bunny: false});
+                            this.animbunny();
+                            break;
+                        case 2:
+                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 3:
+                            this.setState({bunny_anim: 8, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 4:
+                            this.setState({bunny_anim: 4, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 5:
+                            this.setState({bunny_anim: 9, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
                     }
                 }, 3500);
-                break;
+            break;
             //success_03-bunny_order
             case 7:
+                this.setState({bunny_order:1});
                 timer.setTimeout(this, 'sound_success_03', () => {
                     success_03.play()
                 }, 1000);
@@ -732,23 +801,39 @@ export default class Level_1 extends Component {
                     this.setState({opacity0: 0})
                 }, 5500);
                 timer.setTimeout(this, 'success_03', () => {
-                    if (this.state.bunny_order === 3) {
-                        this.setState({bunny_anim: 8, disableButton_bunny: true});
-                        this.animbunny()
-                    } else if (this.state.bunny_order === 2) {
-                        this.setState({bunny_order: 1, bunny_anim: 0, disableButton_bunny: false});
-                        this.animbunny()
+                    switch (this.state.bunny_order) {
+                        case 1:
+                            this.setState({bunny_anim: 0, disableButton_bunny: false});
+                            this.animbunny();
+                            break;
+                        case 2:
+                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 3:
+                            this.setState({bunny_anim: 8, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 4:
+                            this.setState({bunny_anim: 4, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 5:
+                            this.setState({bunny_anim: 9, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
                     }
                 }, 5000);
-                break;
+            break;
             // speak colors + errors
             case 8:
+                this.setState({bunny_order:1});
                     if (this.state.err_time_select === 1) {
-                        timer.setTimeout(this, 'sound_error_time_select', () => {
+                            timer.setTimeout(this, 'sound_error_time_select', () => {
                             error_time_select.play()
                         }, 800);
                     } else if (this.state.err_time_color === 1) {
-                        timer.setTimeout(this, 'sound_error_time_color', () => {
+                            timer.setTimeout(this, 'sound_error_time_color', () => {
                             error_time_color.play()
                         }, 800);
                     } else {
@@ -803,53 +888,52 @@ export default class Level_1 extends Component {
                         }else {
                             switch (this.state.order) {
                                 case 0:
-                                    timer.setTimeout(this, 'red_ger', () => {
-                                        red_ger.play()
+                                    timer.setTimeout(this, 'red_eng', () => {
+                                        red_eng.play()
                                     }, 1000);
                                     break;
                                 case 4:
-                                    timer.setTimeout(this, 'blue_ger', () => {
-                                        blue_ger.play()
+                                    timer.setTimeout(this, 'blue_eng', () => {
+                                        blue_eng.play()
                                     }, 1000);
                                     break;
                                 case 8:
-                                    timer.setTimeout(this, 'green_ger', () => {
-                                        green_ger.play()
+                                    timer.setTimeout(this, 'green_eng', () => {
+                                        green_eng.play()
                                     }, 1000);
                                     break;
                                 case 12:
-                                    timer.setTimeout(this, 'yellow_ger', () => {
-                                        yellow_ger.play()
+                                    timer.setTimeout(this, 'yellow_eng', () => {
+                                        yellow_eng.play()
                                     }, 1000);
                                     break;
                                 case 16:
-                                    timer.setTimeout(this, 'pink_ger', () => {
+                                    timer.setTimeout(this, 'pink_eng', () => {
                                         pink_ger_eng.play()
                                     }, 1000);
                                     break;
                                 case 20:
-                                    timer.setTimeout(this, 'brown_ger', () => {
-                                        brown_ger.play()
+                                    timer.setTimeout(this, 'brown_eng', () => {
+                                        brown_eng.play()
                                     }, 1000);
                                     break;
                                 case 24:
-                                    timer.setTimeout(this, 'purple_ger', () => {
-                                        purple_ger.play()
+                                    timer.setTimeout(this, 'purple_eng', () => {
+                                        purple_eng.play()
                                     }, 1000);
                                     break;
                                 case 28:
-                                    timer.setTimeout(this, 'orange_ger', () => {
-                                        orange_ger.play()
+                                    timer.setTimeout(this, 'orange_eng', () => {
+                                        orange_eng.play()
                                     }, 1000);
                                     break;
                                 case 32:
-                                    timer.setTimeout(this, 'cyan_ger', () => {
-                                        cyan_ger.play()
+                                    timer.setTimeout(this, 'cyan_eng', () => {
+                                        cyan_eng.play()
                                     }, 1000);
                                     break;
-                            }
                         }
-
+                    }
                 }
                 timer.setTimeout(this, 'speak_color_a', () => {
                     this.setState({opacity0: 1})
@@ -858,15 +942,36 @@ export default class Level_1 extends Component {
                     this.setState({opacity0: 0})
                 }, 4500);
                 timer.setTimeout(this, 'speak_color', () => {
-                    this.setState({bunny_order: 1, bunny_anim: 0, disableButton_bunny: false});
-                    this.animbunny()
+                    switch (this.state.bunny_order) {
+                        case 1:
+                            this.setState({bunny_anim: 0, disableButton_bunny: false});
+                            this.animbunny();
+                            break;
+                        case 2:
+                            this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 3:
+                            this.setState({bunny_anim: 8, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 4:
+                            this.setState({bunny_anim: 4, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                        case 5:
+                            this.setState({bunny_anim: 9, disableButton_bunny: true});
+                            this.animbunny();
+                            break;
+                    }
                 }, 4000);
-                break;
+            break;
             //speak exit
             case 9:
+                this.setState({bunny_order:1});
                 timer.setTimeout(this, 'exit_lvl', () => {
-                    exit_lvl.play()
-                    this.setState({exit: 0})
+                    exit_lvl.play();
+                    this.setState({exit: 0});
                     timer.clearInterval(this)
                 }, 1000);
                 timer.setTimeout(this, 'navigate', () => {
@@ -883,61 +988,61 @@ export default class Level_1 extends Component {
                             <Image
                             source={require('../assets/bunny/idle_02.gif')}
                             style={[styles.bunny]}/>
-                       </View>
+                       </View>;
             case 1:
                 return <View>
                             <Image
                             source={require('../assets/bunny/idle_01.gif')}
                             style={[styles.bunny]}/>
-                       </View>
+                       </View>;
             case 2:
                 return <View>
                             <Image
                             source={require('../assets/bunny/idle_03.gif')}
                             style={[styles.bunny]}/>
-                       </View>
+                       </View>;
             case 3:
                 return <View>
                             <Image
                             source={require('../assets/bunny/speak_05.gif')}
                             style={[styles.bunny]}/>
-                       </View>
+                       </View>;
             case 4:
                 return <View>
                             <Image
                             source={require('../assets/bunny/onTouch.gif')}
                             style={[styles.bunny]}/>
-                       </View>
+                       </View>;
             case 5:
                 return <View>
                             <Image
                             source={require('../assets/bunny/success_01.gif')}
                             style={[styles.bunny]}/>
-                       </View>
+                       </View>;
             case 6:
                 return <View>
                             <Image
                             source={require('../assets/bunny/success_02.gif')}
                             style={[styles.bunny]}/>
-                       </View>
+                       </View>;
             case 7:
                 return <View>
                             <Image
                             source={require('../assets/bunny/success_03.gif')}
                             style={[styles.bunny]}/>
-                       </View>
+                       </View>;
             case 8:
                 return <View>
-                    <Image
-                        source={require('../assets/bunny/speak_03.gif')}
-                        style={[styles.bunny]}/>
-                </View>
+                            <Image
+                            source={require('../assets/bunny/speak_03.gif')}
+                            style={[styles.bunny]}/>
+                       </View>;
             case 9:
                 return <View>
-                    <Image
-                        source={require('../assets/bunny/speak_02.gif')}
-                        style={[styles.bunny]}/>
-                </View>
+                            <Image
+                            source={require('../assets/bunny/speak_02.gif')}
+                            style={[styles.bunny]}/>
+                       </View>
         }
     }
     // Press function for exit
@@ -956,7 +1061,6 @@ export default class Level_1 extends Component {
         if (this.ismounted_Level1 === true) {
             return (
                 <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
-
                     {this.renderbunny()}
                     <View>
                         <FastImage
@@ -1005,11 +1109,6 @@ export default class Level_1 extends Component {
                                 </View>
                             </TouchableOpacity>
                         </Animatable.View>
-                    </View>
-                    <View style={[{position:'absolute'},{alignSelf:'center'}]}>
-                        <Text>bunny_Animation:{this.state.bunny_anim}</Text>
-                        <Text>bunny_Oder:{this.state.bunny_order}</Text>
-                        <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
                     </View>
                 </ImageBackground>
             );

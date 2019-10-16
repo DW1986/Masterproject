@@ -16,6 +16,31 @@ const RNFS = require('react-native-fs');
 const shuffle = require('shuffle-array');
 const timer = require('react-native-timer');
 const {width, height} = Dimensions.get('window');
+const Sound = require('react-native-sound');
+
+const fire_engine = new Sound('fire_engine.m4a', Sound.MAIN_BUNDLE);
+const strawberry = new Sound('strawberry.m4a', Sound.MAIN_BUNDLE);
+const police_car = new Sound('police_car.m4a', Sound.MAIN_BUNDLE);
+const whale = new Sound('whale.m4a', Sound.MAIN_BUNDLE);
+const leaf = new Sound('leaf.m4a', Sound.MAIN_BUNDLE);
+const frog = new Sound('frog.m4a', Sound.MAIN_BUNDLE);
+const sun = new Sound('sun.m4a', Sound.MAIN_BUNDLE);
+const bananas = new Sound('bananas.m4a', Sound.MAIN_BUNDLE);
+const flamingos = new Sound('flamingos.m4a', Sound.MAIN_BUNDLE);
+const pig = new Sound('pig.m4a', Sound.MAIN_BUNDLE);
+const horses = new Sound('horses.m4a', Sound.MAIN_BUNDLE);
+const teddy = new Sound('teddy.m4a', Sound.MAIN_BUNDLE);
+const butterfly = new Sound('butterfly.m4a', Sound.MAIN_BUNDLE);
+const flowers = new Sound('flowers.m4a', Sound.MAIN_BUNDLE);
+const fish = new Sound('fish.m4a', Sound.MAIN_BUNDLE);
+const carrots = new Sound('carrots.m4a', Sound.MAIN_BUNDLE);
+const ballons = new Sound('ballons.m4a', Sound.MAIN_BUNDLE);
+const ice_cream = new Sound('ice_cream.m4a', Sound.MAIN_BUNDLE);
+const Level_2_intro = new Sound('Level_2_intro.m4a', Sound.MAIN_BUNDLE);
+const Level_3_intro = new Sound('Level_3_intro.m4a', Sound.MAIN_BUNDLE);
+const Level_4_intro = new Sound('Level_4_intro.m4a', Sound.MAIN_BUNDLE);
+const error_brown_eng = new Sound('error_brown_eng.m4a', Sound.MAIN_BUNDLE);
+const error_2 = new Sound('error_2.m4a', Sound.MAIN_BUNDLE);
 
 export default class Level_2 extends Component {
     ismounted_Level2 = false;
