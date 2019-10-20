@@ -115,15 +115,16 @@ export default class Level_2 extends Component {
         this.state.orderRDM.push(...this.state.orderRDM2);
         this.setState({order:this.state.orderRDM[this.state.ordercount][0]});
         // update text on woodshild
-        this.updatetext()
+        this.updatetext();
+        this.animbunny();
     }
 
     componentWillMount() {
         // mount component
         this.ismounted_Level2 = true;
-        this.animbunny();
+
         // set interval for two errors over time
-        this.errorIntervall()
+        this.errorIntervall();
     }
 
     componentWillUnmount() {
@@ -266,7 +267,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -288,7 +289,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -310,7 +311,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -332,7 +333,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -354,7 +355,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -376,7 +377,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -398,7 +399,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -420,7 +421,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -442,7 +443,7 @@ export default class Level_2 extends Component {
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.setState(prevState => ({errorcount: prevState.errorcount + 1}));
                     this.error();
@@ -1007,7 +1008,7 @@ export default class Level_2 extends Component {
                     timer.setTimeout(this, 'error_2', () => {
                         error_2.play();
                     }, 50);
-                }else if(this.state.orderRDM[this.state.ordercount][0]===24 && this.state.error===0){
+                }else if(this.state.orderRDM[this.state.ordercount][0]===24 && this.state.errorcount===0){
                     timer.setTimeout(this, 'flowers', () => {
                         flowers.play();
                     }, 1000);

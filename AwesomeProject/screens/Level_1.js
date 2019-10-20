@@ -241,7 +241,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 1,drawcolor: '#F1F1F1',colorselected: false});
                     timer.setTimeout(this,'order_red',() => {
                         this.setState({order: 2,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
@@ -251,7 +251,7 @@ export default class Level_1 extends Component {
                     timer.setTimeout(this,'order_red2',() => {
                         this.setState({order: 4,bunny_order:3})
 
-                    }, 4000)
+                    }, 3000)
                 }
             break;
             case 'blue':
@@ -262,7 +262,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 5,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_blue',() => {
                         this.setState({order: 6,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
@@ -271,7 +271,7 @@ export default class Level_1 extends Component {
                     this.updatetext();
                     timer.setTimeout(this,'order_blue2',() => {
                         this.setState({order: 8,played:0,bunny_order:3})
-                    }, 4000)
+                    }, 3000)
                 }
                 break;
             case 'green':
@@ -282,7 +282,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 9,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_green',() => {
                         this.setState({order: 10,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
@@ -302,7 +302,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 13,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_yellow',() => {
                         this.setState({order: 14,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
@@ -311,7 +311,7 @@ export default class Level_1 extends Component {
                     this.updatetext();
                     timer.setTimeout(this,'order_yellow2',() => {
                         this.setState({order: 16,played:0,bunny_order:3})
-                    }, 4000)
+                    }, 3000)
                 }
                 break;
             case 'pink':
@@ -322,7 +322,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 17,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_pink',() => {
                         this.setState({order: 18,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
@@ -331,7 +331,7 @@ export default class Level_1 extends Component {
                     this.updatetext();
                     timer.setTimeout(this,'order_pink2',() => {
                         this.setState({order: 20,played:0,bunny_order:3})
-                    }, 4000)
+                    }, 3000)
                 }
                 break;
             case 'brown':
@@ -342,7 +342,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 21,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_brown',() => {
                         this.setState({order: 22,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
@@ -351,7 +351,7 @@ export default class Level_1 extends Component {
                     this.updatetext();
                     timer.setTimeout(this,'order_brown2',() => {
                         this.setState({order: 24,played:0,bunny_order:3})
-                    }, 4000)
+                    }, 3000)
                 }
                 break;
             case 'purple':
@@ -362,7 +362,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 25,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_purple',() => {
                         this.setState({order: 26,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
@@ -371,7 +371,7 @@ export default class Level_1 extends Component {
                     this.updatetext();
                     timer.setTimeout(this,'order_purple2',() => {
                         this.setState({order: 28,played:0,bunny_order:3})
-                    }, 4000)
+                    }, 3000)
                 }
                 break;
             case 'orange':
@@ -382,7 +382,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 29,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_orange',() => {
                         this.setState({order: 30,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
@@ -391,7 +391,7 @@ export default class Level_1 extends Component {
                     this.updatetext();
                     timer.setTimeout(this,'order_orange2',() => {
                         this.setState({order: 32,played:0,bunny_order:3})
-                    }, 4000)
+                    }, 3000)
                 }
                 break;
             case 'cyan':
@@ -402,7 +402,7 @@ export default class Level_1 extends Component {
                     this.setState({bunny_order:2,order: 33,colorselected: false,drawcolor: '#F1F1F1'});
                     timer.setTimeout(this,'order_cyan',() => {
                         this.setState({order: 34,played:0,dominantcolor:'white'})
-                    }, 4000)
+                    }, 3000)
                 } else {
                     this.rdm(3);
                     timer.clearInterval(this);
