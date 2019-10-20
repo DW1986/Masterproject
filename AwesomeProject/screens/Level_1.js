@@ -536,7 +536,6 @@ export default class Level_1 extends Component {
         switch (this.state.bunny_anim) {
             // idle02-bunny_order
             case 0:
-                this.rdm(2);
                 timer.setTimeout(this, 'idle_02_2a', () => {
                     this.setState({opacity0: 1})
                 }, 5500);
@@ -555,6 +554,7 @@ export default class Level_1 extends Component {
                                 }
                                 break;
                             case 2:
+                                this.rdm(3);
                                 this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                                 this.animbunny();
                                 break;
@@ -588,6 +588,7 @@ export default class Level_1 extends Component {
                             this.animbunny();
                             break;
                         case 2:
+                            this.rdm(3);
                             this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                             this.animbunny();
                             break;
@@ -622,6 +623,7 @@ export default class Level_1 extends Component {
                             this.animbunny();
                             break;
                         case 2:
+                            this.rdm(3);
                             this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                             this.animbunny();
                             break;
@@ -659,6 +661,7 @@ export default class Level_1 extends Component {
                             this.animbunny();
                             break;
                          case 2:
+                            this.rdm(3);
                             this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                             this.animbunny();
                             break;
@@ -696,6 +699,7 @@ export default class Level_1 extends Component {
                             this.animbunny();
                             break;
                         case 2:
+                            this.rdm(3);
                             this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                             this.animbunny();
                             break;
@@ -733,6 +737,7 @@ export default class Level_1 extends Component {
                             this.animbunny();
                             break;
                         case 2:
+                            this.rdm(3);
                             this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                             this.animbunny();
                             break;
@@ -770,6 +775,7 @@ export default class Level_1 extends Component {
                             this.animbunny();
                             break;
                         case 2:
+                            this.rdm(3);
                             this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                             this.animbunny();
                             break;
@@ -807,6 +813,7 @@ export default class Level_1 extends Component {
                             this.animbunny();
                             break;
                         case 2:
+                            this.rdm(3);
                             this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                             this.animbunny();
                             break;
@@ -948,6 +955,7 @@ export default class Level_1 extends Component {
                             this.animbunny();
                             break;
                         case 2:
+                            this.rdm(3);
                             this.setState({bunny_anim: this.state.rdm + 5, disableButton_bunny: true});
                             this.animbunny();
                             break;

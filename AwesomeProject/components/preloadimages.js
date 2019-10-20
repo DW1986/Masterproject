@@ -9,7 +9,7 @@ export function preloadImages() {
         require('../assets/bunny/idle_01.gif'),
         require('../assets/bunny/idle_02.gif'),
         require('../assets/bunny/idle_03.gif'),
-        require('../assets/bunny/initial_bunny.webp'),
+        require('../assets/bunny/initial_bunny.png'),
         require('../assets/bunny/onTouch.gif'),
         require('../assets/bunny/speak_01.gif'),
         require('../assets/bunny/speak_02.gif'),
