@@ -7,7 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import FastImage from 'react-native-fast-image'
 import {woodShild} from "../components/woodShild3";
 import {text} from "../components/text3";
-import {starfall} from "../components/starfall1234";
+import {starfall} from "../components/starfall234";
 import {pictureselector} from "../components/pictureselector34";
 
 const RNFS = require('react-native-fs');

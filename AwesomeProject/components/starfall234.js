@@ -1,6 +1,5 @@
 import React from "react";
 import {Image} from 'react-native';
-import FastImage from 'react-native-fast-image';
 import {Dimensions, StyleSheet} from "react-native";
 
 const {width, height} = Dimensions.get('window');
@@ -20,11 +19,10 @@ export function starfall(order) {
 
 const styles = StyleSheet.create({
     starfall: {
-        width: width/1.80,
-        height: height/1.65,
-        alignSelf:'center',
+        width: width/1.86,
+        height: height/1.74,
         position:'absolute',
-        left:-width/200,
-        bottom:height/17.3
+        right:width/200,
+        bottom:height/14.5
     }
 });

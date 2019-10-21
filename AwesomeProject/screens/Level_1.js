@@ -8,7 +8,7 @@ import FastImage from 'react-native-fast-image'
 import {colorselector} from "../components/colorselector1";
 import {woodShild} from "../components/woodShild1";
 import {text} from "../components/text1";
-import {starfall} from "../components/starfall1234";
+import {starfall} from "../components/starfall1";
 import {pictureselector} from "../components/pictureselector12";
 
 const {width, height} = Dimensions.get('window');

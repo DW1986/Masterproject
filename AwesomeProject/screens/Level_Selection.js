@@ -181,6 +181,10 @@ export default class Level_Selection extends React.Component {
     // Selection LvL1
     LvL1Press = () => {
         if (this.state.counterLvL1 === 1 && this.state.bunny_order!==4){
+            intro.stop();
+            level_1.stop();
+            speach_eng.stop();
+            speach_ger.stop();
             this.props.navigation.navigate('Level_1', { language: this.state.language,},this.resetLvLcounters())
         } else {
             this.setState(prevState => ({ counterLvL1: prevState.counterLvL1 + 1 }));
@@ -190,6 +194,10 @@ export default class Level_Selection extends React.Component {
     // Selection LvL2
     LvL2Press = () => {
         if (this.state.counterLvL2 === 1 && this.state.bunny_order!==4){
+            intro.stop();
+            level_2.stop();
+            speach_eng.stop();
+            speach_ger.stop();
             this.props.navigation.navigate('Level_2', { language: this.state.language },this.resetLvLcounters())
         } else {
             this.setState(prevState => ({ counterLvL2: prevState.counterLvL2 + 1 }));
@@ -199,6 +207,10 @@ export default class Level_Selection extends React.Component {
     // Selection LvL3
     LvL3Press = () => {
         if (this.state.counterLvL3 === 1 && this.state.bunny_order!==4){
+            intro.stop();
+            level_3.stop();
+            speach_eng.stop();
+            speach_ger.stop();
             this.props.navigation.navigate('Level_3', { language: this.state.language },this.resetLvLcounters())
         } else {
             this.setState(prevState => ({ counterLvL3: prevState.counterLvL3 + 1 }));
@@ -208,6 +220,10 @@ export default class Level_Selection extends React.Component {
     // Selection LvL4
     LvL4Press = () => {
         if (this.state.counterLvL4 === 1 && this.state.bunny_order!==4){
+            intro.stop();
+            level_4.stop();
+            speach_eng.stop();
+            speach_ger.stop();
             this.props.navigation.navigate('Level_4', { language: this.state.language },this.resetLvLcounters())
         } else {
             this.setState(prevState => ({ counterLvL4: prevState.counterLvL4 + 1 }));
@@ -721,7 +737,7 @@ const styles = StyleSheet.create({
     },
     eggs:{
         width:width/5.5,
-        height:height/3,
+        height:height/2.8,
     },
     butterflys:{
         width:width/25,
