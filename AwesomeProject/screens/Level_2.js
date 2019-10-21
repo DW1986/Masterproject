@@ -1175,14 +1175,6 @@ export default class Level_2 extends Component {
                     </View>
                     <View style={styles.colortabview}>
                         {this.colortabView()}
-                        <View style={[{position:'absolute'},{alignSelf:'center'}]}>
-                            <Text>error:{this.state.errorcount}</Text>
-                            <Text>bunny_Animation:{this.state.bunny_anim}</Text>
-                            <Text>bunny_Oder:{this.state.bunny_order}</Text>
-                            <Text>order:{this.state.order}</Text>
-                            <Text>language:{String(this.props.navigation.state.params.language===false)}</Text>
-
-                        </View>
                     </View>
                     <View style={styles.shildview}>
                         {woodShild(this.state.order, this.state.errorcount)}

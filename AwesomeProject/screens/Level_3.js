@@ -1231,14 +1231,6 @@ export default class Level_3 extends Component {
                             {text(this.state.order, this.state.textcolor1, this.state.textcolor2, this.state.textcolor3, this.state.text1, this.state.text2, this.state.text3)}
                         </View>
                     </View>
-                    <View style={[{position:'absolute'},{alignSelf:'center'}]}>
-                        <Text>error:{this.state.errorcount}</Text>
-                        <Text>bunny_Animation:{this.state.bunny_anim}</Text>
-                        <Text>bunny_Oder:{this.state.bunny_order}</Text>
-                        <Text>order:{this.state.order}</Text>
-                        <Text>language:{String(this.props.navigation.state.params.language===false)}</Text>
-
-                    </View>
                     <View style={styles.buttonView}>
                         <Animatable.View
                             style={styles.backtab} animation="slideInDown" duration={1000} delay={1000}

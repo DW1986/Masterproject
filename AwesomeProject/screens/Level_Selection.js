@@ -30,6 +30,8 @@ const speach_eng = new Sound('speach_eng.m4a', Sound.MAIN_BUNDLE);
 const speach_ger = new Sound('speach_ger.m4a', Sound.MAIN_BUNDLE);
 const exit = new Sound('exit.m4a', Sound.MAIN_BUNDLE);
 const onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE);
+const music = new Sound('bensound_ukulele.mp3', Sound.MAIN_BUNDLE);
+
 
 
 
@@ -41,7 +43,7 @@ export default class Level_Selection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading:false,
+            isLoading:true,
             cloud_1 : new Animated.Value(-80),
             cloud_2 : new Animated.Value(-240),
             cloud_3 : new Animated.Value(-400),
@@ -112,18 +114,21 @@ export default class Level_Selection extends React.Component {
         // mount component
         this.ismounted_Level_Selection = true;
 
+
     }
 
     async componentDidMount(){
+
         // preload images (makes no differenz at the moment)
         preloadImages();
-        this.animbunny();
+
         // start animbunny Intervall, when loading screen is over
         const data = await preloadImages();
         if (data !== null) {
             timer.setTimeout( this,'loading',
                 () => {
                     this.setState({ isLoading: false });
+                    this.animbunny();
                 },3000
             )
         }
@@ -183,6 +188,9 @@ export default class Level_Selection extends React.Component {
         if (this.state.counterLvL1 === 1 && this.state.bunny_order!==4){
             intro.stop();
             level_1.stop();
+            level_2.stop();
+            level_3.stop();
+            level_4.stop();
             speach_eng.stop();
             speach_ger.stop();
             this.props.navigation.navigate('Level_1', { language: this.state.language,},this.resetLvLcounters())
@@ -195,7 +203,10 @@ export default class Level_Selection extends React.Component {
     LvL2Press = () => {
         if (this.state.counterLvL2 === 1 && this.state.bunny_order!==4){
             intro.stop();
+            level_1.stop();
             level_2.stop();
+            level_3.stop();
+            level_4.stop();
             speach_eng.stop();
             speach_ger.stop();
             this.props.navigation.navigate('Level_2', { language: this.state.language },this.resetLvLcounters())
@@ -208,7 +219,10 @@ export default class Level_Selection extends React.Component {
     LvL3Press = () => {
         if (this.state.counterLvL3 === 1 && this.state.bunny_order!==4){
             intro.stop();
+            level_1.stop();
+            level_2.stop();
             level_3.stop();
+            level_4.stop();
             speach_eng.stop();
             speach_ger.stop();
             this.props.navigation.navigate('Level_3', { language: this.state.language },this.resetLvLcounters())
@@ -221,6 +235,9 @@ export default class Level_Selection extends React.Component {
     LvL4Press = () => {
         if (this.state.counterLvL4 === 1 && this.state.bunny_order!==4){
             intro.stop();
+            level_1.stop();
+            level_2.stop();
+            level_3.stop();
             level_4.stop();
             speach_eng.stop();
             speach_ger.stop();
@@ -373,7 +390,11 @@ export default class Level_Selection extends React.Component {
             // speak-bunny_order (intro)
             case 3:
                  timer.setTimeout(this, 'sound_intro', () => {
-                   intro.play()
+                   intro.play();
+                     music.setVolume(0.3);
+                     // Loop indefinitely until stop() is called
+                     music.setNumberOfLoops(-1);
+                     music.play();
                  }, 50);
                 timer.setTimeout(this, 'wink_a', () => {
                     this.setState({opacity0: 1})
@@ -639,13 +660,6 @@ export default class Level_Selection extends React.Component {
                 const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}];
                 return (
                     <ImageBackground source={require('../assets/other/Level_Selection.webp')} style={styles.background}>
-                        <View style={[{position:'absolute'},{alignSelf:'center'}]}>
-                            <Text>bunny_Animation:{this.state.bunny_anim}</Text>
-                            <Text>bunny_Oder:{this.state.bunny_order}</Text>
-                            <Text>disabled:{String(this.state.disableButton_bunny)}</Text>
-                            <Text>language:{String(this.state.language)}</Text>
-                            <Text>language pressed:{this.state.counterLanguage}</Text>
-                        </View>
                         <Animated.Image source={require('../assets/animations/butterfly_2.webp')} style={[styles.butterflys,{
                             bottom:'40%',left:'78%', transform:transform2 }]}/>
                         <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_1,
@@ -720,7 +734,6 @@ export default class Level_Selection extends React.Component {
                             <Image  source={require('../assets/other/Level_Selection_front2.webp')}
                                     style={styles.font2_gras} />
                         </View>
-
                     </ImageBackground>
                 );
             }
