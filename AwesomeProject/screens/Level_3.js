@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions, ImageBackground, StyleSheet, TouchableOpacity, Image, View, Text} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet, TouchableOpacity, Image, View} from 'react-native';
 import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
@@ -7,7 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import FastImage from 'react-native-fast-image'
 import {woodShild} from "../components/woodShild3";
 import {text} from "../components/text3";
-import {starfall} from "../components/starfall234";
+import {starfall} from "../components/starfall";
 import {pictureselector} from "../components/pictureselector34";
 
 const RNFS = require('react-native-fs');
@@ -175,7 +175,7 @@ export default class Level_3 extends Component {
                         this.updatetext();
                         if (this.state.order === 50)
                             timer.setTimeout(this,'21',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({order:0,bunny_order:1,bunny_anim:11,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
@@ -197,7 +197,7 @@ export default class Level_3 extends Component {
                         this.updatetext();
                         if (this.state.order === 50)
                             timer.setTimeout(this,'61',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({order:0,bunny_order:1,bunny_anim:11,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
@@ -219,7 +219,7 @@ export default class Level_3 extends Component {
                         this.updatetext();
                         if (this.state.order === 50)
                             timer.setTimeout(this,'101',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({order:0,bunny_order:1,bunny_anim:11,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
@@ -241,7 +241,7 @@ export default class Level_3 extends Component {
                         this.updatetext();
                         if (this.state.order === 50)
                             timer.setTimeout(this,'141',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({order:0,bunny_order:1,bunny_anim:11,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
@@ -257,13 +257,18 @@ export default class Level_3 extends Component {
                     timer.clearInterval(this);
                     this.errorIntervall();
                     this.setState({bunny_order:2,colorselected: false, errorcount: 0, drawcolor: '#F1F1F1',firstselected:false,secondselected:false});
+
                     this.setState(prevState => ({order: prevState.order + 1}));
                     timer.setTimeout(this,'18',() => {
-                        this.setState(prevState => ({order: prevState.order + 1}));
+                        if(this.state.order ===19){
+                            this.setState({order:50});
+                        }else{
+                            this.setState(prevState => ({order: prevState.order + 1}));
+                        }
                         this.updatetext();
-                        if(this.state.order=== 20) {
+                        if(this.state.order=== 50) {
                             timer.setTimeout(this,'181',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({order:0,bunny_order:1,bunny_anim:11,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             }, 5000)
@@ -652,7 +657,7 @@ export default class Level_3 extends Component {
         switch(this.state.order){
             case 0: case 4: case 8: case 12: case 16:
                 return  <Animatable.View style={styles.colortab} animation={{
-                    from:{left:-120},
+                    from:{left:-width/6.5},
                     to:{left:0}
                 }} duration={1000} easing={"linear"}>
                     {this.first()}
@@ -662,7 +667,7 @@ export default class Level_3 extends Component {
             case 3: case 7: case 11: case 15: case 19:
                 return  <Animatable.View style={styles.colortab} animation={{
                     from:{left:0},
-                    to:{left:-120}
+                    to:{left:-width/6.5}
                 }} duration={1000} easing={"linear"}>
                     <TouchableOpacity onPress={() => { this.setState({firstselected:!this.state.firstselected});
                         this.refs.sketchRef.clear()}}>
@@ -719,10 +724,10 @@ export default class Level_3 extends Component {
             case 0:
                 timer.setTimeout(this, 'idle_02_2a', () => {
                     this.setState({opacity0: 1});
-                }, 5500);
+                }, 3500);
                 timer.setTimeout(this, 'idle_02_2b', () => {
                     this.setState({opacity0: 0});
-                }, 6500);
+                }, 4500);
                 timer.setTimeout(this, 'idle_02_1', () => {
                     switch (this.state.bunny_order) {
                         case 1:
@@ -761,7 +766,7 @@ export default class Level_3 extends Component {
                             break;
 
                     }
-                }, 6000);
+                }, 4000);
                 break;
             // idle01-bunny_order
             case 1:
@@ -872,6 +877,7 @@ export default class Level_3 extends Component {
             case 8:
                 this.setState({bunny_order:1});
                 if (this.state.errorcount === 1) {
+                    this.setState({dominantcolor: 'white'});
                     if(this.props.navigation.state.params.language===false) {
                         this.setState({errorcount:0});
                         switch(this.state.order){
@@ -1028,9 +1034,10 @@ export default class Level_3 extends Component {
                 if(this.state.exit===1){
                     timer.setTimeout(this, 'exit_lvl', () => {
                         exit_lvl.play();
-                        this.setState({exit: 0,start:1});
+
                         timer.clearInterval(this);
                         timer.setTimeout(this, 'navigate', () => {
+                            this.setState({order:0,bunny_order:1,bunny_anim:11,exit: 0,start:1});
                             this.props.navigation.navigate('Level_Selection')
                         }, 4000);
                     }, 1000);
@@ -1108,73 +1115,73 @@ export default class Level_3 extends Component {
             case 0:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_02.gif')}
+                        source={require('../assets/bunny/idle_02.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 1:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_01.gif')}
+                        source={require('../assets/bunny/idle_01.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 2:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_03.gif')}
+                        source={require('../assets/bunny/idle_03.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 3:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_05.gif')}
+                        source={require('../assets/bunny/speak_05.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 4:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/onTouch.gif')}
+                        source={require('../assets/bunny/onTouch.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 5:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/success_01.gif')}
+                        source={require('../assets/bunny/success_01.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 6:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/success_02.gif')}
+                        source={require('../assets/bunny/success_02.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 7:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/success_03.gif')}
+                        source={require('../assets/bunny/success_03.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 8:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_04.gif')}
+                        source={require('../assets/bunny/speak_04.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 9:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_03.gif')}
+                        source={require('../assets/bunny/speak_03.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 10:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_02.gif')}
+                        source={require('../assets/bunny/speak_02.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 11:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_06.gif')}
+                        source={require('../assets/bunny/speak_06.webp')}
                         style={[styles.bunny]}/>
                 </View>;
         }
@@ -1212,16 +1219,18 @@ export default class Level_3 extends Component {
                         <SketchCanvas
                             ref="sketchRef"
                             style={{flex: 1}}
-                            strokeWidth={40}
+                            strokeWidth={height/12}
                             strokeColor={this.state.drawcolor}
                             onStrokeEnd={this.makeScreenshot}
                         />
                     </ViewShot>
                     <View pointerEvents="none"
-                          style={[styles.pictures, {position: 'absolute'}]}>
+                          style={{position: 'absolute'}}>
                         {pictureselector(this.state.order)}
                         {starfall(this.state.order)}
+                        <View style={[styles.paint,{position:"absolute"},{backgroundColor:'transparent'}]}/>
                     </View>
+
                     <View style={styles.colortabview}>
                         {this.colortabView()}
                     </View>
@@ -1246,6 +1255,7 @@ export default class Level_3 extends Component {
 
                         </Animatable.View>
                     </View>
+
                 </ImageBackground>
             );
         }
@@ -1267,8 +1277,8 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     colortab: {
-        width: 120,
-        height: 160,
+        width: width/6.5,
+        height: height/2.9,
         backgroundColor: 'white',
         borderRightColor: '#808080',
         borderRightWidth: 3,
@@ -1282,12 +1292,11 @@ const styles = StyleSheet.create({
     },
     paint: {
         backgroundColor: '#F1F1F1',
-        width: 400,
-        height: 244,
+        width: width/1.80,
+        height: height/1.70,
         borderColor: 'black',
         borderWidth: 4,
-        marginBottom: 65,
-        marginLeft: 0,
+        marginBottom: height/6,
     },
     buttonView: {
         justifyContent: 'flex-start',
@@ -1320,14 +1329,14 @@ const styles = StyleSheet.create({
     },
     font2_gras: {
         right:-width/2,
-        bottom:-height/1.18,
+        bottom:-height/1.16,
         position: 'absolute',
         width:width,
         height:height,
     },
     colors: {
-        width: 55,
-        height: 77,
+        width: width/14,
+        height: height/5.9,
     },
     bunny: {
         width: width/6,

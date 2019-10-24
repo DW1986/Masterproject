@@ -134,7 +134,7 @@ export function text(order,errorcount,textcolor1,textcolor2,textcolor3,text1,tex
 
 const styles = StyleSheet.create({
     text:{
-        fontSize: 33,
+        fontSize: height/12.5,
         fontStyle: 'normal',
         fontWeight: 'bold',
         textShadowColor:'black',

@@ -1,6 +1,8 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet,Dimensions} from "react-native";
 import React from 'react';
 import FastImage from 'react-native-fast-image';
+
+const {width, height} = Dimensions.get('window');
 
 // render the color-pictures depending on the order for lvl 1
 export function colorselector(order,colorselected){
@@ -83,7 +85,7 @@ export function colorselector(order,colorselected){
 
 const styles = StyleSheet.create({
  colors: {
-        width: 60,
-        height: 85,
+     width: width/14,
+     height: height/5.9,
     }
 });

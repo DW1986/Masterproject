@@ -183,7 +183,7 @@ const {height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     text:{
-        fontSize: 33,
+        fontSize: height/12.5,
         fontStyle: 'normal',
         fontWeight: 'bold',
         textShadowColor:'black',

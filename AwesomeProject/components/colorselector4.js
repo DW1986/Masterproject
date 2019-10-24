@@ -1,6 +1,8 @@
-import {StyleSheet} from "react-native";
+import {Dimensions, StyleSheet} from "react-native";
 import React from 'react';
 import FastImage from 'react-native-fast-image';
+
+const {width, height} = Dimensions.get('window');
 
 // render the color-pictures for lvl 2
 export function red(first,second){
@@ -78,7 +80,7 @@ export function cyan(first,second){
 
 const styles = StyleSheet.create({
     colors: {
-        width: 55,
-        height: 77,
+        width: width/14,
+        height: height/5.9,
     }
 });

@@ -89,16 +89,19 @@ const {width, height} = Dimensions.get('window');
                 return <Animatable.Image
                     style={styles.pictures} animation="fadeOut" duration={7000} easing={"ease-out-expo"} useNativeDriver={true}
                     source={require('../assets/pictures/ice-cream.webp')}/>;
+            case 50:
+                return <Animatable.Image
+                    style={styles.pictures} animation="fadeOut" duration={7000} easing={"ease-out-expo"} useNativeDriver={true}
+                    source={require('../assets/pictures/blank.png')}/>;
         }
     }
 
 const styles = StyleSheet.create({
     pictures: {
         resizeMode:'contain',
-        width: width/1.83,
-        height: height/1.8,
         alignSelf:'center',
-        left:-width/400,
-        top:-height/ 12
+        width: width/1.80,
+        height: height/1.70,
+        marginBottom: height/6,
     }
 });

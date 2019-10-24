@@ -36,7 +36,6 @@ const music = new Sound('bensound_ukulele.mp3', Sound.MAIN_BUNDLE);
 
 
 
-
 export default class Level_Selection extends React.Component {
     ismounted_Level_Selection = false;
 
@@ -182,6 +181,7 @@ export default class Level_Selection extends React.Component {
         // cancle all timer and interal
         timer.timeoutExists(this);
         timer.timeoutExists(this);
+        music.stop();
     }
     // Selection LvL1
     LvL1Press = () => {
@@ -196,7 +196,7 @@ export default class Level_Selection extends React.Component {
             this.props.navigation.navigate('Level_1', { language: this.state.language,},this.resetLvLcounters())
         } else {
             this.setState(prevState => ({ counterLvL1: prevState.counterLvL1 + 1 }));
-            this.setState({played2:0,played3:0,played4:0,counterLvL2:0,counterLvL3:0,counterLvL4:0,bunny_order:3})
+            this.setState({counterLanguage:0,played2:0,played3:0,played4:0,counterLvL2:0,counterLvL3:0,counterLvL4:0,bunny_order:3})
         }
     };
     // Selection LvL2
@@ -212,7 +212,7 @@ export default class Level_Selection extends React.Component {
             this.props.navigation.navigate('Level_2', { language: this.state.language },this.resetLvLcounters())
         } else {
             this.setState(prevState => ({ counterLvL2: prevState.counterLvL2 + 1 }));
-            this.setState({played1:0,played3:0,played4:0,counterLvL1:0,counterLvL3:0,counterLvL4:0,bunny_order:5})
+            this.setState({counterLanguage:0,played1:0,played3:0,played4:0,counterLvL1:0,counterLvL3:0,counterLvL4:0,bunny_order:5})
         }
     };
     // Selection LvL3
@@ -228,7 +228,7 @@ export default class Level_Selection extends React.Component {
             this.props.navigation.navigate('Level_3', { language: this.state.language },this.resetLvLcounters())
         } else {
             this.setState(prevState => ({ counterLvL3: prevState.counterLvL3 + 1 }));
-            this.setState({played1:0,played2:0,played4:0,counterLvL1:0,counterLvL2:0,counterLvL4:0,bunny_order:3})
+            this.setState({counterLanguage:0,played1:0,played2:0,played4:0,counterLvL1:0,counterLvL2:0,counterLvL4:0,bunny_order:3})
         }
     };
     // Selection LvL4
@@ -244,7 +244,7 @@ export default class Level_Selection extends React.Component {
             this.props.navigation.navigate('Level_4', { language: this.state.language },this.resetLvLcounters())
         } else {
             this.setState(prevState => ({ counterLvL4: prevState.counterLvL4 + 1 }));
-            this.setState({played1:0,played2:0,played3:0,counterLvL1:0,counterLvL2:0,counterLvL3:0,bunny_order:5})
+            this.setState({counterLanguage:0,played1:0,played2:0,played3:0,counterLvL1:0,counterLvL2:0,counterLvL3:0,bunny_order:5})
         }
     };
     // render flag for language
@@ -273,7 +273,8 @@ export default class Level_Selection extends React.Component {
     }
     //disable language button for some time after pressed
     disablelanguagetimer(){
-        timer.setTimeout(this,'language',() => this.setState({disableButton_language:false,counterLanguage:0}),10000)
+        timer.setTimeout(this,'language',() => this.setState({disableButton_language:false}),10000)
+
     }
     // get rdm number for idle animation bunny
     rdm(max) {
@@ -330,28 +331,7 @@ export default class Level_Selection extends React.Component {
                     this.setState({opacity0: 0})
                 }, 4500);
                 timer.setTimeout(this, 'idle_01', () => {
-                    switch(this.state.bunny_order){
-                        case 1:
-                            this.setState({bunny_anim: 0, disableButton_bunny: false});
-                            this.animbunny();
-                            break;
-                        case 3:
-                            this.setState({bunny_anim: 5, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 4:
-                            this.setState({bunny_anim: 4, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 5:
-                            this.setState({bunny_anim: 6, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 6:
-                            this.setState({bunny_anim: 7, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                    }
+                    this.helper01();
                 }, 4000);
                 break;
             // idle03-bunny_order
@@ -363,39 +343,18 @@ export default class Level_Selection extends React.Component {
                     this.setState({opacity0: 0})
                 }, 5000);
                 timer.setTimeout(this, 'idle_03', () => {
-                    switch(this.state.bunny_order){
-                        case 1:
-                            this.setState({bunny_anim: 0, disableButton_bunny: false});
-                            this.animbunny();
-                            break;
-                        case 3:
-                            this.setState({bunny_anim: 5, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 4:
-                            this.setState({bunny_anim: 4, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 5:
-                            this.setState({bunny_anim: 6, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 6:
-                            this.setState({bunny_anim: 7, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                    }
+                    this.helper01();
                 }, 4500);
                 break;
             // speak-bunny_order (intro)
             case 3:
-                 timer.setTimeout(this, 'sound_intro', () => {
+                timer.setTimeout(this, 'sound_intro', () => {
                    intro.play();
-                     music.setVolume(0.3);
+                     music.setVolume(0.1);
                      // Loop indefinitely until stop() is called
                      music.setNumberOfLoops(-1);
                      music.play();
-                 }, 50);
+                }, 200);
                 timer.setTimeout(this, 'wink_a', () => {
                     this.setState({opacity0: 1})
                 }, 6500);
@@ -403,28 +362,7 @@ export default class Level_Selection extends React.Component {
                     this.setState({opacity0: 0})
                 }, 7500);
                 timer.setTimeout(this, 'wink', () => {
-                       switch(this.state.bunny_order) {
-                           case 1:
-                               this.setState({bunny_anim: 0, disableButton_bunny: false});
-                               this.animbunny();
-                               break;
-                           case 3:
-                               this.setState({bunny_anim: 5, disableButton_bunny: true});
-                               this.animbunny();
-                               break;
-                           case 4:
-                               this.setState({bunny_anim: 4, disableButton_bunny: true});
-                               this.animbunny();
-                               break;
-                           case 5:
-                               this.setState({bunny_anim: 6, disableButton_bunny: true});
-                               this.animbunny();
-                               break;
-                           case 6:
-                               this.setState({bunny_anim: 7, disableButton_bunny: true});
-                               this.animbunny();
-                               break;
-                       }
+                    this.helper01();
                 }, 7000);
                 break;
             // onTouch-bunny_order
@@ -440,86 +378,52 @@ export default class Level_Selection extends React.Component {
                     this.setState({opacity0: 0})
                 }, 5000);
                 timer.setTimeout(this, 'onTouch', () => {
-                    switch(this.state.bunny_order) {
-                        case 1:
-                            this.setState({bunny_anim: 0, disableButton_bunny: false});
-                            this.animbunny();
-                            break;
-                        case 3:
-                            this.setState({bunny_anim: 5, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 4:
-                            this.setState({bunny_anim: 4, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 5:
-                            this.setState({bunny_anim: 6, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 6:
-                            this.setState({bunny_anim: 7, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                    }
+                    this.helper01();
                 }, 4500);
                 break;
             //speak04-lvl 1 +3 + language
             case 5:
                 this.setState({bunny_order:1});
-                if(this.state.counterLvL1 >= 1){
+                if(this.state.counterLvL1 >= 1 && this.state.counterLanguage===0){
                     timer.setTimeout(this, 'sound_level_1', () => {
                         level_1.play();
                     }, 50);
-                } else if (this.state.counterLvL3 >= 1) {
+                } else if (this.state.counterLvL3 >= 1 && this.state.counterLanguage===0) {
                     timer.setTimeout(this, 'sound_level_3', () => {
                         level_3.play();
                     }, 50);
                 }else if (this.state.counterLanguage ===1){
                     if(this.state.language===false){
                         timer.setTimeout(this, 'sound_ger', () => {
-                            this.setState({bunny_order:1});
                             speach_ger.play();
-                        }, 50);
+                        }, 200);
                     } else {
                         timer.setTimeout(this, 'sound_eng', () => {
-                            this.setState({bunny_order:1});
                             speach_eng.play();
-                        }, 50);
+                        }, 200);
                     }
+                }
+                if(this.state.counterLvL1>=1 && this.state.counterLanguage===0){
+                    timer.setTimeout(this, 'speak_04_ba', () => {
+                        this.setState({opacity0: 0})
+                    }, 6500);
+                }else if (this.state.counterLvL3>=1 && this.state.counterLanguage===0 ){
+                    timer.setTimeout(this, 'speak_04_bb', () => {
+                        this.setState({opacity0: 0})
+                    }, 6500);
+                }else if (this.state.counterLanguage===1) {
+                    timer.setTimeout(this, 'speak_04_bc', () => {
+                        this.setState({opacity0: 0})
+                    }, 6500);
                 }
                 timer.setTimeout(this, 'speak_04_a', () => {
                     this.setState({opacity0: 1})
                 }, 5500);
-                timer.setTimeout(this, 'speak_04_b', () => {
-                    this.setState({opacity0: 0})
-                }, 6500);
                 timer.setTimeout(this, 'speak_04', () => {
-                    switch(this.state.bunny_order) {
-                        case 1:
-                            this.setState({bunny_anim: 0, disableButton_bunny: false});
-                            this.animbunny();
-                            break;
-                        case 3:
-                            this.setState({bunny_anim: 5, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 4:
-                            this.setState({bunny_anim: 4, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 5:
-                            this.setState({bunny_anim: 6, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 6:
-                            this.setState({bunny_anim: 7, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                    }
+                    this.helper01();
                 }, 6000);
                 break;
-            //speak04-lvl 2 +4
+            //speak05-lvl 2 +4
             case 6:
                 this.setState({bunny_order:1});
                 if(this.state.counterLvL2 >= 1){
@@ -531,38 +435,23 @@ export default class Level_Selection extends React.Component {
                         level_4.play()
                     }, 50);
                 }
-                timer.setTimeout(this, 'speak_04_a', () => {
+                if(this.state.counterLvL2>=1) {
+                    timer.setTimeout(this, 'speak_05_ba', () => {
+                        this.setState({opacity0: 0})
+                    }, 7500);
+                }else if (this.state.counterLvL4>=1) {
+                    timer.setTimeout(this, 'speak_05_bb', () => {
+                        this.setState({opacity0: 0})
+                    }, 7500);
+                }
+                timer.setTimeout(this, 'speak_05_a', () => {
                     this.setState({opacity0: 1})
-                }, 5500);
-                timer.setTimeout(this, 'speak_04_b', () => {
-                    this.setState({opacity0: 0})
                 }, 6500);
-                timer.setTimeout(this, 'speak_04', () => {
-                    switch(this.state.bunny_order) {
-                        case 1:
-                            this.setState({bunny_anim: 0, disableButton_bunny: false});
-                            this.animbunny();
-                            break;
-                        case 3:
-                            this.setState({bunny_anim: 5, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 4:
-                            this.setState({bunny_anim: 4, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 5:
-                            this.setState({bunny_anim: 6, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                        case 6:
-                            this.setState({bunny_anim: 7, disableButton_bunny: true});
-                            this.animbunny();
-                            break;
-                    }
-                }, 6000);
+                timer.setTimeout(this, 'speak_05', () => {
+                   this.helper01();
+                }, 7000);
                 break;
-            //success_03-bunny_order
+            //speak_03 exit
             case 7:
                 this.setState({bunny_order:1});
                 timer.setTimeout(this, 'sound_exit', () => {
@@ -580,55 +469,79 @@ export default class Level_Selection extends React.Component {
                 break;
         }
     }
+    helper01(){
+        switch(this.state.bunny_order) {
+            case 1:
+                this.setState({bunny_anim: 0, disableButton_bunny: false});
+                this.animbunny();
+                break;
+            case 3:
+                this.setState({bunny_anim: 5, disableButton_bunny: true});
+                this.animbunny();
+                break;
+            case 4:
+                this.setState({bunny_anim: 4, disableButton_bunny: true});
+                this.animbunny();
+                break;
+            case 5:
+                this.setState({bunny_anim: 6, disableButton_bunny: true});
+                this.animbunny();
+                break;
+            case 6:
+                this.setState({bunny_anim: 7, disableButton_bunny: true});
+                this.animbunny();
+                break;
+        }
+    }
     // render bunny depending on bunny_order
     renderbunny() {
         switch (this.state.bunny_anim) {
             case 0:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_02.gif')}
+                        source={require('../assets/bunny/idle_02.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 1:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_01.gif')}
+                        source={require('../assets/bunny/idle_01.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 2:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_03.gif')}
+                        source={require('../assets/bunny/idle_03.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 3:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/wink.gif')}
+                        source={require('../assets/bunny/wink.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 4:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/onTouch.gif')}
+                        source={require('../assets/bunny/onTouch.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 5:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_04.gif')}
+                        source={require('../assets/bunny/speak_04.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 6:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_05.gif')}
+                        source={require('../assets/bunny/speak_05.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 7:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_03.gif')}
+                        source={require('../assets/bunny/speak_03.webp')}
                         style={[styles.bunny]}/>
                 </View>;
         }
@@ -660,6 +573,7 @@ export default class Level_Selection extends React.Component {
                 const transform2 = [{ translateY: this.translateY2 }, {translateX: this.translateX2}];
                 return (
                     <ImageBackground source={require('../assets/other/Level_Selection.webp')} style={styles.background}>
+
                         <Animated.Image source={require('../assets/animations/butterfly_2.webp')} style={[styles.butterflys,{
                             bottom:'40%',left:'78%', transform:transform2 }]}/>
                         <Animated.Image source={require('../assets/other/cloud.webp')} style ={[styles.cloud,{left:this.state.cloud_1,
@@ -749,13 +663,15 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
     eggs:{
-        width:width/5.5,
+        width:width/5.2,
         height:height/2.8,
+        resizeMode: 'contain'
     },
     butterflys:{
         width:width/25,
-        height:height/17,
-        position:'absolute'
+        height:height/15,
+        position:'absolute',
+        resizeMode: 'contain'
     },
     cloud:{
         width:width/8,
@@ -808,6 +724,6 @@ const styles = StyleSheet.create({
         height: height/2.5,
         position:'absolute',
         marginLeft:width/1.2,
-        marginTop:height/2
+        marginTop:height/1.9
     },
 });

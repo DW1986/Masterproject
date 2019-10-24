@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Dimensions, Image, ImageBackground, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {SketchCanvas} from '@terrylinla/react-native-sketch-canvas';
 import ViewShot from "react-native-view-shot";
 import {getAllSwatches} from 'react-native-palette';
@@ -7,7 +7,7 @@ import * as Animatable from 'react-native-animatable';
 import FastImage from 'react-native-fast-image'
 import {woodShild} from "../components/woodShild2";
 import {text} from "../components/text2";
-import {starfall} from "../components/starfall234";
+import {starfall} from "../components/starfall";
 import {pictureselector} from "../components/pictureselector12";
 import {red,blue,green,yellow,pink,brown,purple,orange,cyan} from "../components/colorselector2";
 
@@ -263,7 +263,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'21',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -285,7 +285,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'61',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -307,7 +307,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'101',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -329,7 +329,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'141',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -351,7 +351,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'181',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -373,7 +373,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'221',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -395,7 +395,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'261',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -417,7 +417,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'301',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -439,7 +439,7 @@ export default class Level_2 extends Component {
                         this.updatetext();
                         if(this.state.order===50)
                             timer.setTimeout(this,'341',() => {
-                                this.setState({exit: 0,start:1});
+                                this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                                 timer.clearInterval(this);
                                 this.props.navigation.navigate('Level_Selection')
                             },5000)
@@ -600,10 +600,10 @@ export default class Level_2 extends Component {
             case 0:
                 timer.setTimeout(this, 'idle_02_2a', () => {
                     this.setState({opacity0: 1});
-                }, 5500);
+                }, 3500);
                 timer.setTimeout(this, 'idle_02_2b', () => {
                     this.setState({opacity0: 0});
-                }, 6500);
+                }, 4500);
                 timer.setTimeout(this, 'idle_02_1', () => {
                     switch (this.state.bunny_order) {
                         case 1:
@@ -642,7 +642,7 @@ export default class Level_2 extends Component {
                             break;
 
                     }
-                }, 6000);
+                }, 4000);
                 break;
             // idle01-bunny_order
             case 1:
@@ -764,6 +764,7 @@ export default class Level_2 extends Component {
             case 8:
                 this.setState({bunny_order:1});
                 if (this.state.errorcount === 1) {
+                    this.setState({dominantcolor: 'white'});
                     if(this.props.navigation.state.params.language===false) {
                         switch(this.state.orderRDM[this.state.ordercount][0]){
                             case 0: case 2:
@@ -937,7 +938,7 @@ export default class Level_2 extends Component {
                         case 4:
                             timer.setTimeout(this, 'police_car', () => {
                                 police_car.play();
-                            }, 1000);
+                            }, 500);
                             break;
                         case 10:
                             timer.setTimeout(this, 'frog', () => {
@@ -1001,12 +1002,14 @@ export default class Level_2 extends Component {
                         this.setState({exit: 0,start:1});
                         timer.clearInterval(this);
                         timer.setTimeout(this, 'navigate', () => {
+                            this.setState({ ordercount:0,order:0,bunny_order:1,bunny_anim:3,exit: 0,start:1});
                             this.props.navigation.navigate('Level_Selection')
                         }, 4000);
                     }, 1000);
                 }else if(this.state.errorcount===2) {
                     timer.setTimeout(this, 'error_2', () => {
                         error_2.play();
+                        this.setState({dominantcolor: 'white'});
                     }, 50);
                 }else if(this.state.orderRDM[this.state.ordercount][0]===24 && this.state.errorcount===0){
                     timer.setTimeout(this, 'flowers', () => {
@@ -1065,67 +1068,67 @@ export default class Level_2 extends Component {
             case 0:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_02.gif')}
+                        source={require('../assets/bunny/idle_02.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 1:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_01.gif')}
+                        source={require('../assets/bunny/idle_01.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 2:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/idle_03.gif')}
+                        source={require('../assets/bunny/idle_03.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 3:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_05.gif')}
+                        source={require('../assets/bunny/speak_05.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 4:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/onTouch.gif')}
+                        source={require('../assets/bunny/onTouch.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 5:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/success_01.gif')}
+                        source={require('../assets/bunny/success_01.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 6:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/success_02.gif')}
+                        source={require('../assets/bunny/success_02.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 7:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/success_03.gif')}
+                        source={require('../assets/bunny/success_03.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 8:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_04.gif')}
+                        source={require('../assets/bunny/speak_04.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 9:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_03.gif')}
+                        source={require('../assets/bunny/speak_03.webp')}
                         style={[styles.bunny]}/>
                 </View>;
             case 10:
                 return <View>
                     <Image
-                        source={require('../assets/bunny/speak_02.gif')}
+                        source={require('../assets/bunny/speak_02.webp')}
                         style={[styles.bunny]}/>
                 </View>
         }
@@ -1163,15 +1166,16 @@ export default class Level_2 extends Component {
                         <SketchCanvas
                             ref="sketchRef"
                             style={{flex: 1}}
-                            strokeWidth={40}
+                            strokeWidth={height/12}
                             strokeColor={this.state.drawcolor}
                             onStrokeEnd={this.makeScreenshot}
                         />
                     </ViewShot>
                     <View pointerEvents="none"
-                          style={[styles.pictures, {position: 'absolute'}]}>
+                          style={[{position: 'absolute'}]}>
                         {pictureselector(this.state.order)}
                         {starfall(this.state.order)}
+                        <View style={[styles.paint,{position:"absolute"},{backgroundColor:'transparent'}]}/>
                     </View>
                     <View style={styles.colortabview}>
                         {this.colortabView()}
@@ -1217,24 +1221,26 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     colortab: {
-        width: 120,
-        height: '100%',
+        width: width/6,
+        height: height/1.15,
         backgroundColor: 'white',
         borderRightColor: '#808080',
         borderRightWidth: 3,
+        borderTopRightRadius: 4,
+        borderTopColor: '#808080',
+        borderTopWidth: 3,
         justifyContent: 'center',
         alignItems: 'center',
         flexDirection: 'row',
-        flexWrap:'wrap'
+        flexWrap:'wrap',
     },
     paint: {
         backgroundColor: '#F1F1F1',
-        width: 400,
-        height: 244,
+        width: width/1.80,
+        height: height/1.70,
         borderColor: 'black',
         borderWidth: 4,
-        marginBottom: 65,
-        marginLeft: 0,
+        marginBottom: height/6,
     },
     buttonView: {
         justifyContent: 'flex-start',
@@ -1267,7 +1273,7 @@ const styles = StyleSheet.create({
     },
     font2_gras: {
         right:-width/2,
-        bottom:-height/1.18,
+        bottom:-height/1.16,
         position: 'absolute',
         width:width,
         height:height,

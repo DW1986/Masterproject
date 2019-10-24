@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'orange'
+        backgroundColor: '#FFA500'
     },
     pictures:{
         height:100,
