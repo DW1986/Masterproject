@@ -46,13 +46,10 @@ export function preloadImages() {
         require('../assets/animations/egg_4.webp'),
         require('../assets/animations/starfall.webp'),
     ];
-
     const uris = images.map(image => ({
         uri: Image.resolveAssetSource(image).uri
     }));
-
     FastImage.preload(uris);
-
 }
 
 

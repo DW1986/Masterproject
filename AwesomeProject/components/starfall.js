@@ -8,21 +8,36 @@ const {width, height} = Dimensions.get('window');
 export function starfall(order) {
 
     switch (order) {
-        case 1: case 3: case 5: case 7: case 9:
-        case 11: case 13: case 15: case 17: case 19:
-        case 21: case 23: case 25: case 27: case 29:
-        case 31: case 33:case 35: case 50:
-            return <Image  style={styles.starfall}
-                              source={require('../assets/animations/starfall.webp')}/>;
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 9:
+        case 11:
+        case 13:
+        case 15:
+        case 17:
+        case 19:
+        case 21:
+        case 23:
+        case 25:
+        case 27:
+        case 29:
+        case 31:
+        case 33:
+        case 35:
+        case 50:
+            return <Image style={styles.starfall}
+                          source={require('../assets/animations/starfall.webp')}/>;
     }
 }
 
 const styles = StyleSheet.create({
     starfall: {
-        width: width/1.81,
-        height: height/1.72,
-        alignSelf:"center",
-        position:'absolute',
-        marginTop:1.5
+        width: width / 1.81,
+        height: height / 1.72,
+        alignSelf: "center",
+        position: 'absolute',
+        marginTop: 1.5
     }
 });
