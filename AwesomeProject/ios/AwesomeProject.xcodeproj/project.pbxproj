@@ -63,6 +63,7 @@
 		2FA77C72C8A5407E8927D822 /* Unicorn Pop.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6D20F678C783426B8ECCDB25 /* Unicorn Pop.ttf */; };
 		C770EABB180446908D4AA5FD /* libRNPalette.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF52067852A4170B669CE2F /* libRNPalette.a */; };
 		6724049769F645E59F0E53CD /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 696373C47B044C269E0E90D9 /* libRNSound.a */; };
+		E494E95C74A44841865E487A /* libRNExitApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E5855B3A8F1B4B27AF010137 /* libRNExitApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -401,6 +402,8 @@
 		EFF52067852A4170B669CE2F /* libRNPalette.a */ = {isa = PBXFileReference; name = "libRNPalette.a"; path = "libRNPalette.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		741239E1C83A42A1A4B51461 /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		696373C47B044C269E0E90D9 /* libRNSound.a */ = {isa = PBXFileReference; name = "libRNSound.a"; path = "libRNSound.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6FEC47C01C194680A8D60B17 /* RNExitApp.xcodeproj */ = {isa = PBXFileReference; name = "RNExitApp.xcodeproj"; path = "../node_modules/react-native-exit-app/ios/RNExitApp.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E5855B3A8F1B4B27AF010137 /* libRNExitApp.a */ = {isa = PBXFileReference; name = "libRNExitApp.a"; path = "libRNExitApp.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -436,6 +439,7 @@
 				3FB0EF216F9C4E699351106F /* libFastImage.a in Frameworks */,
 				C770EABB180446908D4AA5FD /* libRNPalette.a in Frameworks */,
 				6724049769F645E59F0E53CD /* libRNSound.a in Frameworks */,
+				E494E95C74A44841865E487A /* libRNExitApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,6 +637,7 @@
 				4DA6063463404A1C8322BCEC /* FastImage.xcodeproj */,
 				36C959A744B1438E821D365A /* RNPalette.xcodeproj */,
 				741239E1C83A42A1A4B51461 /* RNSound.xcodeproj */,
+				6FEC47C01C194680A8D60B17 /* RNExitApp.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";

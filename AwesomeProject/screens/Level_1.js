@@ -47,12 +47,6 @@ export default class Level_1 extends Component {
             err_time_select: 0,
             err_time_color: 0,
             start: 1,
-            time_error_played: 0,
-            color_error_played: 0,
-            intro_played: 0,
-            color_played: 0,
-            success_played: 0,
-            exit_played: 0,
             opacity0: 0
         }
     }
@@ -218,7 +212,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 1,
                         drawcolor: '#F1F1F1',
@@ -233,7 +227,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 3,
                         colorselected: false,
@@ -253,7 +247,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 5,
                         colorselected: false,
@@ -268,7 +262,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 7,
                         colorselected: false,
@@ -287,7 +281,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 9,
                         colorselected: false,
@@ -302,7 +296,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 11,
                         colorselected: false,
@@ -321,7 +315,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 13,
                         colorselected: false,
@@ -336,7 +330,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 15,
                         colorselected: false,
@@ -355,7 +349,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 17,
                         colorselected: false,
@@ -370,7 +364,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 19,
                         colorselected: false,
@@ -389,7 +383,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 21,
                         colorselected: false,
@@ -404,7 +398,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 23,
                         colorselected: false,
@@ -423,7 +417,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 25,
                         colorselected: false,
@@ -438,7 +432,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 27,
                         colorselected: false,
@@ -457,7 +451,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 29,
                         colorselected: false,
@@ -472,7 +466,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 31,
                         colorselected: false,
@@ -491,7 +485,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 33,
                         colorselected: false,
@@ -506,7 +500,7 @@ export default class Level_1 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         order: 35,
                         colorselected: false,
@@ -518,7 +512,7 @@ export default class Level_1 extends Component {
                             timer.clearInterval(this);
                             this.setState({
                                 err_time_select: 0,
-                                error_time_color: 0,
+                                err_time_color: 0,
                                 order: 0,
                                 bunny_order: 1,
                                 bunny_anim: 3,
@@ -781,8 +775,8 @@ export default class Level_1 extends Component {
             case 3:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'sound_intro', () => {
-                    this.state.Level_2_intro.play(() => {
-                        this.state.Level_2_intro.release()
+                    this.state.level_1_intro.play(() => {
+                        this.state.level_1_intro.release()
                     });
                     this.setState({bunny_order: 3});
                 }, 500);
@@ -905,143 +899,126 @@ export default class Level_1 extends Component {
                                     })
                                 }, 500);
                                 break;
-                            case 3:
                             case 4:
                                 timer.setTimeout(this, 'blue_ger', () => {
                                     this.state.blue_ger.play(() => {
                                         this.state.blue_ger.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 7:
                             case 8:
                                 timer.setTimeout(this, 'green_ger', () => {
                                     this.state.green_ger.play(() => {
                                         this.state.green_ger.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 11:
                             case 12:
                                 timer.setTimeout(this, 'yellow_ger', () => {
                                     this.state.yellow_ger.play(() => {
                                         this.state.yellow_ger.release()
-                                    })()
+                                    })
                                 }, 1000);
                                 break;
-                            case 15:
                             case 16:
                                 timer.setTimeout(this, 'pink_ger', () => {
                                     this.state.pink_ger_eng.play(() => {
                                         this.state.pink_ger_eng.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 19:
                             case 20:
                                 timer.setTimeout(this, 'brown_ger', () => {
                                     this.state.brown_ger.play(() => {
                                         this.state.brown_ger.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 23:
                             case 24:
                                 timer.setTimeout(this, 'purple_ger', () => {
                                     this.state.purple_ger.play(() => {
                                         this.state.purple_ger.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 27:
                             case 28:
                                 timer.setTimeout(this, 'orange_ger', () => {
                                     this.state.orange_ger.play(() => {
                                         this.state.orange_ger.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 31:
                             case 32:
                                 timer.setTimeout(this, 'cyan_ger', () => {
                                     this.state.cyan_ger.play(() => {
                                         this.state.cyan_ger.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
                         }
                     } else {
                         switch (this.state.order) {
                             case 0:
-                            case 1:
                                 timer.setTimeout(this, 'red_eng', () => {
                                     this.state.red_eng.play(() => {
                                         this.state.red_eng.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 3:
                             case 4:
                                 timer.setTimeout(this, 'blue_eng', () => {
                                     this.state.blue_eng.play(() => {
                                         this.state.blue_eng.release()
-                                    })()
+                                    })
                                 }, 1000);
                                 break;
-                            case 7:
                             case 8:
                                 timer.setTimeout(this, 'green_eng', () => {
                                     this.state.green_eng.play(() => {
                                         this.state.green_eng.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 11:
                             case 12:
                                 timer.setTimeout(this, 'yellow_eng', () => {
                                     this.state.yellow_eng.play(() => {
                                         this.state.yellow_eng.release()
-                                    })()
+                                    })
                                 }, 1000);
                                 break;
-                            case 15:
                             case 16:
                                 timer.setTimeout(this, 'pink_eng', () => {
                                     this.state.pink_ger_eng.play(() => {
                                         this.state.pink_ger_eng.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 19:
                             case 20:
                                 timer.setTimeout(this, 'brown_eng', () => {
                                     this.state.brown_eng.play(() => {
                                         this.state.brown_eng.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 23:
                             case 24:
                                 timer.setTimeout(this, 'purple_eng', () => {
                                     this.state.purple_eng.play(() => {
                                         this.state.purple_eng.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 27:
                             case 28:
                                 timer.setTimeout(this, 'orange_eng', () => {
                                     this.state.orange_eng.play(() => {
                                         this.state.orange_eng.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
-                            case 31:
                             case 32:
                                 timer.setTimeout(this, 'cyan_eng', () => {
                                     this.state.cyan_eng.play(() => {
                                         this.state.cyan_eng.release()
-                                    })()
+                                    })
                                 }, 500);
                                 break;
                         }
@@ -1050,9 +1027,19 @@ export default class Level_1 extends Component {
                 timer.setTimeout(this, 'speak_color_a', () => {
                     this.setState({opacity0: 1})
                 }, 3500);
-                timer.setTimeout(this, 'speak_color_b', () => {
-                    this.setState({opacity0: 0})
-                }, 4500);
+                if (this.state.err_time_select === 1) {
+                    timer.setTimeout(this, 'speak_color_ba', () => {
+                        this.setState({opacity0: 0})
+                    }, 4500);
+                } else if (this.state.err_time_color === 1) {
+                    timer.setTimeout(this, 'speak_color_bb', () => {
+                        this.setState({opacity0: 0})
+                    }, 4500);
+                } else {
+                    timer.setTimeout(this, 'speak_color_bc', () => {
+                        this.setState({opacity0: 0})
+                    }, 4500);
+                }
                 timer.setTimeout(this, 'speak_color', () => {
                     this.helper01();
                 }, 4000);
@@ -1063,14 +1050,14 @@ export default class Level_1 extends Component {
                 timer.setTimeout(this, 'exit_lvl', () => {
                     this.state.exit_lvl.play(() => {
                         this.state.exit_lvl.release()
-                    })();
+                    });
                     this.setState({exit: 0});
                     timer.clearInterval(this)
                 }, 1000);
                 timer.setTimeout(this, 'navigate', () => {
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         order: 0,
                         bunny_order: 1,
                         bunny_anim: 3,
@@ -1082,7 +1069,6 @@ export default class Level_1 extends Component {
                 break;
         }
     }
-
     // helper for animbunny()
     helper01() {
         switch (this.state.bunny_order) {

@@ -60,12 +60,6 @@ export default class Level_4 extends Component {
             exit: 0,
             err_time_select: 0,
             err_time_color: 0,
-            time_error_played: 0,
-            color_error_played: 0,
-            intro_played: 0,
-            color_played: 0,
-            success_played: 0,
-            exit_played: 0,
             opacity0: 0
         }
     }
@@ -277,7 +271,7 @@ export default class Level_4 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         colorselected: false,
                         errorcount: 0,
@@ -295,7 +289,7 @@ export default class Level_4 extends Component {
                             timer.setTimeout(this, '21', () => {
                                 this.setState({
                                     err_time_select: 0,
-                                    error_time_color: 0,
+                                    err_time_color: 0,
                                     ordercount: 0,
                                     order: 0,
                                     bunny_order: 1,
@@ -319,7 +313,7 @@ export default class Level_4 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         colorselected: false,
                         errorcount: 0,
@@ -337,7 +331,7 @@ export default class Level_4 extends Component {
                             timer.setTimeout(this, '61', () => {
                                 this.setState({
                                     err_time_select: 0,
-                                    error_time_color: 0,
+                                    err_time_color: 0,
                                     ordercount: 0,
                                     order: 0,
                                     bunny_order: 1,
@@ -361,7 +355,7 @@ export default class Level_4 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         colorselected: false,
                         errorcount: 0,
@@ -379,7 +373,7 @@ export default class Level_4 extends Component {
                             timer.setTimeout(this, '101', () => {
                                 this.setState({
                                     err_time_select: 0,
-                                    error_time_color: 0,
+                                    err_time_color: 0,
                                     ordercount: 0,
                                     order: 0,
                                     bunny_order: 1,
@@ -403,7 +397,7 @@ export default class Level_4 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         colorselected: false,
                         errorcount: 0,
@@ -421,7 +415,7 @@ export default class Level_4 extends Component {
                             timer.setTimeout(this, '141', () => {
                                 this.setState({
                                     err_time_select: 0,
-                                    error_time_color: 0,
+                                    err_time_color: 0,
                                     ordercount: 0,
                                     order: 0,
                                     bunny_order: 1,
@@ -445,7 +439,7 @@ export default class Level_4 extends Component {
                     this.errorIntervall();
                     this.setState({
                         err_time_select: 0,
-                        error_time_color: 0,
+                        err_time_color: 0,
                         bunny_order: 2,
                         colorselected: false,
                         errorcount: 0,
@@ -463,7 +457,7 @@ export default class Level_4 extends Component {
                             timer.setTimeout(this, '181', () => {
                                 this.setState({
                                     err_time_select: 0,
-                                    error_time_color: 0,
+                                    err_time_color: 0,
                                     ordercount: 0,
                                     order: 0,
                                     bunny_order: 1,
@@ -1388,9 +1382,19 @@ export default class Level_4 extends Component {
                 timer.setTimeout(this, 'speak_03_a', () => {
                     this.setState({opacity0: 1});
                 }, 4500);
-                timer.setTimeout(this, 'speak_03_b', () => {
-                    this.setState({opacity0: 0});
-                }, 5500);
+                if (this.state.err_time_select === 1) {
+                    timer.setTimeout(this, 'speak_03_ba', () => {
+                        this.setState({opacity0: 0})
+                    }, 5500);
+                } else if (this.state.err_time_color === 1) {
+                    timer.setTimeout(this, 'speak_03_bb', () => {
+                        this.setState({opacity0: 0})
+                    }, 5500);
+                } else {
+                    timer.setTimeout(this, 'speak_03_bc', () => {
+                        this.setState({opacity0: 0})
+                    }, 5500);
+                }
                 timer.setTimeout(this, 'speak_03', () => {
                     this.helper01();
                 }, 5000);
@@ -1407,7 +1411,7 @@ export default class Level_4 extends Component {
                         timer.setTimeout(this, 'navigate', () => {
                             this.setState({
                                 err_time_select: 0,
-                                error_time_color: 0,
+                                err_time_color: 0,
                                 ordercount: 0,
                                 order: 0,
                                 bunny_order: 1,
@@ -1435,9 +1439,19 @@ export default class Level_4 extends Component {
                 timer.setTimeout(this, 'speak_02_a', () => {
                     this.setState({opacity0: 1});
                 }, 3500);
-                timer.setTimeout(this, 'speak_02_b', () => {
-                    this.setState({opacity0: 0});
-                }, 4500);
+                if (this.state.errorcount === 1) {
+                    timer.setTimeout(this, 'speak_02_ba', () => {
+                        this.setState({opacity0: 0});
+                    }, 4500);
+                } else if (this.state.errorcount === 2) {
+                    timer.setTimeout(this, 'speak_02_bb', () => {
+                        this.setState({opacity0: 0});
+                    }, 4500);
+                } else {
+                    timer.setTimeout(this, 'speak_02_bc', () => {
+                        this.setState({opacity0: 0});
+                    }, 4500);
+                }
                 timer.setTimeout(this, 'speak_02', () => {
                     this.helper01();
                 }, 4000);

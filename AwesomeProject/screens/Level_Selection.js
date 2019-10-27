@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-    BackHandler,
     StyleSheet,
     View,
     ImageBackground,
@@ -9,13 +8,13 @@ import {
     Easing,
     Dimensions,
     Image,
-    Text
 } from 'react-native';
 import {preloadImages} from "../components/preloadimages";
 import {selectArrow} from "../components/selectArrow";
 import * as Animatable from "react-native-animatable";
 import SplashScreen from "./SplashScreen";
 import FastImage from "react-native-fast-image";
+import RNExitApp from 'react-native-exit-app';
 
 const {width, height} = Dimensions.get('window');
 const Sound = require('react-native-sound');
@@ -174,7 +173,6 @@ export default class Level_Selection extends React.Component {
         this.ismounted_Level_Selection = false;
         // cancle all timer and interal
         timer.timeoutExists(this);
-        timer.timeoutExists(this);
         music.stop();
     }
 
@@ -201,6 +199,7 @@ export default class Level_Selection extends React.Component {
             level_4.stop();
             speach_eng.stop();
             speach_ger.stop();
+            timer.timeoutExists(this);
             this.props.navigation.navigate('Level_1', {language: this.state.language,}, this.resetLvLcounters())
         } else {
             this.setState(prevState => ({counterLvL1: prevState.counterLvL1 + 1}));
@@ -226,6 +225,7 @@ export default class Level_Selection extends React.Component {
             level_4.stop();
             speach_eng.stop();
             speach_ger.stop();
+            timer.timeoutExists(this);
             this.props.navigation.navigate('Level_2', {language: this.state.language}, this.resetLvLcounters())
         } else {
             this.setState(prevState => ({counterLvL2: prevState.counterLvL2 + 1}));
@@ -251,6 +251,7 @@ export default class Level_Selection extends React.Component {
             level_4.stop();
             speach_eng.stop();
             speach_ger.stop();
+            timer.timeoutExists(this);
             this.props.navigation.navigate('Level_3', {language: this.state.language}, this.resetLvLcounters())
         } else {
             this.setState(prevState => ({counterLvL3: prevState.counterLvL3 + 1}));
@@ -276,6 +277,7 @@ export default class Level_Selection extends React.Component {
             level_4.stop();
             speach_eng.stop();
             speach_ger.stop();
+            timer.timeoutExists(this);
             this.props.navigation.navigate('Level_4', {language: this.state.language}, this.resetLvLcounters())
         } else {
             this.setState(prevState => ({counterLvL4: prevState.counterLvL4 + 1}));
@@ -521,7 +523,7 @@ export default class Level_Selection extends React.Component {
                     this.setState({opacity0: 0})
                 }, 5500);
                 timer.setTimeout(this, 'exit', () => {
-                    BackHandler.exitApp()
+                    RNExitApp.exitApp();
                 }, 5000);
                 break;
         }
