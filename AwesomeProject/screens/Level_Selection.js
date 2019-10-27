@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    BackHandler,
     StyleSheet,
     View,
     ImageBackground,
@@ -8,13 +9,13 @@ import {
     Easing,
     Dimensions,
     Image,
+    Text
 } from 'react-native';
 import {preloadImages} from "../components/preloadimages";
 import {selectArrow} from "../components/selectArrow";
 import * as Animatable from "react-native-animatable";
 import SplashScreen from "./SplashScreen";
 import FastImage from "react-native-fast-image";
-import RNExitApp from 'react-native-exit-app';
 
 const {width, height} = Dimensions.get('window');
 const Sound = require('react-native-sound');
@@ -523,7 +524,7 @@ export default class Level_Selection extends React.Component {
                     this.setState({opacity0: 0})
                 }, 5500);
                 timer.setTimeout(this, 'exit', () => {
-                    RNExitApp.exitApp();
+                    BackHandler.exitApp()
                 }, 5000);
                 break;
         }
