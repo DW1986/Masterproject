@@ -1,6 +1,7 @@
 import React from "react";
 import * as Animatable from "react-native-animatable";
 import {Dimensions, StyleSheet} from "react-native";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const {width, height} = Dimensions.get('window');
 
@@ -8,23 +9,23 @@ const {width, height} = Dimensions.get('window');
 export function selectArrow(counter1, counter2, counter3, counter4) {
     if (counter1 >= 1)
         return <Animatable.Image source={require('../assets/other/SelectArrow.webp')}
-                                 style={[styles.selectArrow, {left: width / 6, top: height / 3}]}
+                                 style={[styles.selectArrow, {left: wp('14%'), top: hp('30%')}]}
                                  animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate"
                                  useNativeDriver={true}/>;
 
     else if (counter2 >= 1)
         return <Animatable.Image source={require('../assets/other/SelectArrow.webp')}
-                                 style={[styles.selectArrow, {left: width / 2.9, top: height / 3}]}
+                                 style={[styles.selectArrow, {left: wp('32%'), top: hp('30%')}]}
                                  animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate"
                                  useNativeDriver={true}/>;
     else if (counter3 >= 1)
         return <Animatable.Image source={require('../assets/other/SelectArrow.webp')}
-                                 style={[styles.selectArrow, {left: width / 1.9, top: height / 3}]}
+                                 style={[styles.selectArrow, {left: wp('50%'), top: hp('30%')}]}
                                  animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate"
                                  useNativeDriver={true}/>;
     else if (counter4 >= 1)
         return <Animatable.Image source={require('../assets/other/SelectArrow.webp')}
-                                 style={[styles.selectArrow, {left: width / 1.41, top: height / 3}]}
+                                 style={[styles.selectArrow, {left: wp('68%'), top: hp('30%')}]}
                                  animation="pulse" iterationCount={"infinite"} easing="linear" direction="alternate"
                                  useNativeDriver={true}/>;
 }
@@ -32,8 +33,8 @@ export function selectArrow(counter1, counter2, counter3, counter4) {
 const styles = StyleSheet.create({
     selectArrow: {
         position: 'absolute',
-        width: width / 15,
-        height: height / 6,
+        width:wp('8%'),
+        height: hp('20%'),
     },
 
 });

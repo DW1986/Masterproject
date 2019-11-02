@@ -1,8 +1,7 @@
 import React from "react";
 import {Image} from 'react-native';
-import {Dimensions, StyleSheet} from "react-native";
-
-const {width, height} = Dimensions.get('window');
+import {StyleSheet} from "react-native";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 // render the starfall depending on order for lvl 1 + 2 + 3 + 4
 export function starfall(order) {
@@ -34,10 +33,9 @@ export function starfall(order) {
 
 const styles = StyleSheet.create({
     starfall: {
-        width: width / 1.81,
-        height: height / 1.72,
-        alignSelf: "center",
+        width: wp('56%'),
+        height: hp('62%'),
         position: 'absolute',
-        marginTop: 1.5
+        bottom: hp('24.5%'),
     }
 });

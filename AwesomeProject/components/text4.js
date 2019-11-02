@@ -1,8 +1,7 @@
 import * as Animatable from "react-native-animatable";
-import {Dimensions, StyleSheet, Text} from "react-native";
+import {StyleSheet, Text} from "react-native";
 import React from "react";
-
-const { height} = Dimensions.get('window');
+import {heightPercentageToDP as hp} from "react-native-responsive-screen";
 
 // render and animate the text on the woodShild depending on order. Show only if errorcount is more than 2 for lvl 4
 export function text(order,errorcount,textcolor1,textcolor2,textcolor3,text1,text2,text3) {
@@ -144,13 +143,11 @@ export function text(order,errorcount,textcolor1,textcolor2,textcolor3,text1,tex
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: height / 12.5,
+        fontSize: hp('8%'),
         fontStyle: 'normal',
         fontWeight: 'bold',
         textShadowColor: 'black',
-        bottom: height / 18,
+        bottom: hp('9%'),
         overflow: 'visible',
-        flexDirection: 'row',
-        justifyContent: "flex-start"
     }
 });

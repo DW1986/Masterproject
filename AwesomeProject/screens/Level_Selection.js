@@ -7,34 +7,29 @@ import {
     Animated,
     TouchableOpacity,
     Easing,
-    Dimensions,
     Image,
-    Text
+
 } from 'react-native';
 import {preloadImages} from "../components/preloadimages";
 import {selectArrow} from "../components/selectArrow";
 import * as Animatable from "react-native-animatable";
 import SplashScreen from "./SplashScreen";
 import FastImage from "react-native-fast-image";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-const {width, height} = Dimensions.get('window');
 const Sound = require('react-native-sound');
 const timer = require('react-native-timer');
 
-const intro = new Sound('intro.m4a', Sound.MAIN_BUNDLE);
-const level_1 = new Sound('level_1.m4a', Sound.MAIN_BUNDLE);
-const level_2 = new Sound('level_2.m4a', Sound.MAIN_BUNDLE);
-const level_3 = new Sound('level_3.m4a', Sound.MAIN_BUNDLE);
-const level_4 = new Sound('level_4.m4a', Sound.MAIN_BUNDLE);
-const speach_eng = new Sound('speach_eng.m4a', Sound.MAIN_BUNDLE);
-const speach_ger = new Sound('speach_ger.m4a', Sound.MAIN_BUNDLE);
-const exit = new Sound('exit.m4a', Sound.MAIN_BUNDLE);
-const onTouch = new Sound('onTouch.m4a', Sound.MAIN_BUNDLE);
+
+const level_1 = new Sound('level_1.mp3', Sound.MAIN_BUNDLE);
+const level_2 = new Sound('level_2.mp3', Sound.MAIN_BUNDLE);
+const level_3 = new Sound('level_3.mp3', Sound.MAIN_BUNDLE);
+const level_4 = new Sound('level_4.mp3', Sound.MAIN_BUNDLE);
+const speach_eng = new Sound('speach_eng.mp3', Sound.MAIN_BUNDLE);
+const speach_ger = new Sound('speach_ger.mp3', Sound.MAIN_BUNDLE);
+
+const onTouch = new Sound('onTouch.mp3', Sound.MAIN_BUNDLE);
 const music = new Sound('bensound_ukulele.mp3', Sound.MAIN_BUNDLE);
-
-
-
-
 
 export default class Level_Selection extends React.Component {
     ismounted_Level_Selection = false;
@@ -61,9 +56,13 @@ export default class Level_Selection extends React.Component {
             played2: 0,
             played3: 0,
             played4: 0,
-            opacity0: 0
-
+            opacity0: 0,
+            sound0: {},
+            exitButton:0,
+            intro : new Sound('intro.mp3', Sound.MAIN_BUNDLE),
+            exit : new Sound('exit.mp3', Sound.MAIN_BUNDLE)
         };
+
         this.Butterfly_1 = new Animated.Value(0);
         this.Butterfly_2 = new Animated.Value(0);
         var range = 1, snapshot = 50, radius = 20, radius2 = 50;
@@ -146,7 +145,7 @@ export default class Level_Selection extends React.Component {
         //animate cloud_1
         Animated.loop(
             Animated.timing(this.state.cloud_1, {
-                toValue: width + 400,
+                toValue: wp('100%')+ 400,
                 duration: 100000,
                 asing: Easing.linear
             })
@@ -154,7 +153,7 @@ export default class Level_Selection extends React.Component {
         //animate cloud_2
         Animated.loop(
             Animated.timing(this.state.cloud_2, {
-                toValue: width + 240,
+                toValue: wp('100%') + 240,
                 duration: 100000,
                 asing: Easing.linear
             })
@@ -162,7 +161,7 @@ export default class Level_Selection extends React.Component {
         //animate cloud_3
         Animated.loop(
             Animated.timing(this.state.cloud_3, {
-                toValue: width + 80,
+                toValue: wp('100%') + 80,
                 duration: 100000,
                 asing: Easing.linear
             })
@@ -175,6 +174,11 @@ export default class Level_Selection extends React.Component {
         // cancle all timer and interal
         timer.timeoutExists(this);
         music.stop();
+    }
+
+    //load sounds
+    load(sound) {
+        this.setState({sound0: sound})
     }
 
     resetLvLcounters() {
@@ -193,7 +197,7 @@ export default class Level_Selection extends React.Component {
     // Selection LvL1
     LvL1Press = () => {
         if (this.state.counterLvL1 === 1 && this.state.bunny_order !== 4) {
-            intro.stop();
+            this.state.sound0.stop();
             level_1.stop();
             level_2.stop();
             level_3.stop();
@@ -219,7 +223,7 @@ export default class Level_Selection extends React.Component {
     // Selection LvL2
     LvL2Press = () => {
         if (this.state.counterLvL2 === 1 && this.state.bunny_order !== 4) {
-            intro.stop();
+            this.state.sound0.stop();
             level_1.stop();
             level_2.stop();
             level_3.stop();
@@ -245,7 +249,7 @@ export default class Level_Selection extends React.Component {
     // Selection LvL3
     LvL3Press = () => {
         if (this.state.counterLvL3 === 1 && this.state.bunny_order !== 4) {
-            intro.stop();
+            this.state.sound0.stop();
             level_1.stop();
             level_2.stop();
             level_3.stop();
@@ -271,7 +275,7 @@ export default class Level_Selection extends React.Component {
     // Selection LvL4
     LvL4Press = () => {
         if (this.state.counterLvL4 === 1 && this.state.bunny_order !== 4) {
-            intro.stop();
+            this.state.sound0.stop();
             level_1.stop();
             level_2.stop();
             level_3.stop();
@@ -408,8 +412,12 @@ export default class Level_Selection extends React.Component {
                 break;
             // speak-bunny_order (intro)
             case 3:
+                this.load(this.state.intro);
                 timer.setTimeout(this, 'sound_intro', () => {
-                    intro.play();
+                    this.state.sound0.play(() => {
+                        this.state.sound0.reset();
+                        this.state.sound0.release();
+                    });
                     music.setVolume(0.1);
                     // Loop indefinitely until stop() is called
                     music.setNumberOfLoops(-1);
@@ -446,7 +454,7 @@ export default class Level_Selection extends React.Component {
                 this.setState({bunny_order: 1});
                 if (this.state.counterLvL1 >= 1 && this.state.counterLanguage === 0) {
                     timer.setTimeout(this, 'sound_level_1', () => {
-                        level_1.play();
+                       level_1.play();
                     }, 50);
                 } else if (this.state.counterLvL3 >= 1 && this.state.counterLanguage === 0) {
                     timer.setTimeout(this, 'sound_level_3', () => {
@@ -486,13 +494,15 @@ export default class Level_Selection extends React.Component {
             //speak05-lvl 2 +4
             case 6:
                 this.setState({bunny_order: 1});
+                this.load(level_2);
                 if (this.state.counterLvL2 >= 1) {
                     timer.setTimeout(this, 'sound_level_2', () => {
-                        level_2.play()
+                        level_2.play();
                     }, 50);
                 } else if (this.state.counterLvL4 >= 1) {
+                    this.load(level_4);
                     timer.setTimeout(this, 'sound_level_4', () => {
-                        level_4.play()
+                        level_4.play();
                     }, 50);
                 }
                 if (this.state.counterLvL2 >= 1) {
@@ -515,7 +525,7 @@ export default class Level_Selection extends React.Component {
             case 7:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'sound_exit', () => {
-                    exit.play()
+                    exit.play();
                 }, 1000);
                 timer.setTimeout(this, 'exit_a', () => {
                     this.setState({opacity0: 1})
@@ -612,9 +622,11 @@ export default class Level_Selection extends React.Component {
 
     // Press function for exit
     exitPress = () => {
-        this.setState({
-            bunny_order: 6
-        })
+        this.setState(prevState => ({exitButton: prevState.exitButton + 1}));
+        this.setState({bunny_order: 6});
+            if(this.state.exitButton===1){
+                BackHandler.exitApp()
+        }
     };
 
     renderTouch() {
@@ -642,25 +654,25 @@ export default class Level_Selection extends React.Component {
 
                         <Animated.Image source={require('../assets/animations/butterfly_2.webp')}
                                         style={[styles.butterflys, {
-                                            bottom: '40%', left: '78%', transform: transform2
+                                            bottom: hp('40%'), left: wp('77%'), transform: transform2
                                         }]}/>
                         <Animated.Image source={require('../assets/other/cloud.webp')} style={[styles.cloud, {
                             left: this.state.cloud_1,
-                            top: height / 10
+                            top: hp('5%')
                         }]}/>
                         <Animated.Image source={require('../assets/other/cloud.webp')} style={[styles.cloud, {
                             left: this.state.cloud_2,
-                            top: height / 30
+                            top: hp('9%')
                         }]}/>
                         <Animated.Image source={require('../assets/other/cloud.webp')} style={[styles.cloud, {
                             left: this.state.cloud_3,
-                            top: height / 20
+                            top: hp('7%')
                         }]}/>
                         <Image source={require('../assets/other/Level_Selection_front.webp')}
                                style={{position: 'absolute', width: '100%', height: '100%'}}/>
                         <Animated.Image source={require('../assets/animations/butterfly_1.webp')}
                                         style={[styles.butterflys, {
-                                            bottom: height / 5, marginLeft: width / 30, transform
+                                            bottom: hp('18%'), marginLeft: wp('2%'), transform
                                         }]}/>
                         {selectArrow(this.state.counterLvL1, this.state.counterLvL2, this.state.counterLvL3, this.state.counterLvL4,)}
                         {this.renderbunny()}
@@ -678,22 +690,22 @@ export default class Level_Selection extends React.Component {
                             <TouchableOpacity onPress={this.LvL1Press}>
                                 <Image
                                     source={require('../assets/animations/egg_1.webp')}
-                                    style={[styles.eggs, {bottom: '5%'}]}/>
+                                    style={[styles.eggs, {bottom: hp('2%')}]}/>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.LvL2Press}>
                                 <Image
                                     source={require('../assets/animations/egg_2.webp')}
-                                    style={[styles.eggs, {bottom: '6%'}]}/>
+                                    style={[styles.eggs, {bottom: hp('4%')}]}/>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.LvL3Press}>
                                 <Image
                                     source={require('../assets/animations/egg_3.webp')}
-                                    style={[styles.eggs, {bottom: '5%'}]}/>
+                                    style={[styles.eggs, {bottom: hp('3%')}]}/>
                             </TouchableOpacity>
                             <TouchableOpacity onPress={this.LvL4Press}>
                                 <Image
                                     source={require('../assets/animations/egg_4.webp')}
-                                    style={[styles.eggs, {bottom: '7%'}]}/>
+                                    style={[styles.eggs, {bottom: hp('5%')}]}/>
                             </TouchableOpacity>
                         </View>
 
@@ -739,34 +751,36 @@ const styles = StyleSheet.create({
         alignContent: 'center'
     },
     eggs: {
-        width: width / 5.2,
-        height: height / 2.8,
-        resizeMode: 'contain'
+        width: wp('18%'),
+        height: hp('36%'),
+        resizeMode: 'contain',
     },
     butterflys: {
-        width: width / 25,
-        height: height / 15,
+        width: wp('8%'),
+        height:hp('8%'),
         position: 'absolute',
         resizeMode: 'contain'
     },
     cloud: {
-        width: width / 8,
-        height: height / 8,
+        width: wp('12%'),
+        height: hp('12%'),
         position: 'absolute',
     },
     font2_gras: {
         flex: 1,
-        bottom: 0,
+        left:wp('0%'),
+        bottom:  hp('0%'),
         position: 'absolute',
-        width: width,
-        height: height,
+        width: wp('100%'),
+        height: hp('100%'),
+        resizeMode: 'stretch'
     },
     eggsView: {
         flex: 4,
         justifyContent: 'center',
         alignItems: 'flex-end',
         flexDirection: 'row',
-        marginRight: width / 15
+        marginRight: wp('10%')
 
     },
     buttonView: {
@@ -796,10 +810,10 @@ const styles = StyleSheet.create({
         borderRadius: 70 / 2,
     },
     bunny: {
-        width: width / 6,
-        height: height / 2.5,
+        width: wp('16%'),
+        height: hp('42%'),
         position: 'absolute',
-        marginLeft: width / 1.2,
-        marginTop: height / 1.9
+        marginLeft: wp('83%'),
+        marginTop: hp('53%'),
     },
 });

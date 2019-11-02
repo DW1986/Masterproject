@@ -2,9 +2,10 @@ import React from 'react';
 import {PermissionsAndroid} from 'react-native';
 import {createAppContainer} from "react-navigation";
 import AppNavigator from "./AppNavigator";
+const Sound = require('react-native-sound');
 
 const AppContainer = createAppContainer(AppNavigator);
-
+export var appSounds = {};
 
 export async function request_WRITE_STORAGE_runtime_permission() {
 
@@ -26,19 +27,18 @@ export async function request_WRITE_STORAGE_runtime_permission() {
 export default class App extends React.Component {
 
 
-
-
     async componentDidMount() {
 
-        await request_WRITE_STORAGE_runtime_permission()
+        await request_WRITE_STORAGE_runtime_permission();
+
 
     }
+
     render() {
         return (
 
 
-                <AppContainer/>
-
+            <AppContainer/>
 
 
         );

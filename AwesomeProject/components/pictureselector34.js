@@ -1,8 +1,7 @@
 import * as Animatable from "react-native-animatable";
 import React from "react";
-import {Dimensions, StyleSheet} from "react-native";
-
-const {width, height} = Dimensions.get('window');
+import {StyleSheet} from "react-native";
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 
 // render and animate the different pictures for coloring depending on order for lvl 3 + 4
@@ -120,9 +119,9 @@ const {width, height} = Dimensions.get('window');
 const styles = StyleSheet.create({
     pictures: {
         resizeMode: 'contain',
-        alignSelf: 'center',
-        width: width / 1.80,
-        height: height / 1.70,
-        marginBottom: height / 6,
+        width: wp('54%'),
+        height: hp('60%'),
+        position: 'absolute',
+        bottom: hp('25.5%'),
     }
 });

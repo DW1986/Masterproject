@@ -1,8 +1,7 @@
 import * as Animatable from "react-native-animatable";
-import {Dimensions, StyleSheet, Text} from "react-native";
+import {StyleSheet, Text} from "react-native";
 import React from "react";
-
-const {height} = Dimensions.get('window');
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 // render and animate the text on the woodShild depending on order for lvl 1
     export function text(order,textcolor,text) {
@@ -117,11 +116,11 @@ const {height} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: height / 11,
+        fontSize: hp('10%'),
         fontStyle: 'normal',
         fontWeight: 'bold',
         textShadowColor: 'black',
-        bottom: height / 23,
-        overflow: 'visible'
+        bottom: hp('8%'),
+        overflow: 'visible',
     }
 });
