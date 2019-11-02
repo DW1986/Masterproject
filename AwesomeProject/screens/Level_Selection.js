@@ -16,20 +16,9 @@ import * as Animatable from "react-native-animatable";
 import SplashScreen from "./SplashScreen";
 import FastImage from "react-native-fast-image";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {intro,exit,level_1,level_2,level_3,level_4,speach_eng,speach_ger,onTouch,music} from "../components/sounds";
 
-const Sound = require('react-native-sound');
 const timer = require('react-native-timer');
-
-
-const level_1 = new Sound('level_1.mp3', Sound.MAIN_BUNDLE);
-const level_2 = new Sound('level_2.mp3', Sound.MAIN_BUNDLE);
-const level_3 = new Sound('level_3.mp3', Sound.MAIN_BUNDLE);
-const level_4 = new Sound('level_4.mp3', Sound.MAIN_BUNDLE);
-const speach_eng = new Sound('speach_eng.mp3', Sound.MAIN_BUNDLE);
-const speach_ger = new Sound('speach_ger.mp3', Sound.MAIN_BUNDLE);
-
-const onTouch = new Sound('onTouch.mp3', Sound.MAIN_BUNDLE);
-const music = new Sound('bensound_ukulele.mp3', Sound.MAIN_BUNDLE);
 
 export default class Level_Selection extends React.Component {
     ismounted_Level_Selection = false;
@@ -57,10 +46,9 @@ export default class Level_Selection extends React.Component {
             played3: 0,
             played4: 0,
             opacity0: 0,
-            sound0: {},
             exitButton:0,
-            intro : new Sound('intro.mp3', Sound.MAIN_BUNDLE),
-            exit : new Sound('exit.mp3', Sound.MAIN_BUNDLE)
+            one:1,
+            zero:0
         };
 
         this.Butterfly_1 = new Animated.Value(0);
@@ -173,12 +161,8 @@ export default class Level_Selection extends React.Component {
         this.ismounted_Level_Selection = false;
         // cancle all timer and interal
         timer.timeoutExists(this);
-        music.stop();
-    }
-
-    //load sounds
-    load(sound) {
-        this.setState({sound0: sound})
+        global.sound.stop();
+        global.music.stop();
     }
 
     resetLvLcounters() {
@@ -197,14 +181,9 @@ export default class Level_Selection extends React.Component {
     // Selection LvL1
     LvL1Press = () => {
         if (this.state.counterLvL1 === 1 && this.state.bunny_order !== 4) {
-            this.state.sound0.stop();
-            level_1.stop();
-            level_2.stop();
-            level_3.stop();
-            level_4.stop();
-            speach_eng.stop();
-            speach_ger.stop();
             timer.timeoutExists(this);
+            global.sound.stop();
+            this.setState({bunny_order: 0 });
             this.props.navigation.navigate('Level_1', {language: this.state.language,}, this.resetLvLcounters())
         } else {
             this.setState(prevState => ({counterLvL1: prevState.counterLvL1 + 1}));
@@ -223,14 +202,9 @@ export default class Level_Selection extends React.Component {
     // Selection LvL2
     LvL2Press = () => {
         if (this.state.counterLvL2 === 1 && this.state.bunny_order !== 4) {
-            this.state.sound0.stop();
-            level_1.stop();
-            level_2.stop();
-            level_3.stop();
-            level_4.stop();
-            speach_eng.stop();
-            speach_ger.stop();
             timer.timeoutExists(this);
+            global.sound.stop();
+            this.setState({bunny_order: 0 });
             this.props.navigation.navigate('Level_2', {language: this.state.language}, this.resetLvLcounters())
         } else {
             this.setState(prevState => ({counterLvL2: prevState.counterLvL2 + 1}));
@@ -249,14 +223,9 @@ export default class Level_Selection extends React.Component {
     // Selection LvL3
     LvL3Press = () => {
         if (this.state.counterLvL3 === 1 && this.state.bunny_order !== 4) {
-            this.state.sound0.stop();
-            level_1.stop();
-            level_2.stop();
-            level_3.stop();
-            level_4.stop();
-            speach_eng.stop();
-            speach_ger.stop();
             timer.timeoutExists(this);
+            global.sound.stop();
+            this.setState({bunny_order: 0 });
             this.props.navigation.navigate('Level_3', {language: this.state.language}, this.resetLvLcounters())
         } else {
             this.setState(prevState => ({counterLvL3: prevState.counterLvL3 + 1}));
@@ -275,14 +244,9 @@ export default class Level_Selection extends React.Component {
     // Selection LvL4
     LvL4Press = () => {
         if (this.state.counterLvL4 === 1 && this.state.bunny_order !== 4) {
-            this.state.sound0.stop();
-            level_1.stop();
-            level_2.stop();
-            level_3.stop();
-            level_4.stop();
-            speach_eng.stop();
-            speach_ger.stop();
             timer.timeoutExists(this);
+            global.sound.stop();
+            this.setState({bunny_order: 0 });
             this.props.navigation.navigate('Level_4', {language: this.state.language}, this.resetLvLcounters())
         } else {
             this.setState(prevState => ({counterLvL4: prevState.counterLvL4 + 1}));
@@ -412,16 +376,9 @@ export default class Level_Selection extends React.Component {
                 break;
             // speak-bunny_order (intro)
             case 3:
-                this.load(this.state.intro);
                 timer.setTimeout(this, 'sound_intro', () => {
-                    this.state.sound0.play(() => {
-                        this.state.sound0.reset();
-                        this.state.sound0.release();
-                    });
-                    music.setVolume(0.1);
-                    // Loop indefinitely until stop() is called
-                    music.setNumberOfLoops(-1);
-                    music.play();
+                    {intro()}
+                    {music(this.state.zero)}
                 }, 200);
                 timer.setTimeout(this, 'wink_a', () => {
                     this.setState({opacity0: 1})
@@ -437,7 +394,7 @@ export default class Level_Selection extends React.Component {
             case 4:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'sound_onTouch', () => {
-                    onTouch.play();
+                    {onTouch()}
                 }, 1000);
                 timer.setTimeout(this, 'onTouch_a', () => {
                     this.setState({opacity0: 1})
@@ -454,20 +411,20 @@ export default class Level_Selection extends React.Component {
                 this.setState({bunny_order: 1});
                 if (this.state.counterLvL1 >= 1 && this.state.counterLanguage === 0) {
                     timer.setTimeout(this, 'sound_level_1', () => {
-                       level_1.play();
+                        {level_1()}
                     }, 50);
                 } else if (this.state.counterLvL3 >= 1 && this.state.counterLanguage === 0) {
                     timer.setTimeout(this, 'sound_level_3', () => {
-                        level_3.play();
+                        {level_3()}
                     }, 50);
                 } else if (this.state.counterLanguage === 1) {
                     if (this.state.language === false) {
                         timer.setTimeout(this, 'sound_ger', () => {
-                            speach_ger.play();
+                            {speach_ger()}
                         }, 50);
                     } else {
                         timer.setTimeout(this, 'sound_eng', () => {
-                            speach_eng.play();
+                            {speach_eng()}
                         }, 50);
                     }
                 }
@@ -494,15 +451,13 @@ export default class Level_Selection extends React.Component {
             //speak05-lvl 2 +4
             case 6:
                 this.setState({bunny_order: 1});
-                this.load(level_2);
                 if (this.state.counterLvL2 >= 1) {
                     timer.setTimeout(this, 'sound_level_2', () => {
-                        level_2.play();
+                        {level_2()}
                     }, 50);
                 } else if (this.state.counterLvL4 >= 1) {
-                    this.load(level_4);
                     timer.setTimeout(this, 'sound_level_4', () => {
-                        level_4.play();
+                        {level_4()}
                     }, 50);
                 }
                 if (this.state.counterLvL2 >= 1) {
@@ -525,7 +480,7 @@ export default class Level_Selection extends React.Component {
             case 7:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'sound_exit', () => {
-                    exit.play();
+                    {exit()}
                 }, 1000);
                 timer.setTimeout(this, 'exit_a', () => {
                     this.setState({opacity0: 1})
@@ -534,7 +489,10 @@ export default class Level_Selection extends React.Component {
                     this.setState({opacity0: 0})
                 }, 5500);
                 timer.setTimeout(this, 'exit', () => {
-                    BackHandler.exitApp()
+                    BackHandler.exitApp();
+                    global.music.stop();
+                    global.sound.stop();
+
                 }, 5000);
                 break;
         }
@@ -625,7 +583,9 @@ export default class Level_Selection extends React.Component {
         this.setState(prevState => ({exitButton: prevState.exitButton + 1}));
         this.setState({bunny_order: 6});
             if(this.state.exitButton===1){
-                BackHandler.exitApp()
+                BackHandler.exitApp();
+                global.music.stop();
+                global.sound.stop();
         }
     };
 
@@ -636,7 +596,6 @@ export default class Level_Selection extends React.Component {
             </TouchableOpacity>
         </View>
     }
-
     // Testing Code for variables:
     //<View style={[{position:'absolute'},{alignSelf:'center'}]}>
     //<Text>disabled:{String(this.state.disableButton_bunny)}</Text>

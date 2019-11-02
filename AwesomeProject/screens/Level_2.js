@@ -11,12 +11,17 @@ import {starfall} from "../components/starfall";
 import {pictureselector} from "../components/pictureselector12";
 import {red,blue,green,yellow,pink,brown,purple,orange,cyan} from "../components/colorselector2";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {onTouch,fire_engine,strawberry,police_car,whale,leaf,frog,sun,bananas,flamingos,pig,horses,teddy,butterfly,flowers,fish,
+    carrots,ballons,ice_cream,level_2_intro,exit_lvl,error_red_ger,error_red_eng,error_blue_ger,error_blue_eng,error_green_ger,error_green_eng,
+    error_yellow_ger,error_yellow_eng,error_pink_ger_eng,error_brown_ger,error_brown_eng,error_purple_ger,error_purple_eng,
+    error_orange_ger,error_orange_eng,error_cyan_ger,error_cyan_eng,error_2,error_time_select,error_time_color,
+    success_01,success_02,success_03} from "../components/sounds";
 
-const Sound = require('react-native-sound');
+
+
 const RNFS = require('react-native-fs');
 const shuffle = require('shuffle-array');
 const timer = require('react-native-timer');
-
 
 
 
@@ -47,58 +52,14 @@ export default class Level_2 extends Component {
             err_time_color: 0,
             start: 1,
             opacity0: 0,
-            sound2: new Sound('error_cyan_eng.m4a', Sound.MAIN_BUNDLE),
             exit2Button: 0,
-            fire_engine: new Sound('fire_engine.m4a', Sound.MAIN_BUNDLE),
-            strawberry: new Sound('strawberry.m4a', Sound.MAIN_BUNDLE),
-            police_car: new Sound('police_car.m4a', Sound.MAIN_BUNDLE),
-            whale: new Sound('whale.m4a', Sound.MAIN_BUNDLE),
-            leaf: new Sound('leaf.m4a', Sound.MAIN_BUNDLE),
-            frog: new Sound('frog.m4a', Sound.MAIN_BUNDLE),
-            sun: new Sound('sun.m4a', Sound.MAIN_BUNDLE),
-            bananas: new Sound('bananas.m4a', Sound.MAIN_BUNDLE),
-            flamingos: new Sound('flamingos.m4a', Sound.MAIN_BUNDLE),
-            pig: new Sound('pig.m4a', Sound.MAIN_BUNDLE),
-            horses: new Sound('horses.m4a', Sound.MAIN_BUNDLE),
-            teddy: new Sound('teddy.m4a', Sound.MAIN_BUNDLE),
-            butterfly: new Sound('butterfly.m4a', Sound.MAIN_BUNDLE),
-            flowers: new Sound('flowers.m4a', Sound.MAIN_BUNDLE),
-            fish: new Sound('fish.m4a', Sound.MAIN_BUNDLE),
-            carrots: new Sound('carrots.m4a', Sound.MAIN_BUNDLE),
-            ballons: new Sound('ballons.m4a', Sound.MAIN_BUNDLE),
-            ice_cream: new Sound('ice_cream.m4a', Sound.MAIN_BUNDLE),
-            level_2_intro: new Sound('Level_2_intro.m4a', Sound.MAIN_BUNDLE),
-            exit_lvl: new Sound('exit_lvl.m4a', Sound.MAIN_BUNDLE),
-            error_red_ger: new Sound('error_red_ger.m4a', Sound.MAIN_BUNDLE),
-            error_red_eng: new Sound('error_red_eng.m4a', Sound.MAIN_BUNDLE),
-            error_blue_ger: new Sound('error_blue_ger.m4a', Sound.MAIN_BUNDLE),
-            error_blue_eng: new Sound('error_blue_eng.m4a', Sound.MAIN_BUNDLE),
-            error_green_ger: new Sound('error_green_ger.m4a', Sound.MAIN_BUNDLE),
-            error_green_eng: new Sound('error_green_eng.m4a', Sound.MAIN_BUNDLE),
-            error_yellow_ger: new Sound('error_yellow_ger.m4a', Sound.MAIN_BUNDLE),
-            error_yellow_eng: new Sound('error_yellow_eng.m4a', Sound.MAIN_BUNDLE),
-            error_pink_ger_eng: new Sound('error_pink_ger_eng.m4a', Sound.MAIN_BUNDLE),
-            error_brown_ger: new Sound('error_brown_ger.m4a', Sound.MAIN_BUNDLE),
-            error_brown_eng: new Sound('error_brown_eng.m4a', Sound.MAIN_BUNDLE),
-            error_purple_ger: new Sound('error_purple_ger.m4a', Sound.MAIN_BUNDLE),
-            error_purple_eng: new Sound('error_purple_eng.m4a', Sound.MAIN_BUNDLE),
-            error_orange_ger: new Sound('error_orange_ger.m4a', Sound.MAIN_BUNDLE),
-            error_orange_eng: new Sound('error_orange_eng.m4a', Sound.MAIN_BUNDLE),
-            error_cyan_ger: new Sound('error_cyan_ger.m4a', Sound.MAIN_BUNDLE),
-            error_cyan_eng: new Sound('error_cyan_eng.m4a', Sound.MAIN_BUNDLE),
-            onTouch: new Sound('onTouch.m4a', Sound.MAIN_BUNDLE),
-            error_2: new Sound('error_2.m4a', Sound.MAIN_BUNDLE),
-            error_time_select: new Sound('error_time_select.m4a', Sound.MAIN_BUNDLE),
-            error_time_color: new Sound('error_time_color.m4a', Sound.MAIN_BUNDLE),
-            success_01: new Sound('success_1.m4a', Sound.MAIN_BUNDLE),
-            success_02: new Sound('success_2.m4a', Sound.MAIN_BUNDLE),
-            success_03: new Sound('success_3.m4a', Sound.MAIN_BUNDLE)
         }
     }
 
     componentWillMount() {
         // mount component
         this.ismounted_Level2 = true;
+
     }
 
     componentDidMount() {
@@ -129,12 +90,6 @@ export default class Level_2 extends Component {
         // clear all timer and timeouts
         timer.clearTimeout(this);
         timer.clearInterval(this);
-    }
-
-    //load sounds
-    load(sound) {
-        this.setState({sound2: null});
-        this.setState({sound2: sound})
     }
 
     // intervall for 2 errors
@@ -896,22 +851,14 @@ export default class Level_2 extends Component {
             case 3:
                 this.setState({bunny_order: 1});
                 if (this.state.start === 1) {
-                    this.load(this.state.level_2_intro);
                     timer.setTimeout(this, 'sound_intro', () => {
-                        this.state.sound2.play(() => {
-                            this.state.sound2.stop();
-                            this.state.sound2.release();
-                        });
+                        {level_2_intro()}
                         this.pictures_speak();
                         this.setState({start: 0})
-                    }, 500);
+                    }, 1500);
                 } else {
-                    this.load(this.state.carrots);
                     timer.setTimeout(this, 'carrots', () => {
-                        this.state.sound2.play(() => {
-                            this.state.sound2.reset();
-                            this.state.sound2.release();
-                        });
+                        {carrots()}
                     }, 500);
                 }
                 timer.setTimeout(this, 'speak_intro_a', () => {
@@ -933,9 +880,8 @@ export default class Level_2 extends Component {
             // onTouch-bunny_order
             case 4:
                 this.setState({bunny_order: 1});
-                this.load(this.state.onTouch);
                 timer.setTimeout(this, 'sound_onTouch', () => {
-                    this.state.sound2.play()
+                    {onTouch()}
                 }, 500);
                 timer.setTimeout(this, 'onTouch_a', () => {
                     this.setState({opacity0: 1});
@@ -950,9 +896,8 @@ export default class Level_2 extends Component {
             //success_01-bunny_order
             case 5:
                 this.setState({bunny_order: 1});
-                this.load(this.state.success_01);
                 timer.setTimeout(this, 'sound_success_01', () => {
-                    this.state.sound2.play();
+                    {success_01()}
                 }, 1000);
                 timer.setTimeout(this, 'success_01_a', () => {
                     this.setState({opacity0: 1});
@@ -967,9 +912,8 @@ export default class Level_2 extends Component {
             //success_02-bunny_order
             case 6:
                 this.setState({bunny_order: 1});
-                this.load(this.state.success_02);
                 timer.setTimeout(this, 'sound_success_02', () => {
-                   this.state.sound2.play();
+                    {success_02()}
                 }, 500);
                 timer.setTimeout(this, 'success_02_a', () => {
                     this.setState({opacity0: 1});
@@ -984,9 +928,8 @@ export default class Level_2 extends Component {
             //success_03-bunny_order
             case 7:
                 this.setState({bunny_order: 1});
-                this.load(this.state.success_03);
                 timer.setTimeout(this, 'sound_success_03', () => {
-                    this.state.sound2.play();
+                    {success_03()}
                 }, 1000);
                 timer.setTimeout(this, 'success_03_a', () => {
                     this.setState({opacity0: 1});
@@ -1007,92 +950,56 @@ export default class Level_2 extends Component {
                         switch (this.state.order) {
                             case 0:
                             case 2:
-                                this.load(this.state.error_red_ger);
                                 timer.setTimeout(this, 'error_red_ger', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_red_ger()}
                                 }, 500);
                                 break;
                             case 4:
                             case 6:
-                                this.load(this.state.error_blue_ger);
                                 timer.setTimeout(this, 'error_blue_ger', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_blue_ger()}
                                 }, 500);
                                 break;
                             case 8:
                             case 10:
-                                this.load(this.state.error_green_ger);
                                 timer.setTimeout(this, 'error_green_ger', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_green_ger()}
                                 }, 500);
                                 break;
                             case 12:
                             case 14:
-                                this.load(this.state.error_yellow_ger);
                                 timer.setTimeout(this, 'error_yellow_ger', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_yellow_ger()}
                                 }, 500);
                                 break;
                             case 16:
                             case 18:
-                                this.load(this.state.error_pink_ger_eng);
                                 timer.setTimeout(this, 'error_pink_ger_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_pink_ger_eng()}
                                 }, 500);
                                 break;
                             case 20:
                             case 22:
-                                this.load(this.state.error_brown_ger);
                                 timer.setTimeout(this, 'error_brown_ger', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_brown_ger()}
                                 }, 500);
                                 break;
                             case 24:
                             case 26:
-                                this.load(this.state.error_purple_ger);
                                 timer.setTimeout(this, 'error_purple_ger', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_purple_ger()}
                                 }, 500);
                                 break;
                             case 28:
                             case 30:
-                                this.load(this.state.error_orange_ger);
                                 timer.setTimeout(this, 'error_orange_ger', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_orange_ger()}
                                 }, 500);
                                 break;
                             case 32:
                             case 34:
-                                this.load(this.state.error_cyan_ger);
                                 timer.setTimeout(this, 'error_cyan_ger', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_cyan_ger()}
                                 }, 500);
                                 break;
                         }
@@ -1100,92 +1007,56 @@ export default class Level_2 extends Component {
                         switch (this.state.order) {
                             case 0:
                             case 2:
-                                this.load(this.state.error_red_eng);
                                 timer.setTimeout(this, 'error_red_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_red_eng()}
                                 }, 500);
                                 break;
                             case 4:
                             case 6:
-                                this.load(this.state.error_blue_eng);
                                 timer.setTimeout(this, 'error_blue_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_blue_eng()}
                                 }, 500);
                                 break;
                             case 8:
                             case 10:
-                                this.load(this.state.error_green_eng);
                                 timer.setTimeout(this, 'error_green_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_green_eng()}
                                 }, 500);
                                 break;
                             case 12:
                             case 14:
-                                this.load(this.state.error_yellow_eng);
                                 timer.setTimeout(this, 'error_yellow_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_yellow_eng()}
                                 }, 500);
                                 break;
                             case 16:
                             case 18:
-                                this.load(this.state.error_pink_ger_eng);
                                 timer.setTimeout(this, 'error_pink_ger_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_pink_ger_eng()}
                                 }, 500);
                                 break;
                             case 20:
                             case 22:
-                                this.load(this.state.error_brown_eng);
                                 timer.setTimeout(this, 'error_brown_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_brown_eng()}
                                 }, 500);
                                 break;
                             case 24:
                             case 26:
-                                this.load(this.state.error_purple_eng);
                                 timer.setTimeout(this, 'error_purple_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_purple_eng()}
                                 }, 500);
                                 break;
                             case 28:
                             case 30:
-                                this.load(this.state.error_orange_eng);
                                 timer.setTimeout(this, 'error_orange_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_orange_eng()}
                                 }, 500);
                                 break;
                             case 32:
                             case 34:
-                                this.load(this.state.error_cyan_eng);
                                 timer.setTimeout(this, 'error_cyan_eng', () => {
-                                    this.state.sound2.play(() => {
-                                        this.state.sound2.reset();
-                                        this.state.sound2.release();
-                                    });
+                                    {error_cyan_eng()}
                                 }, 500);
                                 break;
                         }
@@ -1193,66 +1064,38 @@ export default class Level_2 extends Component {
                 } else if (this.state.errorcount === 0) {
                     switch (this.state.order) {
                         case 0:
-                            this.load(this.state.fire_engine);
                             timer.setTimeout(this, 'fire_engine', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {fire_engine()}
                             }, 50);
                             break;
                         case 2:
-                            this.load(this.state.strawberry);
                             timer.setTimeout(this, 'strawberry', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {strawberry()}
                             }, 800);
                             break;
                         case 6:
-                            this.load(this.state.whale);
                             timer.setTimeout(this, 'whale', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {whale()}
                             }, 500);
                             break;
                         case 8:
-                            this.load(this.state.leaf);
                             timer.setTimeout(this, 'leaf', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {leaf()}
                             }, 100);
                             break;
                         case 12:
-                            this.load(this.state.sun);
                             timer.setTimeout(this, 'sun', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {sun()}
                             }, 500);
                             break;
                         case 14:
-                            this.load(this.state.bananas);
                             timer.setTimeout(this, 'bananas', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {bananas()}
                             }, 300);
                             break;
                         case 34:
-                            this.load(this.state.ice_cream);
                             timer.setTimeout(this, 'ice_cream', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {ice_cream()}
                             }, 500);
                             break;
                     }
@@ -1280,98 +1123,60 @@ export default class Level_2 extends Component {
             case 9:
                 this.setState({bunny_order: 1});
                 if (this.state.err_time_select === 1) {
-                    this.load(this.state.error_time_select);
                     timer.setTimeout(this, 'sound_error_time_select', () => {
-                        this.state.sound2.play();
+                        {error_time_select()}
                         this.setState({err_time_select: 0});
                     }, 500);
                 } else if (this.state.err_time_color === 1) {
-                    this.load(this.state.error_time_color);
                     timer.setTimeout(this, 'sound_error_time_color', () => {
-                        this.state.sound2.play();
+                        {error_time_color()}
                         this.setState({err_time_color: 0});
                     }, 800);
                 } else {
                     switch (this.state.order) {
                         case 4:
-                            this.load(this.state.police_car);
                             timer.setTimeout(this, 'police_car', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {police_car()}
                             }, 500);
                             break;
                         case 10:
-                            this.load(this.state.frog);
                             timer.setTimeout(this, 'frog', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {frog()}
                             }, 500);
                             break;
                         case 16:
-                            this.load(this.state.flamingos);
                             timer.setTimeout(this, 'flamingos', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {flamingos()}
                             }, 50);
                             break;
                         case 18:
-                            this.load(this.state.pig);
                             timer.setTimeout(this, 'pig', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {pig()}
                             }, 500);
                             break;
                         case 20:
-                            this.load(this.state.horses);
                             timer.setTimeout(this, 'horses', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {horses()}
                             }, 500);
                             break;
                         case 22:
-                            this.load(this.state.teddy);
                             timer.setTimeout(this, 'teddy', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {teddy()}
                             }, 500);
                             break;
                         case 26:
-                            this.load(this.state.butterfly);
                             timer.setTimeout(this, 'butterfly', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {butterfly()}
                             }, 500);
                             break;
                         case 30:
-                            this.load(this.state.fish);
                             timer.setTimeout(this, 'fish', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {fish()}
                             }, 500);
                             break;
                         case 32:
-                            this.load(this.state.ballons);
                             timer.setTimeout(this, 'ballons', () => {
-                                this.state.sound2.play(() => {
-                                    this.state.sound2.reset();
-                                    this.state.sound2.release();
-                                });
+                                {ballons()}
                             }, 500);
                             break;
 
@@ -1400,13 +1205,9 @@ export default class Level_2 extends Component {
             //speak_02
             case 10:
                 this.setState({bunny_order: 1});
-                if (this.state.exit === 1) {
-                    this.load(this.state.exit_lvl);
+                if (this.state.exit2Button === 1) {
                     timer.setTimeout(this, 'exit_lvl', () => {
-                        this.state.sound2.play(() => {
-                            this.state.sound2.reset();
-                            this.state.sound2.release();
-                        });
+                        {exit_lvl()}
                     }, 1000);
                     timer.clearInterval(this);
                     timer.setTimeout(this, 'navigate', () => {
@@ -1419,23 +1220,18 @@ export default class Level_2 extends Component {
                             bunny_anim: 3,
                             exit: 0,
                             start: 1,
-                            exit4Button:0
+                            exit2Button:0
                         });
                         this.props.navigation.navigate('Level_Selection')
                     }, 4000);
                 } else if (this.state.errorcount === 2) {
-                    this.load(this.state.error_2);
                     timer.setTimeout(this, 'error_2', () => {
-                        this.state.sound2.play();
+                        {error_2()}
                         this.setState({dominantcolor: 'white'});
                     }, 50);
                 } else if (this.state.order === 24 && this.state.errorcount === 0) {
-                    this.load(this.state.flowers);
                     timer.setTimeout(this, 'flowers', () => {
-                        this.state.sound2.play(() => {
-                            this.state.sound2.reset();
-                            this.state.sound2.release();
-                        });
+                        {flowers()}
                     }, 500);
                 }
                 timer.setTimeout(this, 'speak_02_a', () => {

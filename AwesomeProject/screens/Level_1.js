@@ -11,12 +11,13 @@ import {text} from "../components/text1";
 import {starfall} from "../components/starfall";
 import {pictureselector} from "../components/pictureselector12";
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {red_ger,red_eng,blue_ger,blue_eng,green_ger,green_eng,yellow_ger,yellow_eng,pink_ger_eng,brown_ger,brown_eng,
+    purple_ger,purple_eng,orange_ger,orange_eng,cyan_ger,cyan_eng,level_1_intro,exit_lvl,onTouch,error_time_select,error_time_color,
+    success_01,success_02,success_03} from "../components/sounds";
 
 const timer = require('react-native-timer');
 const RNFS = require('react-native-fs');
 const Sound = require('react-native-sound');
-
-
 
 
 export default class Level_1 extends Component {
@@ -43,33 +44,7 @@ export default class Level_1 extends Component {
             err_time_color: 0,
             start: 1,
             opacity0: 0,
-            sound1: {},
             exit1Button: 0,
-            red_ger: new Sound('red_ger.mp3', Sound.MAIN_BUNDLE),
-            red_eng: new Sound('red_eng.mp3', Sound.MAIN_BUNDLE),
-            blue_ger: new Sound('blue_ger.mp3', Sound.MAIN_BUNDLE),
-            blue_eng: new Sound('blue_eng.mp3', Sound.MAIN_BUNDLE),
-            green_ger: new Sound('green_ger.mp3', Sound.MAIN_BUNDLE),
-            green_eng: new Sound('green_eng.mp3', Sound.MAIN_BUNDLE),
-            yellow_ger: new Sound('yellow_ger.mp3', Sound.MAIN_BUNDLE),
-            yellow_eng: new Sound('yellow_eng.mp3', Sound.MAIN_BUNDLE),
-            pink_ger_eng: new Sound('pink_ger_eng.mp3', Sound.MAIN_BUNDLE),
-            brown_ger: new Sound('brown_ger.mp3', Sound.MAIN_BUNDLE),
-            brown_eng: new Sound('brown_eng.mp3', Sound.MAIN_BUNDLE),
-            purple_ger: new Sound('purple_ger.mp3', Sound.MAIN_BUNDLE),
-            purple_eng: new Sound('purple_eng.mp3', Sound.MAIN_BUNDLE),
-            orange_ger: new Sound('orange_ger.mp3', Sound.MAIN_BUNDLE),
-            orange_eng: new Sound('orange_eng.mp3', Sound.MAIN_BUNDLE),
-            cyan_ger: new Sound('cyan_ger.mp3', Sound.MAIN_BUNDLE),
-            cyan_eng: new Sound('cyan_eng.mp3', Sound.MAIN_BUNDLE),
-            level_1_intro: new Sound('level_1_intro.mp3', Sound.MAIN_BUNDLE),
-            exit_lvl: new Sound('exit_lvl.mp3', Sound.MAIN_BUNDLE),
-            onTouch: new Sound('onTouch.mp3', Sound.MAIN_BUNDLE),
-            error_time_select: new Sound('error_time_select.mp3', Sound.MAIN_BUNDLE),
-            error_time_color: new Sound('error_time_color.mp3', Sound.MAIN_BUNDLE),
-            success_01: new Sound('success_1.mp3', Sound.MAIN_BUNDLE),
-            success_02: new Sound('success_2.mp3', Sound.MAIN_BUNDLE),
-            success_03: new Sound('success_3.mp3', Sound.MAIN_BUNDLE),
         }
     }
 
@@ -93,13 +68,6 @@ export default class Level_1 extends Component {
         // clear all timer and interval
         timer.clearTimeout(this);
         timer.clearInterval(this)
-    }
-
-    //load sounds
-    load(sound) {
-        this.setState({sound1: null});
-        this.setState({sound1: sound})
-
     }
 
     // intervall for 2 errors
@@ -783,12 +751,8 @@ export default class Level_1 extends Component {
             // speak-bunny_order (intro)
             case 3:
                 this.setState({bunny_order: 1});
-                this.load(this.state.level_1_intro);
                 timer.setTimeout(this, 'sound_intro', () => {
-                    this.state.sound1.play(() => {
-                        this.state.sound1.reset();
-                        this.state.sound1.release();
-                    });
+                    {level_1_intro()}
                     this.setState({bunny_order: 3});
                 }, 500);
                 timer.setTimeout(this, 'speak_intro_a', () => {
@@ -804,9 +768,8 @@ export default class Level_1 extends Component {
             // onTouch-bunny_order
             case 4:
                 this.setState({bunny_order: 1});
-                this.load(this.state.onTouch);
                 timer.setTimeout(this, 'sound_onTouch', () => {
-                    this.state.sound1.play();
+                    {onTouch()}
                 }, 500);
                 timer.setTimeout(this, 'onTouch_a', () => {
                     this.setState({opacity0: 1})
@@ -821,9 +784,8 @@ export default class Level_1 extends Component {
             //success_01-bunny_order
             case 5:
                 this.setState({bunny_order: 1});
-                this.load(this.state.success_01);
                 timer.setTimeout(this, 'sound_success_01', () => {
-                    this.state.sound1.play();
+                    {success_01()}
                     if (this.state.order === 4 || this.state.order === 8 || this.state.order === 12 || this.state.order === 16 || this.state.order === 20 || this.state.order === 24 || this.state.order === 28 || this.state.order === 32) {
                         this.setState({bunny_order: 3});
                     }
@@ -841,9 +803,8 @@ export default class Level_1 extends Component {
             //success_02-bunny_order
             case 6:
                 this.setState({bunny_order: 1});
-                this.load(this.state.success_02);
                 timer.setTimeout(this, 'sound_success_02', () => {
-                    this.state.sound1.play();
+                    {success_02()}
                     if (this.state.order === 4 || this.state.order === 8 || this.state.order === 12 || this.state.order === 16 || this.state.order === 20 || this.state.order === 24 || this.state.order === 28 || this.state.order === 32) {
                         this.setState({bunny_order: 3});
                     }
@@ -861,9 +822,8 @@ export default class Level_1 extends Component {
             //success_03-bunny_order
             case 7:
                 this.setState({bunny_order: 1});
-                this.load(this.state.success_03);
                 timer.setTimeout(this, 'sound_success_03', () => {
-                    this.state.sound1.play();
+                    {success_03()}
                     if (this.state.order === 4 || this.state.order === 8 || this.state.order === 12 || this.state.order === 16 || this.state.order === 20 || this.state.order === 24 || this.state.order === 28 || this.state.order === 32) {
                         this.setState({bunny_order: 3});
                     }
@@ -883,15 +843,13 @@ export default class Level_1 extends Component {
             case 8:
                 this.setState({bunny_order: 1});
                 if (this.state.err_time_select === 1) {
-                    this.load(this.state.error_time_select);
                     timer.setTimeout(this, 'sound_error_time_select', () => {
-                        this.state.sound1.play();
+                        {error_time_select()}
                         this.setState({err_time_select: 0});
                     }, 500);
                 } else if (this.state.err_time_color === 1) {
-                    this.load(this.state.error_time_color);
                     timer.setTimeout(this, 'sound_error_time_color', () => {
-                        this.state.sound1.play();
+                        {error_time_color()}
                         this.setState({err_time_color: 0});
                     }, 800);
                 } else {
@@ -899,168 +857,96 @@ export default class Level_1 extends Component {
                         switch (this.state.order) {
                             case 0:
                             case 1:
-                                this.load(this.state.red_ger);
                                 timer.setTimeout(this, 'red_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {red_ger()}
                                 }, 500);
                                 break;
                             case 4:
-                                this.load(this.state.blue_ger);
                                 timer.setTimeout(this, 'blue_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {blue_ger()}
                                 }, 500);
                                 break;
                             case 8:
-                                this.load(this.state.green_ger);
                                 timer.setTimeout(this, 'green_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {green_ger()}
                                 }, 500);
                                 break;
                             case 12:
-                                this.load(this.state.yellow_ger);
                                 timer.setTimeout(this, 'yellow_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {yellow_ger()}
                                 }, 1000);
                                 break;
                             case 16:
-                                this.load(this.state.pink_ger_eng);
                                 timer.setTimeout(this, 'pink_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {pink_ger_eng()}
                                 }, 500);
                                 break;
                             case 20:
-                                this.load(this.state.brown_ger);
                                 timer.setTimeout(this, 'brown_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {brown_ger()}
                                 }, 500);
                                 break;
                             case 24:
-                                this.load(this.state.purple_ger);
                                 timer.setTimeout(this, 'purple_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {purple_ger()}
                                 }, 500);
                                 break;
                             case 28:
-                                this.load(this.state.orange_ger);
                                 timer.setTimeout(this, 'orange_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {orange_ger()}
                                 }, 500);
                                 break;
                             case 32:
-                                this.load(this.state.cyan_ger);
                                 timer.setTimeout(this, 'cyan_ger', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {cyan_ger()}
                                 }, 500);
                                 break;
                         }
                     } else {
                         switch (this.state.order) {
                             case 0:
-                                this.load(this.state.red_eng);
                                 timer.setTimeout(this, 'red_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {red_eng()}
                                 }, 500);
                                 break;
                             case 4:
-                                this.load(this.state.blue_eng);
                                 timer.setTimeout(this, 'blue_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {blue_eng()}
                                 }, 1000);
                                 break;
                             case 8:
-                                this.load(this.state.green_eng);
                                 timer.setTimeout(this, 'green_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {green_eng()}
                                 }, 500);
                                 break;
                             case 12:
-                                this.load(this.state.yellow_eng);
                                 timer.setTimeout(this, 'yellow_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {yellow_eng()}
                                 }, 1000);
                                 break;
                             case 16:
-                                this.load(this.state.pink_ger_eng);
                                 timer.setTimeout(this, 'pink_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {pink_ger_eng()}
                                 }, 500);
                                 break;
                             case 20:
-                                this.load(this.state.brown_eng);
                                 timer.setTimeout(this, 'brown_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {brown_eng()}
                                 }, 500);
                                 break;
                             case 24:
-                                this.load(this.state.purple_eng);
                                 timer.setTimeout(this, 'purple_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {purple_eng()}
                                 }, 500);
                                 break;
                             case 28:
-                                this.load(this.state.orange_eng);
                                 timer.setTimeout(this, 'orange_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {orange_eng()}
                                 }, 500);
                                 break;
                             case 32:
-                                this.load(this.state.cyan_eng);
                                 timer.setTimeout(this, 'cyan_eng', () => {
-                                    this.state.sound1.play(() => {
-                                        this.state.sound1.reset();
-                                        this.state.sound1.release();
-                                    });
+                                    {cyan_eng()}
                                 }, 500);
                                 break;
                         }
@@ -1089,12 +975,8 @@ export default class Level_1 extends Component {
             //speak exit
             case 9:
                 this.setState({bunny_order: 1});
-                this.load(this.state.exit_lvl);
                 timer.setTimeout(this, 'exit_lvl', () => {
-                    this.state.sound1.play(() => {
-                        this.state.sound1.reset();
-                        this.state.sound1.release();
-                    });
+                    {exit_lvl()}
                     this.setState({exit: 0});
                     timer.clearInterval(this)
                 }, 1000);
