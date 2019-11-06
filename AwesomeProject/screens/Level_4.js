@@ -253,7 +253,7 @@ export default class Level_4 extends Component {
                     this.setState(prevState => ({order: prevState.order + 1}));
                     timer.setTimeout(this, '2', () => {
                         this.setState(prevState => ({ordercount: prevState.ordercount + 1}));
-                        this.setState({  errorcount: 0,order: this.state.orderRDM[this.state.ordercount][0]});
+                        this.setState({errorcount: 0, order: this.state.orderRDM[this.state.ordercount][0]});
                         this.updatetext();
                         this.pictures_speak();
                         if (this.state.order === 50)
@@ -295,7 +295,7 @@ export default class Level_4 extends Component {
                     this.setState(prevState => ({order: prevState.order + 1}));
                     timer.setTimeout(this, '6', () => {
                         this.setState(prevState => ({ordercount: prevState.ordercount + 1}));
-                        this.setState({  errorcount: 0,order: this.state.orderRDM[this.state.ordercount][0]});
+                        this.setState({errorcount: 0, order: this.state.orderRDM[this.state.ordercount][0]});
                         this.updatetext();
                         this.pictures_speak();
                         if (this.state.order === 50)
@@ -337,7 +337,7 @@ export default class Level_4 extends Component {
                     this.setState(prevState => ({order: prevState.order + 1}));
                     timer.setTimeout(this, '10', () => {
                         this.setState(prevState => ({ordercount: prevState.ordercount + 1}));
-                        this.setState({  errorcount: 0,order: this.state.orderRDM[this.state.ordercount][0]});
+                        this.setState({errorcount: 0, order: this.state.orderRDM[this.state.ordercount][0]});
                         this.updatetext();
                         this.pictures_speak();
                         if (this.state.order === 50)
@@ -379,7 +379,7 @@ export default class Level_4 extends Component {
                     this.setState(prevState => ({order: prevState.order + 1}));
                     timer.setTimeout(this, '14', () => {
                         this.setState(prevState => ({ordercount: prevState.ordercount + 1}));
-                        this.setState({  errorcount: 0,order: this.state.orderRDM[this.state.ordercount][0]});
+                        this.setState({errorcount: 0, order: this.state.orderRDM[this.state.ordercount][0]});
                         this.updatetext();
                         this.pictures_speak();
                         if (this.state.order === 50)
@@ -421,7 +421,7 @@ export default class Level_4 extends Component {
                     this.setState(prevState => ({order: prevState.order + 1}));
                     timer.setTimeout(this, '18', () => {
                         this.setState(prevState => ({ordercount: prevState.ordercount + 1}));
-                        this.setState({  errorcount: 0,order: this.state.orderRDM[this.state.ordercount][0]});
+                        this.setState({errorcount: 0, order: this.state.orderRDM[this.state.ordercount][0]});
                         this.updatetext();
                         this.pictures_speak();
                         if (this.state.order === 50)
@@ -1074,7 +1074,9 @@ export default class Level_4 extends Component {
             case 3:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'carrots', () => {
-                    {carrots()}
+                    {
+                        carrots()
+                    }
                 }, 500);
                 timer.setTimeout(this, 'speak_intro_a', () => {
                     this.setState({opacity0: 1, start: 0});
@@ -1090,7 +1092,9 @@ export default class Level_4 extends Component {
             case 4:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'sound_onTouch', () => {
-                    {onTouch()}
+                    {
+                        onTouch()
+                    }
                 }, 500);
                 timer.setTimeout(this, 'onTouch_a', () => {
                     this.setState({opacity0: 1});
@@ -1106,7 +1110,9 @@ export default class Level_4 extends Component {
             case 5:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'sound_success_01', () => {
-                    {success_01()}
+                    {
+                        success_01()
+                    }
                 }, 1000);
                 timer.setTimeout(this, 'success_01_a', () => {
                     this.setState({opacity0: 1});
@@ -1122,7 +1128,9 @@ export default class Level_4 extends Component {
             case 6:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'sound_success_02', () => {
-                    {success_02()}
+                    {
+                        success_02()
+                    }
                 }, 500);
                 timer.setTimeout(this, 'success_02_a', () => {
                     this.setState({opacity0: 1});
@@ -1138,7 +1146,9 @@ export default class Level_4 extends Component {
             case 7:
                 this.setState({bunny_order: 1});
                 timer.setTimeout(this, 'sound_success_03', () => {
-                    {success_03()}
+                    {
+                        success_03()
+                    }
                 }, 1000);
                 timer.setTimeout(this, 'success_03_a', () => {
                     this.setState({opacity0: 1});
@@ -1161,35 +1171,45 @@ export default class Level_4 extends Component {
                             case 1:
                             case 2:
                                 timer.setTimeout(this, 'error_green_ger', () => {
-                                    {error_green_ger()}
+                                    {
+                                        error_green_ger()
+                                    }
                                 }, 500);
                                 break;
                             case 4:
                             case 5:
                             case 6:
                                 timer.setTimeout(this, 'error_purple_ger', () => {
-                                    {error_purple_ger()}
+                                    {
+                                        error_purple_ger()
+                                    }
                                 }, 500);
                                 break;
                             case 8:
                             case 9:
                             case 10:
                                 timer.setTimeout(this, 'error_brown_ger', () => {
-                                    {error_brown_ger()}
+                                    {
+                                        error_brown_ger()
+                                    }
                                 }, 500);
                                 break;
                             case 12:
                             case 13:
                             case 14:
                                 timer.setTimeout(this, 'error_orange_ger', () => {
-                                    {error_orange_ger()}
+                                    {
+                                        error_orange_ger()
+                                    }
                                 }, 500);
                                 break;
                             case 16:
                             case 17:
                             case 18:
                                 timer.setTimeout(this, 'error_cyan_ger', () => {
-                                    {error_cyan_ger()}
+                                    {
+                                        error_cyan_ger()
+                                    }
                                 }, 500);
                                 break;
                         }
@@ -1199,35 +1219,45 @@ export default class Level_4 extends Component {
                             case 3:
                             case 2:
                                 timer.setTimeout(this, 'error_green_eng', () => {
-                                    {error_green_eng()}
+                                    {
+                                        error_green_eng()
+                                    }
                                 }, 500);
                                 break;
                             case 4:
                             case 5:
                             case 6:
                                 timer.setTimeout(this, 'error_purple_eng', () => {
-                                    {error_purple_eng()}
+                                    {
+                                        error_purple_eng()
+                                    }
                                 }, 500);
                                 break;
                             case 8:
                             case 9:
                             case 10:
                                 timer.setTimeout(this, 'error_brown_eng', () => {
-                                    {error_brown_eng()}
+                                    {
+                                        error_brown_eng()
+                                    }
                                 }, 500);
                                 break;
                             case 12:
                             case 13:
                             case 14:
                                 timer.setTimeout(this, 'error_orange_eng', () => {
-                                    {error_orange_eng()}
+                                    {
+                                        error_orange_eng()
+                                    }
                                 }, 500);
                                 break;
                             case 16:
                             case 17:
                             case 18:
                                 timer.setTimeout(this, 'error_cyan_eng', () => {
-                                    {error_cyan_eng()}
+                                    {
+                                        error_cyan_eng()
+                                    }
                                 }, 500);
                                 break;
                         }
@@ -1236,13 +1266,17 @@ export default class Level_4 extends Component {
                     switch (this.state.order) {
                         case 0:
                             timer.setTimeout(this, 'leaf', () => {
-                                {leaf()}
+                                {
+                                    leaf()
+                                }
                             }, 100);
                             break;
                         case 17:
                         case 18:
                             timer.setTimeout(this, 'ice_cream', () => {
-                                {ice_cream()}
+                                {
+                                    ice_cream()
+                                }
                             }, 500);
                             break;
                     }
@@ -1268,12 +1302,16 @@ export default class Level_4 extends Component {
                 this.setState({bunny_order: 1});
                 if (this.state.err_time_select === 1) {
                     timer.setTimeout(this, 'sound_error_time_select', () => {
-                        {error_time_select()}
+                        {
+                            error_time_select()
+                        }
                         this.setState({err_time_select: 0, dominantcolor: 'white'});
                     }, 500);
                 } else if (this.state.err_time_color === 1) {
                     timer.setTimeout(this, 'sound_error_time_color', () => {
-                        {error_time_color()}
+                        {
+                            error_time_color()
+                        }
                         this.setState({err_time_color: 0, dominantcolor: 'white'});
                     }, 800);
                 } else {
@@ -1281,37 +1319,49 @@ export default class Level_4 extends Component {
                         case 1:
                         case 2:
                             timer.setTimeout(this, 'frog', () => {
-                                {frog()}
+                                {
+                                    frog()
+                                }
                             }, 500);
                             break;
                         case 3:
                         case 4:
                             timer.setTimeout(this, 'butterfly', () => {
-                                {butterfly()}
+                                {
+                                    butterfly()
+                                }
                             }, 500);
                             break;
                         case 7:
                         case 8:
                             timer.setTimeout(this, 'horses', () => {
-                                {horses()}
+                                {
+                                    horses()
+                                }
                             }, 500);
                             break;
                         case 9:
                         case 10:
                             timer.setTimeout(this, 'teddy', () => {
-                                {teddy()}
+                                {
+                                    teddy()
+                                }
                             }, 500);
                             break;
                         case 13:
                         case 14:
                             timer.setTimeout(this, 'fish', () => {
-                                {fish()}
+                                {
+                                    fish()
+                                }
                             }, 500);
                             break;
                         case 15:
                         case 16:
                             timer.setTimeout(this, 'ballons', () => {
-                                {ballons()}
+                                {
+                                    ballons()
+                                }
                             }, 500);
                             break;
                     }
@@ -1341,7 +1391,9 @@ export default class Level_4 extends Component {
                 this.setState({bunny_order: 1});
                 if (this.state.exit4Button === 1) {
                     timer.setTimeout(this, 'exit_lvl', () => {
-                        {exit_lvl()}
+                        {
+                            exit_lvl()
+                        }
                         timer.clearInterval(this);
                         timer.setTimeout(this, 'navigate', () => {
                             this.setState({
@@ -1353,19 +1405,23 @@ export default class Level_4 extends Component {
                                 bunny_anim: 3,
                                 exit: 0,
                                 start: 1,
-                                exit4Button:0
+                                exit4Button: 0
                             });
                             this.props.navigation.navigate('Level_Selection')
                         }, 4000);
                     }, 500);
                 } else if (this.state.errorcount === 2) {
                     timer.setTimeout(this, 'error_2', () => {
-                        {error_2()}
+                        {
+                            error_2()
+                        }
                         this.setState({dominantcolor: 'white'});
                     }, 50);
                 } else if (this.state.order === 6 || this.state.order === 5 && this.state.errorcount === 0) {
                     timer.setTimeout(this, 'flowers', () => {
-                        {flowers()}
+                        {
+                            flowers()
+                        }
                     }, 500);
                 }
                 timer.setTimeout(this, 'speak_02_a', () => {
@@ -1391,7 +1447,9 @@ export default class Level_4 extends Component {
             //speak_06
             case 11:
                 timer.setTimeout(this, 'sound_intro', () => {
-                    {level_4_intro()}
+                    {
+                        level_4_intro()
+                    }
                     this.pictures_speak();
                 }, 500);
                 timer.setTimeout(this, 'speak_06_a', () => {
@@ -1524,7 +1582,7 @@ export default class Level_4 extends Component {
     exitPress = () => {
         this.setState(prevState => ({exit4Button: prevState.exit4Button + 1}));
         this.setState({bunny_order: 6, err_time_select: 0, err_time_color: 0, exit: 1});
-        if(this.state.exit4Button===1){
+        if (this.state.exit4Button === 1) {
             this.props.navigation.navigate('Level_Selection');
             this.setState({
                 err_time_select: 0,
@@ -1535,7 +1593,7 @@ export default class Level_4 extends Component {
                 bunny_anim: 3,
                 exit: 0,
                 start: 1,
-                exit4Button:0
+                exit4Button: 0
             });
         }
     };
@@ -1591,7 +1649,7 @@ export default class Level_4 extends Component {
                     </View>
                     <View style={styles.shildview}>
                         {woodShild(this.state.order, this.state.errorcount)}
-                            {text(this.state.order, this.state.errorcount, this.state.textcolor1, this.state.textcolor2, this.state.textcolor3, this.state.text1, this.state.text2, this.state.text3)}
+                        {text(this.state.order, this.state.errorcount, this.state.textcolor1, this.state.textcolor2, this.state.textcolor3, this.state.text1, this.state.text2, this.state.text3)}
                     </View>
                     <View style={styles.buttonView}>
                         <Animatable.View
@@ -1649,12 +1707,12 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         borderWidth: wp('0.5%'),
         bottom: hp('24.5%'),
-        position:'absolute'
+        position: 'absolute'
     },
     paint2: {
         width: wp('60%'),
         height: hp('85%'),
-        position:'absolute',
+        position: 'absolute',
         resizeMode: 'stretch'
     },
     buttonView: {
@@ -1679,12 +1737,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: wp('100%'),
         height: hp('100%'),
-        position:'absolute'
+        position: 'absolute'
     },
     font2_gras: {
         flex: 1,
-        left:wp('0%'),
-        bottom:  hp('0%'),
+        left: wp('0%'),
+        bottom: hp('0%'),
         position: 'absolute',
         width: wp('100%'),
         height: hp('100%'),
