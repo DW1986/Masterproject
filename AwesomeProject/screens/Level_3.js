@@ -91,9 +91,9 @@ export default class Level_3 extends Component {
                 case 0:
                 case 2:
                     this.setState({
-                        text1: "Blau",
-                        text2: "Gelb",
-                        text3: "Grün",
+                        text1: "blau",
+                        text2: "gelb",
+                        text3: "grün",
                         textcolor1: '#0000FF',
                         textcolor2: '#FFFF00',
                         textcolor3: '#00FF00'
@@ -102,9 +102,9 @@ export default class Level_3 extends Component {
                 case 4:
                 case 6:
                     this.setState({
-                        text1: "Rot",
-                        text2: "Blau",
-                        text3: "Lila",
+                        text1: "rot",
+                        text2: "blau",
+                        text3: "lila",
                         textcolor1: '#FF0000',
                         textcolor2: '#0000FF',
                         textcolor3: '#9D00FF'
@@ -113,9 +113,9 @@ export default class Level_3 extends Component {
                 case 8:
                 case 10:
                     this.setState({
-                        text1: "Rot",
-                        text2: "Grün",
-                        text3: "Braun",
+                        text1: "rot",
+                        text2: "grün",
+                        text3: "braun",
                         textcolor1: '#FF0000',
                         textcolor2: '#00FF00',
                         textcolor3: '#A52A2A'
@@ -124,9 +124,9 @@ export default class Level_3 extends Component {
                 case 12:
                 case 14:
                     this.setState({
-                        text1: "Rot",
-                        text2: "Gelb",
-                        text3: "Orange",
+                        text1: "rot",
+                        text2: "gelb",
+                        text3: "orange",
                         textcolor1: '#FF0000',
                         textcolor2: '#FFFF00',
                         textcolor3: '#FFA500'
@@ -135,9 +135,9 @@ export default class Level_3 extends Component {
                 case 16:
                 case 18:
                     this.setState({
-                        text1: "Grün",
-                        text2: "Blau",
-                        text3: "Türkis",
+                        text1: "grün",
+                        text2: "blau",
+                        text3: "türkis",
                         textcolor1: '#00FF00',
                         textcolor2: '#0000FF',
                         textcolor3: '#00FFFF'
@@ -1116,10 +1116,10 @@ export default class Level_3 extends Component {
             case 0:
                 timer.setTimeout(this, 'idle_02_2a', () => {
                     this.setState({opacity0: 1});
-                }, 3500);
+                }, 3300);
                 timer.setTimeout(this, 'idle_02_2b', () => {
                     this.setState({opacity0: 0});
-                }, 4500);
+                }, 4700);
                 timer.setTimeout(this, 'idle_02_1', () => {
                     switch (this.state.bunny_order) {
                         case 1:
@@ -1164,10 +1164,10 @@ export default class Level_3 extends Component {
             case 1:
                 timer.setTimeout(this, 'idle_01_a', () => {
                     this.setState({opacity0: 1});
-                }, 3500);
+                }, 3300);
                 timer.setTimeout(this, 'idle_01_b', () => {
                     this.setState({opacity0: 0});
-                }, 4500);
+                }, 4700);
                 timer.setTimeout(this, 'idle_01', () => {
                     this.helper01();
                 }, 4000);
@@ -1177,10 +1177,10 @@ export default class Level_3 extends Component {
             case 2:
                 timer.setTimeout(this, 'idle_03_a', () => {
                     this.setState({opacity0: 1});
-                }, 4000);
+                }, 3800);
                 timer.setTimeout(this, 'idle_03_b', () => {
                     this.setState({opacity0: 0});
-                }, 5000);
+                }, 5200);
                 timer.setTimeout(this, 'idle_03', () => {
                     this.helper01();
                 }, 4500);
@@ -1193,10 +1193,10 @@ export default class Level_3 extends Component {
                 }, 500);
                 timer.setTimeout(this, 'speak_intro_a', () => {
                     this.setState({opacity0: 1, start: 0});
-                }, 6500);
+                }, 6300);
                 timer.setTimeout(this, 'speak_intro_b', () => {
                     this.setState({opacity0: 0});
-                }, 7500);
+                }, 7700);
                 timer.setTimeout(this, 'speak_intro', () => {
                     this.helper01();
                 }, 7000);
@@ -1209,10 +1209,10 @@ export default class Level_3 extends Component {
                 }, 500);
                 timer.setTimeout(this, 'onTouch_a', () => {
                     this.setState({opacity0: 1});
-                }, 4000);
+                }, 3800);
                 timer.setTimeout(this, 'onTouch_b', () => {
                     this.setState({opacity0: 0});
-                }, 5000);
+                }, 5200);
                 timer.setTimeout(this, 'onTouch', () => {
                     this.helper01();
                 }, 4500);
@@ -1225,10 +1225,10 @@ export default class Level_3 extends Component {
                 }, 1000);
                 timer.setTimeout(this, 'success_01_a', () => {
                     this.setState({opacity0: 1});
-                }, 4500);
+                }, 4300);
                 timer.setTimeout(this, 'success_01_b', () => {
                     this.setState({opacity0: 0});
-                }, 5500);
+                }, 5700);
                 timer.setTimeout(this, 'success_01', () => {
                     this.helper01();
                 }, 5000);
@@ -1241,10 +1241,10 @@ export default class Level_3 extends Component {
                 }, 500);
                 timer.setTimeout(this, 'success_02_a', () => {
                     this.setState({opacity0: 1});
-                }, 3000);
+                }, 2800);
                 timer.setTimeout(this, 'success_02_b', () => {
                     this.setState({opacity0: 0});
-                }, 4000);
+                }, 4200);
                 timer.setTimeout(this, 'success_02', () => {
                     this.helper01();
                 }, 3500);
@@ -1257,10 +1257,10 @@ export default class Level_3 extends Component {
                 }, 1000);
                 timer.setTimeout(this, 'success_03_a', () => {
                     this.setState({opacity0: 1});
-                }, 4500);
+                }, 4300);
                 timer.setTimeout(this, 'success_03_b', () => {
                     this.setState({opacity0: 0});
-                }, 5500);
+                }, 5700);
                 timer.setTimeout(this, 'success_03', () => {
                     this.helper01();
                 }, 5000);
@@ -1366,10 +1366,16 @@ export default class Level_3 extends Component {
                 }
                 timer.setTimeout(this, 'speak_04_a', () => {
                     this.setState({opacity0: 1});
-                }, 5500);
-                timer.setTimeout(this, 'speak_04_b', () => {
-                    this.setState({opacity0: 0});
-                }, 6500);
+                }, 5300);
+                if (this.state.errorcount === 1) {
+                    timer.setTimeout(this, 'speak_04_ba', () => {
+                        this.setState({opacity0: 0});
+                    }, 6700);
+                } else {
+                    timer.setTimeout(this, 'speak_04_bb', () => {
+                        this.setState({opacity0: 0});
+                    }, 6700);
+                }
                 timer.setTimeout(this, 'speak_04', () => {
                     this.helper01();
                 }, 6000);
@@ -1429,19 +1435,19 @@ export default class Level_3 extends Component {
                 }
                 timer.setTimeout(this, 'speak_03_a', () => {
                     this.setState({opacity0: 1});
-                }, 4500);
+                }, 4300);
                 if (this.state.err_time_select === 1) {
                     timer.setTimeout(this, 'speak_03_ba', () => {
                         this.setState({opacity0: 0})
-                    }, 5500);
+                    }, 5700);
                 } else if (this.state.err_time_color === 1) {
                     timer.setTimeout(this, 'speak_03_bb', () => {
                         this.setState({opacity0: 0})
-                    }, 5500);
+                    }, 5700);
                 } else {
                     timer.setTimeout(this, 'speak_03_bc', () => {
                         this.setState({opacity0: 0})
-                    }, 5500);
+                    }, 5700);
                 }
                 timer.setTimeout(this, 'speak_03', () => {
                     this.helper01();
@@ -1475,15 +1481,15 @@ export default class Level_3 extends Component {
                 }
                 timer.setTimeout(this, 'speak_02_a', () => {
                     this.setState({opacity0: 1});
-                }, 3500);
+                }, 3300);
                 if (this.state.exit3Button === 1) {
                     timer.setTimeout(this, 'speak_02_ba', () => {
                         this.setState({opacity0: 0});
-                    }, 4500);
+                    }, 4700);
                 } else {
                     timer.setTimeout(this, 'speak_02_bb', () => {
                         this.setState({opacity0: 0});
-                    }, 4500);
+                    }, 4700);
                 }
                 timer.setTimeout(this, 'speak_02', () => {
                     this.helper01();
@@ -1497,10 +1503,10 @@ export default class Level_3 extends Component {
                 }, 500);
                 timer.setTimeout(this, 'speak_06_a', () => {
                     this.setState({opacity0: 1});
-                }, 7500);
+                }, 7300);
                 timer.setTimeout(this, 'speak_06_b', () => {
                     this.setState({opacity0: 0});
-                }, 8500);
+                }, 8700);
                 timer.setTimeout(this, 'speak_06', () => {
                     this.helper01();
                 }, 8000);
@@ -1653,8 +1659,6 @@ export default class Level_3 extends Component {
         if (this.ismounted_Level3 === true) {
             return (
                 <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
-                    <Image pointerEvents="none" source={require('../assets/other/Level_Selection_front2.webp')}
-                           style={styles.font2_gras}/>
                     <View style={styles.paint2}>
                         <Image
                             source={require('../assets/other/paint.webp')}
@@ -1666,6 +1670,8 @@ export default class Level_3 extends Component {
                             source={require('../assets/bunny/initial_bunny.png')}
                             style={[styles.bunny, {opacity: this.state.opacity0}]}/>
                     </View>
+                    <Image pointerEvents="none" source={require('../assets/other/Level_Selection_front2.webp')}
+                           style={styles.font2_gras}/>
                     {this.renderTouch()}
                     <ViewShot style={styles.paint} ref="viewShot"
                               options={{format: "jpg", quality: 1.0, result: "base64"}}>

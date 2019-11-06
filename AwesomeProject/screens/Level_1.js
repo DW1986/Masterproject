@@ -87,46 +87,46 @@ export default class Level_1 extends Component {
         if (this.props.navigation.state.params.language === false) {
             switch (this.state.order) {
                 case 0:
-                    this.setState({text: "Rot", textcolor: '#FF0000'});
+                    this.setState({text: "rot", textcolor: '#FF0000'});
                     break;
                 case 3:
                     timer.setTimeout(this, 'blau', () =>
-                            this.setState({text: "Blau", textcolor: '#0000FF'})
+                            this.setState({text: "blau", textcolor: '#0000FF'})
                         , 3000);
                     break;
                 case 7:
                     timer.setTimeout(this, 'grün', () =>
-                            this.setState({text: "Grün", textcolor: '#00FF00'})
+                            this.setState({text: "grün", textcolor: '#00FF00'})
                         , 3000);
                     break;
                 case 11:
                     timer.setTimeout(this, 'gelb', () =>
-                            this.setState({text: "Gelb", textcolor: '#FFFF00'})
+                            this.setState({text: "gelb", textcolor: '#FFFF00'})
                         , 3000);
                     break;
                 case 15:
                     timer.setTimeout(this, 'pink', () =>
-                            this.setState({text: "Pink", textcolor: '#FF1694'})
+                            this.setState({text: "pink", textcolor: '#FF1694'})
                         , 3000);
                     break;
                 case 19:
                     timer.setTimeout(this, 'braun', () =>
-                            this.setState({text: "Braun", textcolor: '#A52A2A'})
+                            this.setState({text: "braun", textcolor: '#A52A2A'})
                         , 3000);
                     break;
                 case 23:
                     timer.setTimeout(this, 'lila', () =>
-                            this.setState({text: "Lila", textcolor: '#9D00FF'})
+                            this.setState({text: "lila", textcolor: '#9D00FF'})
                         , 3000);
                     break;
                 case 27:
                     timer.setTimeout(this, 'orange', () =>
-                            this.setState({text: "Orange", textcolor: '#FFA500'})
+                            this.setState({text: "orange", textcolor: '#FFA500'})
                         , 3000);
                     break;
                 case 31:
                     timer.setTimeout(this, 'türkis', () =>
-                            this.setState({text: "Türkis", textcolor: '#00FFFF'})
+                            this.setState({text: "türkis", textcolor: '#00FFFF'})
                         , 3000);
                     break;
             }
@@ -688,10 +688,10 @@ export default class Level_1 extends Component {
             case 0:
                 timer.setTimeout(this, 'idle_02_2a', () => {
                     this.setState({opacity0: 1})
-                }, 3500);
+                }, 3300);
                 timer.setTimeout(this, 'idle_02_2b', () => {
                     this.setState({opacity0: 0})
-                }, 4500);
+                }, 4700);
                 timer.setTimeout(this, 'idle_02_1', () => {
                     switch (this.state.bunny_order) {
                         case 1:
@@ -727,23 +727,22 @@ export default class Level_1 extends Component {
             case 1:
                 timer.setTimeout(this, 'idle_01_a', () => {
                     this.setState({opacity0: 1})
-                }, 3500);
+                }, 3300);
                 timer.setTimeout(this, 'idle_01_b', () => {
                     this.setState({opacity0: 0})
-                }, 4500);
+                }, 4700);
                 timer.setTimeout(this, 'idle_01', () => {
                     this.helper01();
                 }, 4000);
-
                 break;
             // idle03-bunny_order
             case 2:
                 timer.setTimeout(this, 'idle_03_a', () => {
                     this.setState({opacity0: 1})
-                }, 4000);
+                }, 3800);
                 timer.setTimeout(this, 'idle_03_b', () => {
                     this.setState({opacity0: 0})
-                }, 5000);
+                }, 5200);
                 timer.setTimeout(this, 'idle_03', () => {
                     this.helper01();
                 }, 4500);
@@ -757,10 +756,10 @@ export default class Level_1 extends Component {
                 }, 500);
                 timer.setTimeout(this, 'speak_intro_a', () => {
                     this.setState({opacity0: 1})
-                }, 6500);
+                }, 6300);
                 timer.setTimeout(this, 'speak_intro_b', () => {
                     this.setState({opacity0: 0})
-                }, 7500);
+                }, 7700);
                 timer.setTimeout(this, 'speak_intro', () => {
                     this.helper01();
                 }, 7000);
@@ -773,10 +772,10 @@ export default class Level_1 extends Component {
                 }, 500);
                 timer.setTimeout(this, 'onTouch_a', () => {
                     this.setState({opacity0: 1})
-                }, 4000);
+                }, 3800);
                 timer.setTimeout(this, 'onTouch_b', () => {
                     this.setState({opacity0: 0})
-                }, 5000);
+                }, 5200);
                 timer.setTimeout(this, 'onTouch', () => {
                     this.helper01();
                 }, 4500);
@@ -792,10 +791,10 @@ export default class Level_1 extends Component {
                 }, 1000);
                 timer.setTimeout(this, 'success_01_a', () => {
                     this.setState({opacity0: 1})
-                }, 4500);
+                }, 4300);
                 timer.setTimeout(this, 'success_01_b', () => {
                     this.setState({opacity0: 0})
-                }, 5500);
+                }, 5700);
                 timer.setTimeout(this, 'success_01', () => {
                     this.helper01();
                 }, 5000);
@@ -811,10 +810,10 @@ export default class Level_1 extends Component {
                 }, 500);
                 timer.setTimeout(this, 'success_02_a', () => {
                     this.setState({opacity0: 1})
-                }, 3000);
+                }, 2800);
                 timer.setTimeout(this, 'success_02_b', () => {
                     this.setState({opacity0: 0})
-                }, 4000);
+                }, 4200);
                 timer.setTimeout(this, 'success_02', () => {
                     this.helper01();
                 }, 3500);
@@ -831,10 +830,10 @@ export default class Level_1 extends Component {
                 }, 1000);
                 timer.setTimeout(this, 'success_03_a', () => {
                     this.setState({opacity0: 1})
-                }, 4500);
+                }, 4300);
                 timer.setTimeout(this, 'success_03_b', () => {
                     this.setState({opacity0: 0})
-                }, 5500);
+                }, 5700);
                 timer.setTimeout(this, 'success_03', () => {
                     this.helper01();
                 }, 5000);
@@ -954,19 +953,19 @@ export default class Level_1 extends Component {
                 }
                 timer.setTimeout(this, 'speak_color_a', () => {
                     this.setState({opacity0: 1})
-                }, 3500);
+                }, 3300);
                 if (this.state.err_time_select === 1) {
                     timer.setTimeout(this, 'speak_color_ba', () => {
                         this.setState({opacity0: 0})
-                    }, 4500);
+                    }, 4700);
                 } else if (this.state.err_time_color === 1) {
                     timer.setTimeout(this, 'speak_color_bb', () => {
                         this.setState({opacity0: 0})
-                    }, 4500);
+                    }, 4700);
                 } else {
                     timer.setTimeout(this, 'speak_color_bc', () => {
                         this.setState({opacity0: 0})
-                    }, 4500);
+                    }, 4700);
                 }
                 timer.setTimeout(this, 'speak_color', () => {
                     this.helper01();
@@ -1123,8 +1122,6 @@ export default class Level_1 extends Component {
         if (this.ismounted_Level1 === true) {
             return (
                 <ImageBackground source={require('../assets/other/Level1.webp')} style={styles.background}>
-                    <Image pointerEvents="none" source={require('../assets/other/Level_Selection_front2.webp')}
-                           style={styles.font2_gras}/>
                     <View style={styles.paint2}>
                         <Image
                             source={require('../assets/other/paint.webp')}
@@ -1136,6 +1133,8 @@ export default class Level_1 extends Component {
                             source={require('../assets/bunny/initial_bunny.png')}
                             style={[styles.bunny, {opacity: this.state.opacity0}]}/>
                     </View>
+                    <Image pointerEvents="none" source={require('../assets/other/Level_Selection_front2.webp')}
+                           style={styles.font2_gras}/>
                     {this.renderTouch()}
                     <ViewShot style={styles.paint} ref="viewShot"
                               options={{format: "jpg", quality: 1.0, result: "base64"}}>
